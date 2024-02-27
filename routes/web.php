@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ListBarangController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ListBarangController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,4 @@ Route::prefix('admin')->group(function () {
 //});
 
 Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
+Route::get('/login' , [LoginController::class, 'login']);
