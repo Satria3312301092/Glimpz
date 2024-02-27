@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ListBarangController;
+use App\Http\Controllers\ListItemJasa;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,4 +35,8 @@ Route::prefix('admin')->group(function () {
 //    return view('list_barang', compact('id', 'nama'));
 //});
 
-Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
+//Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
+
+Route::get('/listitem', function () {
+    return view('list_item');
+});
