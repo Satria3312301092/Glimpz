@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\ListBarangController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 Route::get('/welcome', function () {
     return view('welcome');
