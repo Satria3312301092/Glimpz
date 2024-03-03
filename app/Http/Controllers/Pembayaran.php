@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-class Pembayaran extends Controller
+class PembayaranController extends Controller
 {
-    function tampilkan($id, $nama, $harga){
-        return view('pembayaran', ['id' => $id, 'nama' => $nama, 'harga' =>$harga]);
+
+    public function getData()
+    {
+        $dataHarga = [
+            ['id' => 1, 'nama' => '3D Animation', 'harga' => 150000],
+            ['id' => 2, 'nama' => '2D Animation', 'harga' => 140000],
+        ];
+
+        return $dataHarga;
+    }
+
+    public function tampilkan1(){
+        $data = $this->getData();
+        return view('pembayaran', compact('data'));
     }
 }
