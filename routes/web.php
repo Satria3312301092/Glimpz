@@ -44,7 +44,7 @@ Route::prefix('admin')->group(function () {
 });
 
 //Route::get('/listbarang/{id}/{nama}', function($id, $nama) {
-//    return view('list_barang', compact('id', 'nama'));
+//    return view('list_barang', compact('id', 'nama'));SDA
 //});
 
 Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
