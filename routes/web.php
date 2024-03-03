@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListItemJasaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ListBarangController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\ListBarangController112;
 use App\Http\Controllers\ListBarangController091;
 use App\Http\Controllers\ListBarangController092;
