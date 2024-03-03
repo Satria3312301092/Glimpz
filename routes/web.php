@@ -1,7 +1,14 @@
 <?php
 
-use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ListItemJasaController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ListBarangController;
+use App\Http\Controllers\ListBarangController112;
+use App\Http\Controllers\ListBarangController091;
+use App\Http\Controllers\ListBarangController092;
+use App\Http\Controllers\ListBarangController105;
+use App\Http\Controllers\ListBarangController108;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +47,14 @@ Route::prefix('admin')->group(function () {
 //});
 
 Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
+
+Route::get('/login', [LoginController::class, 'login']);
+Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+Route::get('/listitem', [ListItemJasaController::class, 'listitem']);
+Route::get('/pembayaran', [PembayaranController::class, 'pembayaran']);
+
+Route::get('/listbarang112', [ListBarangController112::class, 'listbarang112']);
+Route::get('/listbarang091', [ListBarangController091::class, 'listbarang091']);
+Route::get('/listbarang092', [ListBarangController092::class, 'listbarang092']);
+Route::get('/listbarang105', [ListBarangController105::class, 'listbarang105']);
+Route::get('/listbarang108', [ListBarangController108::class, 'listbarang108']);
