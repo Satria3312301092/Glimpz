@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ListBarangController112 extends Controller
+class ListBarangController108 extends Controller
 {
     public function getData(){
         $dataBarang = [
@@ -17,8 +17,8 @@ class ListBarangController112 extends Controller
         return $dataBarang;
     }
 
-    public function listbarang112(){
+    public function listbarang108(){
         $data = $this->getData();
-        return view('listbarang112', compact('data'));
+        return view('listbarang108', compact('data'));
     }
 }

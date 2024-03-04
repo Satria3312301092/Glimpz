@@ -15,7 +15,7 @@ class PembayaranController extends Controller
         return $dataHarga;
     }
 
-    public function tampilkan1(){
+    public function pembayaran(){
         $data = $this->getData();
         return view('pembayaran', compact('data'));
     }
