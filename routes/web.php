@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ListItemJasaController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ListBarangController;
-use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\Pembayaran;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -38,4 +44,4 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
 
-Route::get('pembayaran/{id}/{nama}/{harga}', [PembayaranController::class, 'tampilkan1']);
+Route::get('pembayaran/{id}/{nama}/{harga}', [Pembayaran::class, 'tampilkan']);
