@@ -52,7 +52,7 @@ Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']
 Route::get('/login', [LoginController::class, 'login']);
 Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 Route::get('/listitem', [ListItemJasaController::class, 'listitem']);
-Route::get('/pembayaran', [PembayaranController::class, 'pembayaran']);
+Route::get('/pembayaran/{id}/{nama}/{harga}', [PembayaranController::class, 'pembayaran']);
 
 Route::get('/listbarang112', [ListBarangController112::class, 'listbarang112']);
 Route::get('/listbarang091', [ListBarangController091::class, 'listbarang091']);

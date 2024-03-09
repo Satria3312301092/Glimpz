@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Pembayaran extends Controller
+class PembayaranController extends Controller
 {
-    function tampilkan($id, $nama, $harga){
+    function pembayaran($id, $nama, $harga){
         return view('pembayaran', ['id' => $id, 'nama' => $nama, 'harga' =>$harga]);
     }
 }

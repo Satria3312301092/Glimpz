@@ -22,3 +22,4 @@ class ListBarangController112 extends Controller
         return view('listbarang112', compact('data'));
     }
 }
+?>
