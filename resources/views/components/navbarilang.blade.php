@@ -1,4 +1,4 @@
-<div class="navbar bg-transparent fixed top-0 z-50 rounded-b-lg" id="navbar">
+<div class="navbar bg-transparent fixed top-0 z-50 rounded-b-xl" id="navbar">
     <div class="navbar-start">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
