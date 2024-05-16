@@ -53,6 +53,7 @@ Route::prefix('admin')->group(function () {
 Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
 
 Route::get('/login', [LoginController::class, 'login']);
+Route::get('/signup', [LoginController::class, 'signup']);
 Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 Route::get('/listitem', [ListItemJasaController::class, 'listitem']);
 Route::get('/pembayaran/{id}/{nama}/{harga}', [PembayaranController::class, 'pembayaran']);
