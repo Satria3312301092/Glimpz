@@ -9,7 +9,7 @@
     <title>@yield('title', 'My App')</title>
 </head>
 <body>
-        @include('components.nav-landing')
+        @include('components.nav_landing')
         
     <div class="">
         <main>

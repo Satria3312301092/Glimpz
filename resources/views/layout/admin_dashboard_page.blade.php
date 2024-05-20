@@ -6,19 +6,17 @@
     <link rel="stylesheet" href="output.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js"></script>
 
     <title>@yield('title', 'My App')</title>
 </head>
 <body>
-@include('components.navbarilang')
         
             <main>
                 @yield('content')
             </main>
     
         <footer>
-            @include('components.footer')
+            <!-- footer -->
         </footer>
     </body>
 </body>

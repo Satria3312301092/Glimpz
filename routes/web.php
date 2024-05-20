@@ -28,6 +28,9 @@ use App\Http\Controllers\ProfileBuyerController;
 use App\Http\Controllers\ProfileSellerController;
 use App\Http\Controllers\SellerServiceController;
 use App\Http\Controllers\SellerOrderController;
+use App\Http\Controllers\TambahServiceController;
+use App\Http\Controllers\EditServiceController;
+use App\Http\Controllers\ListServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,6 +92,13 @@ Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer']);
 Route::get('/profileseller', [ProfileSellerController::class, 'profileseller']);
 Route::get('/sellerservice', [SellerServiceController::class, 'sellerservice']);
 Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
+Route::get('/tambahservice', [TambahServiceController::class, 'tambahservice']);
+Route::get('/editservice', [EditServiceController::class, 'editservice']);
+
+
+Route::get('/listservice', [ListServiceController::class, 'show']);
+
+
 
 Route::get('/listbarang112', [ListBarangController112::class, 'listbarang112']);
 Route::get('/listbarang091', [ListBarangController091::class, 'listbarang091']);
