@@ -32,7 +32,7 @@
               <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                   <div class="w-8 p-2 border-[1px] border-[#BEBEBE] rounded-full shadow-md shadow-neutral-300">
-                    <img src="../Asset/Profile-user.svg" alt="Avatar Tailwind CSS Component" />
+                    <img src="../images/Profileuser.svg" alt="Avatar Tailwind CSS Component" />
                   </div>
                 </div>
                 <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
@@ -347,4 +347,3 @@
       </div>
 </body>
 </html>
-  
