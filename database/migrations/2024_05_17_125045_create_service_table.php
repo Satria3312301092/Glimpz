@@ -181,7 +181,6 @@ return new class extends Migration
         Schema::dropIfExists('seller');
         Schema::dropIfExists('administrator');
         Schema::dropIfExists('banned');
-
         Schema::dropIfExists('user');
     }
 };

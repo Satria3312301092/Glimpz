@@ -3,60 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('Jamal-CSS/style.css') }}">
+    <link rel="stylesheet" href="output.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <script src="script.js"></script>
+    <title>Sign Up</title>
     <style>
-        .form-container {
-            flex-direction: row-reverse;
-            justify-content: center;
-        }
+      #cover-login{
+        background-image: url('public/asset/Login.png');
+      }
     </style>
 </head>
-<body>
-
-    <section class="bg-white-100 min-h-screen flex items-center
-    justify-center ">
-            <!-- Login container -->
-            <div class="bg-white-50 flex rounded-3xl
-            shadow-lg max-w-4xl border form-container ">
-                <!-- form -->
-                <div class="w-1/2 px-16 flex flex-col">
-                    <h2 class="text-center font-bold text-3xl p-5 text-blue-600 ">
-                    <img class="mx-auto w-20 h-20 mb-5" src="images/logo.png" alt="">Log in</h2>
-                    <form class="flex flex-col gap-3" action="">
-                        <span class="font-bold label-text text-sm ">Username</span>
-                        <div class="relative">
-                        <input class="p-5 shadow-xl w-full md:text-justify rounded-lg bg-gray-100 border " type="text" name="username" placeholder=" Username">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person absolute top-1/2 left-1 -translate-y-1/2" viewBox="0 0 16 16">
-                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-                        </svg>
-                        </div>
-                        <span class="font-bold label-text">Password</span>
-                        <div class="relative">
-                        <input class="p-5 shadow-lg w-full rounded-lg bg-gray-100 border" type="password" name="password" placeholder=" Password">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2" viewBox="0 0 16 16">
-                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock absolute top-1/2 left-1 -translate-y-1/2" viewBox="0 0 16 16">
-                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1"/>
-                        </svg>
-                        </div>
-                        <button><p class="text-blue-600 text-left mt-5 text-xs py-1">Forgor your password?</p></button>
-                        <button class="bg-blue-600 min-h-16 text-white py-2">Login</button>
-                        <div class="text-sm flex justify-center">
-                        <p class="text-center">Don't have an account?</p>
-                        <a href="{{ url('daftarGLIMPZ') }}" class="text-blue-600 font-bold underline">Sign up</a>
-                        </div>
-                    </form>
-                </div>
-                <!-- image -->
-                <div class="sm:block hidden w-1/2">
-                    <img class="rounded-l-3xl" src="images/login.png" alt="">
-                </div>
+<body class="font-poppins bg-[#F8F8F8]">
+    <div class="container mx-auto flex justify-center items-center h-screen">
+      <div class="bg-white w-2/3 rounded-2xl shadow-xl shadow-neutral-500">
+        <div class="grid grid-cols-2">
+          <div class="bg-cover rounded-l-2xl bg-[url('../public/asset/Login.png')]" id="cover-login"></div>
+          <!-- form input -->
+          <div class="flex flex-col items-center w-full h-[528px] py-12 px-20">
+            <div class="flex justify-center">
+              <img class="w-10 h-10 mb-2" src="../Asset/logo.png" alt="">
             </div>
-    </section>
+              <h1 class="text-2xl text-center text-blue-600 font-bold mb-3">Log In</h1>
+            <label class="form-control w-full max-w-xs">
+              <div class="label">
+                <span class="label-text text-xs"></span>
+              </div>
+              <label class="input input-bordered h-10 flex items-center gap-2 shadow-lg focus:shadow-lg rounded text-xs">
+                <svg class="w-4 h-4 text-black" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="17.5001" cy="10.2083" r="5.83333" stroke="currentColor" stroke-width="3"/>
+                  <path d="M23.3334 30.6248H11.6667C8.44505 30.6248 5.60024 27.798 7.27969 25.0487C8.92184 22.3605 12.1001 20.4165 17.5 20.4165C22.9 20.4165 26.0782 22.3605 27.7204 25.0487C29.3998 27.7979 26.555 30.6248 23.3334 30.6248Z" stroke="currentColor" stroke-width="3"/>
+                  </svg>
+                  <input type="text" class="grow" placeholder="Username" />
+              </label>
+            </label>
+            <label class="form-control w-full max-w-xs mb-8">
+              <div class="label">
+                <span class="label-text text-xs"></span>
+              </div>
+              <label class="input input-bordered h-10 flex items-center gap-2 shadow-lg focus:shadow-lg rounded text-xs">
+                <svg class="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="9" width="16" height="12" rx="4" stroke="currentColor" stroke-width="2"/>
+                  <path d="M11.4662 15.2884L11.4662 13.3773" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M16 9V7C16 4.79086 14.2091 3 12 3V3C9.79086 3 8 4.79086 8 7L8 9" stroke="black" stroke-width="2"/>
+                  </svg>                  
+                <input type="password" class="grow" value="password" />
+              </label>
+            </label>
+            <div class="form-control w-full max-w-xs mb-12">
+              <button class="btn btn-sm h-10 bg-blue-700 hover:bg-blue-700 text-white text-xs font-medium border-none shadow-lg hover:shadow-lg rounded-md">
+                Log In
+              </button>
+            </div>
+            <p class="text-xs">
+              <a class="text-slate-400">Dont have an account yet?</a>
+              <a href="#" class="text-blue-800 hover:underline">Sign Up</a>
+            </p>
+          </div>
+          <!-- form input -->
+        </div>
+      </div>
+    </div>
 </body>
 </html>

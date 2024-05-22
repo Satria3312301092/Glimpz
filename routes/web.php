@@ -72,8 +72,8 @@ Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']
 
 Route::get('/login', [LoginController::class, 'login']);
 Route::get('/dashboard', [DashboardController::class, 'dashboard']);
-Route::get('/listitem', [ListItemJasaController::class, 'listitem']);
-Route::get('/pembayaran', [PembayaranController::class, 'pembayaran']);
+// Route::get('/listitem', [ListItemJasaController::class, 'listitem']);
+// Route::get('/pembayaran', [PembayaranController::class, 'pembayaran']);
 Route::get('/beranda', [BerandaCotroller::class, 'beranda']);
 Route::get('/admindasbor', [AdminDasborCotroller::class, 'admindasbor']);
 Route::get('/landingpage', [Landing_PageController::class, 'landing_page']);
@@ -100,9 +100,12 @@ Route::get('/listservice', [ListServiceController::class, 'show']);
 
 
 
-Route::get('/listbarang112', [ListBarangController112::class, 'listbarang112']);
-Route::get('/listbarang091', [ListBarangController091::class, 'listbarang091']);
-Route::get('/listbarang092', [ListBarangController092::class, 'listbarang092']);
-Route::get('/listbarang105', [ListBarangController105::class, 'listbarang105']);
-Route::get('/listbarang108', [ListBarangController108::class, 'listbarang108']);
-Route::get('/listproduct', [ListProduct092Controller::class, 'list']);
+// Route::get('/listbarang112', [ListBarangController112::class, 'listbarang112']);
+// Route::get('/listbarang091', [ListBarangController091::class, 'listbarang091']);
+// Route::get('/listbarang092', [ListBarangController092::class, 'listbarang092']);
+// Route::get('/listbarang105', [ListBarangController105::class, 'listbarang105']);
+// Route::get('/listbarang108', [ListBarangController108::class, 'listbarang108']);
+// Route::get('/listproduct', [ListProduct092Controller::class, 'list']);
+
+
+
