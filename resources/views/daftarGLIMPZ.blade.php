@@ -25,7 +25,7 @@
                 <div class="w-1/2 px-16 flex flex-col">
                     <h2 class="text-center font-bold text-3xl p-5 text-blue-600 ">
                     <img class="mx-auto w-20 h-20 mb-5" src="Jamal-Image/logo.png" alt="">Sign up</h2>
-                    <form class="flex flex-col bg-center gap-3" action="">
+                    <form class="flex flex-col bg-center gap-3" action="daftar2" method="POST">
                         <span class="font-bold label-text text-sm ">Username</span>
                         <div class="relative">
                         <input class="p-5 shadow-xl w-full md:text-justify rounded-lg bg-gray-100 border " type="text" name="username" placeholder=" Username">
@@ -55,11 +55,11 @@
                         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
                         </svg>
                         </div>
-                        <a href="{{ url('daftarGLIMPZ2') }}" class="bg-blue-600 min-h-16 text-white py-5 mt-5 rounded-lg block text-center">Continue</a>
+                        <a href="{{ url('daftar2') }}" class="bg-blue-600 min-h-16 text-white py-5 mt-5 rounded-lg block text-center">Continue</a>
 
                         <div class="text-sm flex justify-center">
                         <p class="text-center">Already have account?</p>
-                        <a href="{{ url('daftarGLIMPZ2') }}" class="text-blue-600 font-bold underline">Login</a>
+                        <a href="{{ url('daftar2') }}" class="text-blue-600 font-bold underline">Login</a>
                         </div>
                     </form>
                 </div>
