@@ -12,20 +12,16 @@
       input[type="date"]::-webkit-calendar-picker-indicator {
         display: none;
       }
-
-      #cover-login{
-        background-image: url('public/asset/Login.png');
-      }
     </style>
 </head>
 <body class="font-poppins bg-[#F8F8F8]">
     <div class="container mx-auto flex justify-center items-center h-svh">
       <div class="bg-white w-2/3 rounded-2xl shadow-xl shadow-neutral-500">
         <div class="grid grid-cols-2">
-          <div class="bg-cover rounded-l-2xl" id="cover-login"></div>
+          <div class="bg-cover rounded-l-2xl" style="background-image: url(../Asset/Login.png)"></div>
           <!-- form input -->
           <form id="signupForm" method="#">
-          <div class="flex flex-col items-center w-full h-[528px] py-12 px-20 relative">
+          <div class="flex flex-col items-center w-full h-[528px] py-12 relative">
             <!-- Step 1: Personal Data -->
             <div id="step1" class="step">
               <div class="flex justify-center">
