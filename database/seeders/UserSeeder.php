@@ -19,6 +19,23 @@ class UserSeeder extends Seeder
                 'email'=>'Jamal@gmail.com',
                 'nomor_telpon'=>'08226969',
                 'tanggal_lahir'=>'2003-07-20',
+                'role'=>'buyer',
+                'password'=>'123',
+            ],
+            [
+                'username'=>'udin',
+                'email'=>'udin@gmail.com',
+                'nomor_telpon'=>'08226966',
+                'tanggal_lahir'=>'2003-07-21',
+                'role'=>'seller',
+                'password'=>'123',
+            ],
+            [
+                'username'=>'rudi',
+                'email'=>'rudi@gmail.com',
+                'nomor_telpon'=>'08226967',
+                'tanggal_lahir'=>'2003-07-22',
+                'role'=>'admin',
                 'password'=>'123',
             ],
         ];

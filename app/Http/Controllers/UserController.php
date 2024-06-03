@@ -29,7 +29,13 @@ class UserController extends Controller
         ];
 
         if (Auth::attempt($infologin)) {
-            return redirect('daftar');
+            if (Auth::user()->role == 'buyer') {
+                return redirect('daftar');
+            }elseif (Auth::user()->role == 'seller') {
+                return redirect('daftar2');
+            }elseif (Auth::user()->role == 'admin') {
+                return redirect('listbarang108');
+            }
         } else {
             return redirect()->back()->with('login_failed', true);
         }
