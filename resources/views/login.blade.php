@@ -8,17 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js"></script>
     <title>Sign Up</title>
-    <style>
-      #cover-login{
-        background-image: url('public/asset/Login.png');
-      }
-    </style>
 </head>
 <body class="font-poppins bg-[#F8F8F8]">
     <div class="container mx-auto flex justify-center items-center h-screen">
       <div class="bg-white w-2/3 rounded-2xl shadow-xl shadow-neutral-500">
         <div class="grid grid-cols-2">
-          <div class="bg-cover rounded-l-2xl bg-[url('../public/asset/Login.png')]" id="cover-login"></div>
+          <div class="bg-cover rounded-l-2xl" style="background-image: url(../Asset/Login.png)"></div>
           <!-- form input -->
           <div class="flex flex-col items-center w-full h-[528px] py-12 px-20">
             <div class="flex justify-center">
@@ -27,7 +22,7 @@
               <h1 class="text-2xl text-center text-blue-600 font-bold mb-3">Log In</h1>
             <label class="form-control w-full max-w-xs">
               <div class="label">
-                <span class="label-text text-xs"></span>
+                <span class="label-text text-xs">Username</span>
               </div>
               <label class="input input-bordered h-10 flex items-center gap-2 shadow-lg focus:shadow-lg rounded text-xs">
                 <svg class="w-4 h-4 text-black" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,9 +34,9 @@
             </label>
             <label class="form-control w-full max-w-xs mb-8">
               <div class="label">
-                <span class="label-text text-xs"></span>
+                <span class="label-text text-xs">Password</span>
               </div>
-              <label class="input input-bordered h-10 flex items-center gap-2 shadow-lg focus:shadow-lg rounded text-xs">
+              <label class="input input-bordered h-10 flex items-center gap-2">
                 <svg class="w-4 h-4 text-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="4" y="9" width="16" height="12" rx="4" stroke="currentColor" stroke-width="2"/>
                   <path d="M11.4662 15.2884L11.4662 13.3773" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
