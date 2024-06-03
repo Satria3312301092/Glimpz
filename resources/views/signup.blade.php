@@ -149,5 +149,65 @@
         </div>
       </div>
     </div>
+
+    <script>
+      //   Multiple Form Sign Up
+      document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step');
+            const nextButtons = document.querySelectorAll('.nextStep');
+            const prevButtons = document.querySelectorAll('.prevStep');
+            const input_password = document.getElementById('input_password');
+            const input_confirmPassword = document.getElementById('input_confirmPassword');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const errorMessage = document.getElementById('error-message');
+            const submitBtn = document.getElementById('submitBtn');
+
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    changeStep(button.dataset.next);
+                });
+            });
+
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    changeStep(button.dataset.prev);
+                });
+            });
+
+            [password, confirmPassword].forEach(field => {
+                field.addEventListener('input', validatePasswords);
+            });
+
+            function changeStep(stepToShow) {
+                steps.forEach(step => {
+                    step.classList.add('hidden');
+                });
+                document.getElementById(stepToShow).classList.remove('hidden');
+            }
+
+            function validatePasswords() {
+                if (password.value === confirmPassword.value) {
+                    errorMessage.classList.add('hidden');
+                    submitBtn.disabled = false;
+                    input_password.classList.remove('input-error');
+                    input_confirmPassword.classList.remove('input-error');
+                } else {
+                    errorMessage.classList.remove('hidden');
+                    submitBtn.disabled = true;
+                    input_password.classList.add('input-error');
+                    input_confirmPassword.classList.add('input-error');
+                }
+            }
+
+            document.getElementById('signupForm').addEventListener('submit', function(event) {
+                if (password.value !== confirmPassword.value) {
+                    event.preventDefault();
+                    errorMessage.classList.remove('hidden');
+                    submitBtn.disabled = true;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
