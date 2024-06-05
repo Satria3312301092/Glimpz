@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('Date_Of_Birth');
             $table->string('Username', 100);
             $table->string('Password', 100);
-            $table->enum('Role', ['buyer', 'admin', 'seller']);
+            $table->enum('Role', ['Buyer', 'Admin', 'Seller']) -> default('Buyer');
             // Optional: Add timestamps if needed
             // $table->timestamps();
         });
@@ -95,7 +95,7 @@ return new class extends Migration
             $table->unsignedInteger('Id_Type'); // Foreign key
             $table->string('Day', 100);
             $table->string('Revision', 100);
-            $table->unsignedInteger('Price');
+            $table->string('Price', 100);
             $table->string('Description', 100);
 
             // Define the foreign key constraints

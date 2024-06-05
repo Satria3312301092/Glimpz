@@ -30,9 +30,13 @@
                     </a>
                   </li>
                   <li><a>Settings</a></li>
-                  <li><a>Logout</a></li>
+                  <form action="{{ route ('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit"><li><a>Logout</a></li></button>
+                  </form>
                 </ul>
               </div>
             </div>
           </div>
           <!-- navbar end -->
+      

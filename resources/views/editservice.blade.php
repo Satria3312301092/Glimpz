@@ -61,17 +61,10 @@
     </div>
     <div class="navbar-center hidden lg:flex z-[1]">
       <ul class="menu menu-horizontal px-1">
-        <li><a>Item 1</a></li>
-        <li>
-          <details>
-            <summary>Parent</summary>
-            <ul class="p-2">
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a>Item 3</a></li>
+      <li><a>Dashboard</a></li>
+        <li><a href="{{ route('sellerservice.index') }}">Service</a></li>
+        <li><a>Orders</a></li>
+        <li><a>Earnings</a></li>
       </ul>
     </div>
     <div class="navbar-end">
@@ -84,18 +77,21 @@
     <div class="bg-white w-full h-full px-12 pt-8 border-2 shadow-2xl rounded-xl">
     <!-- bagian atas -->
     <h1 class="font-bold text-3xl mb-6">Edit Services</h1>
+    <form action="{{ route('sellerservice.update', $service->Id_Service) }}" method="POST" enctype="multipart/form-data"> 
+      @csrf
+      @method('PUT')
       <div class="grid grid-cols-2">
         <div class="col-span-1">
         <a class="block text-gray-700 text-sm font-semibold mb-1">Title</a>
-        <input type="text" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-96">
+        <input type="text" value="{{ $service->Title }}" id="title" name="Title" class="shadow-lg border rounded py-2 px-3 w-96" required>
         
         <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-        <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-24"></textarea>
+        <textarea id="description" name="Description" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-24" required>{{ $service->Description }}</textarea>
 
-        <a for="title" class="block text-gray-700 text-sm font-semibold mb-1">Category</a>
-        <select class="select select-bordered w-full max-w-xs text-black shadow-lg border-[1px]">
-        <option class="text-zinc-500 font-bold" disabled selected>All Services</option>
-        <option class="text-slate-700 ">All Service</option>
+        <a for="Category" class="block text-gray-700 text-sm font-semibold mb-1">Category</a>
+        <select name="Category" class="select select-bordered w-full max-w-xs text-black shadow-lg border-[1px]">
+        <option class="text-zinc-500 font-bold" selected>{{ $service->Category }}</option>
+        <option class="text-slate-700" disabled>All Service</option>
         <option class="text-slate-700 hover:!bg-blue-50">Video Editing</option>
         <option class="text-slate-700">Video Ads</option>
         <option class="text-slate-700">Visual Effect</option>
@@ -114,70 +110,93 @@
         </select>
 
         <a class="block text-gray-700 text-sm font-semibold mb-1">Image</a>
-        <input id="fileInput" type="file" class="mt-1 custom-file-input w-96 mb-10">
-
+        <input name="Thumbnail" type="file" class="mt-1 custom-file-input w-96 mb-10">
+        <?php if(!'Thumbnail' == 0) { ?>
+            <input name="ThumbnailOld" value="{{ $service->Thumbnail }}" type="text" class="mt-1 custom-file-input w-96 mb-10">
+        <?php } ?>
         </div>
 
         <div class="col-span-1">
           <div role="tablist" class="tabs tabs-lifted">
-            <!-- tab 1 -->
-            <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Basic" checked />
-            <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+          @foreach ($types as $type)
+            @if ($type->Type_Name == 'Basic' && $type->Id_Service == $service->Id_Service)
+              @foreach ($details as $detail)
+                @if ($detail->Id_Type == $type->Id_Type)
+                  <!-- tab 1 -->
+                  <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Basic" checked />
+                  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    <div class="grid gap-y-1.5">
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
+                      <input type="text" value="{{$detail->Day}}" name="Day1" class="shadow-lg border rounded py-2 px-3 w-96">
+                      
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
+                      <input type="text" value="{{$detail->Revision}}" name="Revision1" class="shadow-lg border rounded py-2 px-3 w-96">
+                      
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
+                      <input type="text" value="{{$detail->Price}}" name="Price1" class="shadow-lg border rounded py-2 px-3 w-96">
+              
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
+                      <textarea name="Description1" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20">{{$detail->Descriptions}}</textarea>
+                    </div>
+                  </div>
+                @endif
+              @endforeach
+            @endif
+          @endforeach
+
+
+          @foreach ($types as $type)
+            @if ($type->Type_Name == 'Standard' && $type->Id_Service == $service->Id_Service)
+              @foreach ($details as $detail)
+                @if ($detail->Id_Type == $type->Id_Type)
+                  <!-- tab2 -->
+                  <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Standard" />
+                  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    <div class="grid gap-y-1.5">
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
+                      <input type="text" value="{{ $detail->Day }}" name="Day2" class="shadow-lg border rounded py-2 px-3 w-96">
+                      
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
+                      <input type="text" value="{{ $detail->Revision }}" name="Revision2" class="shadow-lg border rounded py-2 px-3 w-96">
+                      
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
+                      <input type="text" value="{{ $detail->Price }}" name="Price2" class="shadow-lg border rounded py-2 px-3 w-96">
+              
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
+                      <textarea name="Description2" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20">{{ $detail->Descriptions }}</textarea>
+                    </div>
+                  </div>
+                @endif
+              @endforeach
+            @endif
+          @endforeach
           
-            <div class="grid gap-y-1.5">
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-              <input type="text" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-96">
+          
+          @foreach ($types as $type)
+            @if ($type->Type_Name == 'Premium' && $type->Id_Service == $service->Id_Service)
+              @foreach ($details as $detail)
+                @if ($detail->Id_Type == $type->Id_Type)
+                  <!-- tab 3 -->
+                  <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Premium" />
+                  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    <div class="grid gap-y-1.5">
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
+                      <input type="text" value="{{ $detail->Day }}" name="Day3" class="shadow-lg border rounded py-2 px-3 w-96">
+                      
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
+                      <input type="text" value="{{$detail->Revision}}" name="Revision3" class="shadow-lg border rounded py-2 px-3 w-96">
+                      
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
+                      <input type="text" value="{{$detail->Price}}" name="Price3" class="shadow-lg border rounded py-2 px-3 w-96">
               
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-              <input type="text" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-              <input type="text" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-96">
-      
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-              <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20"></textarea>
-            </div>
-        </div>
-
-
-        <!-- tab2 -->
-        <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Standard" />
-        <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-
-        <div class="grid gap-y-1.5">
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-              <input type="text" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-              <input type="text" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-              <input type="text" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-96">
-      
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-              <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20"></textarea>
-            </div>
-        </div>
-      
-        <!-- tab 3 -->
-
-        <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Premium" />
-        <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-        <div class="grid gap-y-1.5">
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-              <input type="text" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-              <input type="text" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-              <input type="text" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-96">
-      
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-              <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20"></textarea>
-            </div>
-        </div>
-
+                      <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
+                      <textarea name="Description3" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20">{{ $detail->Descriptions }}</textarea>
+                    </div>
+                  </div>
+                @endif
+              @endforeach
+            @endif
+          @endforeach
       </div>
         </div>
       </div>
@@ -185,9 +204,8 @@
       <div class="flex justify-center py-14">
         <button class="btn btn-blue-300 hover:bg-blue-700 btn-outline text-blue-700 hover:text-white border-blue-700 hover:border-none font-medium text-base px-20">Edit Service</button>
       </div>
+    </form>
   </div>
   </div>
-
-
 </body>
 </html>

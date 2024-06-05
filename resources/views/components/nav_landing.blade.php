@@ -36,7 +36,7 @@
           </ul>
         </div>
         <div class="navbar-end gap-4 mr-4">
-          <a class="btn btn-blue-300 hover:bg-blue-300 btn-outline text-white hover:text-gray-900 border-blue-300 hover:border-none rounded-full font-medium text-base w-24">Login</a>
-          <a class="btn bg-blue-700 hover:bg-blue-700 text-white text-base font-medium border-none rounded-md w-24">Sign Up</a>
+          <a href="formlogin" class="btn btn-blue-300 hover:bg-blue-300 btn-outline text-white hover:text-gray-900 border-blue-300 hover:border-none rounded-full font-medium text-base w-24">Login</a>
+          <a href="daftar1" class="btn bg-blue-700 hover:bg-blue-700 text-white text-base font-medium border-none rounded-md w-24">Sign Up</a>
         </div>
       </div>

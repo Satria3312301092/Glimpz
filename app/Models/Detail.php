@@ -5,21 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
-{
+class Detail extends Model
+{   
     use HasFactory;
     public $timestamps = false;
-    protected $table ='service';
-    protected $primaryKey = 'Id_Service';
+    protected $table ='detail';
+    protected $primaryKey = 'Id_Detail';
     protected $fillable = [
-        'Id_Seller',
-        'Title',
+        'Id_Service',
+        'Id_Typey',
+        'Day',
+        'Revision',
+        'Price',
         'Description',
-        'Category',
-        'Thumbnail',
     ];
 
     public function types(){
-        return $this->hasMany(Type::class, 'Id_Service');
+        return $this->belongsTo(Type::class, 'Id_Type');
     }
+
 }

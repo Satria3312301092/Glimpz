@@ -31,6 +31,8 @@ use App\Http\Controllers\SellerOrderController;
 use App\Http\Controllers\TambahServiceController;
 use App\Http\Controllers\EditServiceController;
 use App\Http\Controllers\ListServiceController;
+use App\Http\Controllers\logoutController;
+use App\Http\Controllers\MinServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,19 +72,45 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
 
-Route::get('/login', [LoginController::class, 'login']);
-Route::get('/dashboard', [DashboardController::class, 'dashboard']);
-Route::get('/listitem', [ListItemJasaController::class, 'listitem']);
-Route::get('/pembayaran', [PembayaranController::class, 'pembayaran']);
-Route::get('/beranda', [BerandaCotroller::class, 'beranda']);
-Route::get('/admindasbor', [AdminDasborCotroller::class, 'admindasbor']);
-Route::get('/landingpage', [Landing_PageController::class, 'landing_page']);
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/formlogin', [LoginController::class, 'form'])->name('formlogin');
+    Route::post('/login', [LoginController::class, 'login'])->name('login');
+    Route::get('/', [Landing_PageController::class, 'landing_page']);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/beranda', [BerandaCotroller::class, 'beranda'])->name('beranda')->middleware('userAkses:Buyer');
+    Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
+    Route::resource('sellerservice', MinServiceController::class)->middleware('userAkses:Seller');
+    Route::get('/admindasbor', [AdminDasborCotroller::class, 'admindasbor'])->middleware('userAkses:Admin');
+});
+
+Route::get('/home', function () {
+    return redirect('/beranda');
+});
+
+
+
+
+
+// Route::middleware(['guest'])->group(function (){
+//     Route::get('/form', [LoginController::class, 'form']);
+//     Route::post('/login', [LoginController::class, 'login']);
+// });
+
+
+
+
+// Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+// Route::get('/listitem', [ListItemJasaController::class, 'listitem']);
+// Route::get('/pembayaran', [PembayaranController::class, 'pembayaran']);
+
 Route::get('/listservice', [List_ServicerController::class, 'list_service']);
 Route::get('/adminservice', [AdminServiceController::class, 'adminservice']);
 Route::get('/service', [ServiceController::class, 'service']);
-Route::get('/login', [LoginGlimpzController::class, 'loginglimpz']);
-Route::get('/daftar1', [DaftarGlimpzController::class, 'daftar1']);
-Route::get('/daftar2', [DaftarGlimpz1Controller::class, 'daftar2']);
+// Route::get('/login', [LoginGlimpzController::class, 'loginglimpz']);
+// Route::get('/daftar2', [DaftarGlimpzController::class, 'daftar2']);
 Route::get('/admininvoice', [AdminInvoiceController::class, 'admininvoice']);
 Route::get('/adminuser', [AdminUserController::class, 'adminuser']);
 Route::get('/adminorder', [AdminOrderController::class, 'adminorder']);
@@ -90,19 +118,42 @@ Route::get('/adminpayment', [AdminPaymentController::class, 'adminpayment']);
 Route::get('/orderpayment', [OrderPaymentController::class, 'orderpayment']);
 Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer']);
 Route::get('/profileseller', [ProfileSellerController::class, 'profileseller']);
-Route::get('/sellerservice', [SellerServiceController::class, 'sellerservice']);
+// Route::get('/sellerservice', [SellerServiceController::class, 'sellerservice']);
 Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
-Route::get('/tambahservice', [TambahServiceController::class, 'tambahservice']);
-Route::get('/editservice', [EditServiceController::class, 'editservice']);
+// Route::get('/editservice', [EditServiceController::class, 'editservice']);
 
 
 Route::get('/listservice', [ListServiceController::class, 'show']);
 
 
+//service proses
 
-Route::get('/listbarang112', [ListBarangController112::class, 'listbarang112']);
-Route::get('/listbarang091', [ListBarangController091::class, 'listbarang091']);
-Route::get('/listbarang092', [ListBarangController092::class, 'listbarang092']);
-Route::get('/listbarang105', [ListBarangController105::class, 'listbarang105']);
-Route::get('/listbarang108', [ListBarangController108::class, 'listbarang108']);
-Route::get('/listproduct', [ListProduct092Controller::class, 'list']);
+ // Route::get('sellerservice', [MinServiceController::class, 'index']);
+ 
+Route::resource('tambahservice', MinServiceController::class);
+Route::resource('editservice', MinServiceController::class);
+
+
+
+Route::get('/daftar1', [DaftarGlimpzController::class, 'create']);
+Route::post('/daftar1', [DaftarGlimpzController::class, 'store']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Route::get('/listbarang112', [ListBarangController112::class, 'listbarang112']);
+// Route::get('/listbarang091', [ListBarangController091::class, 'listbarang091']);
+// Route::get('/listbarang092', [ListBarangController092::class, 'listbarang092']);
+// Route::get('/listbarang105', [ListBarangController105::class, 'listbarang105']);
+// Route::get('/listbarang108', [ListBarangController108::class, 'listbarang108']);
+// Route::get('/listproduct', [ListProduct092Controller::class, 'list']);
