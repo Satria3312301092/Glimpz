@@ -15,6 +15,11 @@
     </style>
 </head>
 <body>
+    @if(session('success'))
+            <script>
+                alert("{{ session('success') }}")
+            </script>
+    @endif
     <section class="bg-white-100 min-h-screen flex items-center
     justify-center ">
             <!-- Login container -->
@@ -62,11 +67,6 @@
                 </div>
             </div>
     </section>
-    @if(session('success'))
-        <script>
-            alert("{{ session('success') }}");
-        </script>
-    @endif
 </body>
 </html>
 

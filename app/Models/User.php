@@ -23,11 +23,20 @@ class User extends Authenticatable
         'Email',
         'Name',
         'Date_Of_Birth',
-        'username',
-        'password',
+        'Username',
+        'Password',
         'Role',
     ];
 
+
+
+    public function username() {
+        return 'Username';
+    }
+
+    public function getAuthPassword() {
+        return $this->Password;
+    }
 
     public function users(){
         return $this->belongsTo(Type::class, 'Id_Service');

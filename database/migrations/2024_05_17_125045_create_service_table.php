@@ -13,7 +13,7 @@ return new class extends Migration
 
         Schema::create('user', function (Blueprint $table) {
             $table->increments('Id_User'); // Primary key, auto-increment
-            $table->string('Picture', 100);
+            $table->string('Picture', 100)->nullable();
             $table->string('Number_Phone', 100);
             $table->string('Email', 100);
             $table->string('Name', 100);
@@ -96,7 +96,7 @@ return new class extends Migration
             $table->string('Day', 100);
             $table->string('Revision', 100);
             $table->string('Price', 100);
-            $table->string('Description', 100);
+            $table->string('Descriptions', 100);
 
             // Define the foreign key constraints
             $table->foreign('Id_Service')->references('Id_Service')->on('service')->onDelete('cascade');
