@@ -64,7 +64,7 @@
               <figure class="border-b-2 py-5">
                 <div class="avatar">
                   <div class="w-32 rounded-full border-2">
-                <img src="../Asset/Profile-user.svg" class="p-9" alt="profile image" />
+                <img src="{{ $user->Picture ? Storage::url('public/thumbnail/' . $user->Picture) : asset('thumbnail/default-glimpz.png') }}" class="p-9" alt="profile image" />
                 </div>
                 </div>
               </figure>
@@ -87,11 +87,14 @@
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
                           <h3 class="font-bold text-lg">Edit Your Profile</h3>
+                          <form action="{{ route('profilebuyer.update', $user->Id_User) }}" method="POST" enctype="multipart/form-data">
+                          @csrf
+                          @method('PUT')
                           <div class="label p-2">
                             <label class="mt-3 font-semibold font-sans">Photo</label>
                           </div>
                           <div class="input shadow-2xl">
-                              <img src="{{ Storage::url($user->Picture) }}" alt="" width="">
+                              <img src="" alt="" width="">
                           </div>
                             <div class="label p-2">
                               <label class="mt-3 font-semibold font-sans">Full Name</label>
@@ -111,7 +114,17 @@
                             <div class="input shadow-2xl">
                                 <input name="Email" type="text" value="{{ $user->Email }}"></input>
                             </div>
+                            <div class="label p-2">
+                              <label class="mt-3 font-semibold font-sans">Date of Birth</label>
+                            </div>
+                            <div class="input shadow-2xl">
+                            <input type="date" name="Date" class="grow" placeholder="Date of Birth" />
+                            </div>
+                            <div class="flex justify-end">
+                            <button type="submit" class="btn bg-blue-600 text-white">Update</button>
+                            </div>
                         </div>
+</form>
                       </dialog>
                   </div>
                 </div>

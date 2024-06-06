@@ -88,7 +88,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
     Route::resource('sellerservice', MinServiceController::class)->middleware('userAkses:Seller');
     Route::get('/admindasbor', [AdminDasborCotroller::class, 'admindasbor'])->middleware('userAkses:Admin');
-    Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+    Route::resource('profilebuyer', ProfileBuyerController::class)->middleware('userAkses:Buyer');
+    // Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+    // Route::put('/profilebuyer/{{Id_User}}', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+    // Route::post('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
     Route::get('/profileseller', [ProfileSellerController::class, 'profileseller'])->name('profileseller')->middleware('userAkses:Seller');
 });
 
