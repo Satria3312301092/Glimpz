@@ -75,8 +75,12 @@ Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/formlogin', [LoginController::class, 'form'])->name('formlogin');
+    Route::post('/formlogin', [LoginController::class, 'form'])->name('formlogin');
     Route::post('/login', [LoginController::class, 'login'])->name('login');
     Route::get('/', [Landing_PageController::class, 'landing_page']);
+    Route::get('/daftar1', [DaftarGlimpzController::class, 'create'])->name('daftar1');
+    Route::post('/daftar1', [DaftarGlimpzController::class, 'store'])->name('daftar1');
+
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -84,6 +88,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
     Route::resource('sellerservice', MinServiceController::class)->middleware('userAkses:Seller');
     Route::get('/admindasbor', [AdminDasborCotroller::class, 'admindasbor'])->middleware('userAkses:Admin');
+    Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+    Route::get('/profileseller', [ProfileSellerController::class, 'profileseller'])->name('profileseller')->middleware('userAkses:Seller');
 });
 
 Route::get('/home', function () {
@@ -100,8 +106,6 @@ Route::get('/home', function () {
 // });
 
 
-
-
 // Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 // Route::get('/listitem', [ListItemJasaController::class, 'listitem']);
 // Route::get('/pembayaran', [PembayaranController::class, 'pembayaran']);
@@ -116,8 +120,7 @@ Route::get('/adminuser', [AdminUserController::class, 'adminuser']);
 Route::get('/adminorder', [AdminOrderController::class, 'adminorder']);
 Route::get('/adminpayment', [AdminPaymentController::class, 'adminpayment']);
 Route::get('/orderpayment', [OrderPaymentController::class, 'orderpayment']);
-Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer']);
-Route::get('/profileseller', [ProfileSellerController::class, 'profileseller']);
+
 // Route::get('/sellerservice', [SellerServiceController::class, 'sellerservice']);
 Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
 // Route::get('/editservice', [EditServiceController::class, 'editservice']);
@@ -135,8 +138,6 @@ Route::resource('editservice', MinServiceController::class);
 
 
 
-Route::get('/daftar1', [DaftarGlimpzController::class, 'create']);
-Route::post('/daftar1', [DaftarGlimpzController::class, 'store']);
 
 
 

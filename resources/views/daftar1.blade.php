@@ -15,12 +15,13 @@
     </style>
 </head>
 <body class="font-poppins bg-[#F8F8F8]">
+  
     <div class="container mx-auto flex justify-center items-center h-svh">
       <div class="bg-white w-2/3 rounded-2xl shadow-xl shadow-neutral-500">
         <div class="grid grid-cols-2">
           <div class="bg-cover rounded-l-2xl" style="background-image: url(images/Login.png)"></div>
           <!-- form input -->
-          <form id="signupForm" action="daftar1" method="POST">
+          <form id="signupForm" action="{{ route('daftar1') }}" method="POST">
           @csrf
           <div class="flex flex-col items-center w-full h-[528px] py-12 relative">
             <!-- Step 1: Personal Data -->
@@ -231,6 +232,5 @@
         alert("{{ session('error') }}");
     </script>
 @endif
-
 </body>
 </html>

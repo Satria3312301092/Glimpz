@@ -26,7 +26,7 @@ class DaftarGlimpzController extends Controller
             'Password' => 'string|max:100',
             ]);
         
-
+    
         $user = new User();
         $user->Name = $request->input('Fullname');
         $user->Email = $request->input('Email');
@@ -38,7 +38,8 @@ class DaftarGlimpzController extends Controller
         $user->save();
     
         if($user->save()) {
-        return view('login')->with('success', 'Successfully Create Account');
+        session()->flash('success', 'Successfully Created Account');
+        return view('login');
     } else {
         return redirect()->back()->with('error', 'Failed To Create Account');
     }

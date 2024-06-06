@@ -72,7 +72,7 @@ class MinServiceController extends Controller
         // Handle file upload
         if ($request->hasFile('Thumbnail')) {
             $file = $request->file('Thumbnail');
-            $filename = date('Y-m-d') . $file->getClientOriginalName() . uniqid();
+            $filename = uniqid() . date('Y-m-d') . $file->getClientOriginalName();
             $path = $file->storeAs('public/thumbnail', $filename);
     
             // Simpan data ke database
@@ -199,7 +199,7 @@ class MinServiceController extends Controller
 
     if ($request->hasFile('Thumbnail')) {
         $file = $request->file('Thumbnail');
-        $filename = date('Y-m-d') . $file->getClientOriginalName() . uniqid();
+        $filename = uniqid() . date('Y-m-d') . $file->getClientOriginalName();
         $path = $file->storeAs('public/thumbnail', $filename);
     } else {
         $filename = $request->input('ThumbnailOld');
