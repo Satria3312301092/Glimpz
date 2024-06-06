@@ -40,7 +40,7 @@
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li>
         </li>
-          <button><li><a><img src="images/Profile.svg" alt="">Profile</a></li></button>
+          <button><li><a href="profilebuyer"><img src="images/Profile.svg" alt="">Profile</a></li></button>
         <form action="{{ route ('logout') }}" method="POST">
           @csrf
           <button type="submit"><li><a ><img src="images/logout.svg" alt="">Logout</a></li></button>
