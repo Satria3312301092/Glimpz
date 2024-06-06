@@ -64,7 +64,7 @@
               <figure class="border-b-2 py-5">
                 <div class="avatar">
                   <div class="w-32 rounded-full border-2">
-                <img src="{{ $user->Picture ? Storage::url('public/thumbnail/' . $user->Picture) : asset('thumbnail/default-glimpz.png') }}" class="p-9" alt="profile image" />
+                <img src="{{ $user->Picture }}" class="p-9" alt="" />
                 </div>
                 </div>
               </figure>
