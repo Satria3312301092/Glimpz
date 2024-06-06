@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminUserController extends Controller
+class AdminDasborController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,16 +12,10 @@ class AdminUserController extends Controller
     public function index()
     {   
         $users = User::all();
-        
-        $usersBuyer = User::where('Role', 'Buyer')->get();
-        $usersSeller = User::where('Role', 'Seller')->get();
-        $usersAdmin = User::where('Role', 'Admin')->get();
 
-        // $usersBuyer = User::where($users1);
+        $countUser = $users->count();
 
-        $count = $users->count();
-
-        return view('adminuser', compact('users', 'count', 'usersBuyer', 'usersSeller', 'usersAdmin'));
+        return view('admindasbor', compact('countUser')); 
     }
 
     /**
@@ -29,7 +23,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

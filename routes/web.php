@@ -10,8 +10,8 @@ use App\Http\Controllers\ListBarangController091;
 use App\Http\Controllers\ListBarangController092;
 use App\Http\Controllers\ListBarangController105;
 use App\Http\Controllers\ListBarangController108;
-use App\Http\Controllers\BerandaCotroller;
-use App\Http\Controllers\AdminDasborCotroller;
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\AdminDasborController;
 use App\Http\Controllers\Landing_PageController;
 use App\Http\Controllers\List_ServicerController;
 use App\Http\Controllers\AdminServiceController;
@@ -84,20 +84,45 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/beranda', [BerandaCotroller::class, 'beranda'])->name('beranda')->middleware('userAkses:Buyer');
-    Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
-    Route::resource('sellerservice', MinServiceController::class)->middleware('userAkses:Seller');
-    Route::get('/admindasbor', [AdminDasborCotroller::class, 'admindasbor'])->middleware('userAkses:Admin');
+
+    //BUYER
+    Route::get('/beranda', [BerandaController::class, 'beranda'])->name('beranda')->middleware('userAkses:Buyer');
     Route::resource('profilebuyer', ProfileBuyerController::class)->middleware('userAkses:Buyer');
-    // Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
-    // Route::put('/profilebuyer/{{Id_User}}', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
-    // Route::post('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+    // Route::get('/listservice', [List_ServicerController::class, 'list_service']);
+    Route::get('/service', [ServiceController::class, 'service']);
+    Route::get('/orderpayment', [OrderPaymentController::class, 'orderpayment']);
+    Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
+
+
+    //SELLER
     Route::get('/profileseller', [ProfileSellerController::class, 'profileseller'])->name('profileseller')->middleware('userAkses:Seller');
+    Route::resource('sellerservice', MinServiceController::class)->middleware('userAkses:Seller');
+    Route::resource('tambahservice', MinServiceController::class);
+    Route::resource('editservice', MinServiceController::class);
+
+
+    //ADMIN
+    Route::resource('/admindasbor', AdminDasborController::class)->middleware('userAkses:Admin');
+    Route::resource('/adminservice', AdminServiceController::class)->middleware('userAkses:Admin');
+    Route::resource('/admininvoice', AdminInvoiceController::class)->middleware('userAkses:Admin');
+    Route::resource('/adminuser', AdminUserController::class)->middleware('userAkses:Admin');
+    Route::resource('/adminorder', AdminOrderController::class)->middleware('userAkses:Admin');
+    Route::resource('/adminpayment', AdminPaymentController::class)->middleware('userAkses:Admin');
+
+
+    Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
+    // Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+   
+    // Route::put('/profilebuyer/{{Id_User}}', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+   
+    // Route::post('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+   
+    // Route::get('/home', function () {
+    // return redirect('/beranda');
+    // });
 });
 
-Route::get('/home', function () {
-    return redirect('/beranda');
-});
+
 
 
 
@@ -113,31 +138,28 @@ Route::get('/home', function () {
 // Route::get('/listitem', [ListItemJasaController::class, 'listitem']);
 // Route::get('/pembayaran', [PembayaranController::class, 'pembayaran']);
 
-Route::get('/listservice', [List_ServicerController::class, 'list_service']);
-Route::get('/adminservice', [AdminServiceController::class, 'adminservice']);
-Route::get('/service', [ServiceController::class, 'service']);
+
+
+
 // Route::get('/login', [LoginGlimpzController::class, 'loginglimpz']);
 // Route::get('/daftar2', [DaftarGlimpzController::class, 'daftar2']);
-Route::get('/admininvoice', [AdminInvoiceController::class, 'admininvoice']);
-Route::get('/adminuser', [AdminUserController::class, 'adminuser']);
-Route::get('/adminorder', [AdminOrderController::class, 'adminorder']);
-Route::get('/adminpayment', [AdminPaymentController::class, 'adminpayment']);
-Route::get('/orderpayment', [OrderPaymentController::class, 'orderpayment']);
+
+
+
 
 // Route::get('/sellerservice', [SellerServiceController::class, 'sellerservice']);
-Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
+
 // Route::get('/editservice', [EditServiceController::class, 'editservice']);
 
 
-Route::get('/listservice', [ListServiceController::class, 'show']);
+// Route::get('/listservice', [ListServiceController::class, 'show']);
 
 
 //service proses
 
  // Route::get('sellerservice', [MinServiceController::class, 'index']);
  
-Route::resource('tambahservice', MinServiceController::class);
-Route::resource('editservice', MinServiceController::class);
+
 
 
 
