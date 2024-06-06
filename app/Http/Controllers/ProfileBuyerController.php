@@ -25,8 +25,8 @@ class ProfileBuyerController extends Controller
     }
 
     public function update(Request $request, $Id_User) {
-        $Id_User = Auth::User();
-
+        $user = User::find($Id_User);
+        
         Log::info($request->all()); 
         
         $request->validate([
@@ -36,9 +36,6 @@ class ProfileBuyerController extends Controller
             'Date' => 'date' 
         ]);
 
-        // $user = User::where('Id_User', $Id_User)->first();
-        $user = new User();
-        $user->Username = $user->Username;
         $user->Name = $request->input('Name');
         $user->Number_Phone = $request->input('Numberphone');
         $user->Email = $request->input('Email');
@@ -46,12 +43,12 @@ class ProfileBuyerController extends Controller
 
         $user->save();
 
-
         if ($user->save()) {
-            return back()->with('success', 'Successfully Update Profile');
+            session()->flash('success', 'Successfully Update Account');
+            return back();
         } else {
-            
-            return back()->with('error', 'failed Update Profile');
+            session()->flash('error', 'Failed Update Account');
+            return back();
 
         }
         
