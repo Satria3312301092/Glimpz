@@ -35,6 +35,7 @@ class DaftarGlimpzController extends Controller
         $user->Username = $request->input('Username');
         $user->Password = Hash::make($request->input('Password'));
         $user->Role = 'Buyer';
+        $user->Picture = 'public/picture/default.png';
         $user->save();
     
         if($user->save()) {
