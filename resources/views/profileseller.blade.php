@@ -48,7 +48,22 @@
       </ul>
     </div>
     <div class="navbar-end">
-      <a class="btn">Button</a>
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full shadow-lg mr-3">
+          <img alt="" src="images/Profileuser.svg" />
+        </div>
+      </div>
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li>
+        </li>
+          <button><li><a href="{{ route('profileseller.index') }}"><img src="images/Profile.svg" alt="">Profile</a></li></button>
+        <form action="{{ route ('logout') }}" method="POST">
+          @csrf
+          <button type="submit"><li><a><img src="images/logout.svg" alt="">Logout</a></li></button>
+        </form>
+      </ul>
+    </div>
     </div>
   </div>
 
@@ -58,19 +73,20 @@
     <div class="container mx-auto flex justify-center items-center">
         <div class="grid grid-cols-3 gap-8 mb-20">
           <!-- profile -->
+          @foreach ($users as $user)
           <div class="col-span-1">
             <div class="card card-compact w-96 bg-base-100 shadow-xl border-2 pb-20">
               <figure class="border-b-2 py-5">
                 <div class="avatar">
-                  <div class="w-32 rounded-full border-2">
-                <img src="../Asset/Profile-user.svg" class="p-9" alt="profile image" />
-                </div>
+                <div class="w-32 h-32 rounded-full border-2 overflow-hidden flex items-center justify-center">
+                <img src="{{ Storage::url($user->Picture) }}" class="object-cover w-full h-full" alt="profile image" />
+              </div>
                 </div>
               </figure>
               <div class="card-body ml-4 mr-4">
                 <div class="grid grid-cols-2 gap-4">
                   <div class="grid items-center">
-                    <h2 class="card-title">#Melan</h2>
+                    <h2 class="card-title">{{ $user->Name }}</h2>
                   </div>
                   <div class="grid justify-end items-center">
                     <!-- You can open the modal using ID.showModal() method -->
@@ -85,14 +101,60 @@
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
+                          <h3 class="font-bold text-lg">Edit Your Profile</h3>
+                          <form action="{{ route('profileseller.update', $user->Id_User) }}" method="POST" enctype="multipart/form-data">
+                          @csrf
+                          @method('PUT')
+                          <div class="label p-2">
+                            <label class="mt-3 font-semibold font-sans">Photo</label>
+                          </div>
+                          <input name="Picture" type="file" class="mt-1 custom-file-input w-96 mb-10">
+
+                            <div class="label p-2">
+                              <label class="mt-3 font-semibold font-sans">Full Name</label>
+                            </div>
+                            <div class="input shadow-2xl">
+                                <input name="Name" type="text" value="{{ $user->Name }}"></input>
+                            </div>
+                            <div class="label p-2">
+                              <label class="mt-3 font-semibold font-sans">Phone Number</label>
+                            </div>
+                            <div class="input shadow-2xl">
+                                <input name="Numberphone" type="text" value="{{ $user->Number_Phone }}"></input>
+                            </div>
+                            <div class="label p-2">
+                              <label class="mt-3 font-semibold font-sans">Email</label>
+                            </div>
+                            <div class="input shadow-2xl">
+                                <input name="Email" type="text" value="{{ $user->Email }}"></input>
+                            </div>
+                            <div class="label p-2">
+                              <label class="mt-3 font-semibold font-sans">Date of Birth</label>
+                            </div>
+                            <div class="input shadow-2xl">
+                            <input type="date" name="Date" class="grow" value="{{ $user->Date_Of_Birth }}" placeholder="Date of Birth" />
+                            </div>
+                            <div class="label p-2">
+                            <label class="mt-3 font-semibold font-sans">Identity Card</label>
+                          </div>
+                          <input name="IdentityCard" type="file" class="mt-1 custom-file-input w-96 mb-10">
+                          <div class="label p-2">
+                              <label class="mt-3 font-semibold font-sans">Account Number</label>
+                            </div>
+                            <div class="input shadow-2xl">
+                                <input name="AccountNumber" type="text" value="{{ $user->Account_Number }}"></input>
+                            </div>
+
+                            <div class="flex justify-end">
+                            <button type="submit" class="btn bg-blue-600 text-white">Update</button>
+                            </div>
                         </div>
+</form>
                       </dialog>
                   </div>
                 </div>
                 <h1 class="font-semibold mt-4">About Me</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>{{ $user->Date_Of_Birth }}</p>
                 <h1 class="font-semibold mt-4">Contact Me</h1>
                 <ul>
                   <li><a class="inline-flex items-center"><svg class="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,7 +174,7 @@
                     14.9276 13.8391 14.7294C14.0133 14.5311 14.5855 13.8617 14.7845 13.5642C14.9835 13.2668 15.1827 13.3164 15.4563 13.4155C15.73 13.5147 17.198 14.2335 17.4966 
                     14.3823C17.5549 14.4113 17.6094 14.4375 17.6599 14.4618Z" fill="currentColor"/>
                     </svg>
-                    08965576439</a></li>
+                    {{ $user->Number_Phone }}</a></li>
                   <li><a class="inline-flex items-center"><svg class="h-4 w-4 mr-1"  viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M3.22222 4.22222L10.6871 9.85944L10.6896 9.8615C11.5185 10.4693 11.9332 10.7735 12.3874 10.8909C12.7888 10.9948 13.2108 10.9948 13.6123 10.8909C14.0669 
                       10.7733 14.4828 10.4684 15.3132 9.85944C15.3132 9.85944 20.1012 6.18504 22.7778 4.22222M2 16.2002V6.91135C2 5.54233 2 4.85731 2.26643 4.33442C2.50079 3.87447 2.87447 
@@ -120,7 +182,7 @@
                       24 6.90733V16.2044C24 17.5707 24 18.2539 23.7338 18.7763C23.4995 19.2363 23.1245 19.6106 22.6646 19.8449C22.1422 20.1111 21.459 20.1111 20.0927 20.1111H5.90733C4.54099 
                       20.1111 3.8568 20.1111 3.33442 19.8449C2.87447 19.6106 2.50079 19.2363 2.26643 18.7763C2 18.2534 2 17.5693 2 16.2002Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
-                      melan@gmail.com</a></li>   
+                      {{ $user->Email }}</a></li>   
                 </ul>
               </div>  
             </div>
@@ -393,12 +455,20 @@
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-10 h-10 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                   </div>
                 </div>
+                @endforeach
 
               </div>
             </div>
           </div>
 
     </div>
+    @if (session('success'))
+      <script> alert("{{ session('success') }}"); </script>
+  @endif
+  @if (session('error'))
+      <script> alert("{{ session('error') }}"); </script>
+  @endif
+    
     
     
   </body>

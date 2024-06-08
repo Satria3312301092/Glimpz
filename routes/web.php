@@ -99,6 +99,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('sellerservice', MinServiceController::class)->middleware('userAkses:Seller');
     Route::resource('tambahservice', MinServiceController::class);
     Route::resource('editservice', MinServiceController::class);
+    Route::resource('/profileseller', ProfileSellerController::class, )->middleware('userAkses:Seller');
 
 
     //ADMIN
