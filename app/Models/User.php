@@ -43,11 +43,7 @@ class User extends Authenticatable
         return $this->belongsTo(Type::class, 'Id_Service');
     }
 
-    public function getProfileImageAttribute()
-    {
-        if ($this->Picture) {
-            return Storage::url($this->Picture);
-        }
-        return Storage::url('thumbnail/default-glimpz.png');
+    public function sellers(){
+        return $this->hasOne(Seller::class);
     }
 }

@@ -92,7 +92,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
     // Route::put('/profilebuyer/{{Id_User}}', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
     // Route::post('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
-    Route::get('/profileseller', [ProfileSellerController::class, 'profileseller'])->name('profileseller')->middleware('userAkses:Seller');
+    Route::resource('/profileseller', ProfileSellerController::class, )->middleware('userAkses:Seller');
 });
 
 Route::get('/home', function () {
