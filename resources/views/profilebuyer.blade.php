@@ -108,8 +108,8 @@
                           <div class="grid grid-rows-3 grid-cols-2 gap-4">
                               <div class="row-span-6 mr-5">
                               <label class="mt-3 font-semibold font-sans">Photo</label>
-                                <img src="{{ Storage::url($user->Picture) }}" alt="" width="300px" height="300px">
-                                <input type="file" class="block w-full text-sm text-slate-500
+                                <img src="{{ Storage::url($user->Picture) }}" alt="" class="w-52 h-52">
+                                <input name="Picture" type="file" class="block w-full text-sm text-slate-500
                                 file:mr-4 file:py-2 file:px-4
                                 file:rounded-full file:border-0
                                 file:text-sm file:font-semibold
