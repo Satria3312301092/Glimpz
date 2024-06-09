@@ -34,18 +34,27 @@
                 <div class="stats shadow-lg shadow-neutral-300 w-full">
                   <div class="stat">
                     <div class="stat-title font-bold text-gray-600">Invoice</div>
-                    <div class="stat-value font-black">5</div>
+                    <div class="stat-value font-black">{{ $countInvoice }}</div>
                   </div>
                 </div>
                 <!-- card 4 -->
                 <div class="stats shadow-lg shadow-neutral-300 w-full">
                   <div class="stat">
                     <div class="stat-title font-bold text-gray-600">Orders</div>
-                    <div class="stat-value font-black">5</div>
+                    <div class="stat-value font-black">{{ $countOrder }}</div>
                   </div>
                 </div>
+
+                <div class="stats shadow-lg shadow-neutral-300 w-full">
+                  <div class="stat">
+                    <div class="stat-title font-bold text-gray-600">Ban</div>
+                    <div class="stat-value font-black">{{ $countBan }}</div>
+                  </div>
+                </div>
+
               </div>
           </div>
+          
         <!-- content end -->
         </div>
         <!-- sidebar -->

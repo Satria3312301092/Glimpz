@@ -65,7 +65,7 @@
                 </div>
                 <div class="flex items-end justify-end">
                   <div class="form-control">
-                    <input type="text" placeholder="Search" class="input input-bordered input-sm text-xs rounded-full mr-3" />
+                    <input type="search" placeholder="Search" class="input input-bordered input-sm text-xs rounded-full mr-3" />
                   </div>
                   <a class="btn btn-sm bg-blue-700 hover:bg-blue-700 text-white text-xs font-medium border-none rounded-md">
                     <svg class="h-4 w-4 text-white" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -265,8 +265,8 @@
                         <td>
                           <div class="flex items-center gap-3">
                             <div class="avatar">
-                              <div class="w-12 h-12 p-3 border-[1px] border-[#BEBEBE] rounded-full">
-                                <img src="../Asset/Profile-user.svg" alt="Avatar Tailwind CSS Component" />
+                              <div class="w-12 h-12 border-[1px] border-[#BEBEBE] rounded-full">
+                                <img src="{{ Storage::url($userBuyer->Picture) }}" alt="Avatar Tailwind CSS Component" />
                               </div>
                             </div>
                             <div>
@@ -337,8 +337,8 @@
                         <td>
                           <div class="flex items-center gap-3">
                             <div class="avatar">
-                              <div class="w-12 h-12 p-3 border-[1px] border-[#BEBEBE] rounded-full">
-                                <img src="../Asset/Profile-user.svg" alt="Avatar Tailwind CSS Component" />
+                              <div class="w-12 h-12 border-[1px] border-[#BEBEBE] rounded-full">
+                                <img src="{{ Storage::url($userSeller->Picture) }}" alt="Avatar Tailwind CSS Component" />
                               </div>
                             </div>
                             <div>
@@ -408,8 +408,8 @@
                         <td>
                           <div class="flex items-center gap-3">
                             <div class="avatar">
-                              <div class="w-12 h-12 p-3 border-[1px] border-[#BEBEBE] rounded-full">
-                                <img src="../Asset/Profile-user.svg" alt="Avatar Tailwind CSS Component" />
+                              <div class="w-12 h-12  border-[1px] border-[#BEBEBE] rounded-full">
+                                <img src="{{ $userAdmin->Picture }}" alt="Avatar Tailwind CSS Component" />
                               </div>
                             </div>
                             <div>

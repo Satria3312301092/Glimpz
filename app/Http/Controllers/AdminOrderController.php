@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
@@ -10,7 +10,9 @@ class AdminOrderController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
+        $orders = Order::all();
+
         return view('adminorder');
     }
 

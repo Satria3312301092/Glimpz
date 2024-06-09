@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Banned;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -27,24 +28,32 @@ class DaftarGlimpzController extends Controller
             ]);
         
     
-        $user = new User();
-        $user->Name = $request->input('Fullname');
-        $user->Email = $request->input('Email');
-        $user->Number_Phone = $request->input('Phonenumber');
-        $user->Date_Of_Birth = $request->input('Date');
-        $user->Username = $request->input('Username');
-        $user->Password = Hash::make($request->input('Password'));
-        $user->Role = 'Buyer';
-        $user->Picture = 'public/picture/default.png';
-        $user->save();
+            $user = User::where('Username', $request->Username)->first();
     
-        if($user->save()) {
-        session()->flash('success', 'Successfully Created Account');
-        return view('login');
-    } else {
-        return redirect()->back()->with('error', 'Failed To Create Account');
-    }
-}
+            if ($user && User::where('Username', $user->Username)->exists()) {
+                return redirect()->back()->with('username', 'This Username Has Been Taken.');
+            } else {
 
-}
+    
+                $user = new User();
+                $user->Name = $request->input('Fullname');
+                $user->Email = $request->input('Email');
+                $user->Number_Phone = $request->input('Phonenumber');
+                $user->Date_Of_Birth = $request->input('Date');
+                $user->Username = $request->input('Username');
+                $user->Password = Hash::make($request->input('Password'));
+                $user->Role = 'Buyer';
+                $user->Picture = 'public/picture/default.png';
+                $user->save();
+            
+                if($user->save()) {
+                session()->flash('success', 'Successfully Created Account');
+                return view('login');
+            } else {
+                return redirect()->back()->with('error', 'Failed To Create Account');
+            }
+            }
+
+            }
+        }
 

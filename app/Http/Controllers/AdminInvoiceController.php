@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 
 class AdminInvoiceController extends Controller
@@ -10,7 +10,9 @@ class AdminInvoiceController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
+        $invoice = Invoice::all();
+
         return view('admininvoice');
     }
 

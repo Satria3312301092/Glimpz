@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Seller;
 use App\Models\Banned;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;

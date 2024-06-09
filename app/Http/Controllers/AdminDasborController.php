@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Service;
+use App\Models\Invoice;
+use App\Models\Order;
+use App\Models\Banned;
 use Illuminate\Http\Request;
 
 class AdminDasborController extends Controller
@@ -14,11 +17,17 @@ class AdminDasborController extends Controller
     {   
         $users = User::all();
         $services = Service::all();
+        $invoices = Invoice::all();
+        $orders = Order::all();
+        $bans = Banned::all();
 
         $countService = $services->count();
         $countUser = $users->count();
+        $countInvoice = $invoices->count();
+        $countOrder = $orders->count();
+        $countBan = $bans->count();
 
-        return view('admindasbor', compact('countUser', 'countService')); 
+        return view('admindasbor', compact('countUser', 'countService', 'countInvoice', 'countOrder', 'countBan')); 
     }
 
     /**

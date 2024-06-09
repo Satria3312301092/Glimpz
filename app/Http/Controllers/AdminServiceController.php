@@ -19,7 +19,8 @@ class AdminServiceController extends Controller
         $types = Type::all();
         $details = Detail::all();
         
-        return view('adminservice', compact('services', 'types','details'));
+        $countService = $services->count();
+        return view('adminservice', compact('services', 'types','details', 'countService'));
     }
 
     /**
@@ -65,8 +66,11 @@ class AdminServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $Id_Service)
     {
-        //
+        $del = Service::findorFail($Id_Service);
+        $del->delete();
+
+        return redirect()->route('adminservice.index')->with('success_del', 'Deleted Successfully');
     }
 }
