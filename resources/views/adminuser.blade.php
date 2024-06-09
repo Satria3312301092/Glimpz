@@ -507,6 +507,11 @@
           alert("{{ session('success') }}");
       </script>
   @endif
+  @if(session('banned_failed'))
+      <script>
+          alert("{{ session('banned_failed') }}");
+      </script>
+  @endif
 </body>
 </html>
   

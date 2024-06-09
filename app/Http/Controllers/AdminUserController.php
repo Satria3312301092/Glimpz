@@ -54,11 +54,18 @@ class AdminUserController extends Controller
         $banned->Email = $request->input('Email');
         $banned->Number_Phone = $request->input('Numberphone');
         
+        $user = User::where('Id_User', $request->Id_User)->first();
+        
+        if ($user && Banned::where('Id_User', $user->Id_User)->exists()) {
+            return redirect()->back()->with('banned_failed', 'This Account Has Been Banned');
+        } else {
+
         $banned->save();
 
         if ($banned->save())
         return back()->with('success', 'Banned Successfully');
     }
+}
 
     /**
      * Display the specified resource.
