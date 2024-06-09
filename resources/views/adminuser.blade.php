@@ -129,19 +129,20 @@
                         <th>
                             <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" class="inline-block w-1 h-1 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                               </div>
                               <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-400 bg-base-100 font-normal rounded-box w-52">
-                                <li><a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                {{-- <li><a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
-                                  Delete</a></li>
-                                <li><a onclick="my_modal_1.showModal()"><svg class="w-4 text-blue-800" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M17.2633 3.12132L20.0917 5.94975C20.4822 6.34027 20.4822 6.97344 20.0917 7.36396L11.3153 16.1403L5.3049 17.9081L7.07267 11.8977L15.849 
-                                  3.12132C16.2396 2.7308 16.8727 2.7308 17.2633 3.12132Z" stroke="currentColor" stroke-width="2"/>
+                                  Delete</a></li> --}}
+                                <li><a onclick="my_modal_1{{ $user->Id_User }}.showModal()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                                
                                   </svg>                                  
-                                  Edit</a></li>
-                                <li><a onclick="my_modal_2.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  Ban</a></li>
+                                <li><a onclick="my_modal_2{{ $user->Id_User }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
                                   8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
@@ -150,22 +151,72 @@
                             </div>
                         </th>
                       </tr>
-                      <dialog id="my_modal_1" class="modal">
+                      <dialog id="my_modal_1{{ $user->Id_User }}" class="modal">
                         <div class="modal-box">
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
+                          
+                          <h3 class="font-bold text-lg mb-3">Banned This User?!</h3>
+                          <p>This User {{ $user->Name }} With ID {{ $user->Id_User }} Will Be Banned</p>
+                          <form action="{{ route('adminuser.store') }}" method="POST">
+                            @csrf
+                          <div class="grid grid-rows-1 grid-cols-2 mb-4 mt-4">
+                            <div class="">
+                              <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Id_User" type="text" value="{{ $user->Id_User }}"></input>
+                            </div>
+                            <div class="">
+                              <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Name" type="text" value="{{ $user->Name }}"></input>
+                            </div>
+                          <div class="">
+                            <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Numberphone" type="text" value="{{ $user->Number_Phone }}"></input>
+                          </div>
+                          <div class="">
+                            <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Email" type="text" value="{{ $user->Email }}"></input>
+                          </div>
                         </div>
+                          <button type="submit"  class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">BAN</button>
+                        </div>
+                      </form>
+                        
                       </dialog>
-                      <dialog id="my_modal_2" class="modal">
+                      <dialog id="my_modal_2{{ $user->Id_User }}" class="modal">
                         <div class="modal-box">
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
+                          <h3 class="font-bold text-lg mb-3">Information About User With ID {{ $user->Id_User }}</h3>
+                          <div class="grid grid-rows-3 grid-cols-2 gap-4">
+                            <div class="row-span-6 mr-5">
+                            <label class="mt-3 font-semibold font-sans">Photo</label>
+                              <img src="{{ Storage::url($user->Picture) }}" alt="" class="w-52 h-52">
+                              <div class="mt-3">
+                              <label class="mt-3 font-semibold font-sans">Role</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Username" type="text" value="{{ $user->Role }}" disabled></input>
+                              </div>
+                            </div>
+                            <div class="mt-2">
+                              <label class="mt-3 font-semibold font-sans">Username</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Username" type="text" value="{{ $user->Username }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 font-semibold font-sans">Full Name</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Name" type="text" value="{{ $user->Name }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 font-semibold font-sans">Phone Number</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Numberphone" type="text" value="{{ $user->Number_Phone }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 mr-10 font-semibold font-sans">Email</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Email" type="text" value="{{ $user->Email }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 mr-10 font-semibold font-sans">Date of Birth</label>
+                              <input class="shadow-2xl rounded-lg input p-2" type="date" name="Date" class="grow" value="{{ $user->Date_Of_Birth }}" placeholder="Date of Birth" disabled />
+                            </div>
+                          </div>
+                      </div>
                         </div>
                       </dialog>
                     </tbody>
@@ -451,7 +502,11 @@
         </div>
       </div>
 
-   
+@if(session('success'))
+      <script>
+          alert("{{ session('success') }}");
+      </script>
+  @endif
 </body>
 </html>
   

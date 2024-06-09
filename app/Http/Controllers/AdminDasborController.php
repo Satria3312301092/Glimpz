@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class AdminDasborController extends Controller
@@ -12,10 +13,12 @@ class AdminDasborController extends Controller
     public function index()
     {   
         $users = User::all();
+        $services = Service::all();
 
+        $countService = $services->count();
         $countUser = $users->count();
 
-        return view('admindasbor', compact('countUser')); 
+        return view('admindasbor', compact('countUser', 'countService')); 
     }
 
     /**

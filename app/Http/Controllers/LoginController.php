@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
+use App\Models\Banned;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-
 
 class LoginController extends Controller
 {
@@ -14,37 +14,35 @@ class LoginController extends Controller
         return view("login");
     }
 
-
     public function login(Request $request)
     {
         $request->validate([
-            'username'=>'required',
-            'password'=>'required'
+            'username' => 'required',
+            'password' => 'required'
         ]);
 
         $infologin = [
-            'username'=>$request->username,
-            'password'=>$request->password,
+            'username' => $request->username,
+            'password' => $request->password,
         ];
 
-
-        if(Auth::attempt($request->only('username','password'))){
-            if (Auth::user()->Role == 'Buyer') {
-                return view('beranda');
-            }elseif (Auth::user()->Role == 'Seller') {
-                return redirect('sellerservice');
-            }elseif (Auth::user()->Role == 'Admin') {
-                return redirect('admindasbor');
-            }
-        } else{
-            dd('Login Failed:', $infologin);
-            return redirect()->back()->with('login_failed', true);
-            
-    }    
-
-
-}
-
+        $user = User::where('Username', $request->username)->first();
 
         
+        if ($user && Banned::where('Id_User', $user->Id_User)->exists()) {
+            return redirect()->back()->with('login_failed', 'Your account Has Been Banned Please Contact Us.');
+        }
+
+        if (Auth::attempt($infologin)) {
+            if (Auth::user()->Role == 'Buyer') {
+                return view('beranda');
+            } elseif (Auth::user()->Role == 'Seller') {
+                return redirect('sellerservice');
+            } elseif (Auth::user()->Role == 'Admin') {
+                return redirect('admindasbor');
+            }
+        } else {
+            return redirect()->back()->with('login_failed', 'Username or Password is wrong.');
+        }
+    }
 }

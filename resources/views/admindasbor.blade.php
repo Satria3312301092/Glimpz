@@ -20,7 +20,7 @@
                 <div class="stats shadow-lg shadow-neutral-300 w-full">
                   <div class="stat">
                     <div class="stat-title font-bold text-gray-600">Services</div>
-                    <div class="stat-value font-black">7</div>
+                    <div class="stat-value font-black">{{ $countService }}</div>
                   </div>
                 </div>
                 <!-- card 2 -->

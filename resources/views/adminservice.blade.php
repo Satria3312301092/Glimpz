@@ -86,24 +86,28 @@
                     </tr>
                   </thead>
                   <tbody>
-
+@foreach ($services as $service)
+  @foreach ($types as $type)
+      @if ($type->Type_Name == 'Basic')
+      @foreach ($details as $detail)
+          @if($detail->Id_Type == $type->Id_Type && $detail->Id_Service == $service->Id_Service)
                     <!-- row 1 -->
                     <tr>
                         <th>
-                          #1
+                          {{ $service->Id_Service }}
                         </th>
                         <td>
                             <div class="avatar">
                               <div class="w-24 h-16 rounded-md">
-                                <img src="../Asset/image 23.png" alt="Avatar Tailwind CSS Component" />
+                                <img src="{{ Storage::url($service->Thumbnail) }}" alt="Avatar Tailwind CSS Component" />
                               </div>
                             </div>
                         </td>
                         <td>
-                          I will animate your character
+                          {{ $service->Title }}
                         </td>
-                        <td>Video Editing</td>
-                        <td>Rp.99.000</td>
+                        <td>{{ $service->Category }}</td>
+                        <td>{{ $detail->Price }}</td>
                         <th>
                             <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
@@ -146,139 +150,13 @@
                           <p class="py-4">Press ESC key or click on ✕ button to close</p>
                         </div>
                       </dialog>
-
+            @endif
+        @endforeach
+      @endif
+  @endforeach
+@endforeach
                     <!-- row 1 -->
-
-                    <!-- row 2 -->
-                     <tr>
-                        <th>
-                          #2
-                        </th>
-                        <td>
-                            <div class="avatar">
-                              <div class="w-24 h-16 rounded-md">
-                                <img src="../Asset/image 23.png" alt="Avatar Tailwind CSS Component" />
-                              </div>
-                            </div>
-                        </td>
-                        <td>
-                          I will animate your character
-                        </td>
-                        <td>Video Editing</td>
-                        <td>Rp.99.000</td>
-                        <th>
-                            <div class="dropdown">
-                              <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-                              </div>
-                              <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-400 bg-base-100 font-normal rounded-box w-52">
-                                <li><a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>
-                                  Delete</a></li>
-                                <li><a onclick="my_modal_3.showModal()"><svg class="w-4 text-blue-800" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M17.2633 3.12132L20.0917 5.94975C20.4822 6.34027 20.4822 6.97344 20.0917 7.36396L11.3153 16.1403L5.3049 17.9081L7.07267 11.8977L15.849 
-                                  3.12132C16.2396 2.7308 16.8727 2.7308 17.2633 3.12132Z" stroke="currentColor" stroke-width="2"/>
-                                  </svg>                                  
-                                  Edit</a></li>
-                                <li><a onclick="my_modal_4.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
-                                  8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>
-                                  Details</a></li>
-                              </ul>
-                            </div>
-                        </th>
-                      </tr>
-                      <dialog id="my_modal_3" class="modal">
-                        <div class="modal-box">
-                          <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                          </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
-                        </div>
-                      </dialog>
-                      <dialog id="my_modal_4" class="modal">
-                        <div class="modal-box">
-                          <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                          </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
-                        </div>
-                      </dialog>
-                    <!-- row 2 -->
-
-                    <!-- row 3 -->
-                    <tr>
-                        <th>
-                          #3
-                        </th>
-                        <td>
-                            <div class="avatar">
-                              <div class="w-24 h-16 rounded-md">
-                                <img src="../Asset/image 23.png" alt="Avatar Tailwind CSS Component" />
-                              </div>
-                            </div>
-                        </td>
-                        <td>
-                          I will animate your character
-                        </td>
-                        <td>Video Editing</td>
-                        <td>Rp.99.000</td>
-                        <th>
-                            <div class="dropdown">
-                              <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-                              </div>
-                              <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-400 bg-base-100 font-normal rounded-box w-52">
-                                <li><a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>
-                                  Delete</a></li>
-                                <li><a onclick="my_modal_5.showModal()"><svg class="w-4 text-blue-800" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M17.2633 3.12132L20.0917 5.94975C20.4822 6.34027 20.4822 6.97344 20.0917 7.36396L11.3153 16.1403L5.3049 17.9081L7.07267 11.8977L15.849 
-                                  3.12132C16.2396 2.7308 16.8727 2.7308 17.2633 3.12132Z" stroke="currentColor" stroke-width="2"/>
-                                  </svg>                                  
-                                  Edit</a></li>
-                                <li><a onclick="my_modal_6.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
-                                  8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>
-                                  Details</a></li>
-                              </ul>
-                            </div>
-                        </th>
-                      </tr>
-                      <dialog id="my_modal_5" class="modal">
-                        <div class="modal-box">
-                          <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                          </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
-                        </div>
-                      </dialog>
-                      <dialog id="my_modal_6" class="modal">
-                        <div class="modal-box">
-                          <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                          </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
-                        </div>
-                      </dialog>
                     
-                    <!-- row 3 -->
-                      
-                    <!-- row 4 -->
-                    
-                    <!-- row 4 -->
-
-                    <!-- row 5 -->
-                   
-                    <!-- row 5 -->
 
 
 

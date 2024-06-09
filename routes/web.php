@@ -33,6 +33,8 @@ use App\Http\Controllers\EditServiceController;
 use App\Http\Controllers\ListServiceController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\MinServiceController;
+use App\Http\Controllers\BannedController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,8 +77,8 @@ Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/formlogin', [LoginController::class, 'form'])->name('formlogin');
-    Route::post('/formlogin', [LoginController::class, 'form'])->name('formlogin');
-    Route::post('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/formlogin', [LoginController::class, 'form'])->name('formlogin')->middleware('check.banned');
+    Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('check.banned');
     Route::get('/', [Landing_PageController::class, 'landing_page']);
     Route::get('/daftar1', [DaftarGlimpzController::class, 'create'])->name('daftar1');
     Route::post('/daftar1', [DaftarGlimpzController::class, 'store'])->name('daftar1');

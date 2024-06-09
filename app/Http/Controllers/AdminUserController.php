@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Banned;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AdminUserController extends Controller
 {
@@ -29,7 +31,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminuser');
     }
 
     /**
@@ -37,7 +39,25 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Log::info($request->all());
+
+        $request->validate([
+            'Id_User' => 'integer',
+            'Name' => 'string',
+            'Email' => 'string',
+            'Numberphone' => 'string'
+        ]);
+
+        $banned = new Banned();
+        $banned->Id_User = $request->input('Id_User');
+        $banned->Name = $request->input('Name');
+        $banned->Email = $request->input('Email');
+        $banned->Number_Phone = $request->input('Numberphone');
+        
+        $banned->save();
+
+        if ($banned->save())
+        return back()->with('success', 'Banned Successfully');
     }
 
     /**
