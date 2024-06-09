@@ -51,17 +51,19 @@
     <div class="navbar-end">
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full shadow-lg mr-3">
+        <div class="w-10 rounded-full shadow-lg">
           <img alt="" src="images/Profileuser.svg" />
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li>
+          <a href="{{ route('profilebuyer.index') }}"><img src="images/Profile.svg" alt="">Profile</a>
         </li>
-          <button><li><a href="{{ route('profilebuyer.index') }}"><img src="images/Profile.svg" alt="">Profile</a></li></button>
         <form action="{{ route ('logout') }}" method="POST">
           @csrf
-          <button type="submit"><li><a><img src="images/logout.svg" alt="">Logout</a></li></button>
+          <li>
+            <button type="submit"><img src="images/logout.svg" alt="">Logout</button>
+          </li>
         </form>
       </ul>
     </div>
