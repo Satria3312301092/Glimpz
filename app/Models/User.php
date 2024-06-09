@@ -43,7 +43,8 @@ class User extends Authenticatable
         return $this->belongsTo(Type::class, 'Id_Service');
     }
 
-    public function sellers(){
-        return $this->hasOne(Seller::class);
+    public function seller() {
+        return $this->hasOne(Seller::class, 'Id_User');
     }
+    
 }

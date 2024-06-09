@@ -10,24 +10,25 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileSellerController extends Controller
 {
-    public function index(){
-        $userId = Auth::user();
-        $users = User::find($userId);
-        return view('profileseller', compact('users'));
+    public function index() {
+        $userId = Auth::id(); // Mendapatkan ID pengguna langsung
+        $user = User::find($userId);
+        $seller = Seller::where('Id_User', $userId)->first();
+        return view('profileseller', compact('user', 'seller'));
     }
-
-    public function edit(){
-
-        $userId = Auth::user();
-        $users = User::find($userId);
-
-        // Mendapatkan data pengguna berdasarkan ID
-        return view('profileseller',  compact('users'));
+    
+    public function edit() {
+        $userId = Auth::id(); // Mendapatkan ID pengguna langsung
+        $user = User::find($userId);
+        $seller = Seller::where('Id_User', $userId)->first();
+        return view('profileseller', compact('user', 'seller'));
     }
+    
 
     public function update(Request $request, $Id_User) {
         $user = User::find($Id_User);
-        $user = Seller::find($Id_User);
+
+        $seller = Seller::where('Id_User', $Id_User)->first();
         
         Log::info($request->all()); 
         
@@ -36,7 +37,9 @@ class ProfileSellerController extends Controller
             'Name' => 'string|max:100',
             'Numberphone' => 'string|max:100',
             'Email' => 'string|max:100',
-            'Date' => 'date' 
+            'Date' => 'date', 
+            'AccountNumber' => 'string|max:100',
+
         ]);
 
         if ($request->hasFile('Picture')) { // Check if picture is uploaded
@@ -50,7 +53,11 @@ class ProfileSellerController extends Controller
         $user->Number_Phone = $request->input('Numberphone');
         $user->Email = $request->input('Email');
         $user->Date_Of_Birth = $request->input('Date');
-    
+
+        $seller->Account_Number = $request->input('AccountNumber');
+
+        
+        $seller->save();
         $user->save();
     
         if ($user->save()) {

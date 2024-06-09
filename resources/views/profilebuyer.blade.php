@@ -180,7 +180,38 @@
                       20.1111 3.8568 20.1111 3.33442 19.8449C2.87447 19.6106 2.50079 19.2363 2.26643 18.7763C2 18.2534 2 17.5693 2 16.2002Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                       {{ $user->Email }}</a></li>
-                     
+
+
+                                        <!-- Open the modal using ID.showModal() method -->
+                  <button class="btn" onclick="my_modal_1.showModal()">open modal</button>
+                  <dialog id="my_modal_1" class="modal">
+                    <div class="modal-box">
+                      <h3 class="font-bold text-lg">Switch to seller</h3>
+                      <form action="{{ route('profilebuyer.store') }}" method="POST" enctype="multipart/form-data">
+                          @csrf
+                          <input type="hidden" name="Id_User" value="{{ $user->Id_User }}">
+                          <div class="label p-2">
+                            <label class="mt-3 font-semibold font-sans">Identity Card</label>
+                          </div>
+                          <input name="IdentityCard" type="file" class="mt-1 custom-file-input w-96 mb-10">
+
+                            <div class="label p-2">
+                              <label class="mt-3 font-semibold font-sans">Account Number</label>
+                            </div>
+                            <div class="input shadow-2xl">
+                                <input name="AccountNumber" type="text" value=""></input>
+                            </div>
+                      <div class="modal-action">
+                        <form method="dialog">
+                          <!-- if there is a button in form, it will close the modal -->
+                          <button class="btn">Close</button>
+                          <button type="submit" class="btn">Switch</button>
+                      </form>
+                          </div>
+                          </div>
+                          </form>
+                  </dialog>
+
                 </ul>
               </div>  
             </div>

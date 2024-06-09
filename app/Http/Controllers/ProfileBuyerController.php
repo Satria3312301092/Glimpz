@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Seller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,6 +57,59 @@ class ProfileBuyerController extends Controller
             return back();
         } else {
             session()->flash('error', 'Failed Update Account');
+            return back();
+        }
+    }
+
+    public function store(Request $request)
+    {
+        // Ambil ID User dari input tersembunyi
+        $Id_User = $request->input('Id_User');
+
+        // Temukan user berdasarkan ID
+        $user = User::find($Id_User);
+
+        // Jika user tidak ditemukan, berikan respon error atau redirect
+        if (!$user) {
+            return redirect()->back()->withErrors(['User not found']);
+        }
+
+        // Ambil seller yang terkait atau buat yang baru jika belum ada
+        $seller = $user->seller()->firstOrNew();
+
+        // Log data permintaan yang masuk   
+        Log::info($request->all());
+
+        // Validasi data permintaan yang masuk
+        $request->validate([
+            'IdentityCard' => 'image|mimes:jpg,jpeg,png|max:10240',
+            'AccountNumber' => 'string|max:100',
+        ]);
+
+        // Periksa apakah file Identity Card diunggah
+        if ($request->hasFile('IdentityCard')) {
+            $file = $request->file('IdentityCard');
+            $filename = uniqid() . date('Y-m-d') . $file->getClientOriginalName();
+            $path = $file->storeAs('public/identitycard', $filename);
+            $seller->Identity_Card = $path; // Perbarui path Identity Card seller
+        }
+
+        // Perbarui nomor rekening seller
+        $seller->Account_Number = $request->input('AccountNumber');
+
+        // Simpan detail seller yang diperbarui
+        $seller->Id_User = $user->Id_User; // Pastikan kolom Id_User diisi
+        $seller->save();
+
+        $user->Role = 'Seller';
+        $user->save();
+
+        // Redirect atau berikan respon sukses
+        if ($user->save()) {
+            session()->flash('success', 'Successfully Switch Role');
+            return redirect()->route('profileseller.index');
+        } else {
+            session()->flash('error', 'Failed Switch role');
             return back();
         }
     }
