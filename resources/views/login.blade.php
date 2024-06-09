@@ -20,6 +20,11 @@
                 alert("{{ session('success') }}")
             </script>
     @endif
+    @if(session('login_failed'))
+            <script>
+                alert("{{ session('login_failed') }}")
+            </script>
+    @endif
     <section class="bg-white-100 min-h-screen flex items-center
     justify-center ">
             <!-- Login container -->

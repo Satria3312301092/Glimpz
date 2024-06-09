@@ -55,6 +55,7 @@ return new class extends Migration
             $table->unsignedInteger('Id_User'); // Foreign key or a regular integer column
             $table->string('Number_Phone', 100);
             $table->string('Name', 100);
+            $table->string('Email', 100);
             // Optional: Add timestamps if needed
             // $table->timestamps();
 

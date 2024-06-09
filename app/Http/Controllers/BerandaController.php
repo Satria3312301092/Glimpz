@@ -5,7 +5,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class BerandaCotroller extends Controller
+class BerandaController extends Controller
  {
         public function beranda(){
             $users = Auth::user();

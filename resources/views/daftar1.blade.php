@@ -232,5 +232,10 @@
         alert("{{ session('error') }}");
     </script>
 @endif
+@if(session('username'))
+    <script>
+        alert("{{ session('username') }}");
+    </script>
+@endif
 </body>
 </html>

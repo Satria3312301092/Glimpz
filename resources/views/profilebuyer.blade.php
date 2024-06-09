@@ -51,17 +51,19 @@
     <div class="navbar-end">
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full shadow-lg mr-3">
+        <div class="w-10 rounded-full shadow-lg">
           <img alt="" src="images/Profileuser.svg" />
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li>
+          <a href="{{ route('profilebuyer.index') }}"><img src="images/Profile.svg" alt="">Profile</a>
         </li>
-          <button><li><a href="{{ route('profilebuyer.index') }}"><img src="images/Profile.svg" alt="">Profile</a></li></button>
         <form action="{{ route ('logout') }}" method="POST">
           @csrf
-          <button type="submit"><li><a><img src="images/logout.svg" alt="">Logout</a></li></button>
+          <li>
+            <button type="submit"><img src="images/logout.svg" alt="">Logout</button>
+          </li>
         </form>
       </ul>
     </div>
@@ -101,38 +103,39 @@
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
-                          <h3 class="font-bold text-lg">Edit Your Profile</h3>
+                          <h3 class="font-bold text-lg m-2 mb-3">Edit Your Profile</h3>
                           <form action="{{ route('profilebuyer.update', $user->Id_User) }}" method="POST" enctype="multipart/form-data">
                           @csrf
                           @method('PUT')
-                          <div class="label p-2">
-                            <label class="mt-3 font-semibold font-sans">Photo</label>
-                          </div>
-                          <input name="Picture" type="file" class="mt-1 custom-file-input w-96 mb-10">
-
-                            <div class="label p-2">
-                              <label class="mt-3 font-semibold font-sans">Full Name</label>
-                            </div>
-                            <div class="input shadow-2xl">
-                                <input name="Name" type="text" value="{{ $user->Name }}"></input>
-                            </div>
-                            <div class="label p-2">
-                              <label class="mt-3 font-semibold font-sans">Phone Number</label>
-                            </div>
-                            <div class="input shadow-2xl">
-                                <input name="Numberphone" type="text" value="{{ $user->Number_Phone }}"></input>
-                            </div>
-                            <div class="label p-2">
-                              <label class="mt-3 font-semibold font-sans">Email</label>
-                            </div>
-                            <div class="input shadow-2xl">
-                                <input name="Email" type="text" value="{{ $user->Email }}"></input>
-                            </div>
-                            <div class="label p-2">
-                              <label class="mt-3 font-semibold font-sans">Date of Birth</label>
-                            </div>
-                            <div class="input shadow-2xl">
-                            <input type="date" name="Date" class="grow" value="{{ $user->Date_Of_Birth }}" placeholder="Date of Birth" />
+                          <div class="grid grid-rows-3 grid-cols-2 gap-4">
+                              <div class="row-span-6 mr-5">
+                              <label class="mt-3 font-semibold font-sans">Photo</label>
+                                <img src="{{ Storage::url($user->Picture) }}" alt="" class="w-52 h-52">
+                                <input name="Picture" type="file" class="block w-full text-sm text-slate-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-full file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-blue-50 file:text-blue-700
+                                hover:file:bg-blue-100
+                                mt-3
+                              "/>
+                              </div>
+                              <div class="mt-2">
+                                <label class="mt-3 font-semibold font-sans">Full Name</label>
+                                <input class="shadow-2xl rounded-lg input p-2" name="Name" type="text" value="{{ $user->Name }}"></input>
+                              </div>
+                              <div class="">
+                                <label class="mt-3 font-semibold font-sans">Phone Number</label>
+                                <input class="shadow-2xl rounded-lg input p-2" name="Numberphone" type="text" value="{{ $user->Number_Phone }}"></input>
+                              </div>
+                              <div class="">
+                                <label class="mt-3 mr-10 font-semibold font-sans">Email</label>
+                                <input class="shadow-2xl rounded-lg input p-2" name="Email" type="text" value="{{ $user->Email }}"></input>
+                              </div>
+                              <div class="">
+                                <label class="mt-3 mr-10 font-semibold font-sans">Date of Birth</label>
+                                <input class="shadow-2xl rounded-lg input p-2" type="date" name="Date" class="grow" value="{{ $user->Date_Of_Birth }}" placeholder="Date of Birth" />
+                              </div>
                             </div>
                             <div class="flex justify-end">
                             <button type="submit" class="btn bg-blue-600 text-white">Update</button>
