@@ -146,15 +146,167 @@
                         </div>
                       </form>
                       </dialog>
+                      @endif
+                      @endforeach
+                    @endif
+                @endforeach
+                
+
                       <dialog id="my_modal_1{{ $service->Id_Service }}" class="modal">
-                        <div class="modal-box">
+                        <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
-                        </div>
-                      </dialog>
+                          
+                            <h3 class="font-bold text-xl mb-3">Edit Service</h3>
+                            <form action="{{ route('adminservice.update', $service->Id_Service) }}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                              @method('PUT')
+                            <div class="grid grid-cols-3 gap-x-5">
+                                <div class="col-span-1 gap-x-20">
+                                <img class="w-full rounded-xl" src="{{ Storage::url($service->Thumbnail) }}" alt="" width="150">
+                                <input name="Thumbnail" type="file" class="block w-full text-sm text-slate-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-full file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-blue-50 file:text-blue-700
+                                hover:file:bg-blue-100
+                                mt-4
+                              "/>
+                              <input type="text" value="{{ $service->Thumbnail }}" name="ThumbnailOld">
+                                <div class="col-span-1 gap-x-20 mt-3">
+                                  <label for="">ID Seller</label>
+                                  <input type="text"  value="{{$service->Id_Seller}}" id="title" name="Id_Service" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                                </div>
+                                </div>
+                                <div>
+                                    <div class="col-span-1">
+                                        <div class="grid gap-y-1.5">
+                                            <a class="block text-gray-700 text-sm font-semibold">ID SERVICE</a>
+                                            <input type="text" value="{{$service->Id_Service}}" id="id_service" name="Id_Service" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                                            
+                                            <a class="block text-gray-700 text-sm font-semibold">Title</a>
+                                            <input type="text"  value="{{$service->Title}}" id="title" name="Title" class="shadow-lg border rounded py-2 px-3 w-full" >
+                                            
+                                            <a class="block text-gray-700 text-sm font-semibold">Description</a>
+                                            <textarea id="description" name="Description" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-24">{{$service->Description}}</textarea>
+                                            
+                                            <a for="title" class="block text-gray-700 text-sm font-semibold">Category</a>
+                                            <select name="Category" class="select select-bordered w-full max-w-xs text-black shadow-lg border-[1px]">
+                                              <option class="text-zinc-500 font-bold" selected>{{ $service->Category }}</option>
+                                              <option class="text-slate-700" disabled>All Service</option>
+                                              <option class="text-slate-700 hover:!bg-blue-50">Video Editing</option>
+                                              <option class="text-slate-700">Video Ads</option>
+                                              <option class="text-slate-700">Visual Effect</option>
+                                              <option class="text-slate-700">Education</option>
+                                              <option class="text-slate-700">Templates</option>
+                                              <option class="text-slate-700">Short Movie</option>
+                                              <option class="text-slate-700">Social Media</option>
+                                              <option class="text-slate-700">2D Animation</option>
+                                              <option class="text-slate-700">3D Animation</option>
+                                              <option class="text-slate-700">Logo Animation</option>
+                                              <option class="text-slate-700">Film Series</option>
+                                              <option class="text-slate-700">Character Animation</option>
+                                              <option class="text-slate-700">Web Animation</option>
+                                              <option class="text-slate-700">Rigging</option>
+                                              <option class="text-slate-700">NFT Animation</option>
+                                              </select>
+                                      </div>
+                                      </div>
+                                      </div>
+                                     
+                                      <div class="col-span-1">
+                                        <div role="tablist" class="tabs tabs-lifted">
+                                         
+                                        @foreach ($types as $type)
+                                          @if ($type->Type_Name == 'Basic' && $type->Id_Service == $service->Id_Service)
+                                              @foreach ($details as $detail)
+                                                @if ($detail->Id_Type == $type->Id_Type)
+                                              <!-- tab 1 -->
+                                              <input type="radio" id="tab12_<?php echo $service->Id_Service; ?>" name="my_tabs_2" role="tab" class="tab" aria-label="Basic" checked />
+                                              <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                                                  <div class="grid gap-y-1.5">
+                                                      
+                                                      <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
+                                                      <input type="text" value="{{$detail->Day}}" id="day" name="Day1" class="shadow-lg border rounded py-2 px-3 w-full" >
+                                                      
+                                                      <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
+                                                      <input type="text" value="{{$detail->Revision}}" id="Revision1" name="Revision1" class="shadow-lg border rounded py-2 px-3 w-full" >
+                                                      
+                                                      <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
+                                                      <input type="text" value="{{$detail->Price}}" id="Price1" name="Price1" class="shadow-lg border rounded py-2 px-3 w-full" >
+                                              
+                                                      <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
+                                                      <textarea id="description" name="Description1" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-20">{{$detail->Descriptions}}</textarea>
+                                                  </div>
+                                              </div>
+                                              @endif
+                                              @endforeach
+                                          @endif
+                                        @endforeach
+                                      
+                                                 
+                                        @foreach ($types as $type)
+                                          @if ($type->Type_Name == 'Standard' && $type->Id_Service == $service->Id_Service)
+                                              @foreach ($details as $detail)
+                                                @if ($detail->Id_Type == $type->Id_Type)
+                                                  <!-- tab2 -->
+                                                  <input type="radio" id="tab2_" name="my_tabs_2" role="tab" class="tab" aria-label="Standard" />
+                                                  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                                                  <div class="grid gap-y-1.5">
+                                                        <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
+                                                        <input type="text" value="{{$detail->Day}}" name="Day2" class="shadow-lg border rounded py-2 px-3 w-full" >
+                                                        
+                                                        <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
+                                                        <input type="text" value="{{$detail->Revision}}" id="Revision" name="Revision2" class="shadow-lg border rounded py-2 px-3 w-full" >
+                                                        
+                                                        <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
+                                                        <input type="text" value="{{$detail->Price}}" id="Price" name="Price2" class="shadow-lg border rounded py-2 px-3 w-full" >
+                                          
+                                                        <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
+                                                        <textarea id="Description" name="Description2" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-20" >{{$detail->Descriptions}}</textarea>
+                                                      </div>
+                                                  </div>
+                                                  @endif
+                                              @endforeach
+                                          @endif
+                                        @endforeach
+                                                 
+                                        @foreach ($types as $type)
+                                          @if ($type->Type_Name == 'Premium' && $type->Id_Service == $service->Id_Service)
+                                              @foreach ($details as $detail)
+                                                @if ($detail->Id_Type == $type->Id_Type)
+                                                  <!-- tab 3 -->
+                                                  <input type="radio" id="tab3_" name="my_tabs_2" role="tab" class="tab" aria-label="Premium" />
+                                                  <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                                                  <div class="grid gap-y-1.5">
+                                                        <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
+                                                        <input type="text" value="{{$detail->Day}}" id="title" name="Day3" class="shadow-lg border rounded py-2 px-3 w-full">
+                                                        
+                                                        <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
+                                                        <input type="text" value="{{$detail->Revision}}" id="title" name="Revision3" class="shadow-lg border rounded py-2 px-3 w-full d">
+                                                        
+                                                        <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
+                                                        <input type="text" value="{{$detail->Price}}" id="title" name="Price3" class="shadow-lg border rounded py-2 px-3 w-full">
+                                                
+                                                        <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
+                                                        <textarea id="description" name="Description3" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-20">{{$detail->Descriptions}}</textarea>
+                                                      </div>
+                                                  </div>
+                                                  @endif
+                                              @endforeach
+                                          @endif
+                                        @endforeach
+                                      <div class="grid grid-rows-1 flex col-end-5 row-end-9 mt-3 ml-9">
+                                        <button type="submit" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 
+                                        focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
+                                        me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 
+                                        dark:focus:ring-blue-800">Update</button>
+                                      </div>
+                                    </form>
+                        </dialog>
+                      
+
                       <dialog id="my_modal_2{{ $service->Id_Service }}" class="modal">
                         <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
                           <form method="dialog">
@@ -204,10 +356,7 @@
                       </div>
                       </div>
                       
-            @endif
-        @endforeach
-      @endif
-  @endforeach
+           
 
 <div class="col-span-1">
   <div role="tablist" class="tabs tabs-lifted">
@@ -217,7 +366,7 @@
         @foreach ($details as $detail)
           @if ($detail->Id_Type == $type->Id_Type)
         <!-- tab 1 -->
-        <input type="radio" id="tab1_<?php echo $service->Id_Service; ?>" name="my_tabs_2" role="tab" class="tab" aria-label="Basic" checked />
+        <input type="radio" id="tab13_<?php echo $service->Id_Service; ?>" name="my_tabs_2" role="tab" class="tab" aria-label="Basic" checked />
         <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
             <div class="grid gap-y-1.5">
                 
@@ -292,7 +441,7 @@
     @endif
   @endforeach
 </dialog>             <!-- row 1 -->
-@endforeach           
+@endforeach
 
 
 
@@ -362,8 +511,15 @@
 
       <script>
         function selectFirstTab(serviceId) {
-          var tab1 = document.getElementById('tab1_' + serviceId);
-          tab1.checked = true;
+          var tab12 = document.getElementById('tab12_' + serviceId);
+          tab12.checked = true;
+        }
+      </script>
+
+      <script>
+        function selectFirstTab(serviceId) {
+          var tab13 = document.getElementById('tab13_' + serviceId);
+          tab13.checked = true;
         }
       </script>
 
@@ -373,9 +529,15 @@
         }
     </script>
     
+    
     @if(session('success_del'))
       <script>
         alert("{{ session('success_del') }}");
+      </script>
+    @endif
+    @if(session('success_update'))
+      <script>
+        alert("{{ session('success_update') }}");
       </script>
     @endif
 </body>
