@@ -120,9 +120,9 @@ Route::middleware(['auth'])->group(function () {
    
     // Route::post('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
    
-    // Route::get('/home', function () {
-    // return redirect('/beranda');
-    // });
+    Route::get('/home', function () {
+    return redirect('/beranda');
+    });
 });
 
 
