@@ -21,4 +21,8 @@ class Banned extends Model
     public function banned(){
         return $this->belongsTo(Banned::class, 'Id_Ban');
     }
+
+    public function email(){
+        return 'Email';
+    }
 }

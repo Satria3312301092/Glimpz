@@ -232,10 +232,19 @@
         alert("{{ session('error') }}");
     </script>
 @endif
+
 @if(session('username'))
     <script>
         alert("{{ session('username') }}");
     </script>
+@endif
+
+@if(session('Banemail'))
+    <script> alert("{{ session('Banemail') }}") </script>
+@endif
+
+@if(session('Banphone'))
+    <script> alert("{{ session('Banphone') }}") </script>
 @endif
 </body>
 </html>
