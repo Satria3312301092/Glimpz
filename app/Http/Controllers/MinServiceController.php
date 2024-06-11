@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\Type;
 use App\Models\Detail;
+use App\Models\Seller;
 Use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class MinServiceController extends Controller
@@ -13,22 +15,31 @@ class MinServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $services = Service::all();
-        $types = Type::all();
-        $details = Detail::all();
+        $user = Auth::user();
 
+        if ($user && $user->seller) {
+            $sellerId = $user->seller->Id_Seller;
+    
+    
+        $services = Service::where('Id_Seller', $sellerId)->get();
+
+        $types = Type::whereIn('Id_Service', $services->pluck('Id_Service'))->get();
+        $details = Detail::whereIn('Id_Service', $services->pluck('Id_Service'))->get();
+    
         $count = $services->count();
-
+    
         foreach ($services as $service) {
-            $service->cut_description = Str::limit($service->Description,10);
-            $service->cut_title = Str::limit($service->Title,20);
+            $service->cut_description = Str::limit($service->Description, 10);
+            $service->cut_title = Str::limit($service->Title, 20);
         }
-
+    
         return view('sellerservice', compact('services', 'types', 'details', 'count'));
+    } else {
+        return redirect()->route('/')->with('error', 'Seller not found for the logged-in user.');
     }
-
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -45,7 +56,6 @@ class MinServiceController extends Controller
         Log::info($request->all());
         
         $request->validate([
-            'Id_Seller' => 'required|integer|max:11',
             'Title' => 'required|string|max:255',
             'Description' => 'required|string',
             'Category' => 'required|string|max:255',
@@ -68,6 +78,15 @@ class MinServiceController extends Controller
             
 
         ]);
+
+        $user = Auth::user();
+
+        // Dapatkan Id_Seller dari pengguna yang sedang diloginkan
+        if ($user && $user->seller) {
+            $Id_Seller = $user->seller->Id_Seller;
+        } else {
+            return redirect()->route('tambahservice.create')->with('error', 'Seller not found for the logged-in user.');
+        }
     
         // Handle file upload
         if ($request->hasFile('Thumbnail')) {
@@ -77,7 +96,7 @@ class MinServiceController extends Controller
     
             // Simpan data ke database
             $service = new Service();
-            $service->Id_Seller = $request->input('Id_Seller');
+            $service->Id_Seller = $Id_Seller;
             $service->Title = $request->input('Title');
             $service->Description = $request->input('Description');
             $service->Category = $request->input('Category');
