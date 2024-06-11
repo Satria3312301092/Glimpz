@@ -129,18 +129,16 @@
                         <th>
                             <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" class="inline-block w-1 h-1 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-                              </div>
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                            </div>
                               <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-400 bg-base-100 font-normal rounded-box w-52">
                                 {{-- <li><a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
                                   Delete</a></li> --}}
-                                <li><a onclick="my_modal_1{{ $user->Id_User }}.showModal()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <li><a onclick="my_modal_1{{ $user->Id_User }}.showModal()"><svg class="w-4 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                </svg>
-                                
-                                  </svg>                                  
+                                </svg>                                
                                   Ban</a></li>
                                 <li><a onclick="my_modal_2{{ $user->Id_User }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
@@ -450,6 +448,87 @@
                   </table>
                 </div>
                 <!-- tabs 4 -->
+                <!-- tabs 5 -->
+                <input type="radio" name="my_tabs_1" role="tab" class="tab checked:!text-blue-800 checked:!border-b-2 checked:!border-blue-800" aria-label="Unban" />
+                <div role="tabpanel" class="tab-content pt-8">
+                  <table class="table bg-white mb-20">
+                    <!-- head -->
+                    <thead>
+                      <tr>
+                        <th>
+                          ID User
+                        </th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    @foreach ($usersAdmin as $userAdmin)
+                    <tbody>
+                      <!-- row 1 -->
+                      <tr>
+                        <th>
+                          {{ $userAdmin->Id_User }}
+                        </th>
+                        <td>
+                          <div class="flex items-center gap-3">
+                            <div class="avatar">
+                              <div class="w-12 h-12  border-[1px] border-[#BEBEBE] rounded-full">
+                                <img src="{{ $userAdmin->Picture }}" alt="Avatar Tailwind CSS Component" />
+                              </div>
+                            </div>
+                            <div>
+                              <div class="font-normal">{{ $userAdmin->Name }}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          {{ $userAdmin->Email }}
+                        </td>
+                        <td>{{ $userAdmin->Number_Phone }}</td>
+                        <td>{{ $userAdmin->Role }}</td>
+                        <th>
+                        <div class="dropdown">
+                              <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                            </div>
+                              <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-400 bg-base-100 font-normal rounded-box w-52">
+                                {{-- <li><a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>
+                                  Delete</a></li> --}}
+                                <li><a onclick="my_modal_1{{ $user->Id_User }}.showModal()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>                                
+                                  Unban</a></li>
+                                <li><a onclick="my_modal_2{{ $user->Id_User }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
+                                  8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>
+                                  Details</a></li>
+                              </ul>
+                            </div>
+                        </th>
+                      </tr>
+                    </tbody>
+                    @endforeach
+                    <!-- foot -->
+                    <tfoot>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </tfoot>
+                    
+                  </table>
+                </div>
+                <!-- tabs 5 -->
               </div>
               <!-- tabslist -->
               </div>

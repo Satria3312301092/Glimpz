@@ -34,17 +34,10 @@
     </div>
     <div class="navbar-center hidden lg:flex z-[1]">
       <ul class="menu menu-horizontal px-1">
-        <li><a>Item 1</a></li>
-        <li>
-          <details>
-            <summary>Parent</summary>
-            <ul class="p-2">
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a>Item 3</a></li>
+      <li><a>Dashboard</a></li>
+        <li><a href="{{route ('sellerservice.index')}}" >Service</a></li>
+        <li><a>Orders</a></li>
+        <li><a>Earnings</a></li>
       </ul>
     </div>
     <div class="navbar-end">
@@ -68,10 +61,14 @@
   <!-- Navbar end -->
 
   <!-- content -->
+
+
     <div class="container mx-auto flex justify-center items-center">
         <div class="grid grid-cols-3 gap-8 mb-20">
           <!-- profile -->
-          @foreach ($users as $user)
+         @if ($user)
+   
+         
           <div class="col-span-1">
             <div class="card card-compact w-96 bg-base-100 shadow-xl border-2 pb-20">
               <figure class="border-b-2 py-5">
@@ -132,16 +129,13 @@
                             <div class="input shadow-2xl">
                             <input type="date" name="Date" class="grow" value="{{ $user->Date_Of_Birth }}" placeholder="Date of Birth" />
                             </div>
-                            <div class="label p-2">
-                            <label class="mt-3 font-semibold font-sans">Identity Card</label>
-                          </div>
-                          <input name="IdentityCard" type="file" class="mt-1 custom-file-input w-96 mb-10">
                           <div class="label p-2">
                               <label class="mt-3 font-semibold font-sans">Account Number</label>
                             </div>
                             <div class="input shadow-2xl">
-                                <input name="AccountNumber" type="text" value="{{ $user->Account_Number }}"></input>
+                                <input name="AccountNumber" type="text" value="{{ $seller->Account_Number }}"></input>
                             </div>
+                         
 
                             <div class="flex justify-end">
                             <button type="submit" class="btn bg-blue-600 text-white">Update</button>
@@ -453,7 +447,8 @@
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-10 h-10 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                   </div>
                 </div>
-                @endforeach
+             @endif
+     
 
               </div>
             </div>
