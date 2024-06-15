@@ -22,4 +22,8 @@ class Service extends Model
     public function types(){
         return $this->hasMany(Type::class, 'Id_Service');
     }
+
+    public function user(){
+    return $this->belongsTo(User::class);
+    }
 }

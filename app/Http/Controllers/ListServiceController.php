@@ -4,18 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\Type;
+use App\Models\Detail;
 
 class ListServiceController extends Controller
 {
-    public function show()
-    {
-        $data = Service::get();
-        foreach ($data as $service) {
-            $title[] = $service->Title;
-            $desk[] = $service->Description;
-            $category[] = $service->Category;
-            $thumbnail[] = $service->Thumbnail;
-            }
-            return view('listservice', compact('title', 'desk', 'category', 'thumbnail'));
+    public function index(){
+    $services = Service::all();
+    $types = Type::all();
+    $details = Detail::all();
+    
+    return view("list_service", compact('services','types','details'));    
     }
 }
