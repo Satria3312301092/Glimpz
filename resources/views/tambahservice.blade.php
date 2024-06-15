@@ -82,8 +82,8 @@
       <div class="grid grid-cols-2">
         <div class="col-span-1">
           
-        <a class="block text-gray-700 text-sm font-semibold mb-1">Id Seller</a>
-        <input type="text" id="title" name="Id_Seller" class="shadow-lg border rounded py-2 px-3 w-96">
+        <!-- <a class="block text-gray-700 text-sm font-semibold mb-1">Id Seller</a>
+        <input type="text" id="title" name="Id_Seller" class="shadow-lg border rounded py-2 px-3 w-96"> -->
 
         <a class="block text-gray-700 text-sm font-semibold mb-1">Title</a>
         <input type="text" id="title" name="Title" class="shadow-lg border rounded py-2 px-3 w-96">

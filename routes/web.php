@@ -35,6 +35,7 @@ use App\Http\Controllers\logoutController;
 use App\Http\Controllers\MinServiceController;
 use App\Http\Controllers\BannedController;
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -90,8 +91,8 @@ Route::middleware(['auth'])->group(function () {
     //BUYER
     Route::get('/beranda', [BerandaController::class, 'beranda'])->name('beranda')->middleware('userAkses:Buyer');
     Route::resource('profilebuyer', ProfileBuyerController::class)->middleware('userAkses:Buyer');
-    // Route::get('/listservice', [List_ServicerController::class, 'list_service']);
-    Route::get('/service', [ServiceController::class, 'service']);
+    Route::resource('/listservice', ListServiceController::class)->middleware('userAkses:Buyer');
+    Route::get('/service/{id}', [ServiceController::class, 'service'])->name('service');
     Route::get('/orderpayment', [OrderPaymentController::class, 'orderpayment']);
     Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
 
