@@ -34,6 +34,23 @@
       .custom-file-input:focus {
           border-color: #2563eb;
       }
+
+      .modalSuccess {
+        background-color: #0006;
+        animation: modal-pop .2s ease-out;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-out;
+        animation-delay: 0s;
+        animation-iteration-count: 1;
+        animation-direction: normal;
+        animation-fill-mode: none;
+        animation-play-state: running;
+        animation-name: modal-pop;
+        animation-timeline: auto;
+        animation-range-start: normal;
+        animation-range-end: normal;
+      }
+
   </style>
 </head>
 <body class="font-poppins">
@@ -77,7 +94,7 @@
     <div class="bg-white w-full h-full px-12 pt-8 border-2 shadow-2xl rounded-xl">
     <!-- bagian atas -->
     <h1 class="font-bold text-3xl mb-6">Add Services</h1>
-    <form action="{{ route('tambahservice.store') }}" method="POST" enctype="multipart/form-data"> 
+    <form id="serviceForm" action="{{ route('tambahservice.store') }}" method="POST" enctype="multipart/form-data"> 
       @csrf
       <div class="grid grid-cols-2">
         <div class="col-span-1">
@@ -180,15 +197,75 @@
         </div>
 
       </div>
-        </div>
-      </div>
+    </div>
+  </div>
+  
+  <div class="flex justify-center py-14">
+    <button class="btn btn-blue-300 hover:bg-blue-700 btn-outline text-blue-700 hover:text-white border-blue-700 hover:border-none font-medium text-base px-20">Add Service</button>
+  </div>
+</form>
+</div>
+  </div>
+  
 
-      <div class="flex justify-center py-14">
-        <button class="btn btn-blue-300 hover:bg-blue-700 btn-outline text-blue-700 hover:text-white border-blue-700 hover:border-none font-medium text-base px-20">Add Service</button>
+  <dialog id="successModal" class="modalSuccess fixed top-0 left-0 w-full h-full flex items-center justify-center hidden">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Success!</h3>
+      <p class="py-4">Your service has been added succesfully.</p>
+      <div class="modal-action">
       </div>
-    </form>
-  </div>
-  </div>
+    </div>
+</dialog>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Tangkap form menggunakan id
+    const form = document.getElementById('serviceForm');
+
+    // Tambahkan event listener untuk event submit
+    form.addEventListener('submit', function(event) {
+        // Menghentikan form submission default
+        event.preventDefault();
+
+        // Lakukan validasi atau tindakan lain di sini
+        // Contoh validasi sederhana
+        let title = document.getElementById('title').value.trim();
+        if (!title) {
+            alert('Title cannot be empty');
+            return;
+        }
+
+        // Simulasikan penambahan jasa (di sini Anda bisa menambahkan AJAX untuk menyimpan data ke server)
+        // Sebagai contoh, kita menampilkan modal
+        showModalSuccess();
+
+        // Jeda sebelum mengirim form
+        setTimeout(function() {
+            // Lanjutkan pengiriman form setelah jeda
+            form.submit();
+        }, 2000); // Mengatur jeda 2 detik (2000 milidetik)
+    });
+
+    // Fungsi untuk menampilkan modal
+    function showModalSuccess() {
+        const modal = document.getElementById('successModal');
+        modal.classList.remove('hidden');
+    }
+
+    // Event listener untuk tombol close modal
+    const closeModalButton = document.getElementById('closeModal');
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', function() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('hidden');
+        });
+    }
+});
+</script>
+
+
+
 
 @if(session('error'))
     <script>

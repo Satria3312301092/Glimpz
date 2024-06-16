@@ -189,8 +189,14 @@
                             <form method="dialog">
                               <button class="btn">Close</button>
                             </form>
+                            <form action="{{route('service.store')}}" method="POST">
+                              @csrf
+                              <input type="hidden" name="id_user" value="{{ $users->Id_User }}">
+                              <input type="hidden" name="id_service" value="{{ $service->Id_Service }}">
+                              <input type="hidden" name="id_type" value="{{ $type->Id_Type }}">
+                              <input type="hidden" name="id_detail" value="{{ $detail->Id_Detail }}">
                             <button class="btn btn-outline text-blue-700 hover:!border-blue-700 hover:bg-blue-700 hover:text-white">Confirm</button>
-                          </div>
+                            </form>                          </div>
                     </div>
                         </div>
                         <form method="dialog" class="modal-backdrop">
