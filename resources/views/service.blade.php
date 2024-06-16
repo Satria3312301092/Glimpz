@@ -153,7 +153,7 @@
                     </div>
                   </div>
 
-                  <!-- modal Order Basic -->
+                  <!-- modal Order basic -->
                       <!-- Open the modal using ID.showModal() method -->
                       <dialog id="my_modal_1{{ $type->Id_Type }}" class="modal">
                         <div class="modal-box">
