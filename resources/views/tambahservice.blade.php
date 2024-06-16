@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             // Lanjutkan pengiriman form setelah jeda
             form.submit();
-        }, 2000); // Mengatur jeda 2 detik (2000 milidetik)
+        }, 1500); // Mengatur jeda 1 detik (1000 milidetik)
     });
 
     // Fungsi untuk menampilkan modal
