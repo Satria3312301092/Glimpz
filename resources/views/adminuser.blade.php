@@ -137,11 +137,12 @@
                                   <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
                                   Delete</a></li> --}}
-                                <li><a onclick="my_modal_1{{ $user->Id_User }}.showModal()"><svg class="w-4 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" 
-                                stroke="currentColor" class="size-6">
+                                @if ($user->Role != 'Admin')
+                                <li><a onclick="my_modal_1{{ $user->Id_User }}.showModal()"><svg class="w-4 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>                                
                                   Ban</a></li>
+                                @endif
                                 <li><a onclick="my_modal_2{{ $user->Id_User }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
                                   8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -288,12 +289,87 @@
                                   0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                               </div>
                               <ul tabindex="0" class="dropdown-content z-[1] menu shadow bg-base-100 font-normal rounded-box w-52">
-                                <li><a>Item 1</a></li>
-                                <li><a>Item 2</a></li>
+                                <li><a onclick="my_modal_3{{ $userBuyer->Id_User }}.showModal()"><svg class="w-4 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>                                
+                                  Ban</a></li>
+                                <li><a onclick="my_modal_4{{ $userBuyer->Id_User }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
+                                  8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>
+                                  Details</a></li>
                               </ul>
                             </div>
                         </th>
                       </tr>
+                      <dialog id="my_modal_3{{ $userBuyer->Id_User }}" class="modal">
+                        <div class="modal-box">
+                          <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                          </form>
+                          
+                          <h3 class="font-bold text-lg mb-3">Banned This User?!</h3>
+                          <p>This User {{ $userBuyer->Name }} With ID {{ $userBuyer->Id_User }} Will Be Banned</p>
+                          <form action="{{ route('adminuser.store') }}" method="POST">
+                            @csrf
+                          <div class="grid grid-rows-1 grid-cols-2 mb-4 mt-4">
+                            <div class="">
+                              <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Id_User" type="text" value="{{ $userBuyer->Id_User }}"></input>
+                            </div>
+                            <div class="">
+                              <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Name" type="text" value="{{ $userBuyer->Name }}"></input>
+                            </div>
+                          <div class="">
+                            <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Numberphone" type="text" value="{{ $userBuyer->Number_Phone }}"></input>
+                          </div>
+                          <div class="">
+                            <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Email" type="text" value="{{ $userBuyer->Email }}"></input>
+                          </div>
+                        </div>
+                          <button type="submit"  class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">BAN</button>
+                        </div>
+                      </form>
+                        
+                      </dialog>
+                      <dialog id="my_modal_4{{ $userBuyer->Id_User }}" class="modal">
+                        <div class="modal-box">
+                          <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                          </form>
+                          <h3 class="font-bold text-lg mb-3">Information About User With ID {{ $userBuyer->Id_User }}</h3>
+                          <div class="grid grid-rows-3 grid-cols-2 gap-4">
+                            <div class="row-span-6 mr-5">
+                            <label class="mt-3 font-semibold font-sans">Photo</label>
+                              <img src="{{ Storage::url($userBuyer->Picture) }}" alt="" class="w-52 h-52">
+                              <div class="mt-3">
+                              <label class="mt-3 font-semibold font-sans">Role</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Username" type="text" value="{{ $userBuyer->Role }}" disabled></input>
+                              </div>
+                            </div>
+                            <div class="mt-2">
+                              <label class="mt-3 font-semibold font-sans">Username</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Username" type="text" value="{{ $userBuyer->Username }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 font-semibold font-sans">Full Name</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Name" type="text" value="{{ $userBuyer->Name }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 font-semibold font-sans">Phone Number</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Numberphone" type="text" value="{{ $userBuyer->Number_Phone }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 mr-10 font-semibold font-sans">Email</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Email" type="text" value="{{ $userBuyer->Email }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 mr-10 font-semibold font-sans">Date of Birth</label>
+                              <input class="shadow-2xl rounded-lg input p-2" type="date" name="Date" class="grow" value="{{ $userBuyer->Date_Of_Birth }}" placeholder="Date of Birth" disabled />
+                            </div>
+                          </div>
+                      </div>
+                        </div>
+                      </dialog>
                     </tbody>
                     @endforeach
                     <!-- foot -->
@@ -320,7 +396,7 @@
                     <thead>
                       <tr>
                         <th>
-                          ID User
+                          ID Seller
                         </th>
                         <th>Name</th>
                         <th>Email</th>
@@ -331,11 +407,13 @@
                       </tr>
                     </thead>
                     @foreach ($usersSeller as $userSeller)
+                    @foreach ($sellersId as $sellerId)
+                    @if($userSeller->Id_User == $sellerId->Id_User)  
                     <tbody>
                       <!-- row 1 -->
                       <tr>
                         <th>
-                          {{ $userSeller->Id_User }}
+                          {{ $sellerId->Id_Seller }}
                         </th>
                         <td>
                           <div class="flex items-center gap-3">
@@ -360,13 +438,92 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                               </div>
                               <ul tabindex="0" class="dropdown-content z-[1] menu shadow bg-base-100 font-normal rounded-box w-52">
-                                <li><a>Item 1</a></li>
-                                <li><a>Item 2</a></li>
+                                <li><a onclick="my_modal_5{{ $userSeller->Id_User }}.showModal()"><svg class="w-4 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>                                
+                                  Ban</a></li>
+                                <li><a onclick="my_modal_6{{ $userSeller->Id_User }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
+                                  8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>
+                                  Details</a></li>
                               </ul>
                             </div>
                         </th>
                       </tr>
+                      <dialog id="my_modal_5{{ $userSeller->Id_User }}" class="modal">
+                        <div class="modal-box">
+                          <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                          </form>
+                          
+                          <h3 class="font-bold text-lg mb-3">Banned This User?!</h3>
+                          <p>This User {{ $userSeller->Name }} With ID {{ $sellerId->Id_Seller }} Will Be Banned</p>
+                          <form action="{{ route('adminuser.store') }}" method="POST">
+                            @csrf
+                          <div class="grid grid-rows-1 grid-cols-2 mb-4 mt-4">
+                            <div class="">
+                              <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Id_User" type="text" value="{{ $userBuyer->Id_User }}"></input>
+                            </div>
+                            <div class="">
+                              <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Name" type="text" value="{{ $userBuyer->Name }}"></input>
+                            </div>
+                          <div class="">
+                            <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Numberphone" type="text" value="{{ $userBuyer->Number_Phone }}"></input>
+                          </div>
+                          <div class="">
+                            <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Email" type="text" value="{{ $userBuyer->Email }}"></input>
+                          </div>
+                        </div>
+                          <button type="submit"  class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">BAN</button>
+                        </div>
+                      </form>
+                        
+                      </dialog>
+                      <dialog id="my_modal_6{{ $userSeller->Id_User }}" class="modal">
+                        <div class="modal-box">
+                          <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                          </form>
+                          <h3 class="font-bold text-lg mb-3">Information About User With ID Seller {{ $sellerId->Id_Seller }}</h3>
+                          <div class="grid grid-rows-3 grid-cols-2 gap-4">
+                            <div class="row-span-6 mr-5">
+                            <label class="mt-3 font-semibold font-sans">Identity Card</label>
+                              <img src="{{ Storage::url($sellerId->Identity_Card) }}" alt="" class="w-52 h-52">
+                              <div class="mt-3">
+                              <label class="mt-3 font-semibold font-sans">Role</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Username" type="text" value="{{ $userSeller->Role }}" disabled></input>
+                              <label class="mt-3 font-semibold font-sans">Account Number</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Account_Number" type="text" value="{{ $sellerId->Account_Number }}" disabled></input>
+                              </div>
+                            </div>
+                            <div class="mt-2">
+                              <label class="mt-3 font-semibold font-sans">Username</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Username" type="text" value="{{ $userSeller->Username }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 font-semibold font-sans">Full Name</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Name" type="text" value="{{ $userSeller->Name }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 font-semibold font-sans">Phone Number</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Numberphone" type="text" value="{{ $userSeller->Number_Phone }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 mr-10 font-semibold font-sans">Email</label>
+                              <input class="shadow-2xl rounded-lg input p-2" name="Email" type="text" value="{{ $userSeller->Email }}" disabled></input>
+                            </div>
+                            <div class="">
+                              <label class="mt-3 mr-10 font-semibold font-sans">Date of Birth</label>
+                              <input class="shadow-2xl rounded-lg input p-2" type="date" name="Date" class="grow" value="{{ $userSeller->Date_Of_Birth }}" placeholder="Date of Birth" disabled />
+                            </div>
+                          </div>
+                      </div>
+                        </div>
+                      </dialog>
                     </tbody>
+                    @endif
+                    @endforeach
                     @endforeach
                     <!-- foot -->
                     <tfoot>
@@ -401,38 +558,44 @@
                         <th></th>
                       </tr>
                     </thead>
-                    @foreach ($usersAdmin as $userAdmin)
+                    
+                    
+                    @foreach ($usersAdmin as $user)
+                    @foreach ($admins as $admin)
+                    @if($user->Id_User == $admin->Id_User)
                     <tbody>
                       <!-- row 1 -->
                       <tr>
                         <th>
-                          {{ $userAdmin->Id_User }}
+                          {{ $admin->Id_Admin}}
                         </th>
+                        @endif
+                        @endforeach
                         <td>
                           <div class="flex items-center gap-3">
                             <div class="avatar">
                               <div class="w-12 h-12  border-[1px] border-[#BEBEBE] rounded-full">
-                                <img src="{{ $userAdmin->Picture }}" alt="Avatar Tailwind CSS Component" />
+                                <img src="{{ $user->Picture }}" alt="Avatar Tailwind CSS Component" />
                               </div>
                             </div>
                             <div>
-                              <div class="font-normal">{{ $userAdmin->Name }}</div>
+                              <div class="font-normal">{{ $user->Name }}</div>
                             </div>
                           </div>
                         </td>
                         <td>
-                          {{ $userAdmin->Email }}
+                          {{ $user->Email }}
                         </td>
-                        <td>{{ $userAdmin->Number_Phone }}</td>
-                        <td>{{ $userAdmin->Role }}</td>
+                        <td>{{ $user->Number_Phone }}</td>
+                        <td>{{ $user->Role }}</td>
                         <th>
                             <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                               </div>
                               <ul tabindex="0" class="dropdown-content z-[1] menu shadow bg-base-100 font-normal rounded-box w-52">
-                                <li><a>Item 1</a></li>
-                                <li><a>Item 2</a></li>
+                                {{-- <li><a>Item 1</a></li>
+                                <li><a>Item 2</a></li> --}}
                               </ul>
                             </div>
                         </th>
@@ -461,9 +624,9 @@
                     <thead>
                       <tr>
                         <th>
-                          ID User
+                          ID Ban
                         </th>
-                        <th>Name</th>
+                        <th>Name</th> 
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>Role</th>
@@ -471,30 +634,33 @@
                         <th></th>
                       </tr>
                     </thead>
-                    @foreach ($usersAdmin as $userAdmin)
+
+                    @foreach ($usersBan as $userBan)
+                    @foreach ($users as $user)
+                    @if ($user->Id_User == $userBan->Id_User)
                     <tbody>
                       <!-- row 1 -->
                       <tr>
                         <th>
-                          {{ $userAdmin->Id_User }}
+                          {{ $userBan->Id_Ban }}
                         </th>
                         <td>
                           <div class="flex items-center gap-3">
                             <div class="avatar">
                               <div class="w-12 h-12  border-[1px] border-[#BEBEBE] rounded-full">
-                                <img src="{{ $userAdmin->Picture }}" alt="Avatar Tailwind CSS Component" />
+                                <img src="{{ $user->Picture }}" alt="Avatar Tailwind CSS Component" />
                               </div>
                             </div>
                             <div>
-                              <div class="font-normal">{{ $userAdmin->Name }}</div>
+                              <div class="font-normal">{{ $user->Name }}</div>
                             </div>
                           </div>
                         </td>
                         <td>
-                          {{ $userAdmin->Email }}
+                          {{ $user->Email }}
                         </td>
-                        <td>{{ $userAdmin->Number_Phone }}</td>
-                        <td>{{ $userAdmin->Role }}</td>
+                        <td>{{ $user->Number_Phone }}</td>
+                        <td>{{ $user->Role }}</td>
                         <th>
                         <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
@@ -505,11 +671,11 @@
                                   <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
                                   Delete</a></li> --}}
-                                <li><a onclick="my_modal_1{{ $user->Id_User }}.showModal()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <li><a onclick="my_modal_7{{ $user->Id_User }}.showModal()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>                                
                                   Unban</a></li>
-                                <li><a onclick="my_modal_2{{ $user->Id_User }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <li><a onclick="my_modal_8{{ $user->Id_User }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
                                   8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
@@ -518,7 +684,23 @@
                             </div>
                         </th>
                       </tr>
+                      <dialog id="my_modal_7{{ $user->Id_User }}" class="modal">
+                        <div class="modal-box">
+                          <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                          </form>
+                          
+                          <h3 class="font-bold text-lg mb-3">Unbanned This User?!</h3>
+                          <p>This User {{ $user->Name }} With ID {{ $user->Id_User }} Will Be Unbanned</p>
+                          <form action="{{ route('adminuser.destroy', $user->Id_User) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                          <button type="submit"  class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900 mt-3">UNBAN</button>
+                        </div>
+                      </form>
                     </tbody>
+                    @endif
+                    @endforeach
                     @endforeach
                     <!-- foot -->
                     <tfoot>
@@ -594,6 +776,11 @@
   @if(session('banned_failed'))
       <script>
           alert("{{ session('banned_failed') }}");
+      </script>
+  @endif
+  @if(session('success_del'))
+      <script>
+        alert("{{ session('success_del') }}")
       </script>
   @endif
 </body>
