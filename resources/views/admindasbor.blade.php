@@ -17,39 +17,49 @@
             <h1 class="font-bold text-2xl">Dashboard</h1>
               <div class="grid grid-cols-5 gap-4 mt-10">
                 <!-- card 1 -->
-                <div class="stats shadow-lg shadow-neutral-300 w-full">
+                <div class="stats shadow-lg shadow-neutral-300 w-full hover:bg-gray-300">
+                  <a href="adminservice">
                   <div class="stat">
-                    <div class="stat-title font-bold text-gray-600">Services</div>
+                    <div class="stat-title font-bold text-gray-600 hover:bg-gray-300">Services</div>
                     <div class="stat-value font-black">{{ $countService }}</div>
                   </div>
+                </a>
                 </div>
                 <!-- card 2 -->
-                <div class="stats shadow-lg shadow-neutral-300 w-full">
+                <div class="stats shadow-lg shadow-neutral-300 w-full hover:bg-gray-300">
+                  <a href="adminuser">
                   <div class="stat">
                     <div class="stat-title font-bold text-gray-600">Users</div>
                     <div class="stat-value font-black">{{ $countUser }}</div>
                   </div>
+                </a>
                 </div>
                 <!-- card 3 -->
-                <div class="stats shadow-lg shadow-neutral-300 w-full">
+                <div class="stats shadow-lg shadow-neutral-300 w-full hover:bg-gray-300">
+                  <a href="admininvoice">
                   <div class="stat">
                     <div class="stat-title font-bold text-gray-600">Invoice</div>
                     <div class="stat-value font-black">{{ $countInvoice }}</div>
                   </div>
+                </a>
                 </div>
                 <!-- card 4 -->
-                <div class="stats shadow-lg shadow-neutral-300 w-full">
+                <div class="stats shadow-lg shadow-neutral-300 w-full hover:bg-gray-300">
+                  <a href="adminorder">
                   <div class="stat">
                     <div class="stat-title font-bold text-gray-600">Orders</div>
                     <div class="stat-value font-black">{{ $countOrder }}</div>
                   </div>
+                </a>
                 </div>
 
-                <div class="stats shadow-lg shadow-neutral-300 w-full">
+                <div class="stats shadow-lg shadow-neutral-300 w-full hover:bg-gray-300">
+                  <a href="adminuser">
                   <div class="stat">
                     <div class="stat-title font-bold text-gray-600">Ban</div>
                     <div class="stat-value font-black">{{ $countBan }}</div>
                   </div>
+                </a>
                 </div>
 
               </div>

@@ -8,6 +8,7 @@ use App\Models\Type;
 use App\Models\Detail;
 use App\Models\Seller;
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
@@ -35,17 +36,29 @@ class ServiceController extends Controller
      */
     public function show(string $Id_Service)
     {   
+        $users = Auth::user();
+
 
         $service = Service::find($Id_Service);
 
         
         
-        return view("service", compact('service')); 
+        return view("service", compact('service', 'users')); 
     }
 
-
-    public function store(){
+    public function store(Request $request){
         
+        $order = new Order();
+        $order->Id_User = $request->input('id_user');
+        $order->Id_Service = $request->input('id_service');
+        $order->Id_Type = $request->input('id_type');
+        $order->Id_Detail = $request->input('id_detail');
+        $order->Status = 'waiting'; 
+        
+       
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order has been placed successfully!');
 
     }
 }
