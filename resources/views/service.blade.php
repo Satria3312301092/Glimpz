@@ -153,6 +153,52 @@
                     </div>
                   </div>
 
+                  <!-- modal Order Basic -->
+                      <!-- Open the modal using ID.showModal() method -->
+                      <dialog id="my_modal_1{{ $type->Id_Type }}" class="modal">
+                        <div class="modal-box">
+                          <h3 class="font-bold text-lg ">Add Order</h3>
+                          <div class="divider"></div>
+                          <div class="grid gap-y-3">
+                        <div class="flex justify-between font-bold items-end">
+                            <h3 class="text-base text-slate-700">Basic Animation</h3>
+                        </div>
+                        <p class="text-zinc-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.{{$detail->Descriptions}}</p>
+                        <ul class="font-bold text-base bg-slate-50 rounded-xl p-5">
+                            <li class="flex items-center mb-3 text-slate-700">
+                                <svg class="w-6 h-6 mr-4" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22.1923 19.3079L17 24.5002L22.1923 29.6925" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M11.8076 12.3846L16.9999 7.19228L11.8076 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17 24.4998H27.3846C29.9337 24.4998 32 22.4335 32 19.8844V11.8075C32 9.25852 29.9337 7.19214 27.3846 7.19214H23.9231" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17 7.19214H6.61538C4.06638 7.19214 2 9.25852 2 11.8075V19.8844C2 22.4335 4.06638 24.4998 6.61538 24.4998H10.0769" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                {{$detail->Revision}} Revisions
+                            </li>
+                            <li class="flex items-center mb-3 text-slate-700">
+                                <svg class="w-6 h-6 mr-4" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.9999 31.9998C24.0098 31.9998 29.6922 26.3174 29.6922 19.3075C29.6922 12.2978 24.0098 6.61523 16.9999 6.61523C9.99015 6.61523 4.30762 12.2978 4.30762 19.3075C4.30762 26.3174 9.99015 31.9998 16.9999 31.9998Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 6.61538C3.62065 4.73288 5.5769 3.16788 7.76923 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M32.0007 6.61538C30.38 4.73288 28.4238 3.16788 26.2314 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17 12.3848V19.3078H22.7692" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                {{$detail->Day}} Days Delivery Time
+                            </li>
+                        </ul>
+                        <a class="font-bold text-xl text-slate-700">Rp.{{$detail->Price}}</a>
+                          <div class="modal-action">
+                            <form method="dialog">
+                              <button class="btn">Close</button>
+                            </form>
+                            <button class="btn btn-outline text-blue-700 hover:!border-blue-700 hover:bg-blue-700 hover:text-white">Confirm</button>
+                          </div>
+                    </div>
+                        </div>
+                        <form method="dialog" class="modal-backdrop">
+                          <button>close</button>
+                        </form>
+                      </dialog>
+                <!-- modal Order Basic -->
+
                   @endforeach
                   @elseif ($type->Type_Name == 'Standard')
                   @foreach ($type->details as $detail)
@@ -187,21 +233,51 @@
                     </div>
                   </div>
 
-                  <!-- modal standard -->
-                  <!-- Open the modal using ID.showModal() method -->
-                    <dialog id="my_modal_2{{ $type->Id_Type }}" class="modal">
-                      <div class="modal-box">
-                        <h3 class="font-bold text-lg">Hello!</h3>
-                        <p class="py-4">{{ $type->Id_Type }}</p>
-                        <div class="modal-action">
-                          <form method="dialog">
-                            <!-- if there is a button in form, it will close the modal -->
-                            <button class="btn">Close</button>
-                          </form>
+                  <!-- modal Order Standard -->
+                      <!-- Open the modal using ID.showModal() method -->
+                      <dialog id="my_modal_2{{ $type->Id_Type }}" class="modal">
+                        <div class="modal-box">
+                          <h3 class="font-bold text-lg ">Add Order</h3>
+                          <div class="divider"></div>
+                          <div class="grid gap-y-3">
+                        <div class="flex justify-between font-bold items-end">
+                            <h3 class="text-base text-slate-700">Standard Animation</h3>
                         </div>
-                      </div>
-                    </dialog>
-                  <!-- modal standard -->
+                        <p class="text-zinc-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.{{$detail->Descriptions}}</p>
+                        <ul class="font-bold text-base bg-slate-50 rounded-xl p-5">
+                            <li class="flex items-center mb-3 text-slate-700">
+                                <svg class="w-6 h-6 mr-4" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22.1923 19.3079L17 24.5002L22.1923 29.6925" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M11.8076 12.3846L16.9999 7.19228L11.8076 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17 24.4998H27.3846C29.9337 24.4998 32 22.4335 32 19.8844V11.8075C32 9.25852 29.9337 7.19214 27.3846 7.19214H23.9231" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17 7.19214H6.61538C4.06638 7.19214 2 9.25852 2 11.8075V19.8844C2 22.4335 4.06638 24.4998 6.61538 24.4998H10.0769" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                {{$detail->Revision}} Revisions
+                            </li>
+                            <li class="flex items-center mb-3 text-slate-700">
+                                <svg class="w-6 h-6 mr-4" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.9999 31.9998C24.0098 31.9998 29.6922 26.3174 29.6922 19.3075C29.6922 12.2978 24.0098 6.61523 16.9999 6.61523C9.99015 6.61523 4.30762 12.2978 4.30762 19.3075C4.30762 26.3174 9.99015 31.9998 16.9999 31.9998Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 6.61538C3.62065 4.73288 5.5769 3.16788 7.76923 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M32.0007 6.61538C30.38 4.73288 28.4238 3.16788 26.2314 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17 12.3848V19.3078H22.7692" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                {{$detail->Day}} Days Delivery Time
+                            </li>
+                        </ul>
+                        <a class="font-bold text-xl text-slate-700">Rp.{{$detail->Price}}</a>
+                          <div class="modal-action">
+                            <form method="dialog">
+                              <button class="btn">Close</button>
+                            </form>
+                            <button class="btn btn-outline text-blue-700 hover:!border-blue-700 hover:bg-blue-700 hover:text-white">Confirm</button>
+                          </div>
+                    </div>
+                        </div>
+                        <form method="dialog" class="modal-backdrop">
+                          <button>close</button>
+                        </form>
+                      </dialog>
+                <!-- modal Order Standard -->
 
                   @endforeach
                  @elseif ($type->Type_Name == 'Premium')
@@ -237,21 +313,51 @@
                     </div>
                   </div>
 
-                   <!-- modal standard -->
-                  <!-- Open the modal using ID.showModal() method -->
-                  <dialog id="my_modal_3{{ $type->Id_Type }}" class="modal">
-                      <div class="modal-box">
-                        <h3 class="font-bold text-lg">Hello!</h3>
-                        <p class="py-4">{{ $type->Id_Type }}</p>
-                        <div class="modal-action">
-                          <form method="dialog">
-                            <!-- if there is a button in form, it will close the modal -->
-                            <button class="btn">Close</button>
-                          </form>
+                   <!-- modal Order Premium -->
+                      <!-- Open the modal using ID.showModal() method -->
+                      <dialog id="my_modal_3{{ $type->Id_Type }}" class="modal">
+                        <div class="modal-box">
+                          <h3 class="font-bold text-lg ">Add Order</h3>
+                          <div class="divider"></div>
+                          <div class="grid gap-y-3">
+                        <div class="flex justify-between font-bold items-end">
+                            <h3 class="text-base text-slate-700">Premium Animation</h3>
                         </div>
-                      </div>
-                    </dialog>
-                  <!-- modal standard -->
+                        <p class="text-zinc-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.{{$detail->Descriptions}}</p>
+                        <ul class="font-bold text-base bg-slate-50 rounded-xl p-5">
+                            <li class="flex items-center mb-3 text-slate-700">
+                                <svg class="w-6 h-6 mr-4" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22.1923 19.3079L17 24.5002L22.1923 29.6925" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M11.8076 12.3846L16.9999 7.19228L11.8076 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17 24.4998H27.3846C29.9337 24.4998 32 22.4335 32 19.8844V11.8075C32 9.25852 29.9337 7.19214 27.3846 7.19214H23.9231" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17 7.19214H6.61538C4.06638 7.19214 2 9.25852 2 11.8075V19.8844C2 22.4335 4.06638 24.4998 6.61538 24.4998H10.0769" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                {{$detail->Revision}} Revisions
+                            </li>
+                            <li class="flex items-center mb-3 text-slate-700">
+                                <svg class="w-6 h-6 mr-4" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.9999 31.9998C24.0098 31.9998 29.6922 26.3174 29.6922 19.3075C29.6922 12.2978 24.0098 6.61523 16.9999 6.61523C9.99015 6.61523 4.30762 12.2978 4.30762 19.3075C4.30762 26.3174 9.99015 31.9998 16.9999 31.9998Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 6.61538C3.62065 4.73288 5.5769 3.16788 7.76923 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M32.0007 6.61538C30.38 4.73288 28.4238 3.16788 26.2314 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17 12.3848V19.3078H22.7692" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                {{$detail->Day}} Days Delivery Time
+                            </li>
+                        </ul>
+                        <a class="font-bold text-xl text-slate-700">Rp.{{$detail->Price}}</a>
+                          <div class="modal-action">
+                            <form method="dialog">
+                              <button class="btn">Close</button>
+                            </form>
+                            <button class="btn btn-outline text-blue-700 hover:!border-blue-700 hover:bg-blue-700 hover:text-white">Confirm</button>
+                          </div>
+                    </div>
+                        </div>
+                        <form method="dialog" class="modal-backdrop">
+                          <button>close</button>
+                        </form>
+                      </dialog>
+                <!-- modal Order Premium -->
 
                   @endforeach
                   @endif
