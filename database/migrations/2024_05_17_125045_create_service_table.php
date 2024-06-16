@@ -31,8 +31,6 @@ return new class extends Migration
             $table->unsignedInteger('Id_User'); // Foreign key or a regular integer column
             $table->string('Identity_Card', 100);
             $table->string('Account_Number', 100);
-            $table->string('Username', 100);
-            $table->string('Password', 100);
             // Optional: Add timestamps if needed
             // $table->timestamps();
 
@@ -111,7 +109,8 @@ return new class extends Migration
             $table->unsignedInteger('Id_Service'); // Foreign key
             $table->unsignedInteger('Id_Type'); // Foreign key
             $table->unsignedInteger('Id_Detail'); // Foreign key
-            $table->date('Date');
+            $table->enum('Status', ['waiting', 'proses', 'finish', 'cancel']);
+            $table->timestamp('Date');
 
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
@@ -159,7 +158,7 @@ return new class extends Migration
             $table->string('Proof', 100);
             $table->string('Methode', 100);
             $table->string('Thumbnail', 100);
-            $table->enum('Status', ['waiting', 'proses', 'finish', 'cancel']);
+            $table->enum('Status', ['finish']);
 
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
