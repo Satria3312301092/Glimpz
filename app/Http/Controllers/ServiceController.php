@@ -12,13 +12,40 @@ use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
-    public function service($id){
+
+
+    // public function index(Request $request){
+
+    //     $serviceId = $request->input('Id_Service');
         
-        $service = Service::find($id);
+    //     $services = Service::find($serviceId);
+        
+        
+    //     return view("service", compact('services')); 
+    // }
 
+    // public function show($id){
+    //     $service = Service::find($id);
 
-      
+    //     return view("service", compact('services'));
+    // }
+
+     /**
+     * Display the specified resource.
+     */
+    public function show(string $Id_Service)
+    {   
+
+        $service = Service::find($Id_Service);
+
+        
         
         return view("service", compact('service')); 
+    }
+
+
+    public function store(){
+        
+
     }
 }

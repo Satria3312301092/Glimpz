@@ -13,7 +13,7 @@ class Detail extends Model
     protected $primaryKey = 'Id_Detail';
     protected $fillable = [
         'Id_Service',
-        'Id_Typey',
+        'Id_Type',
         'Day',
         'Revision',
         'Price',

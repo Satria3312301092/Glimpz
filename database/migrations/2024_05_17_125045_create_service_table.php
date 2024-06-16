@@ -109,11 +109,15 @@ return new class extends Migration
             $table->increments('Id_Order'); // Primary key, auto-increment
             $table->unsignedInteger('Id_User'); // Foreign key
             $table->unsignedInteger('Id_Service'); // Foreign key
+            $table->unsignedInteger('Id_Type'); // Foreign key
+            $table->unsignedInteger('Id_Detail'); // Foreign key
             $table->date('Date');
 
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
             $table->foreign('Id_Service')->references('Id_Service')->on('service')->onDelete('cascade');
+            $table->foreign('Id_Type')->references('Id_Type')->on('type')->onDelete('cascade');
+            $table->foreign('Id_Detail')->references('Id_Detail')->on('detail')->onDelete('cascade');
 
             // Optional: Add timestamps if needed
             // $table->timestamps();

@@ -69,6 +69,9 @@
   <!-- navbar end -->
 
 
+
+    
+
   <div class="container mx-auto pt-20">
     <h2 class="font-semibold font-['Poppins'] text-2xl mb-16 text-black">{{$service->Title}}</h2>
     <div class="grid grid-cols-5 gap-x-14">
@@ -114,16 +117,16 @@
                   <a role="tab" class="tab w-32 h-16 text-lg !rounded-2xl" onclick="toggleTab('tab-2')">Standard</a>
                   <a role="tab" class="tab w-32 h-16 text-lg !rounded-2xl" onclick="toggleTab('tab-3')">Premium</a>
                 </div>
-                
+          
                 @foreach ($service->types as $type)
                 @if ($type->Type_Name == 'Basic')
                 @foreach ($type->details as $detail)
                 <div class="pt-5 pb-10">
                   <div id="tab-1" role="tabpanel" class="tab_content">
                     <div class="grid gap-y-3">
-                        <div class="flex justify-between font-bold items-end">
-                            <h3 class="text-base">Basic Animation</h3>
-                            <a class="text-xl">Rp.{{$detail->Price}}</a>
+                        <div class="flex justify-between font-bold items-end text-xl">
+                            <h3>Basic Animation</h3>
+                            <a">Rp.{{$detail->Price}}</a>
                         </div>
                         <p>{{$detail->Descriptions}}</p>
                         <ul class="font-bold text-base">
@@ -146,7 +149,7 @@
                                 {{$detail->Day}} Days Delivery Time
                             </li>
                         </ul>
-                        <a href="#" class="btn bg-blue-700 hover:bg-blue-700 text-white text-lg font-normal border-none w-full h-14 mt-7 shadow-neutral-400 shadow-lg">Continue</a>
+                        <button onclick="my_modal_1{{ $type->Id_Type }}.showModal()" class="btn bg-blue-700 hover:bg-blue-700 text-white text-lg font-normal border-none w-full h-14 mt-7 shadow-neutral-400 shadow-lg">Continue</button>
                     </div>
                   </div>
 
@@ -180,13 +183,29 @@
                                 {{$detail->Day}} Days Delivery Time
                             </li>
                         </ul>
-                        <a href="#" class="btn bg-blue-700 hover:bg-blue-700 text-white text-lg font-normal border-none w-full h-14 mt-7 shadow-neutral-400 shadow-lg">Continue</a>
+                        <button  onclick="my_modal_2{{ $type->Id_Type }}.showModal()" class="btn bg-blue-700 hover:bg-blue-700 text-white text-lg font-normal border-none w-full h-14 mt-7 shadow-neutral-400 shadow-lg">Continue</button>
                     </div>
                   </div>
+
+                  <!-- modal standard -->
+                  <!-- Open the modal using ID.showModal() method -->
+                    <dialog id="my_modal_2{{ $type->Id_Type }}" class="modal">
+                      <div class="modal-box">
+                        <h3 class="font-bold text-lg">Hello!</h3>
+                        <p class="py-4">{{ $type->Id_Type }}</p>
+                        <div class="modal-action">
+                          <form method="dialog">
+                            <!-- if there is a button in form, it will close the modal -->
+                            <button class="btn">Close</button>
+                          </form>
+                        </div>
+                      </div>
+                    </dialog>
+                  <!-- modal standard -->
+
                   @endforeach
                  @elseif ($type->Type_Name == 'Premium')
                   @foreach ($type->details as $detail)
-
                   <div id="tab-3" role="tabpanel" class="hidden tab_content">
                     <div class="grid gap-y-3">
                         <div class="flex justify-between font-bold items-end">
@@ -214,12 +233,33 @@
                                 {{$detail->Day}} Days Delivery Time
                             </li>
                         </ul>
-                        <a href="#" class="btn bg-blue-700 hover:bg-blue-700 text-white text-lg font-normal border-none w-full h-14 mt-7 shadow-neutral-400 shadow-lg">Continue</a>
+                        <button  onclick="my_modal_3{{ $type->Id_Type }}.showModal()" class="btn bg-blue-700 hover:bg-blue-700 text-white text-lg font-normal border-none w-full h-14 mt-7 shadow-neutral-400 shadow-lg">Continue</button>
                     </div>
                   </div>
+
+                   <!-- modal standard -->
+                  <!-- Open the modal using ID.showModal() method -->
+                  <dialog id="my_modal_3{{ $type->Id_Type }}" class="modal">
+                      <div class="modal-box">
+                        <h3 class="font-bold text-lg">Hello!</h3>
+                        <p class="py-4">{{ $type->Id_Type }}</p>
+                        <div class="modal-action">
+                          <form method="dialog">
+                            <!-- if there is a button in form, it will close the modal -->
+                            <button class="btn">Close</button>
+                          </form>
+                        </div>
+                      </div>
+                    </dialog>
+                  <!-- modal standard -->
+
                   @endforeach
                   @endif
                   @endforeach
+                 
+                
+
+                 
                 </div>
             </div>
         </div>

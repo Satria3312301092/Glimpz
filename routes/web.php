@@ -92,8 +92,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/beranda', [BerandaController::class, 'beranda'])->name('beranda')->middleware('userAkses:Buyer');
     Route::resource('profilebuyer', ProfileBuyerController::class)->middleware('userAkses:Buyer');
     Route::resource('/listservice', ListServiceController::class)->middleware('userAkses:Buyer');
-    Route::get('/service/{id}', [ServiceController::class, 'service'])->name('service');
-    Route::get('/orderpayment', [OrderPaymentController::class, 'orderpayment']);
+    Route::resource('/service', ServiceController::class);
+    // Route::get('/service/{id}', [ServiceController::class, 'service'])->name('service');
+    // Route::post('/service', [ServiceController::class, 'service'])->name('service_post');
+    Route::resource('/orderpayment', OrderPaymentController::class,);
     Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
 
 

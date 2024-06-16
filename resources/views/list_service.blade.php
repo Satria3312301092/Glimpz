@@ -135,7 +135,7 @@
             @if ($type->Type_Name == 'Basic' && $type->Id_Service == $service->Id_Service)
             @foreach ($details as $detail)
             @if ($detail->Id_Type == $type->Id_Type)
-            <a href="{{  route ('service', ['id' => $service->Id_Service]) }}" class="block">
+            <a href="{{  route ('service.show', $service->Id_Service) }}" class="block">
             <div class="card card-compact w-64 bg-base-100 shadow-xl ">
               <figure><img src="{{ Storage::url($service->Thumbnail) }}" alt="" /></figure>
               <div class="card-body">
