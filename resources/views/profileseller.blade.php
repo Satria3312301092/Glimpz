@@ -38,33 +38,41 @@
 </head>
 <body class="font-poppins">
   <!-- navbar -->
-  <div class="navbar shadow-lg bg-base-100 rounded-box mb-10">
+  <div class="navbar shadow-lg bg-base-100 rounded-box mb-14">
     <div class="navbar-start">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
         </div>
-        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52" >
-          <li><a>Item 1</a></li>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 w-52">
+          <li><a>Home</a></li>
           <li>
-            <a>Parent</a>
+            <a>Service</a>
             <ul class="p-2">
               <li><a>Submenu 1</a></li>
               <li><a>Submenu 2</a></li>
             </ul>
           </li>
-          <li><a>Item 3</a></li>
+          <li><a>About</a></li>
+          <li><a>Contact</a></li>
         </ul>
       </div>
-      <a class="btn btn-ghost text-xl">daisyUI</a>
+      <a class="btn btn-ghost text-xl">Glimpz</a>
     </div>
-    <div class="navbar-center hidden lg:flex z-[1]">
+    <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
-      <li><a>Dashboard</a></li>
-        <li><a href="{{route ('sellerservice.index')}}" >Service</a></li>
-        <li><a>Orders</a></li>
-        <li><a>Earnings</a></li>
+        <li><a href="beranda">Home</a></li>
+        <li>
+          <details>
+            <summary>Service</summary>
+            <ul class="p-2">
+              <li><a>Submenu 1</a></li>
+              <li><a>Submenu 2</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a>About</a></li>
+        <li><a>Contact</a></li>
       </ul>
     </div>
     <div class="navbar-end">
@@ -75,26 +83,26 @@
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li><a href="{{ route('profileseller.index') }}"><img src="images/Profile.svg" alt="">Profile</a></li>
+        <li>
+          <a href="{{ route('profilebuyer.index') }}"><img src="images/Profile.svg" alt="">Profile</a>
+        </li>
         <form action="{{ route ('logout') }}" method="POST">
           @csrf
-          <li><button type="submit"><img src="images/logout.svg" alt="">Logout</button></li>
+          <li>
+            <button type="submit"><img src="images/logout.svg" alt="">Logout</button>
+          </li>
         </form>
       </ul>
     </div>
     </div>
   </div>
-
   <!-- Navbar end -->
 
   <!-- content -->
-
-
     <div class="container mx-auto flex justify-center items-center">
         <div class="grid grid-cols-3 gap-8 mb-20">
           <!-- profile -->
-
-   
+          
           <div class="col-span-1">
             <div class="card card-compact w-96 bg-base-100 shadow-xl border-2 pb-20">
               <figure class="border-b-2 py-5">
@@ -113,12 +121,16 @@
                     <!-- You can open the modal using ID.showModal() method -->
                       <button class="btn bg-transparent border-none shadow-none" onclick="my_modal_3.showModal()">
                         <svg class="h-7 w-7" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5837 8.33335C11.1319 8.33335 8.33366 11.1316 8.33366 14.5834V35.4167C8.33366 38.8685 11.1319 41.6667 14.5837 41.6667H35.417C38.8688 41.6667 41.667 38.8685 41.667 35.4167V22.9167C41.667 21.7661 42.5997 20.8334 43.7503 20.8334C44.9009 20.8334 45.8337 21.7661 45.8337 22.9167V35.4167C45.8337 41.1697 41.17 45.8334 35.417 45.8334H14.5837C8.83069 45.8334 4.16699 41.1697 4.16699 35.4167V14.5834C4.16699 8.83039 8.83069 4.16669 14.5837 4.16669H27.0837C28.2343 4.16669 29.167 5.09943 29.167 6.25002C29.167 7.40061 28.2343 8.33335 27.0837 8.33335H14.5837Z" fill="currentColor"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M39.9948 8.33335C39.5513 8.33335 39.126 8.50953 38.8124 8.82313L22.4019 25.2336L21.6136 28.3868L24.7668 27.5985L41.1773 11.188C41.4909 10.8744 41.667 10.449 41.667 10.0055C41.667 9.56205 41.4909 9.13672 41.1773 8.82313C40.8637 8.50953 40.4383 8.33335 39.9948 8.33335ZM35.8661 5.87685C36.9611 4.78185 38.4463 4.16669 39.9948 4.16669C41.5434 4.16669 43.0285 4.78185 44.1235 5.87685C45.2185 6.97185 45.8337 8.45699 45.8337 10.0055C45.8337 11.5541 45.2185 13.0392 44.1235 14.1342L27.305 30.9528C27.038 31.2198 26.7035 31.4092 26.3371 31.5008L19.2557 33.2711C18.5457 33.4486 17.7947 33.2406 17.2772 32.7232C16.7598 32.2057 16.5518 31.4547 16.7292 30.7447L18.4996 23.6632C18.5912 23.2969 18.7806 22.9624 19.0476 22.6954L35.8661 5.87685Z" fill="currentColor"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5837 8.33335C11.1319 8.33335 8.33366 11.1316 8.33366 14.5834V35.4167C8.33366 38.8685 11.1319 41.6667 14.5837 41.6667H35.417C38.8688 41.6667 41.667 38.8685 41.667 35.4167V22.9167C41.667 21.7661 42.5997 20.8334 43.7503 20.8334C44.9009 20.8334 
+                        45.8337 21.7661 45.8337 22.9167V35.4167C45.8337 41.1697 41.17 45.8334 35.417 45.8334H14.5837C8.83069 45.8334 4.16699 41.1697 4.16699 35.4167V14.5834C4.16699 8.83039 8.83069 4.16669 14.5837 4.16669H27.0837C28.2343 4.16669 29.167 5.09943 29.167 6.25002C29.167 7.40061 28.2343 8.33335 27.0837 8.33335H14.5837Z" fill="currentColor"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M39.9948 8.33335C39.5513 8.33335 39.126 8.50953 38.8124 8.82313L22.4019 25.2336L21.6136 28.3868L24.7668 27.5985L41.1773 11.188C41.4909 10.8744 41.667 10.449 41.667 10.0055C41.667 9.56205 41.4909 9.13672 41.1773 8.82313C40.8637 8.50953 40.4383 8.33335 39.9948 8.33335ZM35.8661 
+                        5.87685C36.9611 4.78185 38.4463 4.16669 39.9948 4.16669C41.5434 4.16669 43.0285 4.78185 44.1235 5.87685C45.2185 6.97185 45.8337 8.45699 45.8337 10.0055C45.8337 11.5541 45.2185 13.0392 44.1235 14.1342L27.305 30.9528C27.038 31.2198 26.7035 31.4092 26.3371 31.5008L19.2557 33.2711C18.5457 33.4486 17.7947 33.2406 17.2772 
+                        32.7232C16.7598 32.2057 16.5518 31.4547 16.7292 30.7447L18.4996 23.6632C18.5912 23.2969 18.7806 22.9624 19.0476 22.6954L35.8661 5.87685Z" fill="currentColor"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M31.8602 11.0269C32.6738 10.2133 33.9929 10.2133 34.8065 11.0269L38.9731 15.1935C39.7867 16.0071 39.7867 17.3262 38.9731 18.1398C38.1595 18.9534 36.8405 18.9534 36.0269 18.1398L31.8602 13.9732C31.0466 13.1596 31.0466 11.8405 31.8602 11.0269Z" fill="currentColor"/>
-                        </svg></button>
+                        </svg>
+                      </button>
 
-                      <!-- modal mikel -->
+                      <!-- modal edit -->
                       <dialog id="my_modal_3" class="modal">
                         <form method="dialog" class="modal-backdrop">
                           <button>close</button>
@@ -127,9 +139,9 @@
                             <form method="dialog">
                               <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             </form>
-                            <form action="{{ route('profileseller.update', $user->Id_User) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
+                              <form action="{{ route('profilebuyer.update', $user->Id_User) }}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                              @method('PUT')
                             <div class="grid grid-cols-3 gap-4">
                               <div class="cols-span-1 avatar flex justify-center">
                                 <div class="w-32 h-32 border-[1px] border-[#BEBEBE] rounded-full shadow-md shadow-neutral-300">
@@ -193,40 +205,22 @@
                                     </label>
                                   </label>
                                 </div>
-
                                 <div>
                                   <label class="form-control w-full max-w-xs">
                                     <div class="label">
-                                      <span class="label-text text-xs">Account Number</span>
+                                      <span class="label-text text-xs">Email</span>
                                     </div>
                                     <label class="input input-bordered h-10 flex items-center gap-2 shadow-lg focus:shadow-lg rounded text-xs">
-                                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2 8C2 5.23858 4.23858 3 7 3H17C19.7614 3 22 5.23858 22 8V17C22 19.7614 19.7614 22 17 22H7C4.23858 22 2 19.7614 2 17V8ZM7 5C5.34315 5 4 6.34315 4 8V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V8C20 6.34315 18.6569 5 17 5H7Z" fill="black"/>
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C8.55228 2 9 2.44772 9 3V6C9 6.55228 8.55228 7 8 7C7.44772 7 7 6.55228 7 6V3C7 2.44772 7.44772 2 8 2Z" fill="black"/>
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10C6 9.44772 6.44772 9 7 9H17C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10Z" fill="black"/>
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15 17C15 16.4477 15.4477 16 16 16L17 16C17.5523 16 18 16.4477 18 17C18 17.5523 17.5523 18 17 18H16C15.4477 18 15 17.5523 15 17Z" fill="black"/>
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C16.5523 2 17 2.44772 17 3V6C17 6.55228 16.5523 7 16 7C15.4477 7 15 6.55228 15 6V3C15 2.44772 15.4477 2 16 2Z" fill="black"/>
-                                      </svg>
-                                        <input type="text" name="AccountNumber" class="grow" value="{{ $seller->Account_Number }}" />
+                                    <svg class="w-4 h-4 text-black" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3.22222 4.22222L10.6871 9.85944L10.6896 9.8615C11.5185 10.4693 11.9332 10.7735 12.3874 10.8909C12.7888 10.9948 13.2108 10.9948 13.6123 10.8909C14.0669 10.7733 14.4828 10.4684 15.3132 9.85944C15.3132 9.85944 20.1012 6.18504 22.7778 4.22222M2 16.2002V6.91135C2 5.54233 2 4.85731 2.26643 
+                                    4.33442C2.50079 3.87447 2.87447 3.50079 3.33442 3.26643C3.85731 3 4.54233 3 5.91135 3H20.0891C21.4581 3 22.1417 3 22.6646 3.26643C23.1245 3.50079 23.4995 3.87447 23.7338 4.33442C24 4.8568 24 5.54099 24 6.90733V16.2044C24 17.5707 24 18.2539 23.7338 18.7763C23.4995 19.2363 23.1245 19.6106 22.6646 
+                                    19.8449C22.1422 20.1111 21.459 20.1111 20.0927 20.1111H5.90733C4.54099 20.1111 3.8568 20.1111 3.33442 19.8449C2.87447 19.6106 2.50079 19.2363 2.26643 18.7763C2 18.2534 2 17.5693 2 16.2002Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                        <input type="email" class="grow" name="Email" value="{{ $user->Email }}" />
                                     </label>
                                   </label>
                                 </div>
                                 <div class="col-span-2">
-
-                                  <label class="form-control w-full">
-                                      <div class="label">
-                                        <span class="label-text text-xs">Email</span>
-                                      </div>
-                                      <label class="input input-bordered h-10 flex items-center gap-2 shadow-lg focus:shadow-lg rounded text-xs">
-                                      <svg class="w-4 h-4 text-black" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M3.22222 4.22222L10.6871 9.85944L10.6896 9.8615C11.5185 10.4693 11.9332 10.7735 12.3874 10.8909C12.7888 10.9948 13.2108 10.9948 13.6123 10.8909C14.0669 10.7733 14.4828 10.4684 15.3132 9.85944C15.3132 9.85944 20.1012 6.18504 22.7778 4.22222M2 16.2002V6.91135C2 5.54233 2 4.85731 2.26643 
-                                      4.33442C2.50079 3.87447 2.87447 3.50079 3.33442 3.26643C3.85731 3 4.54233 3 5.91135 3H20.0891C21.4581 3 22.1417 3 22.6646 3.26643C23.1245 3.50079 23.4995 3.87447 23.7338 4.33442C24 4.8568 24 5.54099 24 6.90733V16.2044C24 17.5707 24 18.2539 23.7338 18.7763C23.4995 19.2363 23.1245 19.6106 22.6646 
-                                      19.8449C22.1422 20.1111 21.459 20.1111 20.0927 20.1111H5.90733C4.54099 20.1111 3.8568 20.1111 3.33442 19.8449C2.87447 19.6106 2.50079 19.2363 2.26643 18.7763C2 18.2534 2 17.5693 2 16.2002Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-                                      </svg>
-                                          <input type="email" class="grow" name="Email" value="{{ $user->Email }}" />
-                                      </label>
-                                    </label>
-                                    
                                   <label class="form-control w-full">
                                     <div class="label">
                                       <span class="label-text text-xs">Change Photo</span>
@@ -247,11 +241,24 @@
                               </div>
                               </div>
                             </dialog>
-                        <!-- modal mikel -->
+                        <!-- modal edit -->
+
                   </div>
                 </div>
                 <h1 class="font-semibold mt-4">About Me</h1>
-                <p>{{ $user->Date_Of_Birth }}</p>
+                <a class="inline-flex items-center"><svg class="mr-1" width="20" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2 8C2 5.23858 4.23858 3 7 3H17C19.7614 3 22 5.23858 22 8V17C22 19.7614 19.7614 22 17 22H7C4.23858 22 2 19.7614 2 17V8ZM7 
+                      5C5.34315 5 4 6.34315 4 8V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V8C20 6.34315 18.6569 5 17 5H7Z" fill="black"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C8.55228 2 9 2.44772 9 3V6C9 6.55228 8.55228 7 8 7C7.44772 7 7 6.55228 7 6V3C7 2.44772 7.44772 2 8 2Z" fill="black"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10C6 9.44772 6.44772 9 7 9H17C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10Z" fill="black"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15 17C15 16.4477 15.4477 16 16 16L17 16C17.5523 16 18 16.4477 18 17C18 17.5523 17.5523 18 17 18H16C15.4477 18 15 17.5523 15 17Z" fill="black"/>
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C16.5523 2 17 2.44772 17 3V6C17 6.55228 16.5523 7 16 7C15.4477 7 15 6.55228 15 6V3C15 2.44772 15.4477 2 16 2Z" fill="black"/>
+                      </svg>
+                 </svg>
+                  {{ $user->Date_Of_Birth }}</a>
+                <p></p>
                 <h1 class="font-semibold mt-4">Contact Me</h1>
                 <ul>
                   <li><a class="inline-flex items-center"><svg class="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -271,7 +278,7 @@
                     14.9276 13.8391 14.7294C14.0133 14.5311 14.5855 13.8617 14.7845 13.5642C14.9835 13.2668 15.1827 13.3164 15.4563 13.4155C15.73 13.5147 17.198 14.2335 17.4966 
                     14.3823C17.5549 14.4113 17.6094 14.4375 17.6599 14.4618Z" fill="currentColor"/>
                     </svg>
-                    {{ $user->Number_Phone }}</a></li>
+                    {{$user->Number_Phone}}</a></li>
                   <li><a class="inline-flex items-center"><svg class="h-4 w-4 mr-1"  viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M3.22222 4.22222L10.6871 9.85944L10.6896 9.8615C11.5185 10.4693 11.9332 10.7735 12.3874 10.8909C12.7888 10.9948 13.2108 10.9948 13.6123 10.8909C14.0669 
                       10.7733 14.4828 10.4684 15.3132 9.85944C15.3132 9.85944 20.1012 6.18504 22.7778 4.22222M2 16.2002V6.91135C2 5.54233 2 4.85731 2.26643 4.33442C2.50079 3.87447 2.87447 
@@ -279,7 +286,59 @@
                       24 6.90733V16.2044C24 17.5707 24 18.2539 23.7338 18.7763C23.4995 19.2363 23.1245 19.6106 22.6646 19.8449C22.1422 20.1111 21.459 20.1111 20.0927 20.1111H5.90733C4.54099 
                       20.1111 3.8568 20.1111 3.33442 19.8449C2.87447 19.6106 2.50079 19.2363 2.26643 18.7763C2 18.2534 2 17.5693 2 16.2002Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
-                      {{ $user->Email }}</a></li>   
+                      {{ $user->Email }}</a></li>
+
+
+                  <!-- Open the modal using ID.showModal() method -->
+                   <div class="flex justify-center mt-4">
+                     <button class="btn text-base rounded-lg border-0
+                                  text-sm font-semibold
+                                  bg-blue-50 text-blue-700
+                                  hover:bg-blue-600 hover:text-white hover:shadow-lg" onclick="my_modal_1.showModal()">Join as Seller</button>
+                   </div>
+                  <dialog id="my_modal_1" class="modal">
+                    <div class="modal-box">
+                      <form method="dialog">
+                          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                      </form>
+                        <h3 class="font-bold text-lg">Switch to seller</h3>
+                          <form action="{{ route('profilebuyer.store') }}" method="POST" enctype="multipart/form-data">
+                          @csrf
+                          <input type="hidden" name="Id_User" value="{{ $user->Id_User }}">
+                          <div class="label">
+                                <span class="label-text">Example Identity Card</span>
+                              </div>
+                          <div class="border-2 rounded-xl">
+                            <img class="w-full h-68 object-cover rounded-xl" src="../images/default-identity.jpg" alt="">
+                          </div>
+
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Upload Your Identity Card</span>
+                              </div>
+                                <input name="IdentityCard" id="fileInput" type="file" class="mt-1 custom-file-input w-full">
+                            </label>
+
+                            <label class="form-control w-full">
+                              <div class="label">
+                                <span class="label-text">Account Number</span>
+                              </div>
+                                <label class="input input-bordered h-10 flex items-center gap-2 shadow-lg focus:shadow-lg rounded text-xs">
+                                  <input name="AccountNumber" type="text" class="grow" value="" />
+                                </label>
+                            </label>
+
+                            <div class="modal-action">
+                              <form method="dialog">
+                                <button type="submit" class="btn btn-blue-300 btn-sm hover:bg-blue-700 btn-outline text-blue-800 hover:text-white border-blue-700 hover:border-none font-medium text-base w-40 h-10">
+                                  Switch
+                                </button>
+                              </form>
+                            </div>
+                      </div>
+                      </form>
+                  </dialog>
+
                 </ul>
               </div>  
             </div>
@@ -290,7 +349,7 @@
         <div class="col-span-2">
           <div class="grid grid-cols-2 items-center mb-4">
             <div class="grid justify-start">
-              <a class="font-bold text-2xl">Orders</a>
+              <a class="font-bold text-2xl">My Orders</a>
             </div>
             <div class="grid justify-end">
               <select class="select select-bordered select-sm text-xs max-w-xs text-blue-700 border-blue-700 focus:outline-2 focus:outline-blue-700">
@@ -317,10 +376,11 @@
           
 <!-- row 1 -->
 
+   
 
-<div class="bg-white border-2 px-5 rounded-xl">
-          
-        @foreach ($orders as $order)
+  
+          <div class="bg-white border-2 px-5 rounded-xl">
+          @foreach ($orders as $order)
         @foreach($servicesOrder as $serviceOrder)
         @if($order->Id_Service == $serviceOrder->Id_Service)
         @foreach ($sellers as $seller)
@@ -330,10 +390,9 @@
         @foreach($typesOrder as $typeOrder)
         @if ($order->Id_Type == $typeOrder->Id_Type)
         @if ($detailOrder->Id_Detail == $order->Id_Detail)
-        
           <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
-              <img src="{{Storage::url($serviceOrder->Thumbnail)}}" class="w-full h-full" alt="Product"/>
+              <img src="{{ Storage::url($serviceOrder->Thumbnail) }}" class="w-full h-full" alt="Product"/>
             </figure>
             <div class="card-body p-5">
               <div class="grid grid-cols-9 gap-4">
@@ -349,7 +408,7 @@
                 <div class="col-span-2 text-center">
                   <ul class="text-sm">
                     <li class="font-bold">Price</li>
-                    <li>Rp{{ number_format($detailOrder->Price, 0, ',', '.') }}</li>
+                    <li>Rp{{ number_format($detailOrder->Price, 0, ',', '.') }}  </li>
                   </ul>
                 </div>
 
@@ -357,18 +416,18 @@
                   <ul class="text-sm">
                     <li class="font-bold">Status</li>
                     @if ($order->Status == 'Waiting')
-                    <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
-                    @elseif ($order->Status == 'Payment')
-                    <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
-                    @elseif ($order->Status == 'Proses')
-                    <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
-                    @elseif ($order->Status == 'Finish')
-                    <td><div class="badge badge-outline text-xs text-green-600">Finished</div></td>
-                    @elseif ($order->Status == 'Cancel')
-                    <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
-                    @elseif ($order->Status == 'Pending')
-                    <div class="badge badge-warning rounded-lg badge-outline">Pending</div>
-                    @endif
+                        <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
+                        @elseif ($order->Status == 'Payment')
+                        <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
+                        @elseif ($order->Status == 'Proses')
+                        <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
+                        @elseif ($order->Status == 'Finish')
+                        <td><div class="badge badge-outline text-xs text-green-600">Finished</div></td>
+                        @elseif ($order->Status == 'Cancel')
+                        <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
+                        @elseif ($order->Status == 'Pending')
+                        <div class="badge badge-warning rounded-lg badge-outline">Pending</div>
+                        @endif
                   </ul>
                 </div>
 
@@ -376,39 +435,18 @@
                 <div class="col-span-2 text-center">
                   <ul class="text-sm">
                     <li class="font-bold">Delivery Time</li>
-                    <li>{{ $detailOrder->Day }} Day</li>
+                    <li>{{$order->Date}}</li>
                   </ul>
                 </div>
   
               
                 <div class="col-span-2 grid justify-center items-center">
-                  <div class="dropdown">
-                    <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 text-blue-600 stroke-current">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
+                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    </div>
-                    <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                      <li><a><svg class="w-5 text-green-600" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M33.25 12.25L17.9375 29.75L8.75 21.7955" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                          Accept</a>
-                      </li>
-                    <li>
-                        <a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                            Reject</a>
-                      </li>
-                      <li>
-                        <a onclick="my_modal_1.showModal()">
-                        <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
-                          8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        Details</a>
-                      </li>
-                    </ul>
                   </div>
                 </div>
 
@@ -416,96 +454,6 @@
             </div>
           </div>
 
-          <dialog id="my_modal_1" class="modal">
-                        <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
-                          <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                          </form>
-                          <h3 class="font-bold text-xl mb-3">Detail Orders</h3>
-                            <div class="divider"></div>
-                              <div class="grid grid-cols-2 gap-x-8">
-                                <div class="col-span-1">
-                                  <img class="w-full shadow-xl shadow-neutral-300 rounded-xl" src="images/108617873_p0.png" alt="" width="150">
-                                    
-                              </div>
-                              <div>
-                                  <div class="col-span-1">
-                                    <div class="overflow-auto max-h-80 px-5 pb-5">
-                                      <div class="grid gap-y-1.5">
-
-                                          <label class="form-control w-full">
-                                            <div class="label">
-                                              <span class="label-text font-bold text-slate-700 text-sm">Title</span>
-                                            </div>
-                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
-                                            </label>
-                                          </label>
-                                          
-                                          <label class="form-control w-full">
-                                            <div class="label">
-                                              <span class="label-text font-bold text-slate-700 text-sm">Description</span>
-                                            </div>
-                                            <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24" disabled></textarea>
-                                          </label>
-                                          
-                                          <label class="form-control w-full">
-                                            <div class="label">
-                                              <span class="label-text font-bold text-slate-700 text-sm">Category</span>
-                                            </div>
-                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="category" name="category" class="grow" value="" disabled/>
-                                            </label>
-                                          </label>
-
-                                          <div class="divider"></div>
-
-                                          <label class="form-control w-full">
-                                            <div class="label">
-                                              <span class="label-text font-bold text-slate-700 text-sm">Type of Package</span>
-                                            </div>
-                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
-                                            </label>
-                                          </label>
-
-                                          <label class="form-control w-full">
-                                            <div class="label">
-                                              <span class="label-text font-bold text-slate-700 text-sm">Revisions</span>
-                                            </div>
-                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
-                                            </label>
-                                          </label>
-
-                                          <label class="form-control w-full">
-                                            <div class="label">
-                                              <span class="label-text font-bold text-slate-700 text-sm">Delivery Time</span>
-                                            </div>
-                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
-                                            </label>
-                                          </label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                      </div>
-                      <div class="modal-action border-t-2 border-gray-200">
-                        <button class="btn bg-red-50 text-red-600 mt-3">
-                          <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                            Reject</button>
-                        <button class="btn bg-green-50 text-green-600 mt-3">
-                          <svg class="w-5" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M33.25 12.25L17.9375 29.75L8.75 21.7955" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                          Accept</button>
-                      </div>
-                      </div>
-                    </div>
-</dialog>
           
           @endif
           @endif
@@ -517,11 +465,9 @@
           @endif
           @endforeach
           @endforeach
-          
-     
 
           <!-- row -->
-          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+         <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
               <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
@@ -571,9 +517,9 @@
 
               </div>
             </div>
-          </div> -->
+          </div> --}}
 <!-- row 2 -->
-          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
               <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
@@ -624,10 +570,10 @@
 
               </div>
             </div>
-          </div> -->
+          </div> --}}
 
 <!-- row 3 -->
-          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
               <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
@@ -677,9 +623,9 @@
 
               </div>
             </div>
-          </div> -->
+          </div> --}}
           <!-- row 4 -->
-          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
               <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
@@ -729,9 +675,9 @@
 
               </div>
             </div>
-          </div> -->
+          </div> --}}
 <!-- row 5 -->
-          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
               <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
@@ -777,26 +723,22 @@
                       <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   </div>
-                </div> -->
-         
+                </div>
                
 
               </div>
             </div>
-          </div>
+          </div> --}}
 
     </div>
   </div>
-    @if (session('success'))
+    
+  @if (session('success'))
       <script> alert("{{ session('success') }}"); </script>
   @endif
   @if (session('error'))
       <script> alert("{{ session('error') }}"); </script>
   @endif
     
-    
-    
   </body>
   </html>
-       
-          
