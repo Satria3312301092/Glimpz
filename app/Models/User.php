@@ -46,5 +46,10 @@ class User extends Authenticatable
     public function seller() {
         return $this->hasOne(Seller::class, 'Id_User');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'Id_User', 'Id_User'); // Assuming 'Id_User' is the foreign key in orders table
+    }
     
 }

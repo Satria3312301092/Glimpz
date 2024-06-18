@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Seller;
+use App\Models\Service;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +15,10 @@ class ProfileBuyerController extends Controller
     public function index(){
         $userId = Auth::user();
         $users = User::find($userId);
-        return view('profilebuyer', compact('users'));
+
+        $orders = Order::where('Id_Order');
+    
+        return view('profilebuyer', compact('users','orders'));
     }
 
     public function edit(){

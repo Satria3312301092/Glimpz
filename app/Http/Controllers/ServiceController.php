@@ -58,7 +58,7 @@ class ServiceController extends Controller
        
         $order->save();
 
-        return redirect()->back()->with('success', 'Order has been placed successfully!');
+        return redirect()->back()->with('successorder', 'Order has been placed successfully!');
 
     }
 }
