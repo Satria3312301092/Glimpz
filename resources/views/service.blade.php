@@ -153,7 +153,7 @@
                     </div>
                   </div>
 
-               <!-- modal Order basic -->
+                  <!-- modal Order Basic -->
                       <!-- Open the modal using ID.showModal() method -->
                       <dialog id="my_modal_1{{ $type->Id_Type }}" class="modal">
                         <div class="modal-box">
@@ -173,7 +173,6 @@
                                     <path d="M17 7.19214H6.61538C4.06638 7.19214 2 9.25852 2 11.8075V19.8844C2 22.4335 4.06638 24.4998 6.61538 24.4998H10.0769" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 {{$detail->Revision}} Revisions
-            
                             </li>
                             <li class="flex items-center mb-3 text-slate-700">
                                 <svg class="w-6 h-6 mr-4" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -197,8 +196,7 @@
                               <input type="hidden" name="id_type" value="{{ $type->Id_Type }}">
                               <input type="hidden" name="id_detail" value="{{ $detail->Id_Detail }}">
                             <button class="btn btn-outline text-blue-700 hover:!border-blue-700 hover:bg-blue-700 hover:text-white">Confirm</button>
-                            </form>
-                          </div>
+                            </form>                          </div>
                     </div>
                         </div>
                         <form method="dialog" class="modal-backdrop">
@@ -241,7 +239,7 @@
                     </div>
                   </div>
 
-                  <!-- modal Order basic -->
+                  <!-- modal Order Standard -->
                       <!-- Open the modal using ID.showModal() method -->
                       <dialog id="my_modal_2{{ $type->Id_Type }}" class="modal">
                         <div class="modal-box">
@@ -249,7 +247,7 @@
                           <div class="divider"></div>
                           <div class="grid gap-y-3">
                         <div class="flex justify-between font-bold items-end">
-                            <h3 class="text-base text-slate-700">Basic Animation</h3>
+                            <h3 class="text-base text-slate-700">Standard Animation</h3>
                         </div>
                         <p class="text-zinc-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.{{$detail->Descriptions}}</p>
                         <ul class="font-bold text-base bg-slate-50 rounded-xl p-5">
@@ -292,7 +290,7 @@
                           <button>close</button>
                         </form>
                       </dialog>
-                <!-- modal Order Basic -->
+                <!-- modal Order Standard -->
 
                   @endforeach
                  @elseif ($type->Type_Name == 'Premium')
@@ -328,7 +326,7 @@
                     </div>
                   </div>
 
-                    <!-- modal Order basic -->
+                   <!-- modal Order Premium -->
                       <!-- Open the modal using ID.showModal() method -->
                       <dialog id="my_modal_3{{ $type->Id_Type }}" class="modal">
                         <div class="modal-box">
@@ -336,7 +334,7 @@
                           <div class="divider"></div>
                           <div class="grid gap-y-3">
                         <div class="flex justify-between font-bold items-end">
-                            <h3 class="text-base text-slate-700">Basic Animation</h3>
+                            <h3 class="text-base text-slate-700">Premium Animation</h3>
                         </div>
                         <p class="text-zinc-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.{{$detail->Descriptions}}</p>
                         <ul class="font-bold text-base bg-slate-50 rounded-xl p-5">
@@ -379,8 +377,7 @@
                           <button>close</button>
                         </form>
                       </dialog>
-                <!-- modal Order Basic -->
-                <!-- modal Order -->
+                <!-- modal Order Premium -->
 
                   @endforeach
                   @endif

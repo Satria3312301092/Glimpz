@@ -27,10 +27,31 @@ class LoginController extends Controller
         ];
 
         $user = User::where('Username', $request->username)->first();
+        $bannedEmail = Banned::where('Email', $user->Email)->first();
+        $existingEmail = User::where('Email', $user->Email)->first();
+        $bannedPhone = Banned::where('Number_Phone', $user->Number_Phone)->first();
+        $existingPhone = User::where('Number_Phone', $user->Number_Phone)->first();
 
         
         if ($user && Banned::where('Id_User', $user->Id_User)->exists()) {
+            Auth::logout();
+            session()->invalidate();
+            session()->regenerateToken();
             return redirect()->back()->with('login_failed', 'Your account Has Been Banned Please Contact Us.');
+        }
+
+        if ($bannedEmail) {
+            Auth::logout();
+            session()->invalidate();
+            session()->regenerateToken();
+            return redirect()->back()->with('email', 'This Email Has Been Banned.');
+        }
+    
+        if ($bannedPhone) {
+            Auth::logout();
+            session()->invalidate();
+            session()->regenerateToken();
+            return redirect()->back()->with('Banphone', 'This Phone Number Has Been Banned');
         }
 
         if (Auth::attempt($infologin)) {

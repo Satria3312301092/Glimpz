@@ -25,6 +25,16 @@
                 alert("{{ session('login_failed') }}")
             </script>
     @endif
+    @if(session('email'))
+            <script>
+                alert("{{ session('email') }}")
+            </script>
+    @endif
+    @if(session('Banphone'))
+            <script>
+                alert("{{ session('Banphone') }}")
+            </script>
+    @endif
     <section class="bg-white-100 min-h-screen flex items-center
     justify-center ">
             <!-- Login container -->

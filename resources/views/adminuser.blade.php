@@ -486,10 +486,10 @@
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
                           <h3 class="font-bold text-lg mb-3">Information About User With ID Seller {{ $sellerId->Id_Seller }}</h3>
-                          <div class="grid grid-rows-3 grid-cols-2 gap-4">
+                          <div class="grid grid-rows-3 grid-cols-2 col gap-4">
                             <div class="row-span-6 mr-5">
                             <label class="mt-3 font-semibold font-sans">Identity Card</label>
-                              <img src="{{ Storage::url($sellerId->Identity_Card) }}" alt="" class="w-52 h-52">
+                              <img src="{{ Storage::url($sellerId->Identity_Card) }}" alt="" class="w-auto h-auto">
                               <div class="mt-3">
                               <label class="mt-3 font-semibold font-sans">Role</label>
                               <input class="shadow-2xl rounded-lg input p-2" name="Username" type="text" value="{{ $userSeller->Role }}" disabled></input>
@@ -548,7 +548,7 @@
                     <thead>
                       <tr>
                         <th>
-                          ID User
+                          ID Admin
                         </th>
                         <th>Name</th>
                         <th>Email</th>
@@ -560,22 +560,23 @@
                     </thead>
                     
                     
-                    @foreach ($usersAdmin as $user)
+                    @foreach ($users as $user)
+                    @if ($user->Role == 'Admin')
                     @foreach ($admins as $admin)
-                    @if($user->Id_User == $admin->Id_User)
+                    
                     <tbody>
                       <!-- row 1 -->
                       <tr>
                         <th>
-                          {{ $admin->Id_Admin}}
+                          {{ $admin->Id_Admin }}
                         </th>
-                        @endif
-                        @endforeach
+                        
+                        
                         <td>
                           <div class="flex items-center gap-3">
                             <div class="avatar">
                               <div class="w-12 h-12  border-[1px] border-[#BEBEBE] rounded-full">
-                                <img src="{{ $user->Picture }}" alt="Avatar Tailwind CSS Component" />
+                                <img src="{{ Storage::url($user->Picture) }}" alt="Avatar Tailwind CSS Component" />
                               </div>
                             </div>
                             <div>
@@ -601,6 +602,9 @@
                         </th>
                       </tr>
                     </tbody>
+                   
+                    @endforeach
+                        @endif
                     @endforeach
                     <!-- foot -->
                     <tfoot>
@@ -648,7 +652,7 @@
                           <div class="flex items-center gap-3">
                             <div class="avatar">
                               <div class="w-12 h-12  border-[1px] border-[#BEBEBE] rounded-full">
-                                <img src="{{ $user->Picture }}" alt="Avatar Tailwind CSS Component" />
+                                <img src="{{ Storage::url($user->Picture) }}" alt="Avatar Tailwind CSS Component" />
                               </div>
                             </div>
                             <div>
