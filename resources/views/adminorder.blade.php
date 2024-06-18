@@ -168,24 +168,24 @@
                                     <div class="overflow-auto max-h-80 px-5 pb-5">
                                       <div class="grid gap-y-1.5">
 
-                                        <label class="input input-bordered flex items-center gap-2 text-slate-700 text-sm">
+                                        <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
                                           ID Buyer
-                                          <input type="text" id="" name="" class="grow text-end" value="1" disabled/>
+                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="1" disabled/>
                                         </label>
-                                        <label class="input input-bordered flex items-center gap-2 text-slate-700 text-sm">
+                                        <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
                                           ID Seller
-                                          <input type="text" id="" name="" class="grow text-end" value="2" disabled/>
+                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="2" disabled/>
                                         </label>
-                                        <label class="input input-bordered flex items-center gap-2 text-slate-700 text-sm">
+                                        <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
                                           ID Service
-                                          <input type="text" id="id_service" name="id_service" class="grow text-end" value="3" disabled/>
+                                          <input type="text" id="id_service" name="id_service" class="grow text-slate-500 font-normal text-end" value="3" disabled/>
                                         </label>
 
                                         <div class="divider"></div>
 
                                           <label class="form-control w-full">
                                             <div class="label">
-                                              <span class="label-text text-xs">Title</span>
+                                              <span class="label-text font-bold text-slate-700 text-sm">Title</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
                                                 <input type="text" id="title" name="title" class="grow" value="" disabled/>
@@ -194,14 +194,14 @@
                                           
                                           <label class="form-control w-full">
                                             <div class="label">
-                                              <span class="label-text text-xs">Description</span>
+                                              <span class="label-text font-bold text-slate-700 text-sm">Description</span>
                                             </div>
                                             <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24" disabled></textarea>
                                           </label>
                                           
                                           <label class="form-control w-full">
                                             <div class="label">
-                                              <span class="label-text text-xs">Category</span>
+                                              <span class="label-text font-bold text-slate-700 text-sm">Category</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
                                                 <input type="text" id="category" name="category" class="grow" value="" disabled/>
@@ -212,7 +212,7 @@
 
                                           <label class="form-control w-full">
                                             <div class="label">
-                                              <span class="label-text text-xs">Type of Package</span>
+                                              <span class="label-text font-bold text-slate-700 text-sm">Type of Package</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
                                                 <input type="text" id="title" name="title" class="grow" value="" disabled/>
@@ -221,7 +221,7 @@
 
                                           <label class="form-control w-full">
                                             <div class="label">
-                                              <span class="label-text text-xs">Revisions</span>
+                                              <span class="label-text font-bold text-slate-700 text-sm">Revisions</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
                                                 <input type="text" id="title" name="title" class="grow" value="" disabled/>
@@ -230,7 +230,7 @@
 
                                           <label class="form-control w-full">
                                             <div class="label">
-                                              <span class="label-text text-xs">Delivery Time</span>
+                                              <span class="label-text font-bold text-slate-700 text-sm">Delivery Time</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
                                                 <input type="text" id="title" name="title" class="grow" value="" disabled/>

@@ -308,50 +308,61 @@
                       
 
                       <dialog id="my_modal_2{{ $service->Id_Service }}" class="modal">
-                        <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
+                        <div class="modal-box w-full h-full max-w-6xl max-h-6xl rounded-2xl shadow-xl">
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
                           <h3 class="font-bold text-xl mb-3">Detail Service</h3>
+                          <div class="divider"></div>
                           <div class="grid grid-cols-3 gap-x-5">
-                              <div class="col-span-1 gap-x-20">
-                              <img class="w-full rounded-xl" src="{{ Storage::url($service->Thumbnail) }}" alt="" width="150">
-                              <div class="col-span-1 gap-x-20 mt-3">
-                                <label for="">ID Seller</label>
-                                <input type="text"  value="{{$service->Id_Seller}}" id="title" name="Id_Service" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-                              </div>
+                              <div class="col-span-1">
+                                <img class="w-full rounded-xl" src="{{ Storage::url($service->Thumbnail) }}" alt="" width="150">
                               </div>
                               <div>
                                   <div class="col-span-1">
-                                      <div class="grid gap-y-1.5">
-                                          <a class="block text-gray-700 text-sm font-semibold">ID SERVICE</a>
-                                          <input type="text" value="{{$service->Id_Service}}" id="id_service" name="id_service" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-                                          
-                                          <a class="block text-gray-700 text-sm font-semibold">Title</a>
-                                          <input type="text"  value="{{$service->Title}}" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-                                          
-                                          <a class="block text-gray-700 text-sm font-semibold">Description</a>
-                                          <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-24" disabled>{{$service->Description}}</textarea>
-                                          
-                                          <a for="title" class="block text-gray-700 text-sm font-semibold">Category</a>
-                                          <select class="select select-bordered w-full max-w-xs text-black shadow-lg border-[1px]">
-                                              <option class="text-zinc-500 font-bold" disabled selected>{{$service->Category}}</option>
-                                              <option class="text-slate-700 hover:!bg-blue-50" disabled>Video Editing</option>
-                                              <option class="text-slate-700"disabled>Video Ads</option>
-                                              <option class="text-slate-700"disabled>Visual Effect</option>
-                                              <option class="text-slate-700"disabled>Education</option>
-                                              <option class="text-slate-700"disabled>Templates</option>
-                                              <option class="text-slate-700"disabled>Short Movie</option>
-                                              <option class="text-slate-700"disabled>Social Media</option>
-                                              <option class="text-slate-700"disabled>2D Animation</option>
-                                              <option class="text-slate-700"disabled>3D Animation</option>
-                                              <option class="text-slate-700"disabled>Logo Animation</option>
-                                              <option class="text-slate-700"disabled>Film Series</option>
-                                              <option class="text-slate-700"disabled>Character Animation</option>
-                                              <option class="text-slate-700"disabled>Web Animation</option>
-                                              <option class="text-slate-700"disabled>Rigging</option>
-                                              <option class="text-slate-700"disabled>NFT Animation</option>
-                                          </select>
+                                      <div c"grid gap-y-1.5">
+                                        <label class="form-control w-full">
+                                                <div class="label">
+                                                  <span class="label-text font-bold text-slate-700 text-sm">ID Seller</span>
+                                                </div>
+                                                <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-sm">
+                                                    <input type="text" id="title" name="title" class="grow" value="{{$service->Id_Seller}}" disabled/>
+                                                </label>
+                                              </label>
+
+                                              <label class="form-control w-full">
+                                                <div class="label">
+                                                  <span class="label-text font-bold text-slate-700 text-sm">ID Service</span>
+                                                </div>
+                                                <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-sm">
+                                                    <input type="text" id="title" name="title" class="grow" value="{{$service->Id_Service}}" disabled/>
+                                                </label>
+                                          </label>
+
+                                        <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Title</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-sm">
+                                                <input type="text" id="title" name="title" class="grow" value="{{$service->Title}}" disabled/>
+                                            </label>
+                                          </label>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Description</span>
+                                            </div>
+                                            <textarea id="description" name="description" class="shadow-md text-sm border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-20" disabled>{{$service->Description}}</textarea>
+                                          </label>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Category</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-sm">
+                                                <input type="text" id="title" name="title" class="grow" value="{{$service->Category}}" disabled/>
+                                            </label>
+                                          </label>
                       </div>
                       </div>
                       </div>
@@ -369,7 +380,6 @@
         <input type="radio" id="tab13_<?php echo $service->Id_Service; ?>" name="my_tabs_2" role="tab" class="tab" aria-label="Basic" checked />
         <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
             <div class="grid gap-y-1.5">
-                
                 <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
                 <input type="text" value="{{$detail->Day}}" id="day" name="day" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
                 
