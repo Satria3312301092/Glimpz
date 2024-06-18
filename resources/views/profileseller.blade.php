@@ -425,7 +425,7 @@
                             <div class="divider"></div>
                               <div class="grid grid-cols-2 gap-x-8">
                                 <div class="col-span-1">
-                                  <img class="w-full shadow-xl shadow-neutral-300 rounded-xl" src="images/108617873_p0.png" alt="" width="150">
+                                  <img class="w-full shadow-xl shadow-neutral-300 rounded-xl" src="{{Storage::url($serviceOrder->Thumbnail)}}" alt="" width="150">
                                     
                               </div>
                               <div>
@@ -438,7 +438,7 @@
                                               <span class="label-text font-bold text-slate-700 text-sm">Title</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                                <input type="text" id="title" name="title" class="grow" value="{{$serviceOrder->Title}}" disabled/>
                                             </label>
                                           </label>
                                           
@@ -446,7 +446,7 @@
                                             <div class="label">
                                               <span class="label-text font-bold text-slate-700 text-sm">Description</span>
                                             </div>
-                                            <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24" disabled></textarea>
+                                            <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24" disabled>{{$serviceOrder->Description}}</textarea>
                                           </label>
                                           
                                           <label class="form-control w-full">
@@ -454,7 +454,7 @@
                                               <span class="label-text font-bold text-slate-700 text-sm">Category</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="category" name="category" class="grow" value="" disabled/>
+                                                <input type="text" id="category" name="category" class="grow" value="{{$serviceOrder->Category}}" disabled/>
                                             </label>
                                           </label>
 
@@ -465,7 +465,7 @@
                                               <span class="label-text font-bold text-slate-700 text-sm">Type of Package</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                                <input type="text" id="title" name="title" class="grow" value="{{$typeOrder->Type_Name}}" disabled/>
                                             </label>
                                           </label>
 
@@ -474,7 +474,7 @@
                                               <span class="label-text font-bold text-slate-700 text-sm">Revisions</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                                <input type="text" id="title" name="title" class="grow" value="{{$detailOrder->Revision}}" disabled/>
                                             </label>
                                           </label>
 
@@ -483,7 +483,7 @@
                                               <span class="label-text font-bold text-slate-700 text-sm">Delivery Time</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                                <input type="text" id="title" name="title" class="grow" value="{{$detailOrder->Day}} Day" disabled/>
                                             </label>
                                           </label>
                                         </div>
