@@ -14,7 +14,21 @@ class Order extends Model
     protected $fillable = [
         'Id_User',
         'Id_Service',
+        'Id_Type',
+        'Id_Detail',
+        'Status',
         'Date',
     ];
 
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'Id_Service', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'Id_User', 'id');
+    }
 }
+

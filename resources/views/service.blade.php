@@ -38,7 +38,7 @@
     <div class="navbar-center hidden lg:flex z-[1]">
       <ul class="menu menu-horizontal px-1">
         <li><a>Home</a></li>
-        <li><a>Service</a></li>
+        <li><a href="{{route('listservice.index')}}">Service</a></li>
         <li><a>About</a></li>
         <li><a>Contact</a></li>
       </ul>
@@ -275,7 +275,14 @@
                             <form method="dialog">
                               <button class="btn">Close</button>
                             </form>
+                            <form action="{{route('service.store')}}" method="POST">
+                              @csrf
+                              <input type="hidden" name="id_user" value="{{ $users->Id_User }}">
+                              <input type="hidden" name="id_service" value="{{ $service->Id_Service }}">
+                              <input type="hidden" name="id_type" value="{{ $type->Id_Type }}">
+                              <input type="hidden" name="id_detail" value="{{ $detail->Id_Detail }}">
                             <button class="btn btn-outline text-blue-700 hover:!border-blue-700 hover:bg-blue-700 hover:text-white">Confirm</button>
+                            </form>
                           </div>
                     </div>
                         </div>
@@ -355,7 +362,14 @@
                             <form method="dialog">
                               <button class="btn">Close</button>
                             </form>
+                            <form action="{{route('service.store')}}" method="POST">
+                              @csrf
+                              <input type="hidden" name="id_user" value="{{ $users->Id_User }}">
+                              <input type="hidden" name="id_service" value="{{ $service->Id_Service }}">
+                              <input type="hidden" name="id_type" value="{{ $type->Id_Type }}">
+                              <input type="hidden" name="id_detail" value="{{ $detail->Id_Detail }}">
                             <button class="btn btn-outline text-blue-700 hover:!border-blue-700 hover:bg-blue-700 hover:text-white">Confirm</button>
+                            </form>
                           </div>
                     </div>
                         </div>
@@ -461,5 +475,11 @@
         document.querySelector(`[onclick="toggleTab('${tabId}')"]`).classList.add('tab-active', '!bg-blue-700');
     }
   </script>
+
+@if(session('successorder'))
+    <script>
+        alert("{{ session('successorder') }}");
+    </script>
+@endif
   </body>
   </html>
