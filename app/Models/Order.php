@@ -23,12 +23,22 @@ class Order extends Model
 
     public function service()
     {
-        return $this->belongsTo(Service::class, 'Id_Service', 'id');
+        return $this->belongsTo(Service::class, 'Id_Service');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'Id_User', 'id');
+        return $this->belongsTo(User::class, 'Id_User');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class, 'Id_Type');
+    }
+
+    public function detail()
+    {
+        return $this->belongsTo(Detail::class, 'Id_Detail');
     }
 }
 

@@ -109,7 +109,7 @@ return new class extends Migration
             $table->unsignedInteger('Id_Service'); // Foreign key
             $table->unsignedInteger('Id_Type'); // Foreign key
             $table->unsignedInteger('Id_Detail'); // Foreign key
-            $table->enum('Status', ['waiting', 'proses', 'finish', 'cancel']);
+            $table->enum('Status', ['Waiting', 'Proses', 'Finish', 'Cancel','Payment']);
             $table->timestamp('Date');
 
             // Define the foreign key constraints

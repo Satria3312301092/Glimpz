@@ -102,7 +102,7 @@
     <div class="container mx-auto flex justify-center items-center">
         <div class="grid grid-cols-3 gap-8 mb-20">
           <!-- profile -->
-          @foreach ($users as $user)
+          
           <div class="col-span-1">
             <div class="card card-compact w-96 bg-base-100 shadow-xl border-2 pb-20">
               <figure class="border-b-2 py-5">
@@ -379,11 +379,17 @@
    
 
   
-
           <div class="bg-white border-2 px-5 rounded-xl">
+            @foreach ($orders as  $order)
+            @foreach ($servicesOrder as $serviceOrder)
+                    @if ($order->Id_Service == $serviceOrder->Id_Service)
+                    @foreach ($typesOrder as $typeOrder)
+                    @foreach ($detailsOrder as $detailOrder)
+                    @if ($typeOrder->Id_Type == $detailOrder->Id_Type)
+                    @if ($detailOrder->Id_Detail == $order->Id_Detail)
           <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
-              <img src="" class="w-full h-full" alt="Product"/>
+              <img src="{{ Storage::url($serviceOrder->Thumbnail) }}" class="w-full h-full" alt="Product"/>
             </figure>
             <div class="card-body p-5">
               <div class="grid grid-cols-9 gap-4">
@@ -399,28 +405,38 @@
                 <div class="col-span-2 text-center">
                   <ul class="text-sm">
                     <li class="font-bold">Price</li>
-                    <li>Rp.  </li>
+                    <li>Rp{{ number_format($detailOrder->Price, 0, ',', '.') }}  </li>
                   </ul>
                 </div>
 
                 <div class="col-span-2 text-center">
                   <ul class="text-sm">
                     <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-success rounded-lg badge-outline">Finished</div>
-                    </li>
+                    @if ($order->Status == 'Waiting')
+                        <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
+                        @elseif ($order->Status == 'Payment')
+                        <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
+                        @elseif ($order->Status == 'Proses')
+                        <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
+                        @elseif ($order->Status == 'Finish')
+                        <td><div class="badge badge-outline text-xs text-green-600">Finished</div></td>
+                        @elseif ($order->Status == 'Cancel')
+                        <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
+                        @elseif ($order->Status == 'Pending')
+                        <div class="badge badge-warning rounded-lg badge-outline">Pending</div>
+                        @endif
                   </ul>
                 </div>
-@foreach ($orders as  $order)
+
 
                 <div class="col-span-2 text-center">
                   <ul class="text-sm">
                     <li class="font-bold">Delivery Time</li>
-                    <li>{{$order -> Date}}</li>
+                    <li>{{$order->Date}}</li>
                   </ul>
                 </div>
   
-                @endforeach
+              
                 <div class="col-span-2 grid justify-center items-center">
                   <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
                     <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -434,6 +450,13 @@
               </div>
             </div>
           </div>
+          @endif
+           @endif
+           @endforeach
+           @endforeach
+          @endif
+          @endforeach
+          @endforeach
 
           <!-- row -->
           <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
@@ -693,7 +716,7 @@
                     </svg>
                   </div>
                 </div>
-                @endforeach
+               
 
               </div>
             </div>

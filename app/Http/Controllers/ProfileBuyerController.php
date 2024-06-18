@@ -5,20 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Type;
+use App\Models\Detail;
 use App\Models\Seller;
 use App\Models\Service;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ProfileBuyerController extends Controller
 {   
     public function index(){
-        $userId = Auth::user();
-        $users = User::find($userId);
+        $userId = Auth::id();
+        $user = User::find($userId);
 
-        $orders = Order::where('Id_Order');
+        $orders = Order::where('Id_User', $userId)->get();
+
+        $servicesOrder = Service::all();
+        $typesOrder = Type::all();
+        $detailsOrder = Detail::all();
+        foreach ($orders as $order) {
+            $order->Date = Carbon::parse($order->Date)->format('Y-m-d'); // or 'd M Y'
+        }
     
-        return view('profilebuyer', compact('users','orders'));
+        return view('profilebuyer', compact('user','orders','servicesOrder', 'typesOrder', 'detailsOrder'));
     }
 
     public function edit(){

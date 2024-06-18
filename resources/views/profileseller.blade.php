@@ -324,9 +324,9 @@
             <div class="card-body">
               <div class="grid grid-cols-9 gap-4">
 
-                <div class="col-span-1">
+              <div class="col-span-1">
                   <div class="avatar">
-                    <div class="w-16 rounded-full border-2">
+                    <div class="w-10 rounded-full border-2">
                       <img src="../Asset/Profile-user.svg" class="p-3"/>
                     </div>
                   </div>

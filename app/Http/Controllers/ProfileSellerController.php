@@ -14,6 +14,9 @@ class ProfileSellerController extends Controller
         $userId = Auth::id(); // Mendapatkan ID pengguna langsung
         $user = User::find($userId);
         $seller = Seller::where('Id_User', $userId)->first();
+
+
+        
         return view('profileseller', compact('user', 'seller'));
     }
     
