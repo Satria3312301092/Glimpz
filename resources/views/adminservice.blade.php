@@ -440,6 +440,8 @@
         @endforeach
     @endif
   @endforeach
+  </div>
+  </div>
 </dialog>             <!-- row 1 -->
 @endforeach
 

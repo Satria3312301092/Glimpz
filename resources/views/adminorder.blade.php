@@ -150,15 +150,100 @@
                             </div>
                         </th>
                       </tr>
+
                       <dialog id="my_modal_1" class="modal">
-                        <div class="modal-box">
+                        <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
-                        </div>
-                      </dialog>
+                          <h3 class="font-bold text-xl mb-3">Detail Orders</h3>
+                            <div class="divider"></div>
+                              <div class="grid grid-cols-2 gap-x-8">
+                                <div class="col-span-1">
+                                  <img class="w-full shadow-xl shadow-neutral-300 rounded-xl" src="images/108617873_p0.png" alt="" width="150">
+                                    
+                              </div>
+                              <div>
+                                  <div class="col-span-1">
+                                    <div class="overflow-auto max-h-80 px-5 pb-5">
+                                      <div class="grid gap-y-1.5">
+
+                                        <label class="input input-bordered flex items-center gap-2 text-slate-700 text-sm">
+                                          ID Buyer
+                                          <input type="text" id="" name="" class="grow text-end" value="1" disabled/>
+                                        </label>
+                                        <label class="input input-bordered flex items-center gap-2 text-slate-700 text-sm">
+                                          ID Seller
+                                          <input type="text" id="" name="" class="grow text-end" value="2" disabled/>
+                                        </label>
+                                        <label class="input input-bordered flex items-center gap-2 text-slate-700 text-sm">
+                                          ID Service
+                                          <input type="text" id="id_service" name="id_service" class="grow text-end" value="3" disabled/>
+                                        </label>
+
+                                        <div class="divider"></div>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text text-xs">Title</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+                                          
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text text-xs">Description</span>
+                                            </div>
+                                            <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24" disabled></textarea>
+                                          </label>
+                                          
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text text-xs">Category</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="category" name="category" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+
+                                          <div class="divider"></div>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text text-xs">Type of Package</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text text-xs">Revisions</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text text-xs">Delivery Time</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      
+           
+                    </div>
+</dialog>
                       
                       @endif
                       @endif
