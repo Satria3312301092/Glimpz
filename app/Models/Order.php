@@ -38,7 +38,11 @@ class Order extends Model
 
     public function detail()
     {
-        return $this->belongsTo(Detail::class, 'Id_Detail');
+        return $this->hasMany(Detail::class, 'Id_Detail');
     }
+
+    // public function seller() {
+    //     return $this->belongsTo(Seller::class, 'Id_Seller');
+    // }
 }
 
