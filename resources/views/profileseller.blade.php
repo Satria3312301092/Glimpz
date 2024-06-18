@@ -401,7 +401,7 @@
                             Reject</a>
                       </li>
                       <li>
-                        <a onclick="my_modal_1.showModal()">
+                        <a onclick="my_modal_1{{ $order->Id_Order }}.showModal()">
                         <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
                           8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -415,8 +415,8 @@
               </div>
             </div>
           </div>
-
-          <dialog id="my_modal_1" class="modal">
+          
+          <dialog id="my_modal_1{{ $order->Id_Order }}" class="modal">
                         <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -504,9 +504,7 @@
                           Accept</button>
                       </div>
                       </div>
-                    </div>
 </dialog>
-          
           @endif
           @endif
           @endforeach
@@ -519,6 +517,7 @@
           @endforeach
           
      
+        </div>
 
           <!-- row -->
           <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
