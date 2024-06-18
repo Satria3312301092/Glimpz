@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Seller;
+use App\Models\Service;
+use App\Models\Type;
+use App\Models\Detail;
+use App\Models\Order;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,11 +17,23 @@ class ProfileSellerController extends Controller
     public function index() {
         $userId = Auth::id(); // Mendapatkan ID pengguna langsung
         $user = User::find($userId);
+
+        $usersAuth = Auth::User();
+
         $seller = Seller::where('Id_User', $userId)->first();
 
+        $sellers = Seller::all();
 
+        $IdSeller = Seller::where('Id_User', $userId);
         
-        return view('profileseller', compact('user', 'seller'));
+
+        $servicesOrder = Service::all();
+
+        $orders = Order::all();
+
+        $typesOrder = Type::all();
+        $detailsOrder = Detail::all();
+        return view('profileseller', compact('usersAuth','user', 'seller','orders','servicesOrder', 'typesOrder', 'detailsOrder', 'sellers', 'userId'));
     }
     
     public function edit() {

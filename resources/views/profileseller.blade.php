@@ -93,9 +93,8 @@
     <div class="container mx-auto flex justify-center items-center">
         <div class="grid grid-cols-3 gap-8 mb-20">
           <!-- profile -->
-         @if ($user)
+
    
-         
           <div class="col-span-1">
             <div class="card card-compact w-96 bg-base-100 shadow-xl border-2 pb-20">
               <figure class="border-b-2 py-5">
@@ -317,14 +316,29 @@
           </div>
           
 <!-- row 1 -->
-          <div class="card card-side bg-base-100 h-28 shadow-xl my-5">
-            <figure>
-              <img src="../Asset/jasa-dummy.png" alt="Product"/>
+
+
+<div class="bg-white border-2 px-5 rounded-xl">
+          
+        @foreach ($orders as $order)
+        @foreach($servicesOrder as $serviceOrder)
+        @if($order->Id_Service == $serviceOrder->Id_Service)
+        @foreach ($sellers as $seller)
+        @if($serviceOrder->Id_Seller == $seller->Id_Seller)
+        @if ($seller->Id_User == $usersAuth->Id_User)
+        @foreach($detailsOrder as $detailOrder)
+        @foreach($typesOrder as $typeOrder)
+        @if ($order->Id_Type == $typeOrder->Id_Type)
+        @if ($detailOrder->Id_Detail == $order->Id_Detail)
+        
+          <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+            <figure class="w-32">
+              <img src="{{Storage::url($serviceOrder->Thumbnail)}}" class="w-full h-full" alt="Product"/>
             </figure>
-            <div class="card-body">
+            <div class="card-body p-5">
               <div class="grid grid-cols-9 gap-4">
 
-              <div class="col-span-1">
+                <div class="col-span-1">
                   <div class="avatar">
                     <div class="w-10 rounded-full border-2">
                       <img src="../Asset/Profile-user.svg" class="p-3"/>
@@ -333,14 +347,92 @@
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
+                    <li class="font-bold">Price</li>
+                    <li>Rp{{ number_format($detailOrder->Price, 0, ',', '.') }}</li>
+                  </ul>
+                </div>
+
+                <div class="col-span-2 text-center">
+                  <ul class="text-sm">
+                    <li class="font-bold">Status</li>
+                    @if ($order->Status == 'Waiting')
+                    <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
+                    @elseif ($order->Status == 'Payment')
+                    <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
+                    @elseif ($order->Status == 'Proses')
+                    <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
+                    @elseif ($order->Status == 'Finish')
+                    <td><div class="badge badge-outline text-xs text-green-600">Finished</div></td>
+                    @elseif ($order->Status == 'Cancel')
+                    <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
+                    @elseif ($order->Status == 'Pending')
+                    <div class="badge badge-warning rounded-lg badge-outline">Pending</div>
+                    @endif
+                  </ul>
+                </div>
+
+
+                <div class="col-span-2 text-center">
+                  <ul class="text-sm">
+                    <li class="font-bold">Delivery Time</li>
+                    <li>{{ $detailOrder->Day }} Day</li>
+                  </ul>
+                </div>
+  
+              
+                <div class="col-span-2 grid justify-center items-center">
+                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
+                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+          @endif
+          @endif
+          @endforeach
+          @endforeach
+          @endif
+          @endif
+          @endforeach
+          @endif
+          @endforeach
+          @endforeach
+          
+     
+
+          <!-- row -->
+          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+            <figure class="w-32">
+              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
+            </figure>
+            <div class="card-body p-5">
+              <div class="grid grid-cols-9 gap-4">
+
+                <div class="col-span-1">
+                  <div class="avatar">
+                    <div class="w-10 rounded-full border-2">
+                      <img src="../Asset/Profile-user.svg" class="p-3"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-span-2 text-center">
+                  <ul class="text-sm">
                     <li class="font-bold">Price</li>
                     <li>Rp. 26.000</li>
                   </ul>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Status</li>
                     <li>
                       <div class="badge badge-success rounded-lg badge-outline">Finished</div>
@@ -349,7 +441,7 @@
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Delivery Time</li>
                     <li>2024-07-27</li>
                   </ul>
@@ -357,38 +449,42 @@
 
                 <div class="col-span-2 grid justify-center items-center">
                   <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-10 h-10 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                   </div>
                 </div>
 
               </div>
             </div>
-          </div>
+          </div> -->
 <!-- row 2 -->
-          <div class="card card-side bg-base-100 h-28 shadow-xl my-5">
-            <figure>
-              <img src="../Asset/jasa-dummy.png" alt="Product"/>
+          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+            <figure class="w-32">
+              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
-            <div class="card-body">
+            <div class="card-body p-5">
               <div class="grid grid-cols-9 gap-4">
 
                 <div class="col-span-1">
                   <div class="avatar">
-                    <div class="w-16 rounded-full border-2">
+                    <div class="w-10 rounded-full border-2">
                         <img src="../Asset/Profile-user.svg" class="p-3"/>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Price</li>
                     <li>Rp. 26.000</li>
                   </ul>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Status</li>
                     <li>
                       <div class="badge badge-error rounded-lg badge-outline">Rejected</div>
@@ -397,7 +493,7 @@
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Delivery Time</li>
                     <li>2024-07-27</li>
                   </ul>
@@ -405,39 +501,44 @@
 
                 <div class="col-span-2 grid justify-center items-center">
                   <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-10 h-10 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
                   </div>
                 </div>
 
               </div>
             </div>
-          </div>
+          </div> -->
 
 <!-- row 3 -->
-          <div class="card card-side bg-base-100 h-28 shadow-xl my-5">
-            <figure>
-              <img src="../Asset/jasa-dummy.png" alt="Product"/>
+          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+            <figure class="w-32">
+              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
-            <div class="card-body">
+            <div class="card-body p-5">
               <div class="grid grid-cols-9 gap-4">
 
                 <div class="col-span-1">
                   <div class="avatar">
-                    <div class="w-16 rounded-full border-2">
+                    <div class="w-10 rounded-full border-2">
                         <img src="../Asset/Profile-user.svg" class="p-3"/>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Price</li>
                     <li>Rp. 26.000</li>
                   </ul>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Status</li>
                     <li>
                       <div class="badge badge-warning rounded-lg badge-outline">Pending</div>
@@ -446,7 +547,7 @@
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Delivery Time</li>
                     <li>2024-07-27</li>
                   </ul>
@@ -454,47 +555,51 @@
 
                 <div class="col-span-2 grid justify-center items-center">
                   <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-10 h-10 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                   </div>
                 </div>
 
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- row 4 -->
-          <div class="card card-side bg-base-100 h-28 shadow-xl my-5">
-            <figure>
-              <img src="../Asset/jasa-dummy.png" alt="Product"/>
+          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+            <figure class="w-32">
+              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
-            <div class="card-body">
+            <div class="card-body p-5">
               <div class="grid grid-cols-9 gap-4">
 
                 <div class="col-span-1">
                   <div class="avatar">
-                    <div class="w-16 rounded-full border-2">
+                    <div class="w-10 rounded-full border-2">
                         <img src="../Asset/Profile-user.svg" class="p-3"/>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Price</li>
                     <li>Rp. 26.000</li>
                   </ul>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Status</li>
                     <li>
-                      <div class="badge badge-outline rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
+                      <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
                     </li>
                   </ul>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Delivery Time</li>
                     <li>2024-07-27</li>
                   </ul>
@@ -502,47 +607,51 @@
 
                 <div class="col-span-2 grid justify-center items-center">
                   <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-10 h-10 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                   </div>
                 </div>
 
               </div>
             </div>
-          </div>
+          </div> -->
 <!-- row 5 -->
-          <div class="card card-side bg-base-100 h-28 shadow-xl my-5">
-            <figure>
-              <img src="../Asset/jasa-dummy.png" alt="Product"/>
+          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+            <figure class="w-32">
+              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
-            <div class="card-body">
+            <div class="card-body p-5">
               <div class="grid grid-cols-9 gap-4">
 
                 <div class="col-span-1">
                   <div class="avatar">
-                    <div class="w-16 rounded-full border-2">
+                    <div class="w-10 rounded-full border-2">
                         <img src="../Asset/Profile-user.svg" class="p-3"/>
                     </div>
                   </div>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Price</li>
                     <li>Rp. 26.000</li>
                   </ul>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Status</li>
                     <li>
-                      <div class="badge badge-outline rounded-lg text-blue-800">In Progress</div>
+                      <div class="badge badge-outline text-xs rounded-lg text-b">In Progress</div>
                     </li>
                   </ul>
                 </div>
 
                 <div class="col-span-2 text-center">
-                  <ul>
+                  <ul class="text-sm">
                     <li class="font-bold">Delivery Time</li>
                     <li>2024-07-27</li>
                   </ul>
@@ -550,17 +659,22 @@
 
                 <div class="col-span-2 grid justify-center items-center">
                   <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-10 h-10 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                   </div>
-                </div>
-             @endif
-     
+                </div> -->
+         
+               
 
               </div>
             </div>
           </div>
 
     </div>
+  </div>
     @if (session('success'))
       <script> alert("{{ session('success') }}"); </script>
   @endif

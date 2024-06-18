@@ -459,7 +459,7 @@
           @endforeach
 
           <!-- row -->
-          <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
               <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
@@ -509,9 +509,9 @@
 
               </div>
             </div>
-          </div>
+          </div> --}}
 <!-- row 2 -->
-          <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
               <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
@@ -562,10 +562,10 @@
 
               </div>
             </div>
-          </div>
+          </div> --}}
 
 <!-- row 3 -->
-          <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
               <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
@@ -615,9 +615,9 @@
 
               </div>
             </div>
-          </div>
+          </div> --}}
           <!-- row 4 -->
-          <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
               <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
@@ -667,9 +667,9 @@
 
               </div>
             </div>
-          </div>
+          </div> --}}
 <!-- row 5 -->
-          <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
+          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
               <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
             </figure>
@@ -720,7 +720,7 @@
 
               </div>
             </div>
-          </div>
+          </div> --}}
 
     </div>
   </div>
