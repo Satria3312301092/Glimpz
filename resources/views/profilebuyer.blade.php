@@ -432,7 +432,7 @@
                 <div class="col-span-2 text-center">
                   <ul class="text-sm">
                     <li class="font-bold">Delivery Time</li>
-                    <li>{{$order->Date}}</li>
+                    <li>{{ $detailOrder->Day }} Day</li>
                   </ul>
                 </div>
   
