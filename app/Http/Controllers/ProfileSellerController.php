@@ -17,14 +17,23 @@ class ProfileSellerController extends Controller
     public function index() {
         $userId = Auth::id(); // Mendapatkan ID pengguna langsung
         $user = User::find($userId);
+
+        $usersAuth = Auth::User();
+
         $seller = Seller::where('Id_User', $userId)->first();
 
+        $sellers = Seller::all();
+
+        $IdSeller = Seller::where('Id_User', $userId);
         
+
+        $servicesOrder = Service::all();
+
         $orders = Order::all();
-        $servicesOrder = Service::where('Id_User', $seller);
+
         $typesOrder = Type::all();
         $detailsOrder = Detail::all();
-        return view('profileseller', compact('user', 'seller','orders','servicesOrder', 'typesOrder', 'detailsOrder'));
+        return view('profileseller', compact('usersAuth','user', 'seller','orders','servicesOrder', 'typesOrder', 'detailsOrder', 'sellers', 'userId'));
     }
     
     public function edit() {

@@ -316,12 +316,24 @@
           </div>
           
 <!-- row 1 -->
+
+
 <div class="bg-white border-2 px-5 rounded-xl">
           
+        @foreach ($orders as $order)
+        @foreach($servicesOrder as $serviceOrder)
+        @if($order->Id_Service == $serviceOrder->Id_Service)
+        @foreach ($sellers as $seller)
+        @if($serviceOrder->Id_Seller == $seller->Id_Seller)
+        @if ($seller->Id_User == $usersAuth->Id_User)
+        @foreach($detailsOrder as $detailOrder)
+        @foreach($typesOrder as $typeOrder)
+        @if ($order->Id_Type == $typeOrder->Id_Type)
+        @if ($detailOrder->Id_Detail == $order->Id_Detail)
         
           <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
             <figure class="w-32">
-              <img src=" Storage::url($serviceOrder->Thumbnail)" class="w-full h-full" alt="Product"/>
+              <img src="{{Storage::url($serviceOrder->Thumbnail)}}" class="w-full h-full" alt="Product"/>
             </figure>
             <div class="card-body p-5">
               <div class="grid grid-cols-9 gap-4">
@@ -337,14 +349,26 @@
                 <div class="col-span-2 text-center">
                   <ul class="text-sm">
                     <li class="font-bold">Price</li>
-                    <li>Rp   </li>
+                    <li>Rp{{ number_format($detailOrder->Price, 0, ',', '.') }}</li>
                   </ul>
                 </div>
 
                 <div class="col-span-2 text-center">
                   <ul class="text-sm">
                     <li class="font-bold">Status</li>
-                        <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
+                    @if ($order->Status == 'Waiting')
+                    <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
+                    @elseif ($order->Status == 'Payment')
+                    <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
+                    @elseif ($order->Status == 'Proses')
+                    <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
+                    @elseif ($order->Status == 'Finish')
+                    <td><div class="badge badge-outline text-xs text-green-600">Finished</div></td>
+                    @elseif ($order->Status == 'Cancel')
+                    <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
+                    @elseif ($order->Status == 'Pending')
+                    <div class="badge badge-warning rounded-lg badge-outline">Pending</div>
+                    @endif
                   </ul>
                 </div>
 
@@ -352,7 +376,7 @@
                 <div class="col-span-2 text-center">
                   <ul class="text-sm">
                     <li class="font-bold">Delivery Time</li>
-                    <li>order->Date</li>
+                    <li>{{ $detailOrder->Day }} Day</li>
                   </ul>
                 </div>
   
@@ -370,6 +394,17 @@
               </div>
             </div>
           </div>
+          
+          @endif
+          @endif
+          @endforeach
+          @endforeach
+          @endif
+          @endif
+          @endforeach
+          @endif
+          @endforeach
+          @endforeach
           
      
 
