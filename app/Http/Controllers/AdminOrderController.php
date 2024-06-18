@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Order;
+use App\Models\Service;
+use App\Models\Type;
+use App\Models\Detail;
 use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
@@ -12,8 +15,13 @@ class AdminOrderController extends Controller
     public function index()
     {   
         $orders = Order::all();
+        
+        $servicesOrder = Service::all();
+        $typesOrder = Type::all();
+        $detailsOrder = Detail::all(); 
 
-        return view('adminorder');
+
+        return view('adminorder', compact('orders', 'servicesOrder', 'typesOrder', 'detailsOrder'));
     }
 
     /**

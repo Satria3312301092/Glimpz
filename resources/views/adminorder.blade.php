@@ -100,20 +100,37 @@
                     </tr>
                   </thead>
                   <tbody>
-
+                    
+                    @foreach ($orders as $order)
+                    @foreach ($servicesOrder as $serviceOrder)
+                    @if ($order->Id_Service == $serviceOrder->Id_Service)
+                    @foreach ($typesOrder as $typeOrder)
+                    @foreach ($detailsOrder as $detailOrder)
+                    @if ($typeOrder->Id_Type == $detailOrder->Id_Type)
+                    @if ($detailOrder->Id_Detail == $order->Id_Detail)
+                    
+                    
                     <!-- row 1 -->
                     <tr>
                         <th>
-                          #1
+                          {{ $order->Id_Order }}
                         </th>
                         <td>
-                            I will animate your character
+                            {{ $serviceOrder->Title }}
                         </td>
                         <td>
-                            2024-03-22
+                          {{ \Carbon\Carbon::parse($order->Date)->format('d-m-Y') }}
                         </td>
-                        <td>Rp.99.000</td>
+                        <td>{{ $detailOrder->Price }}</td>
+                        @if ($order->Status == 'waiting')
+                        <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
+                        @elseif ($order->Status == 'proses')
+                        <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
+                        @elseif ($order->Status == 'finish')
                         <td><div class="badge badge-outline text-xs text-green-600">Finished</div></td>
+                        @elseif ($order->Status == 'cancel')
+                        <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
+                        @endif
                         <th>
                             <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
@@ -142,10 +159,18 @@
                           <p class="py-4">Press ESC key or click on ✕ button to close</p>
                         </div>
                       </dialog>
+                      
+                      @endif
+                      @endif
+                      @endforeach
+                      @endforeach
+                      @endif
+                      @endforeach
+                    @endforeach
                     <!-- row 1 -->
 
                     <!-- row 2 -->
-                    <tr>
+                    {{-- <tr>
                         <th>
                           #2
                         </th>
@@ -184,11 +209,11 @@
                           <h3 class="font-bold text-lg">Hello!</h3>
                           <p class="py-4">Press ESC key or click on ✕ button to close</p>
                         </div>
-                      </dialog>
+                      </dialog> --}}
                     <!-- row 2 -->
 
                     <!-- row 3 -->
-                    <tr>
+                    {{-- <tr>
                         <th>
                           #3
                         </th>
@@ -236,7 +261,7 @@
                           <h3 class="font-bold text-lg">Hello!</h3>
                           <p class="py-4">Press ESC key or click on ✕ button to close</p>
                         </div>
-                      </dialog>
+                      </dialog> --}}
                     <!-- row 3 -->
                       
                     <!-- row 4 -->
