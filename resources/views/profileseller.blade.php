@@ -382,18 +382,130 @@
   
               
                 <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <div class="dropdown">
+                    <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 text-blue-600 stroke-current">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                     </svg>
+                    </div>
+                    <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
+                      <li><a><svg class="w-5 text-green-600" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M33.25 12.25L17.9375 29.75L8.75 21.7955" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          Accept</a>
+                      </li>
+                    <li>
+                        <a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                            Reject</a>
+                      </li>
+                      <li>
+                        <a onclick="my_modal_1.showModal()">
+                        <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
+                          8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Details</a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
 
               </div>
             </div>
           </div>
+
+          <dialog id="my_modal_1" class="modal">
+                        <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
+                          <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                          </form>
+                          <h3 class="font-bold text-xl mb-3">Detail Orders</h3>
+                            <div class="divider"></div>
+                              <div class="grid grid-cols-2 gap-x-8">
+                                <div class="col-span-1">
+                                  <img class="w-full shadow-xl shadow-neutral-300 rounded-xl" src="images/108617873_p0.png" alt="" width="150">
+                                    
+                              </div>
+                              <div>
+                                  <div class="col-span-1">
+                                    <div class="overflow-auto max-h-80 px-5 pb-5">
+                                      <div class="grid gap-y-1.5">
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Title</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+                                          
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Description</span>
+                                            </div>
+                                            <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24" disabled></textarea>
+                                          </label>
+                                          
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Category</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="category" name="category" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+
+                                          <div class="divider"></div>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Type of Package</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Revisions</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Delivery Time</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                      </div>
+                      <div class="modal-action border-t-2 border-gray-200">
+                        <button class="btn bg-red-50 text-red-600 mt-3">
+                          <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                            Reject</button>
+                        <button class="btn bg-green-50 text-green-600 mt-3">
+                          <svg class="w-5" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M33.25 12.25L17.9375 29.75L8.75 21.7955" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          Accept</button>
+                      </div>
+                      </div>
+                    </div>
+</dialog>
           
           @endif
           @endif

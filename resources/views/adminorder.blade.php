@@ -137,11 +137,13 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                               </div>
                               <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                                <li><a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>
-                                  Delete</a></li>
-                                <li><a onclick="my_modal_1.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <li>
+                                  <a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    Delete</a></li>
+                                <li>
+                                  <a onclick="my_modal_1.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
                                   8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
@@ -150,15 +152,100 @@
                             </div>
                         </th>
                       </tr>
+
                       <dialog id="my_modal_1" class="modal">
-                        <div class="modal-box">
+                        <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
-                        </div>
-                      </dialog>
+                          <h3 class="font-bold text-xl mb-3">Detail Orders</h3>
+                            <div class="divider"></div>
+                              <div class="grid grid-cols-2 gap-x-8">
+                                <div class="col-span-1">
+                                  <img class="w-full shadow-xl shadow-neutral-300 rounded-xl" src="images/108617873_p0.png" alt="" width="150">
+                                    
+                              </div>
+                              <div>
+                                  <div class="col-span-1">
+                                    <div class="overflow-auto max-h-80 px-5 pb-5">
+                                      <div class="grid gap-y-1.5">
+
+                                        <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
+                                          ID Buyer
+                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="1" disabled/>
+                                        </label>
+                                        <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
+                                          ID Seller
+                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="2" disabled/>
+                                        </label>
+                                        <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
+                                          ID Service
+                                          <input type="text" id="id_service" name="id_service" class="grow text-slate-500 font-normal text-end" value="3" disabled/>
+                                        </label>
+
+                                        <div class="divider"></div>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Title</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+                                          
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Description</span>
+                                            </div>
+                                            <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24" disabled></textarea>
+                                          </label>
+                                          
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Category</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="category" name="category" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+
+                                          <div class="divider"></div>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Type of Package</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Revisions</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+
+                                          <label class="form-control w-full">
+                                            <div class="label">
+                                              <span class="label-text font-bold text-slate-700 text-sm">Delivery Time</span>
+                                            </div>
+                                            <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
+                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                            </label>
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                      
+           
+                    </div>
+</dialog>
                       
                       @endif
                       @endif

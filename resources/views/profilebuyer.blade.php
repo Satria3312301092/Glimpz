@@ -130,7 +130,7 @@
                         </svg>
                       </button>
 
-                      <!-- modal mikel -->
+                      <!-- modal edit -->
                       <dialog id="my_modal_3" class="modal">
                         <form method="dialog" class="modal-backdrop">
                           <button>close</button>
@@ -241,7 +241,7 @@
                               </div>
                               </div>
                             </dialog>
-                        <!-- modal mikel -->
+                        <!-- modal edit -->
 
                   </div>
                 </div>
