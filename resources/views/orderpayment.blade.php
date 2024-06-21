@@ -83,6 +83,9 @@
 
 <div class="container mx-auto grid justify-center items-center">
   <!-- card 1 -->
+
+     
+
   <div class="grid grid-cols-2 gap-16 mb-24">
     <div class="col-span-1">
         <div class="bg-white border-2 rounded-xl w-[500px]">
@@ -150,6 +153,23 @@
       </div> 
     </div>
     <!-- order summary -->
+
+
+      
+ 
+    
+
+      
+   @foreach ($orders as $order)
+     
+
+        @foreach ($servicesOrder as $serviceOrder)
+        @foreach ($typesOrder as $typeOrder)
+        @foreach ($detailsOrder as $detailOrder)
+          
+
+                  
+  
     <div class="col-span-1">
   <div class="bg-white border-2 rounded-xl w-[500px]">
         <div class="border-b-2 px-10 py-5">
@@ -159,17 +179,17 @@
         <div class="border-b-2 px-10 py-5">
           <div class="grid grid-flow-col gap-4">
             <div class="w-44 h-auto">
-              <img src="../Asset/Order-summary.png" class="rounded-xl" alt="">
+              <img src="{{ Storage::url($serviceOrder->Thumbnail) }}" class="rounded-xl" alt="">
             </div>
             <div class="w-full">
-              <p class="font-bold">I Will animate your character</p>
+              <p class="font-bold">{{$serviceOrder->Title}}</p>
             </div>
           </div>
           </div>
           <!-- title img -->
           <!-- tipe -->
           <div class="border-b-2 py-5 px-8">
-            <h1 class="font-semibold">Basic Animation</h1>
+            <h1 class="font-semibold">{{$typeOrder->Type_Name}} Animation</h1>
             <ul>
             <li class="grid grid-flow-col mt-2 justify-start"><svg class="w-5 h-5 mr-2" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M22.1923 19.3079L17 24.5002L22.1923 29.6925" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -177,7 +197,7 @@
               <path d="M17 24.4998H27.3846C29.9337 24.4998 32 22.4335 32 19.8844V11.8075C32 9.25852 29.9337 7.19214 27.3846 7.19214H23.9231" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M17 7.19214H6.61538C4.06638 7.19214 2 9.25852 2 11.8075V19.8844C2 22.4335 4.06638 24.4998 6.61538 24.4998H10.0769" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              1 Revision</li>
+              {{$detailOrder->Revision}} Revision</li>
             <li class="grid grid-flow-col mt-2 justify-start">
               <svg class="w-5 h-5 mr-2" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.9999 31.9998C24.0098 31.9998 29.6922 26.3174 29.6922 19.3075C29.6922 12.2978 24.0098 6.61523 16.9999 6.61523C9.99015 6.61523 4.30762 12.2978 4.30762 19.3075C4.30762 26.3174 9.99015 31.9998 16.9999 31.9998Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -185,7 +205,7 @@
                 <path d="M32.0007 6.61538C30.38 4.73288 28.4238 3.16788 26.2314 2" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M17 12.3848V19.3078H22.7692" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                1 Days Delivery Time</li>
+                {{$detailOrder->Day}} Days Delivery Time</li>
             </ul>
           </div>
           <!-- tipe -->
@@ -197,7 +217,7 @@
                 <h1 class="font-semibold">Service Price</h1>
               </li>
               <li>
-                <p>Rp. 25.000 </p>
+                <p>Rp {{ number_format($detailOrder->Price, 0, ',', '.') }}  </p>
               </li>
             </ul>
         </div>
@@ -227,7 +247,15 @@
                   <button class="btn btn-block bg-blue-700 px-14 hover:bg-blue-700 text-white shadow-md">Confirm</button>
                   </div>
                 </div>
-                </div>
+              
+                @endforeach   
+                @endforeach   
+                @endforeach   
+                @endforeach
+        
+      
+  
+              </div>
               </dialog>
         </div>
           <!-- total -->

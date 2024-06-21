@@ -388,17 +388,31 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                     </svg>
                     </div>
-                    <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                      <li><a><svg class="w-5 text-green-600" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M33.25 12.25L17.9375 29.75L8.75 21.7955" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                          Accept</a>
+                     <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
+                      <li>
+                          <form method="POST" action="{{ route('profileseller.update-status', $order->Id_Order) }}">
+                              @csrf
+                              <input type="hidden" name="status" value="accept">
+                              <button type="submit" class="flex items-center">
+                                  <svg class="w-5 text-green-600" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M33.25 12.25L17.9375 29.75L8.75 21.7955" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>
+                                  Accept
+                              </button>
+                          </form>
                       </li>
-                    <li>
-                        <a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                            Reject</a>
+
+                      <li>
+                          <form method="POST" action="{{ route('profileseller.update-status', $order->Id_Order) }}">
+                              @csrf
+                              <input type="hidden" name="status" value="reject">
+                              <button type="submit" class="flex items-center">
+                                  <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>
+                                  Reject
+                              </button>
+                          </form>
                       </li>
                       <li>
                         <a onclick="my_modal_1{{ $order->Id_Order }}.showModal()">

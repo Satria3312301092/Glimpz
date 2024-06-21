@@ -44,5 +44,18 @@ class Order extends Model
     // public function seller() {
     //     return $this->belongsTo(Seller::class, 'Id_Seller');
     // }
+
+    public function servicess()
+{
+    return $this->hasMany(Service::class, 'Id_Service', 'Id_Service');
+}
+    public function typess()
+{
+    return $this->hasMany(Type::class, 'Id_Type', 'Id_Type');
+}
+    public function detailss()
+{
+    return $this->hasMany(Detail::class, 'Id_Detail', 'Id_Detail');
+}
 }
 

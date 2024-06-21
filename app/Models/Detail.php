@@ -24,4 +24,6 @@ class Detail extends Model
         return $this->belongsTo(Type::class, 'Id_Type');
     }
 
+    
+
 }

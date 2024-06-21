@@ -445,12 +445,28 @@
                       </svg>
                       </div>
                       <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                      <li>
-                          <a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                              Cancel</a>
+                                  <li>
+                                    <form action="{{route ('orderpayment.show', $order->Id_Order)}}" >
+                                <button type="submit" class="flex items-center">
+                                    <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    Payment
+                                </button>
+                            </form>
                         </li>
+                                  <li>
+                            <form method="POST" action="{{ route('profilebuyer.cancel', $order->Id_Order) }}">
+                                @csrf
+                                <button type="submit" class="flex items-center">
+                                    <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    Cancel
+                                </button>
+                            </form>
+                        </li>
+                        
                         <li>
                           <a onclick="my_modal_detail{{ $order->Id_Order }}.showModal()">
                           <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -129,6 +129,15 @@ class ProfileBuyerController extends Controller
         }
     }
 
+    public function cancelOrder(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->status = 'cancel';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order canceled successfully');
+    }
+
 
 
 }

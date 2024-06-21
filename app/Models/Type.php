@@ -24,5 +24,6 @@ class Type extends Model
         return $this->hasMany(Detail::class, 'Id_Type');
         
     }
+    
 
 }

@@ -88,4 +88,20 @@ class ProfileSellerController extends Controller
         }
     }
 
+    public function updateOrderStatus(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $status = $request->input('status');
+
+        if ($status === 'accept') {
+            $order->status = 'Payment';
+        } elseif ($status === 'reject') {
+            $order->status = 'Cancel';
+        }
+
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order status updated successfully');
+    }
+
 }
