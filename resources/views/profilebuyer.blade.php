@@ -455,18 +455,20 @@
                                 </button>
                             </form>
                         </li>
-                                  <li>
-                            <form method="POST" action="{{ route('profilebuyer.cancel', $order->Id_Order) }}">
-                                @csrf
-                                <button type="submit" class="flex items-center">
+
+                         <li>  
+                                <button type="submit" class="flex items-center" onclick="my_modal_cancel{{ $order->Id_Order }}.showModal()">
                                     <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                     Cancel
                                 </button>
-                            </form>
                         </li>
+
+                        <!-- Open the modal using ID.showModal() method -->
+
                         
+
                         <li>
                           <a onclick="my_modal_detail{{ $order->Id_Order }}.showModal()">
                           <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -482,6 +484,24 @@
               </div>
             </div>
           </div>
+
+                  <dialog id="my_modal_cancel{{ $order->Id_Order }}" class="modal">
+                    <div class="modal-box">
+                      <h3 class="font-bold text-lg">Cancel Service?</h3>
+                      <p class="py-4">Are you sure want to cancel this service!!!</p>
+                      <div class="modal-action">
+                        <form method="dialog">
+                          <!-- if there is a button in form, it will close the modal -->
+                          <button class="btn">Close</button>
+                        </form>
+                        <form method="POST" action="{{ route('profilebuyer.cancel', $order->Id_Order) }}">
+                              @csrf
+                        <button type="submit" class="btn bg-red-500 text-white">Cancel</button>
+                      </form>
+                      </div>
+                    </div>
+                  </dialog>
+
 
           <dialog id="my_modal_detail{{ $order->Id_Order }}" class="modal">
                         <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
