@@ -85,7 +85,14 @@
   <!-- card 1 -->
 
      
+  @foreach ($orders as $order)
+     
 
+     @foreach ($servicesOrder as $serviceOrder)
+     @foreach ($typesOrder as $typeOrder)
+     @foreach ($detailsOrder as $detailOrder)
+     @foreach ($sellersOrder as $sellerOrder)
+       
   <div class="grid grid-cols-2 gap-16 mb-24">
     <div class="col-span-1">
         <div class="bg-white border-2 rounded-xl w-[500px]">
@@ -120,7 +127,7 @@
                 24 6.90733V16.2044C24 17.5707 24 18.2539 23.7338 18.7763C23.4995 19.2363 23.1245 19.6106 22.6646 19.8449C22.1422 20.1111 21.459 20.1111 20.0927 20.1111H5.90733C4.54099 
                 20.1111 3.8568 20.1111 3.33442 19.8449C2.87447 19.6106 2.50079 19.2363 2.26643 18.7763C2 18.2534 2 17.5693 2 16.2002Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                hyerin@gmail.com</a></li>   
+                {{$sellerOrder->Email}}</a></li>   
           </ul>
         </div>
         <div class="px-10 py-8">
@@ -160,13 +167,7 @@
     
 
       
-   @foreach ($orders as $order)
-     
-
-        @foreach ($servicesOrder as $serviceOrder)
-        @foreach ($typesOrder as $typeOrder)
-        @foreach ($detailsOrder as $detailOrder)
-          
+  
 
                   
   
@@ -251,6 +252,7 @@
                 @endforeach   
                 @endforeach   
                 @endforeach   
+                @endforeach
                 @endforeach
         
       

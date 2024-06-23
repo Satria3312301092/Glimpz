@@ -31,4 +31,10 @@ class Service extends Model
     {
         return $this->hasMany(Order::class, 'Id_Service');
     }
+    
+    public function seller()
+    {
+        return $this->belongsTo(User::class, 'Id_Seller', 'Id_User');
+    }
+
 }

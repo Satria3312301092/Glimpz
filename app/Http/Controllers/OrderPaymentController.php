@@ -25,14 +25,16 @@ class OrderPaymentController extends Controller
         return view('orderpayment');
     }
     
-    public function show($Id_Order)
-{
+    public function show($Id_Order){
     $orders = Order::find($Id_Order);
     $servicesOrder = $orders->servicess;
     $typesOrder = $orders->typess;
     $detailsOrder = $orders->detailss;
+    $sellersOrder = $orders->sellerss;
 
 
-    return view('orderpayment',compact('orders','servicesOrder', 'typesOrder', 'detailsOrder'));
-}
+    return view('orderpayment',compact('orders','servicesOrder', 'typesOrder', 'detailsOrder','sellersOrder'));
+    }
+
+
 }
