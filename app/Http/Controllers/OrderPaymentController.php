@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+require_once(__DIR__ . '/vendor/autoload.php');
 
+use Xendit\Configuration;
+use Xendit\Invoice\InvoiceApi;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
