@@ -128,7 +128,7 @@ return new class extends Migration
             $table->unsignedInteger('Id_Order'); // Foreign key
             $table->string('Methode', 100);
             $table->string('Proof', 100);
-            $table->date('Date');
+            $table->timestamp('Date');
             $table->unsignedInteger('Total'); // Total amount
 
             // Define the foreign key constraints

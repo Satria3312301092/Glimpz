@@ -231,7 +231,8 @@
                 <h1 class="font-semibold">Total Price</h1>
               </li>
               <li>
-                <p>Rp.25.000 </p>
+              <p>Rp. {{ number_format($detailOrder->Price * 1.01, 0, ',', '.') }} </p>
+
               </li>
             </ul>
               <!-- You can open the modal using ID.showModal() method -->
