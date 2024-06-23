@@ -5,6 +5,8 @@ use App\Models\Order;
 use App\Models\Service;
 use App\Models\Type;
 use App\Models\Detail;
+use App\Models\User;
+use App\Models\Seller;
 use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
@@ -19,9 +21,14 @@ class AdminOrderController extends Controller
         $servicesOrder = Service::all();
         $typesOrder = Type::all();
         $detailsOrder = Detail::all(); 
+        
+        $users = User::all();
+        $sellers = Seller::all();
+
+        $count = count($orders);
 
 
-        return view('adminorder', compact('orders', 'servicesOrder', 'typesOrder', 'detailsOrder'));
+        return view('adminorder', compact('orders', 'servicesOrder', 'typesOrder', 'detailsOrder', 'count', 'users', 'sellers'));
     }
 
     /**

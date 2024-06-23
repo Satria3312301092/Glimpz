@@ -99,7 +99,7 @@
         <!-- profile user -->
         <div class="px-10 py-5 border-b-2">
           <!-- header -->
-          <h1 class="font-bold text-2xl mb-3">Hyerin 112</h1>
+          <h1 class="font-bold text-2xl mb-3"></h1>
           <!-- detail profile -->
           <ul>
             <li><a class="inline-flex items-center"><svg class="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
