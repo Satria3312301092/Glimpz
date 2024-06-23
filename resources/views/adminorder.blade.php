@@ -121,14 +121,14 @@
                         <td>
                           {{ \Carbon\Carbon::parse($order->Date)->format('d-m-Y') }}
                         </td>
-                        <td>{{ $detailOrder->Price }}</td>
-                        @if ($order->Status == 'waiting')
+                        <td>Rp{{ number_format($detailOrder->Price, 0, ',', '.') }}</td>
+                        @if ($order->Status == 'Waiting')
                         <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
-                        @elseif ($order->Status == 'proses')
+                        @elseif ($order->Status == 'Proses')
                         <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
-                        @elseif ($order->Status == 'finish')
+                        @elseif ($order->Status == 'Finish')
                         <td><div class="badge badge-outline text-xs text-green-600">Finished</div></td>
-                        @elseif ($order->Status == 'cancel')
+                        @elseif ($order->Status == 'Cancel')
                         <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
                         @endif
                         <th>

@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <style>
       /* Custom styles */
       .custom-file-input::-webkit-file-upload-button {
@@ -91,7 +92,9 @@
      @foreach ($servicesOrder as $serviceOrder)
      @foreach ($typesOrder as $typeOrder)
      @foreach ($detailsOrder as $detailOrder)
-     @foreach ($sellersOrder as $sellerOrder)
+     {{-- @foreach ($sellersOrder as $sellerOrder) --}}
+    
+
        
   <div class="grid grid-cols-2 gap-16 mb-24">
     <div class="col-span-1">
@@ -118,8 +121,12 @@
               11.5678 9.90341 12.5409 10.791 13.3288C11.7452 14.1759 12.5745 14.5339 12.9949 14.7153C13.077 14.7507 13.1435 14.7794 13.1922 14.8037C13.4907 14.9525 13.6649 
               14.9276 13.8391 14.7294C14.0133 14.5311 14.5855 13.8617 14.7845 13.5642C14.9835 13.2668 15.1827 13.3164 15.4563 13.4155C15.73 13.5147 17.198 14.2335 17.4966 
               14.3823C17.5549 14.4113 17.6094 14.4375 17.6599 14.4618Z" fill="currentColor"/>
-              </svg>
-              08965576439</a></li>
+              </svg> 
+              @foreach($userss as $user)
+              @foreach($sellerss as $seller)
+              @if($user->Id_User == $seller->Id_User)
+              @if($seller->Id_Seller == $serviceOrder->Id_Seller)
+              {{ $user->Number_Phone }}</a></li>
             <li><a class="inline-flex items-center"><svg class="h-4 w-4 mr-1"  viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.22222 4.22222L10.6871 9.85944L10.6896 9.8615C11.5185 10.4693 11.9332 10.7735 12.3874 10.8909C12.7888 10.9948 13.2108 10.9948 13.6123 10.8909C14.0669 
                 10.7733 14.4828 10.4684 15.3132 9.85944C15.3132 9.85944 20.1012 6.18504 22.7778 4.22222M2 16.2002V6.91135C2 5.54233 2 4.85731 2.26643 4.33442C2.50079 3.87447 2.87447 
@@ -127,7 +134,11 @@
                 24 6.90733V16.2044C24 17.5707 24 18.2539 23.7338 18.7763C23.4995 19.2363 23.1245 19.6106 22.6646 19.8449C22.1422 20.1111 21.459 20.1111 20.0927 20.1111H5.90733C4.54099 
                 20.1111 3.8568 20.1111 3.33442 19.8449C2.87447 19.6106 2.50079 19.2363 2.26643 18.7763C2 18.2534 2 17.5693 2 16.2002Z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                {{$sellerOrder->Email}}</a></li>   
+                {{ $user->Email }}</a></li>
+                @endif
+                @endif
+                @endforeach  
+              @endforeach
           </ul>
         </div>
         <div class="px-10 py-8">
@@ -169,8 +180,13 @@
       
   
 
-                  
-  
+  <form action="{{ route('orderpayment.store') }}" method="POST">
+   @csrf
+   <input hidden name="Id_User" id="Id_User" value="{{ Auth::user()->Id_User }}"></input>
+   <input hidden name="Id_Order" id="Id_Order" value="{{ $orders->Id_Order }}"></input>
+   <input hidden name="Method" id="Method" value="Dana"></input>
+   
+
     <div class="col-span-1">
   <div class="bg-white border-2 rounded-xl w-[500px]">
         <div class="border-b-2 px-10 py-5">
@@ -213,13 +229,31 @@
 
           <!-- harga -->
           <div class="border-b-2 px-8 py-5">
-            <ul class="grid grid-flow-col justify-between">
+            <ul class="grid grid-flow-col justify-between ">
               <li>
                 <h1 class="font-semibold">Service Price</h1>
               </li>
               <li>
-                <p>Rp {{ number_format($detailOrder->Price, 0, ',', '.') }}  </p>
+                <?php
+                if ($detailOrder->Price <= 10000000) {
+                    $tax = $detailOrder->Price * 10 / 100;
+                } elseif ($detailOrder->Price > 10000000 && $detailOrder->Price <= 50000000) {
+                    $tax = $detailOrder->Price * 8 / 100;
+                } else {
+                    $tax = $detailOrder->Price * 5 / 100;
+                }
+                ?>
+                <input type="text" hidden name="Price" value="{{ $detailOrder->Price + $tax }}">Rp{{ number_format($detailOrder->Price, 0, ',', '.') }}  </input>
+                <input type="text" hidden name="Total" id="Total" value="{{ $detailOrder->Price + $tax }}"></input>
               </li>
+            </ul>
+            <ul class="grid grid-flow-col justify-between ">
+            <li>
+              <h1 class="font-semibold">Tax Price</h1>
+            </li>
+            <li>
+              <p>Rp{{ number_format($tax, 0, ',', '.') }}  </p>
+            </li>
             </ul>
         </div>
           <!-- harga -->
@@ -231,7 +265,7 @@
                 <h1 class="font-semibold">Total Price</h1>
               </li>
               <li>
-                <p>Rp.25.000 </p>
+                <p>Rp{{ number_format($detailOrder->Price + $tax, 0, ',', '.') }}</p>
               </li>
             </ul>
               <!-- You can open the modal using ID.showModal() method -->
@@ -248,8 +282,9 @@
                   <button class="btn btn-block bg-blue-700 px-14 hover:bg-blue-700 text-white shadow-md">Confirm</button>
                   </div>
                 </div>
-              
-                @endforeach   
+              </form>
+                
+                {{-- @endforeach    --}}
                 @endforeach   
                 @endforeach   
                 @endforeach
