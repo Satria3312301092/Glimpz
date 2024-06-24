@@ -16,8 +16,7 @@ use App\Models\Service;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Xendit\Xendit;
-use Xendit\Configuration;
+
 use Xendit\Payout\Payout;
 
 class OrderPaymentController extends Controller
@@ -80,16 +79,6 @@ class OrderPaymentController extends Controller
         $generateInvoice = $apiInstance->createInvoice($createInvoice);
 
         return dd($generateInvoice);
-    }
-
-    public function __construct()
-    {
-        Configuration::setXenditKey('xnd_public_development_Nq6DWknVr071yRifhshGRl7rtz_z8_CyW83gF_Ci7BzuAAd5rKSL5LWXm2nH2Wc');
-    }
-
-    public function store()
-    {
-        
     }
 
 }

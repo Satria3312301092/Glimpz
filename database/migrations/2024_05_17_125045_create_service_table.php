@@ -175,6 +175,9 @@ return new class extends Migration
             $table->unsignedInteger('Id_User');
             $table->unsignedInteger('Id_Service');
             $table->string('Rating', 100);
+
+            $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
+            $table->foreign('Id_Service')->references('Id_Service')->on('service')->onDelete('cascade');
         });
     }
 
