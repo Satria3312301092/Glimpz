@@ -580,6 +580,7 @@
                                     </div>
                                   </div>
                       </div>
+                      @if ($order->Status == 'Payment')
                       <div class="modal-action border-t-2 border-gray-200">
                         <button class="btn bg-red-50 text-red-600 mt-3">
                           <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -593,6 +594,7 @@
                           Accept</button>
                       </div>
                       </div>
+                      @endif
 </dialog>
 
           @endif
