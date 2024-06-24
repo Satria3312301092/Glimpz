@@ -186,6 +186,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('ratings');
         Schema::dropIfExists('invoice');
         Schema::dropIfExists('payment');
         Schema::dropIfExists('order');
