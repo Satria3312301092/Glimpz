@@ -56,7 +56,7 @@
                 <!-- header -->
                 <div>
                   <h1 class="font-bold text-2xl">Order</h1>
-                  <a class="text-xs text-blue-500">7 Order Found</a>
+                  <a class="text-xs text-blue-500">{{ $count }} Order Found</a>
                 </div>
                 <!-- search & drodpdown -->
                 <div class="flex items-end justify-end">
@@ -121,14 +121,14 @@
                         <td>
                           {{ \Carbon\Carbon::parse($order->Date)->format('d-m-Y') }}
                         </td>
-                        <td>{{ $detailOrder->Price }}</td>
-                        @if ($order->Status == 'waiting')
+                        <td>Rp{{ number_format($detailOrder->Price, 0, ',', '.') }}</td>
+                        @if ($order->Status == 'Waiting')
                         <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
-                        @elseif ($order->Status == 'proses')
+                        @elseif ($order->Status == 'Proses')
                         <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
-                        @elseif ($order->Status == 'finish')
+                        @elseif ($order->Status == 'Finish')
                         <td><div class="badge badge-outline text-xs text-green-600">Finished</div></td>
-                        @elseif ($order->Status == 'cancel')
+                        @elseif ($order->Status == 'Cancel')
                         <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
                         @endif
                         <th>
@@ -143,7 +143,7 @@
                                     </svg>
                                     Delete</a></li>
                                 <li>
-                                  <a onclick="my_modal_1.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <a onclick="my_modal_1{{ $order->Id_Order }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
                                   8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
@@ -153,7 +153,7 @@
                         </th>
                       </tr>
 
-                      <dialog id="my_modal_1" class="modal">
+                      <dialog id="my_modal_1{{ $order->Id_Order }}" class="modal">
                         <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -162,7 +162,7 @@
                             <div class="divider"></div>
                               <div class="grid grid-cols-2 gap-x-8">
                                 <div class="col-span-1">
-                                  <img class="w-full shadow-xl shadow-neutral-300 rounded-xl" src="images/108617873_p0.png" alt="" width="150">
+                                  <img class="w-full shadow-xl shadow-neutral-300 rounded-xl" src="{{ Storage::url($serviceOrder->Thumbnail) }}" alt="" width="150">
                                     
                               </div>
                               <div>
@@ -171,16 +171,43 @@
                                       <div class="grid gap-y-1.5">
 
                                         <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
-                                          ID Buyer
-                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="1" disabled/>
+                                          ID Order
+                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="{{ $order->Id_Order }}" disabled/>
                                         </label>
+
+                                        <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
+                                          ID Buyer
+                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="{{ $order->Id_User }}" disabled/>
+                                        </label>
+
+                                        @foreach ($users as $user)
+                                        @if ($user->Id_User == $order->Id_User)
+                                        <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
+                                          Buyer Name
+                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="{{ $user->Name }}" disabled/>
+                                        </label>
+                                        @endif
+                                        @endforeach
                                         <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
                                           ID Seller
-                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="2" disabled/>
+                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="{{ $serviceOrder->Id_Seller }}" disabled/>
                                         </label>
+                                        @foreach ($users as $user)
+                                        @foreach ($sellers as $seller)
+                                        
+                                        @if ($user->Id_User == $seller->Id_User)
+                                        @if ($seller->Id_Seller == $serviceOrder->Id_Seller)
+                                        <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
+                                          Seller Name
+                                          <input type="text" id="" name="" class="grow text-slate-500 font-normal text-end" value="{{ $user->Name }}" disabled/>
+                                        </label>
+                                        @endif
+                                        @endif
+                                        @endforeach
+                                        @endforeach
                                         <label class="input input-bordered flex items-center gap-2 rounded shadow-md font-bold text-slate-700 text-sm">
                                           ID Service
-                                          <input type="text" id="id_service" name="id_service" class="grow text-slate-500 font-normal text-end" value="3" disabled/>
+                                          <input type="text" id="id_service" name="id_service" class="grow text-slate-500 font-normal text-end" value="{{ $serviceOrder->Id_Service }}" disabled/>
                                         </label>
 
                                         <div class="divider"></div>
@@ -190,7 +217,7 @@
                                               <span class="label-text font-bold text-slate-700 text-sm">Title</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                                <input type="text" id="title" name="title" class="grow" value="{{ $serviceOrder->Title }}" disabled/>
                                             </label>
                                           </label>
                                           
@@ -198,7 +225,7 @@
                                             <div class="label">
                                               <span class="label-text font-bold text-slate-700 text-sm">Description</span>
                                             </div>
-                                            <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24" disabled></textarea>
+                                            <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24" disabled>{{ $serviceOrder->Description }}</textarea>
                                           </label>
                                           
                                           <label class="form-control w-full">
@@ -206,7 +233,7 @@
                                               <span class="label-text font-bold text-slate-700 text-sm">Category</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="category" name="category" class="grow" value="" disabled/>
+                                                <input type="text" id="category" name="category" class="grow" value="{{ $serviceOrder->Category }}" disabled/>
                                             </label>
                                           </label>
 
@@ -217,7 +244,7 @@
                                               <span class="label-text font-bold text-slate-700 text-sm">Type of Package</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                                <input type="text" id="title" name="title" class="grow" value="{{ $typeOrder->Type_Name }}" disabled/>
                                             </label>
                                           </label>
 
@@ -226,7 +253,7 @@
                                               <span class="label-text font-bold text-slate-700 text-sm">Revisions</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                                <input type="text" id="title" name="title" class="grow" value="{{ $detailOrder->Revision }}" disabled/>
                                             </label>
                                           </label>
 
@@ -235,7 +262,7 @@
                                               <span class="label-text font-bold text-slate-700 text-sm">Delivery Time</span>
                                             </div>
                                             <label class="input input-bordered h-10 flex items-center gap-2 shadow-md focus:shadow-md rounded text-xs">
-                                                <input type="text" id="title" name="title" class="grow" value="" disabled/>
+                                                <input type="text" id="title" name="title" class="grow" value="{{ $detailOrder->Day }}" disabled/>
                                             </label>
                                           </label>
                                         </div>

@@ -57,10 +57,16 @@ class Order extends Model
 {
     return $this->hasMany(Detail::class, 'Id_Detail', 'Id_Detail');
 }
-    public function sellerss()
-{
-    return $this->hasMany(Seller::class, 'Id_Seller', 'Id_User');
-}
+//     public function sellerss()
+// {
+//     return $this->hasMany(Seller::class, 'Id_Seller', 'Id_User');
+// }
+
+//     public function userss()
+// {
+//     return $this->belongsTo(User::class, 'Id_User', 'Id_User');
+// }
+
     // public function sellerss()
     // {
     //     return $this->hasManyThrough(User::class, Service::class, 'Id_Order', 'Id_User', 'Id_Order', 'Id_Seller')
