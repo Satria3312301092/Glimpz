@@ -64,7 +64,6 @@
     </div>
   </div>
       <!-- navbar end -->
-
       <div class="container mx-auto pt-16 pb-20 px-20">
         <h2 class="text-start items-center font-medium text-6xl">3D Animation</h2>
         <div class="grid grid-cols-2 mt-3">
