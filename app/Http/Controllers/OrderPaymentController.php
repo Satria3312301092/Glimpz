@@ -16,6 +16,7 @@ use App\Models\Service;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Xendit\Invoice\InvoiceItem;
 
 use Xendit\Payout\Payout;
 
@@ -65,20 +66,27 @@ class OrderPaymentController extends Controller
             $payment->Total = $request->input('Total');
 
             $payment->save();
+
+            $items = new InvoiceItem([
+                'name' =>  $request->input('Title').' '.$request->input('Type_Name'), 
+                'price' => $price ,
+                'quantity' => '1'
+            ]);
+
+            $createInvoice = new CreateInvoiceRequest([
+                'external_id' => 'Inv - '. rand(),
+                'amount' => $price,
+                'items' => array($items)
+            ]); 
+
+            $apiInstance = new InvoiceApi();
+            $generateInvoice = $apiInstance->createInvoice($createInvoice);
+
+            return dd($generateInvoice);
             // return dd($payment);
         } catch (\Throwable $th) {
             //throw $th;
         }
-
-        $createInvoice = new CreateInvoiceRequest([
-            'external_id' => 'Inv - ' . rand(),
-            'amount' => $price
-        ]); 
-
-        $apiInstance = new InvoiceApi();
-        $generateInvoice = $apiInstance->createInvoice($createInvoice);
-
-        return dd($generateInvoice);
     }
 
 }
