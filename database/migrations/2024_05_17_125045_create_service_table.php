@@ -169,6 +169,13 @@ return new class extends Migration
             // Optional: Add timestamps if needed
             // $table->timestamps();
         });
+
+        Schema::create('ratings', function (Blueprint $table) {
+            $table->increments('Id_Rating');
+            $table->unsignedInteger('Id_User');
+            $table->unsignedInteger('Id_Service');
+            $table->string('Rating', 100);
+        });
     }
 
     /**
