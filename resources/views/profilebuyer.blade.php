@@ -79,17 +79,17 @@
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
         <div class="w-10 rounded-full shadow-lg">
-          <img alt="" src="images/Profileuser.svg" />
+          <img alt="" src="icon/Profileuser.svg" />
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li>
-          <a href="{{ route('profilebuyer.index') }}"><img src="images/Profile.svg" alt="">Profile</a>
+          <a href="{{ route('profilebuyer.index') }}"><img src="icon/Profile.svg" alt="">Profile</a>
         </li>
         <form action="{{ route ('logout') }}" method="POST">
           @csrf
           <li>
-            <button type="submit"><img src="images/logout.svg" alt="">Logout</button>
+            <button type="submit"><img src="icon/logout.svg" alt="">Logout</button>
           </li>
         </form>
       </ul>
@@ -170,22 +170,22 @@
                                     <div class="label">
                                       <span class="label-text text-xs">Phone Number</span>
                                     </div>
-                                    <label class="input input-bordered h-10 flex items-center gap-2 shadow-lg focus:shadow-lg rounded text-xs">
-                                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.54518 8.64285L10.509 8.37611L10.509 8.3761L9.54518 8.64285ZM15.3591 14.4382L15.6262 13.4745L15.6262 13.4745L15.3591 14.4382ZM17.836 18.7018L16.8873 18.3858L16.8872 18.3858L17.836 18.7018ZM5.28475 6.16411L5.60114 7.11273L5.60116 7.11273L5.28475 
-                                          6.16411ZM10.7574 15.5971L11.3298 14.7771L10.7574 15.5971ZM11.4363 15.4941L10.7054 14.8116L11.4363 15.4941ZM8.5005 12.5588L9.18647 13.2865L8.5005 12.5588ZM8.39933 13.2365L7.57878 13.8081L7.57878 13.8081L8.39933 13.2365ZM9.18647 13.2865C10.4545 12.091 11.0099 
-                                          10.186 10.509 8.37611L8.58141 8.90958C8.88743 10.0153 8.53516 11.1518 7.81453 11.8312L9.18647 13.2865ZM10.1826 13.8149C9.82246 13.4545 9.50171 13.0695 9.21988 12.6649L7.57878 13.8081C7.92751 14.3087 8.32391 14.7843 8.76787 15.2286L10.1826 13.8149ZM11.3298 
-                                          14.7771C10.9263 14.4954 10.5423 14.1748 10.1826 13.8149L8.76787 15.2286C9.21114 15.6722 9.68554 
-                                        16.0684 10.1851 16.4171L11.3298 14.7771ZM15.6262 13.4745C13.8106 12.9713 11.8992 13.533 10.7054 14.8116L12.1672 16.1766C12.8451 15.4505 13.9841 15.0948 15.092 15.4018L15.6262 13.4745ZM18.7848 19.0178C19.5901 16.5997 18.0782 14.1542 15.6262 13.4745L15.092 
-                                        15.4018C16.5807 15.8145 17.2866 17.1867 16.8873 18.3858L18.7848 19.0178ZM10.509 8.3761C9.83018 5.92366 7.38653 4.4089 4.96834 5.21548L5.60116 7.11273C6.7975 6.71369 8.16873 7.4185 8.58142 8.90959L10.509 8.3761ZM4.96836 5.21548C3.39284 5.74096 2.43378 6.7213 
-                                        2.11585 8.02889C1.82033 9.24428 2.12835 10.5559 2.60671 11.715C3.57004 14.0491 5.47664 16.3617 6.55614 17.442L7.97088 16.0283C6.98981 15.0465 5.27992 12.9497 4.45545 10.952C4.03992 9.94514 3.91121 9.11016 4.05923 8.50141C4.18483 7.98485 4.54955 7.46347 5.60114 
-                                        7.11273L4.96836 5.21548ZM6.55614 17.442C7.61075 18.4974 9.91993 20.4122 12.2585 21.3844C13.4196 
-                                        21.867 14.7361 22.1805 15.9571 21.8856C17.2711 21.5683 18.2564 20.6044 18.7848 19.0178L16.8872 18.3858C16.5331 19.4492 16.007 19.8161 15.4876 19.9415C14.8752 20.0894 14.0361 19.9574 13.0262 19.5376C11.0228 18.7048 8.92821 16.9863 7.97088 16.0283L6.55614 
-                                        17.442ZM10.1851 16.4171C10.895 16.9126 11.7294 16.6454 12.1672 16.1766L10.7054 14.8116C10.7607 14.7523 10.8398 14.7043 10.9423 14.6869C11.052 14.6682 11.1985 14.6854 11.3298 14.7771L10.1851 16.4171ZM7.81453 11.8312C7.34911 12.27 7.08636 13.1012 7.57878 
-                                        13.8081L9.21988 12.6649C9.31091 12.7956 9.32818 12.9411 9.30989 13.0501C9.29279 13.152 9.24536 13.231 9.18647 13.2865L7.81453 11.8312Z" fill="black"/>
-                                        </svg>
-                                      <input type="text" name="Numberphone" class="grow" value="{{ $user->Number_Phone }}" />
-                                    </label>
+                                      <label class="input input-bordered h-10 flex items-center gap-2 shadow-lg focus:shadow-lg rounded text-xs">
+                                          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M9.54518 8.64285L10.509 8.37611L10.509 8.3761L9.54518 8.64285ZM15.3591 14.4382L15.6262 13.4745L15.6262 13.4745L15.3591 14.4382ZM17.836 18.7018L16.8873 18.3858L16.8872 18.3858L17.836 18.7018ZM5.28475 6.16411L5.60114 7.11273L5.60116 7.11273L5.28475 
+                                            6.16411ZM10.7574 15.5971L11.3298 14.7771L10.7574 15.5971ZM11.4363 15.4941L10.7054 14.8116L11.4363 15.4941ZM8.5005 12.5588L9.18647 13.2865L8.5005 12.5588ZM8.39933 13.2365L7.57878 13.8081L7.57878 13.8081L8.39933 13.2365ZM9.18647 13.2865C10.4545 12.091 11.0099 
+                                            10.186 10.509 8.37611L8.58141 8.90958C8.88743 10.0153 8.53516 11.1518 7.81453 11.8312L9.18647 13.2865ZM10.1826 13.8149C9.82246 13.4545 9.50171 13.0695 9.21988 12.6649L7.57878 13.8081C7.92751 14.3087 8.32391 14.7843 8.76787 15.2286L10.1826 13.8149ZM11.3298 
+                                            14.7771C10.9263 14.4954 10.5423 14.1748 10.1826 13.8149L8.76787 15.2286C9.21114 15.6722 9.68554 
+                                          16.0684 10.1851 16.4171L11.3298 14.7771ZM15.6262 13.4745C13.8106 12.9713 11.8992 13.533 10.7054 14.8116L12.1672 16.1766C12.8451 15.4505 13.9841 15.0948 15.092 15.4018L15.6262 13.4745ZM18.7848 19.0178C19.5901 16.5997 18.0782 14.1542 15.6262 13.4745L15.092 
+                                          15.4018C16.5807 15.8145 17.2866 17.1867 16.8873 18.3858L18.7848 19.0178ZM10.509 8.3761C9.83018 5.92366 7.38653 4.4089 4.96834 5.21548L5.60116 7.11273C6.7975 6.71369 8.16873 7.4185 8.58142 8.90959L10.509 8.3761ZM4.96836 5.21548C3.39284 5.74096 2.43378 6.7213 
+                                          2.11585 8.02889C1.82033 9.24428 2.12835 10.5559 2.60671 11.715C3.57004 14.0491 5.47664 16.3617 6.55614 17.442L7.97088 16.0283C6.98981 15.0465 5.27992 12.9497 4.45545 10.952C4.03992 9.94514 3.91121 9.11016 4.05923 8.50141C4.18483 7.98485 4.54955 7.46347 5.60114 
+                                          7.11273L4.96836 5.21548ZM6.55614 17.442C7.61075 18.4974 9.91993 20.4122 12.2585 21.3844C13.4196 
+                                          21.867 14.7361 22.1805 15.9571 21.8856C17.2711 21.5683 18.2564 20.6044 18.7848 19.0178L16.8872 18.3858C16.5331 19.4492 16.007 19.8161 15.4876 19.9415C14.8752 20.0894 14.0361 19.9574 13.0262 19.5376C11.0228 18.7048 8.92821 16.9863 7.97088 16.0283L6.55614 
+                                          17.442ZM10.1851 16.4171C10.895 16.9126 11.7294 16.6454 12.1672 16.1766L10.7054 14.8116C10.7607 14.7523 10.8398 14.7043 10.9423 14.6869C11.052 14.6682 11.1985 14.6854 11.3298 14.7771L10.1851 16.4171ZM7.81453 11.8312C7.34911 12.27 7.08636 13.1012 7.57878 
+                                          13.8081L9.21988 12.6649C9.31091 12.7956 9.32818 12.9411 9.30989 13.0501C9.29279 13.152 9.24536 13.231 9.18647 13.2865L7.81453 11.8312Z" fill="black"/>
+                                          </svg>
+                                        <input type="text" name="Numberphone" class="grow" value="{{ $user->Number_Phone }}" />
+                                      </label>
                                   </label>
                                 </div>
                                 <div>
@@ -397,7 +397,7 @@
                 <div class="col-span-1">
                   <div class="avatar">
                     <div class="w-10 rounded-full border-2">
-                      <img src="../Asset/Profile-user.svg" class="p-3"/>
+                      <img src="icon/Profileuser.svg"/>
                     </div>
                   </div>
                 </div>
@@ -413,7 +413,7 @@
                   <ul class="text-sm">
                     <li class="font-bold">Status</li>
                     @if ($order->Status == 'Waiting')
-                        <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
+                        <td><div class="badge badge-outline text-xs text-yellow-400">Waiting</div></td>
                         @elseif ($order->Status == 'Payment')
                         <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
                         @elseif ($order->Status == 'Proses')
@@ -445,17 +445,19 @@
                       </svg>
                       </div>
                       <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                                  <li>
-                                    <form action="{{route ('orderpayment.show', $order->Id_Order)}}" >
+                            <li>
+                              <form action="{{route ('orderpayment.show', $order->Id_Order)}}" >
                                 <button type="submit" class="flex items-center">
-                                    <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                    Payment
+                                  <svg class="w-4 mr-2" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 0H5C3.67441 0.00158786 2.40356 0.528882 1.46622 1.46622C0.528882 2.40356 0.00158786 3.67441 0 5L0 13C0.00158786 14.3256 0.528882 15.5964 1.46622 16.5338C2.40356 17.4711 3.67441 
+                                    17.9984 5 18H19C20.3256 17.9984 21.5964 17.4711 22.5338 16.5338C23.4711 15.5964 23.9984 14.3256 24 13V5C23.9984 3.67441 23.4711 2.40356 22.5338 1.46622C21.5964 0.528882 20.3256 0.00158786 19 
+                                    0ZM5 2H19C19.7956 2 20.5587 2.31607 21.1213 2.87868C21.6839 3.44129 22 4.20435 22 5H2C2 4.20435 2.31607 3.44129 2.87868 2.87868C3.44129 2.31607 4.20435 2 5 2ZM19 16H5C4.20435 16 3.44129 15.6839 
+                                    2.87868 15.1213C2.31607 14.5587 2 13.7956 2 13V7H22V13C22 13.7956 21.6839 14.5587 21.1213 15.1213C20.5587 15.6839 19.7956 16 19 16Z" fill="currentColor"/>
+                                  </svg>
+                                  Payment
                                 </button>
                             </form>
                         </li>
-
                          <li>  
                                 <button type="submit" class="flex items-center" onclick="my_modal_cancel{{ $order->Id_Order }}.showModal()">
                                     <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -465,10 +467,6 @@
                                 </button>
                         </li>
 
-                        <!-- Open the modal using ID.showModal() method -->
-
-                        
-
                         <li>
                           <a onclick="my_modal_detail{{ $order->Id_Order }}.showModal()">
                           <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -477,6 +475,34 @@
                           </svg>
                           Details</a>
                         </li>
+                        <li>
+                          <a onclick="my_modal_invoice{{ $order->Id_Order }}.showModal()">
+                          <svg class="w-3 mr-1" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.9491 5.53651L14.4651 2.05051C13.8164 1.39865 13.045 0.881842 12.1953 0.529971C11.3457 0.178099 10.4347 -0.0018556 9.51512 0.00051133H5.00012C3.67453 0.00209919 2.40368 0.529393 1.46634 
+                            1.46673C0.529004 2.40407 0.00170993 3.67492 0.00012207 5.00051V19.0005C0.00170993 20.3261 0.529004 21.597 1.46634 22.5343C2.40368 23.4716 3.67453 23.9989 5.00012 24.0005H15.0001C16.3257 23.9989 17.5966 
+                            23.4716 18.5339 22.5343C19.4712 21.597 19.9985 20.3261 20.0001 19.0005V10.4855C20.0026 9.56593 19.8226 8.655 19.4705 7.80549C19.1185 6.95597 18.6014 6.18475 17.9491 5.53651ZM16.5351 6.95051C16.8405 7.26466 
+                            17.1031 7.6177 17.3161 8.00051H13.0001C12.7349 8.00051 12.4806 7.89515 12.293 7.70762C12.1055 7.52008 12.0001 7.26573 12.0001 7.00051V2.68451C12.3831 2.89744 12.7364 3.15967 13.0511 3.46451L16.5351 6.95051ZM18.0001 
+                            19.0005C18.0001 19.7962 17.6841 20.5592 17.1214 21.1218C16.5588 21.6844 15.7958 22.0005 15.0001 22.0005H5.00012C4.20447 22.0005 3.44141 21.6844 2.8788 21.1218C2.31619 20.5592 2.00012 19.7962 2.00012 19.0005V5.00051C2.00012 
+                            4.20486 2.31619 3.4418 2.8788 2.87919C3.44141 2.31658 4.20447 2.00051 5.00012 2.00051H9.51512C9.67912 2.00051 9.83812 2.03251 10.0001 2.04751V7.00051C10.0001 7.79616 10.3162 8.55922 10.8788 9.12183C11.4414 9.68444 12.2045 
+                            10.0005 13.0001 10.0005H17.9531C17.9681 10.1625 18.0001 10.3205 18.0001 10.4855V19.0005Z" fill="currentColor"/>
+                          </svg>
+                          Invoice
+                          </a>
+                        </li>
+                        <li>
+                          <a onclick="my_modal_delivery{{ $order->Id_Order }}.showModal()">
+                          <svg class="w-3 mr-1" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.9491 5.53651L14.4651 2.05051C13.8164 1.39865 13.045 0.881842 12.1953 0.529971C11.3457 0.178099 10.4347 -0.0018556 9.51512 0.00051133H5.00012C3.67453 0.00209919 2.40368 0.529393 1.46634 
+                            1.46673C0.529004 2.40407 0.00170993 3.67492 0.00012207 5.00051V19.0005C0.00170993 20.3261 0.529004 21.597 1.46634 22.5343C2.40368 23.4716 3.67453 23.9989 5.00012 24.0005H15.0001C16.3257 23.9989 17.5966 
+                            23.4716 18.5339 22.5343C19.4712 21.597 19.9985 20.3261 20.0001 19.0005V10.4855C20.0026 9.56593 19.8226 8.655 19.4705 7.80549C19.1185 6.95597 18.6014 6.18475 17.9491 5.53651ZM16.5351 6.95051C16.8405 7.26466 
+                            17.1031 7.6177 17.3161 8.00051H13.0001C12.7349 8.00051 12.4806 7.89515 12.293 7.70762C12.1055 7.52008 12.0001 7.26573 12.0001 7.00051V2.68451C12.3831 2.89744 12.7364 3.15967 13.0511 3.46451L16.5351 6.95051ZM18.0001 
+                            19.0005C18.0001 19.7962 17.6841 20.5592 17.1214 21.1218C16.5588 21.6844 15.7958 22.0005 15.0001 22.0005H5.00012C4.20447 22.0005 3.44141 21.6844 2.8788 21.1218C2.31619 20.5592 2.00012 19.7962 2.00012 19.0005V5.00051C2.00012 
+                            4.20486 2.31619 3.4418 2.8788 2.87919C3.44141 2.31658 4.20447 2.00051 5.00012 2.00051H9.51512C9.67912 2.00051 9.83812 2.03251 10.0001 2.04751V7.00051C10.0001 7.79616 10.3162 8.55922 10.8788 9.12183C11.4414 9.68444 12.2045 
+                            10.0005 13.0001 10.0005H17.9531C17.9681 10.1625 18.0001 10.3205 18.0001 10.4855V19.0005Z" fill="currentColor"/>
+                          </svg>
+                          Delivery
+                          </a>
+                        </li>
                       </ul>
                     </div>
                 </div>
@@ -484,7 +510,7 @@
               </div>
             </div>
           </div>
-
+                  <!-- modal cancel -->
                   <dialog id="my_modal_cancel{{ $order->Id_Order }}" class="modal">
                     <div class="modal-box">
                       <h3 class="font-bold text-lg">Cancel Service?</h3>
@@ -501,8 +527,48 @@
                       </div>
                     </div>
                   </dialog>
+                  <!-- modal cancel -->
+                  
+                  <!-- modal delivery -->
+                  <dialog id="my_modal_delivery{{ $order->Id_Order }}" class="modal">
+                    <div class="modal-box w-full max-w-2xl rounded-2xl shadow-xl">
+                    <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                          </form>
+                      <h3 class="font-bold text-xl mb-3">Delivery</h3>
+                      <div class="divider"></div>
+                        <!-- content -->
+                        <div class="bg-white border-2 rounded-2xl grid justify-center shadow-lg shadow-gray-300">
+                          <img src="background/108617873_p0.png" class="w-full rounded-2xl" alt="">
+                        </div>
+                      <!-- content -->
+                      <div class="modal-action border-t-2 border-gray-200">
+                        <div class="flex justify-center gap-x-3 mt-10">
+                              <button class="btn btn-blue-300 hover:bg-blue-700 btn-outline text-blue-700 hover:text-white border-blue-700 hover:border-none font-medium text-base">
+                                <svg class="w-4 h-3" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.76947 14.9916L3.05034 14.2967C2.93938 14.4116 2.85753 14.5513 2.81165 14.7043L3.76947 14.9916ZM16.286 2.03794L15.5789 1.33084C15.5749 1.33488 15.5709 1.33896 15.5669 
+                                1.34307L16.286 2.03794ZM21.1664 6.9183L21.8612 7.63744C21.8654 7.63346 21.8694 7.62945 21.8735 7.62541L21.1664 6.9183ZM8.2127 19.4348L8.50005 20.3927C8.653 20.3468 8.79274 20.2649 
+                                8.90757 20.154L8.2127 19.4348ZM1.86523 21.3391L0.907408 21.0517C0.801698 21.4041 0.897995 21.7861 1.15813 22.0462C1.41826 22.3063 1.80021 22.4026 2.15258 22.2969L1.86523 21.3391ZM20.3787 
+                                3.02932L21.0858 2.32222L21.0858 2.32222L20.3787 3.02932ZM4.48861 15.6865L17.0051 2.73281L15.5669 1.34307L3.05034 14.2967L4.48861 15.6865ZM20.4715 6.19916L7.51783 18.7157L8.90757 
+                                20.154L21.8612 7.63744L20.4715 6.19916ZM7.92536 18.477L1.57789 20.3813L2.15258 22.2969L8.50005 20.3927L7.92536 18.477ZM2.82306 21.6264L4.7273 15.279L2.81165 14.7043L0.907408 
+                                21.0517L2.82306 21.6264ZM21.8735 7.62541C22.2952 7.20372 22.6073 6.73664 22.7609 6.21314C22.9177 5.67889 22.8876 5.15903 22.7385 4.67775C22.4607 3.78174 21.756 2.9924 21.0858 
+                                2.32222L19.6716 3.73643C20.3491 4.41392 20.712 4.89523 20.8281 5.26987C20.8759 5.42391 20.8743 5.53938 20.8418 5.65008C20.8062 5.77153 20.7114 5.95903 20.4593 6.21119L21.8735 
+                                7.62541ZM16.9931 2.74505C17.2234 2.51475 17.4002 2.43777 17.5204 2.4112C17.6405 2.38466 17.7886 2.38973 17.9927 2.46342C18.4508 2.62886 19.001 3.06583 19.6716 3.73643L21.0858 
+                                2.32222C20.4087 1.64515 19.5864 0.912582 18.672 0.582338C18.1898 0.40818 17.6517 0.333867 17.0887 0.458357C16.5257 0.582827 16.0224 0.8873 15.5789 1.33084L16.9931 2.74505Z" fill="currentColor"/>
+                                </svg>
+                                Revision</button>
+                              <button class="btn btn-blue-300 hover:bg-green-500 btn-outline text-green-600 hover:text-white border-green-500 hover:border-none font-medium text-base">
+                                <svg class="w-4 h-3" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21.75 2.25L9.25 16.5357L1.75 10.0422" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Confirm</button>
+                            </div>
+                      </div>
+                    </div>
+                  </dialog>
+                  <!-- modal delivery -->
 
-
+          <!-- modal detail -->
           <dialog id="my_modal_detail{{ $order->Id_Order }}" class="modal">
                         <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
                           <form method="dialog">
@@ -513,7 +579,28 @@
                               <div class="grid grid-cols-2 gap-x-8">
                                 <div class="col-span-1">
                                   <img class="w-full shadow-xl shadow-neutral-300 rounded-xl" src="{{ Storage::url($serviceOrder->Thumbnail) }}" alt="" width="150">
-                                    
+                                    <div class="flex py-6 divide-x-2 divide-gray-500 border-gray-500">
+                                      <div class="flex items-center pr-10">
+                                              <div class="avatar mr-3">
+                                                  <div class="w-10 rounded-full border-2 border-zinc-300">
+                                                    <img src="icon/Profileuser.svg" class="" />
+                                                  </div>
+                                              </div>
+                                            
+                                              <a class="font-bold text-lg">Hyerin</a>
+                                              
+                                      </div>
+                                      <div class="flex items-center pl-10">
+                                              <div class="rating rating-sm">
+                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
+                                                  <input type="radio" name="rating-9" class="mask mask-star-2" checked />
+                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
+                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
+                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
+                                              </div>
+                                              <span>(77 Reviews)</span>
+                                      </div>
+                                    </div>
                               </div>
                               <div>
                                   <div class="col-span-1">
@@ -533,7 +620,7 @@
                                             <div class="label">
                                               <span class="label-text font-bold text-slate-700 text-sm">Description</span>
                                             </div>
-                                            <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24" disabled>{{ $serviceOrder->Description}}</textarea>
+                                            <textarea id="description" name="description" class="shadow-md border border-[#1f293733] rounded py-2 px-3 w-full resize-y h-24 text-xs" disabled>{{ $serviceOrder->Description}}</textarea>
                                           </label>
                                           
                                           <label class="form-control w-full">
@@ -578,293 +665,17 @@
                                     </div>
                                   </div>
                       </div>
-                      <div class="modal-action border-t-2 border-gray-200">
-                        <button class="btn bg-red-50 text-red-600 mt-3">
-                          <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                            Reject</button>
-                        <button class="btn bg-green-50 text-green-600 mt-3">
-                          <svg class="w-5" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M33.25 12.25L17.9375 29.75L8.75 21.7955" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                          Accept</button>
-                      </div>
                       </div>
 </dialog>
+<!-- modal detail -->
 
           @endif
-           @endif
-           @endforeach
-           @endforeach
           @endif
           @endforeach
           @endforeach
-
-          <!-- row -->
-          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-            <figure class="w-32">
-              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
-            </figure>
-            <div class="card-body p-5">
-              <div class="grid grid-cols-9 gap-4">
-
-                <div class="col-span-1">
-                  <div class="avatar">
-                    <div class="w-10 rounded-full border-2">
-                      <img src="../Asset/Profile-user.svg" class="p-3"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Price</li>
-                    <li>Rp. 26.000</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-success rounded-lg badge-outline">Finished</div>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Delivery Time</li>
-                    <li>2024-07-27</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div> --}}
-<!-- row 2 -->
-          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-            <figure class="w-32">
-              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
-            </figure>
-            <div class="card-body p-5">
-              <div class="grid grid-cols-9 gap-4">
-
-                <div class="col-span-1">
-                  <div class="avatar">
-                    <div class="w-10 rounded-full border-2">
-                        <img src="../Asset/Profile-user.svg" class="p-3"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Price</li>
-                    <li>Rp. 26.000</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-error rounded-lg badge-outline">Rejected</div>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Delivery Time</li>
-                    <li>2024-07-27</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div> --}}
-
-<!-- row 3 -->
-          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-            <figure class="w-32">
-              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
-            </figure>
-            <div class="card-body p-5">
-              <div class="grid grid-cols-9 gap-4">
-
-                <div class="col-span-1">
-                  <div class="avatar">
-                    <div class="w-10 rounded-full border-2">
-                        <img src="../Asset/Profile-user.svg" class="p-3"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Price</li>
-                    <li>Rp. 26.000</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-warning rounded-lg badge-outline">Pending</div>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Delivery Time</li>
-                    <li>2024-07-27</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div> --}}
-          <!-- row 4 -->
-          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-            <figure class="w-32">
-              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
-            </figure>
-            <div class="card-body p-5">
-              <div class="grid grid-cols-9 gap-4">
-
-                <div class="col-span-1">
-                  <div class="avatar">
-                    <div class="w-10 rounded-full border-2">
-                        <img src="../Asset/Profile-user.svg" class="p-3"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Price</li>
-                    <li>Rp. 26.000</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Delivery Time</li>
-                    <li>2024-07-27</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div> --}}
-<!-- row 5 -->
-          {{-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-            <figure class="w-32">
-              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
-            </figure>
-            <div class="card-body p-5">
-              <div class="grid grid-cols-9 gap-4">
-
-                <div class="col-span-1">
-                  <div class="avatar">
-                    <div class="w-10 rounded-full border-2">
-                        <img src="../Asset/Profile-user.svg" class="p-3"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Price</li>
-                    <li>Rp. 26.000</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-outline text-xs rounded-lg text-b">In Progress</div>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Delivery Time</li>
-                    <li>2024-07-27</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-               
-
-              </div>
-            </div>
-          </div> --}}
-
+          @endif
+          @endforeach
+          @endforeach
     </div>
   </div>
   </div>
@@ -879,5 +690,3 @@
     
   </body>
   </html>
-       
-          
