@@ -185,6 +185,8 @@
    <input hidden name="Id_User" id="Id_User" value="{{ Auth::user()->Id_User }}"></input>
    <input hidden name="Id_Order" id="Id_Order" value="{{ $orders->Id_Order }}"></input>
    <input hidden name="Method" id="Method" value="Dana"></input>
+   <input hidden name="Title" id="TItle" value="{{ $serviceOrder->Title }}"></input>
+   <input hidden name="Type_Name" id="Type_Name" value="{{ $typeOrder->Type_Name }}"></input>
    
 
     <div class="col-span-1">
