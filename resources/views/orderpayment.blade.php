@@ -324,6 +324,11 @@
           document.querySelector(`[onclick="toggleTab('${tabId}')"`).classList.add('tab-active');
       }
   </script>
+  @if (session('verif'))
+    <script>
+        alert("{{ session('verif') }}")
+    </script>
+  @endif
     </body>
     </html>
          

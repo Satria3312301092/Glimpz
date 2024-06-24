@@ -445,7 +445,8 @@
                       </svg>
                       </div>
                       <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                                  <li>
+                        @if ($order->Status == 'Payment')
+                        <li>
                                     <form action="{{route ('orderpayment.show', $order->Id_Order)}}" >
                                 <button type="submit" class="flex items-center">
                                     <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -464,6 +465,7 @@
                                     Cancel
                                 </button>
                         </li>
+                        @endif
 
                         <!-- Open the modal using ID.showModal() method -->
 

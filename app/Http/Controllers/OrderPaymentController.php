@@ -51,41 +51,58 @@ class OrderPaymentController extends Controller
     }
 
     public function store(Request $request) {
-
-    
-        Log::info($request->all());
-        $price = $request->input('Price');
         
-        try {
-            $payment = new Payment;
-            $payment->Id_User = $request->input('Id_User');
-            $payment->Id_Order = $request->input('Id_Order');
-            $payment->Method = $request->input('Method');
-            $payment->Total = $request->input('Total');
+        $order = Order::find($request->input('Id_Order'));
+        $payment = Payment::where('Id_Order', $request->input('Id_Order'))->first();
+        
+       
+        if ($order && $payment) {
+            
+            return redirect()->back()->with('verif','Kamu Sudah Memverifikasi Pesanan Ini silahkan melakukan pembayaran dengan mengklik tombol pay atau buat pesanan baru jika sudah melebihi 24 jam'); 
+        } else {
+           
+            Log::info($request->all());
+            $price = $request->input('Price');
+        
+            try {
+                
+                $payment = new Payment;
+                $payment->Id_User = $request->input('Id_User');
+                $payment->Id_Order = $request->input('Id_Order');
+                $payment->Method = $request->input('Method');
+                $payment->Total = $request->input('Total');
+        
+                
+        
+                
+                $items = new InvoiceItem([
+                    'name' =>  $request->input('Title').' '.$request->input('Type_Name'), 
+                    'price' => $price,
+                    'quantity' => '1',
+                ]);
+        
+                
+                $createInvoice = new CreateInvoiceRequest([
+                    'external_id' => 'Inv - '. rand(),
+                    'amount' => $price,
+                    'items' => array($items)
+                ]); 
+        
+                
+                $apiInstance = new InvoiceApi();
+                $generateInvoice = $apiInstance->createInvoice($createInvoice);
 
-            $payment->save();
-
-            $items = new InvoiceItem([
-                'name' =>  $request->input('Title').' '.$request->input('Type_Name'), 
-                'price' => $price ,
-                'quantity' => '1'
-            ]);
-
-            $createInvoice = new CreateInvoiceRequest([
-                'external_id' => 'Inv - '. rand(),
-                'amount' => $price,
-                'items' => array($items)
-            ]); 
-
-            $apiInstance = new InvoiceApi();
-            $generateInvoice = $apiInstance->createInvoice($createInvoice);
-
-            return dd($generateInvoice);
-            // return dd($payment);
-        } catch (\Throwable $th) {
-            //throw $th;
+                $payment->Invoice_Url = $generateInvoice['invoice_url'];
+                $payment->save();
+        
+                return dd($generateInvoice);
+            } catch (\Throwable $th) {
+                
+                return dd($th);
+            }
         }
     }
-
-
+    
+    
+    
 }

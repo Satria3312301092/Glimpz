@@ -389,6 +389,7 @@
                     </svg>
                     </div>
                      <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
+                      @if ($order->Status == 'Waiting')
                       <li>
                           <form method="POST" action="{{ route('profileseller.update-status', $order->Id_Order) }}">
                               @csrf
@@ -414,6 +415,7 @@
                               </button>
                           </form>
                       </li>
+                      @endif
                       <li>
                         <a onclick="my_modal_1{{ $order->Id_Order }}.showModal()">
                         <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
