@@ -34,6 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
             left: distance,
             behavior: 'smooth'
         });
+
+        // Check if user is close to the end of the container
+        if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 50) {
+            duplicateContent(container);
+        }
+    }
+
+    // Function to duplicate the content of the scroll container
+    function duplicateContent(container) {
+        const originalContent = container.innerHTML;
+        container.innerHTML += originalContent; // Append a copy of the original content
     }
 
     // Function to add click event listeners to buttons
@@ -67,5 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const distance = event.deltaY < 0 ? -384 : 384;
             handleScroll(scrollContainer, distance); // Adjust scroll distance based on scroll direction
         });
+
+        // Initial content duplication to support infinite scroll
+        duplicateContent(scrollContainer);
     });
 });

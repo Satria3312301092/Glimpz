@@ -14,6 +14,7 @@ use App\Models\Detail;
 use App\Models\Seller;
 use App\Models\Service;
 use App\Models\Payment;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Xendit\Invoice\InvoiceItem;
@@ -46,13 +47,87 @@ class OrderPaymentController extends Controller
     $servicesOrder = $orders->servicess;
     $typesOrder = $orders->typess;
     $detailsOrder = $orders->detailss;
-    $sellersOrder = $orders->sellerss;
+    // $sellersOrder = $orders->sellerss;
     $payments = $orders->paymentss;
     
 
 
-    return view('orderpayment',compact('orders','servicesOrder', 'typesOrder', 'detailsOrder','sellersOrder', 'userss', 'sellerss', 'payments'));
+    return view('orderpayment',compact('orders','servicesOrder', 'typesOrder', 'detailsOrder', 'userss', 'sellerss', 'payments'));
     }
+
+    public function webhookOrder(Request $request)
+{
+    $getToken = $request->headers->get('x-callback-token');
+    $callbackToken = env('XENDIT_CALLBACK_TOKEN');
+    
+    try {
+        
+        if (!$callbackToken || $getToken !== $callbackToken) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Token callback invalid'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        
+        $payment = Payment::where('External_Id', $request->external_id)->first();
+
+        
+        if (!$payment) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Payment not found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        
+        if (!$payment) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Payment not found for given Id_Order'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        
+        $order = Order::where('Id_Order', $payment->Id_Order)->first();
+
+        
+        if (!$order) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Order not found for given Id_Order'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        
+        if ($request->status == 'PAID') {
+            $order->update([
+                'Status' => 'WaitingApprove',
+            ]);
+            $payment->update([
+                'Method' => $request->payment_channel
+            ]);
+        } else {
+            $order->update([
+                'Status' => 'Cancel'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Order status updated',
+            'token' => $getToken
+        ], Response::HTTP_OK);
+
+    } catch (\Throwable $th) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $th->getMessage(),
+        ], Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+}
+
+
 
     public function store(Request $request) {
         
@@ -97,6 +172,7 @@ class OrderPaymentController extends Controller
                 $generateInvoice = $apiInstance->createInvoice($createInvoice);
 
                 $payment->Invoice_Url = $generateInvoice['invoice_url'];
+                $payment->External_Id = $generateInvoice['external_id'];
                 $payment->save();
                 
                 // return dd($generateInvoice);

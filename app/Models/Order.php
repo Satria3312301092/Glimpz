@@ -41,10 +41,11 @@ class Order extends Model
         return $this->hasMany(Detail::class, 'Id_Detail');
     }
 
-    // public function seller() {
-    //     return $this->belongsTo(Seller::class, 'Id_Seller');
-    // }
+    public function seller() {
+        return $this->belongsTo(Seller::class, 'Id_Seller');
+    }
 
+    
     public function servicess()
 {
     return $this->hasMany(Service::class, 'Id_Service', 'Id_Service');
@@ -61,10 +62,27 @@ class Order extends Model
     public function paymentss() {
         return $this->belongsTo(Payment::class, 'Id_Order', 'Id_Order');
     }
-//     public function sellerss()
+    public function sellerss()
+{
+    return $this->hasMany(Seller::class, 'Id_Seller', 'Id_User');
+}
+
+// UJI COBA
+// public function details()
 // {
-//     return $this->hasMany(Seller::class, 'Id_Seller', 'Id_User');
+//     return $this->hasOne(Detail::class, 'Id_Detail');
 // }
+
+// public function seller()
+// {
+//     return $this->belongsTo(Seller::class, 'Id_User','Id_User');
+// }
+
+// public function payments()
+// {
+//     return $this->hasOne(Payment::class, 'Id_Order');
+// }
+// UJI COBA
 
 //     public function userss()
 // {

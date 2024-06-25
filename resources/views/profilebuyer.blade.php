@@ -422,8 +422,8 @@
                         <td><div class="badge badge-outline text-xs text-green-600">Finished</div></td>
                         @elseif ($order->Status == 'Cancel')
                         <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
-                        @elseif ($order->Status == 'Pending')
-                        <div class="badge badge-warning rounded-lg badge-outline">Pending</div>
+                        @elseif ($order->Status == 'WaitingApprove')
+                        <div class="badge badge-warning rounded-lg badge-outline">Approve Payment</div>
                         @endif
                   </ul>
                 </div>
