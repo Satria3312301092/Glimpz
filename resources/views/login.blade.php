@@ -35,8 +35,12 @@
                 alert("{{ session('Banphone') }}")
             </script>
     @endif
-    <!-- login baru -->
-<div class="container mx-auto flex justify-center items-center h-screen">
+    @if(session('register'))
+            <script>
+                alert("{{ session('register') }}")
+            </script>
+    @endif
+    <div class="container mx-auto flex justify-center items-center h-screen">
     <div class="bg-white w-2/3 rounded-2xl shadow-xl shadow-neutral-500">
         <div class="grid grid-cols-2">
             <div class="bg-cover rounded-l-2xl" style="background-image: url(background/Login.png)"></div>
