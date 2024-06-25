@@ -86,6 +86,11 @@ Route::middleware(['guest'])->group(function () {
 
 });
 
+Route::middleware(['verify.xendit'])->group(function () {
+    Route::post('/orderpayment/xebhookOrder', [OrderPaymentController::class, 'webhookOrder'])->name('webhookOrder')->middleware('verify.xendit');
+});
+
+
 Route::middleware(['auth'])->group(function () {
 
     //BUYER
@@ -100,6 +105,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/orderpayment/{id}', [OrderPaymentController::class, 'index'])->name('orderpayment.index');
 
     Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
+
 
 
     //SELLER
@@ -132,10 +138,6 @@ Route::middleware(['auth'])->group(function () {
     return redirect('/beranda');
     });
 });
-
-
-
-
 
 
 
