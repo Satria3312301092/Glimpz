@@ -39,15 +39,17 @@ class OrderPaymentController extends Controller
     $userss = User::all();
     $sellerss = Seller::all();
     $orders = Order::find($Id_Order);
+    // $payments = Payment::find($Id_Order);
     
     $servicesOrder = $orders->servicess;
     $typesOrder = $orders->typess;
     $detailsOrder = $orders->detailss;
     $sellersOrder = $orders->sellerss;
+    $payments = $orders->paymentss;
     
 
 
-    return view('orderpayment',compact('orders','servicesOrder', 'typesOrder', 'detailsOrder','sellersOrder', 'userss', 'sellerss'));
+    return view('orderpayment',compact('orders','servicesOrder', 'typesOrder', 'detailsOrder','sellersOrder', 'userss', 'sellerss', 'payments'));
     }
 
     public function store(Request $request) {
