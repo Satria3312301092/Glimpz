@@ -60,7 +60,7 @@ class OrderPaymentController extends Controller
        
         if ($order && $payment) {
             
-            return redirect()->back()->with('verif','Kamu Sudah Memverifikasi Pesanan Ini silahkan melakukan pembayaran dengan mengklik tombol pay atau buat pesanan baru jika sudah melebihi 24 jam'); 
+            return redirect()->back()->with('verif','If you have verified this order, please make payment by clicking the pay button or make a new order if it has been more than 24 hours'); 
         } else {
            
             Log::info($request->all());
@@ -96,8 +96,9 @@ class OrderPaymentController extends Controller
 
                 $payment->Invoice_Url = $generateInvoice['invoice_url'];
                 $payment->save();
-        
-                return dd($generateInvoice);
+                
+                // return dd($generateInvoice);
+                return redirect()->back()->with('success','Payment Has been Verified Please click Button Pay Now for Pay Your Service');
             } catch (\Throwable $th) {
                 
                 return dd($th);

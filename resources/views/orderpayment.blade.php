@@ -338,6 +338,12 @@
         alert("{{ session('verif') }}")
     </script>
   @endif
+
+  @if (session('success'))
+  <script>
+      alert("{{ session('success') }}")
+  </script>
+@endif
     </body>
     </html>
          
