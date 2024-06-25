@@ -468,7 +468,7 @@
                                     Cancel
                                 </button>
                         </li>
-                        @endif
+                        
                         <!-- Open the modal using ID.showModal() method -->
 
                         
@@ -598,14 +598,20 @@
                                       </div>
                                       @if ($order->Status == 'Finish')
                                       <div class="flex items-center pl-10">
+                                      <form action="{{ route('rating.jasa') }}" method="POST">
                                               <div class="rating rating-sm">
+                                                  <input type="radio"  name="rating" class="mask mask-star-2" value="" checked/>
                                                   <input type="radio" name="rating" class="mask mask-star-2" value="1" />
                                                   <input type="radio" name="rating" class="mask mask-star-2" value="2"  />
                                                   <input type="radio" name="rating" class="mask mask-star-2" value="3" />
                                                   <input type="radio" name="rating" class="mask mask-star-2" value="4"  />
                                                   <input type="radio" name="rating" class="mask mask-star-2" value="5"  />
                                               </div>
-                                              <span>(77 Reviews)</span>
+                                              <input type="" name="id_user" value="" />
+                                            <input type="" name="id_service" value="" />
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
+                                              <!-- <span>(77 Reviews)</span> -->
                                       </div>
                                       @endif
                                       
