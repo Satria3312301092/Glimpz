@@ -27,6 +27,17 @@ class LoginController extends Controller
         ];
 
         $user = User::where('Username', $request->username)->first();
+
+        $user2 = User::where('Username', $request->username)->first();
+
+        if (!$user2) {
+            Auth::logout();
+            session()->invalidate();
+            session()->regenerateToken();
+            return redirect()->back()->with('register', 'Account not found. Please register first.');
+        }
+        
+
         $bannedEmail = Banned::where('Email', $user->Email)->first();
         $existingEmail = User::where('Email', $user->Email)->first();
         $bannedPhone = Banned::where('Number_Phone', $user->Number_Phone)->first();
@@ -39,6 +50,8 @@ class LoginController extends Controller
             session()->regenerateToken();
             return redirect()->back()->with('login_failed', 'Your account Has Been Banned Please Contact Us.');
         }
+
+       
 
         if ($bannedEmail) {
             Auth::logout();

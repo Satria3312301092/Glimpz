@@ -35,6 +35,11 @@
                 alert("{{ session('Banphone') }}")
             </script>
     @endif
+    @if(session('register'))
+            <script>
+                alert("{{ session('register') }}")
+            </script>
+    @endif
     <section class="bg-white-100 min-h-screen flex items-center
     justify-center ">
             <!-- Login container -->
