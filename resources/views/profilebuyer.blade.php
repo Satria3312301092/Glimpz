@@ -445,6 +445,7 @@
                       </svg>
                       </div>
                       <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
+                      @if ($order->Status == 'Payment')
                             <li>
                               <form action="{{route ('orderpayment.show', $order->Id_Order)}}" >
                                 <button type="submit" class="flex items-center">
@@ -458,6 +459,7 @@
                                 </button>
                             </form>
                         </li>
+                        @endif
                          <li>  
                                 <button type="submit" class="flex items-center" onclick="my_modal_cancel{{ $order->Id_Order }}.showModal()">
                                     <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -590,17 +592,21 @@
                                               <a class="font-bold text-lg">Hyerin</a>
                                               
                                       </div>
+                                      @if ($order->Status == 'Finish')
                                       <div class="flex items-center pl-10">
                                               <div class="rating rating-sm">
-                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
-                                                  <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
-                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
-                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
+                                                  <input type="radio" name="rating" class="mask mask-star-2" value="1" />
+                                                  <input type="radio" name="rating" class="mask mask-star-2" value="2"  />
+                                                  <input type="radio" name="rating" class="mask mask-star-2" value="3" />
+                                                  <input type="radio" name="rating" class="mask mask-star-2" value="4"  />
+                                                  <input type="radio" name="rating" class="mask mask-star-2" value="5"  />
                                               </div>
                                               <span>(77 Reviews)</span>
                                       </div>
-                                    </div>
+                                      @endif
+                                      
+ 
+                                    </div> 
                               </div>
                               <div>
                                   <div class="col-span-1">
@@ -687,6 +693,8 @@
   @if (session('error'))
       <script> alert("{{ session('error') }}"); </script>
   @endif
+
+
     
   </body>
   </html>

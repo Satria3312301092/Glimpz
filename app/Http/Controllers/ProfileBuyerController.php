@@ -9,6 +9,7 @@ use App\Models\Type;
 use App\Models\Detail;
 use App\Models\Seller;
 use App\Models\Service;
+use App\Models\Ratings;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -136,6 +137,25 @@ class ProfileBuyerController extends Controller
         $order->save();
 
         return redirect()->back()->with('success', 'Order canceled successfully');
+    }
+
+    public function rating(Request $request)
+    {
+        $validated = $request->validate([
+            'Id_User' => 'required|exists:users,id',
+            'Id_Service' => 'required|exists:services,id',
+            'Rating' => 'required|integer|min=1|max=5',
+        ]);
+
+        $rating = Ratings::updateOrCreate(
+            [
+                'Id_User' => $validated['Id_User'],
+                'Id_Service' => $validated['Id_Service'],
+            ],
+            ['Rating' => $validated['Rating']]
+        );
+
+        return response()->json(['success' => true]);
     }
 
 

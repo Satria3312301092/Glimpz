@@ -100,6 +100,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/orderpayment/{id}', [OrderPaymentController::class, 'index'])->name('orderpayment.index');
 
     Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
+    Route::post('/rating', [ProfileBuyerController::class, 'rating'])->name('rating.jasa');
 
 
     //SELLER

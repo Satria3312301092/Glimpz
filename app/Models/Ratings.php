@@ -16,4 +16,15 @@ class Ratings extends Model
         'Id_Service',
         'Rating',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'Id_User');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class,'Id_Service');
+    }
+    
 }
