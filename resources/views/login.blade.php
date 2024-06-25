@@ -90,7 +90,7 @@
                     </div>
             <p class="text-xs absolute bottom-36">
                 <a class="text-slate-400">Dont have an account yet?</a>
-                <a href="{{ url('daftar1') }}" class="text-blue-800 hover:underline">Sign In</a>
+                <a href="{{ url('daftar1') }}" class="text-blue-800 hover:underline">Sign Up</a>
             </p>
         </div>
 

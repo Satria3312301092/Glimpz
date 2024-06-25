@@ -282,6 +282,12 @@
                       {{ $user->Email }}</a></li>   
                 </ul>
               </div>  
+                        <div class="flex justify-center mt-4">
+                         <button class="btn text-base rounded-lg border-0
+                                      text-sm font-semibold
+                                      bg-blue-50 text-blue-700
+                                      hover:bg-blue-600 hover:text-white hover:shadow-lg">Switch Buyer</button>
+                       </div>
             </div>
           </div>
         <!-- profile -->

@@ -89,14 +89,12 @@
                         
                 </div>
                 <div class="flex items-center pl-10">
-                        <div class="rating rating-sm">
-                            <input type="radio" name="rating-9" class="mask mask-star-2" />
-                            <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                            <input type="radio" name="rating-9" class="mask mask-star-2" />
-                            <input type="radio" name="rating-9" class="mask mask-star-2" />
-                            <input type="radio" name="rating-9" class="mask mask-star-2" />
-                        </div>
-                        <span>(77 Reviews)</span>
+                <div class="rating rating-sm">
+                    <input type="radio" name="rating-9" class="mask mask-star-2" />
+                    <span class="ml-2 text-sm">{{ number_format($service->average_rating, 1) }}/5 ({{ $service->rating_count }} ratings)</span>
+                
+                    <!-- <span>128</span> -->
+                  </div>
                 </div>
             </div>
 

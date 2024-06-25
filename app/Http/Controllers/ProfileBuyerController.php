@@ -141,16 +141,16 @@ class ProfileBuyerController extends Controller
 
     public function rating(Request $request)
     {
+        $id_user = auth()->User()->Id_User;
         $validated = $request->validate([
-            'id_user' => 'required|exists:users,id',
-            'id_service' => 'required|exists:services,id',
-            'rating' => 'required|integer|min=1|max=5',
+            'id_service' => 'required',
+            'rating' => 'required|integer|min:1|max:5',
         ]);
 
         $rating = new Ratings();
-        $rating->Id_User = $validated['id_user'];
+        $rating->Id_User = $id_user;
         $rating->Id_Service = $validated['id_service'];
-        $rating->rating = $validated['rating'];
+        $rating->Rating = $validated['rating'];
         $rating->save();
 
         return redirect()->back()->with('success', 'Rating submitted successfully!');

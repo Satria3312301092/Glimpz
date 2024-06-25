@@ -171,7 +171,7 @@
             
             <p class="text-xs absolute bottom-9">
               <a class="text-slate-400">Already have an account?</a>
-              <a href="{{ url('formlogin') }}" class="text-blue-800 hover:underline">Log In</a>
+              <a href="{{ url('formlogin') }}" class="text-blue-800 hover:underline">Sign In</a>
             </p>
           </div>
         </form>
