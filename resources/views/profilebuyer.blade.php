@@ -445,9 +445,9 @@
                       </svg>
                       </div>
                       <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                      @if ($order->Status == 'Payment')
-                            <li>
-                              <form action="{{route ('orderpayment.show', $order->Id_Order)}}" >
+                      @if ($order->Status == 'Payment')            
+                      <li>
+                                    <form action="{{route ('orderpayment.show', $order->Id_Order)}}" >
                                 <button type="submit" class="flex items-center">
                                   <svg class="w-4 mr-2" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19 0H5C3.67441 0.00158786 2.40356 0.528882 1.46622 1.46622C0.528882 2.40356 0.00158786 3.67441 0 5L0 13C0.00158786 14.3256 0.528882 15.5964 1.46622 16.5338C2.40356 17.4711 3.67441 
@@ -468,6 +468,10 @@
                                     Cancel
                                 </button>
                         </li>
+                        @endif
+                        <!-- Open the modal using ID.showModal() method -->
+
+                        
 
                         <li>
                           <a onclick="my_modal_detail{{ $order->Id_Order }}.showModal()">
@@ -671,7 +675,21 @@
                                     </div>
                                   </div>
                       </div>
+                      @if ($order->Status == 'Payment')
+                      <div class="modal-action border-t-2 border-gray-200">
+                        <button class="btn bg-red-50 text-red-600 mt-3">
+                          <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                            Reject</button>
+                        <button class="btn bg-green-50 text-green-600 mt-3">
+                          <svg class="w-5" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M33.25 12.25L17.9375 29.75L8.75 21.7955" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          Accept</button>
                       </div>
+                      </div>
+                      @endif
 </dialog>
 <!-- modal detail -->
 

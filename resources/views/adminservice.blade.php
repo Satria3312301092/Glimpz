@@ -107,7 +107,7 @@
                           {{ $service->Title }}
                         </td>
                         <td>{{ $service->Category }}</td>
-                        <td>{{ $detail->Price }}</td>
+                        <td>Rp{{ number_format($detail->Price, 0, ',', '.') }}</td>
                         <th>
                             <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
