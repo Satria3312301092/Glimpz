@@ -126,10 +126,11 @@ return new class extends Migration
             $table->increments('Id_Payment'); // Primary key, auto-increment
             $table->unsignedInteger('Id_User'); // Foreign key
             $table->unsignedInteger('Id_Order'); // Foreign key
-            $table->string('Methode', 100);
-            $table->string('Proof', 100);
+            $table->string('Method', 100);
+            $table->string('Proof', 100)->nullable();
             $table->date('Date');
             $table->unsignedInteger('Total'); // Total amount
+            $table->string('Invoice_Url', 255);
 
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
