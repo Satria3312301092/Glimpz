@@ -87,7 +87,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['verify.xendit'])->group(function () {
-    Route::post('/orderpayment/xebhookOrder', [OrderPaymentController::class, 'webhookOrder'])->name('webhookOrder')->middleware('verify.xendit');
+    Route::post('/orderpayment/webhookOrder', [OrderPaymentController::class, 'webhookOrder'])->name('webhookOrder')->middleware('verify.xendit');
 });
 
 
