@@ -75,56 +75,19 @@
                 <button id="nextButton3" class="nextButton3 btn btn-circle ml-2">❯</button>
             </div>
         </div>
-          <div id="scrollContainer3" class="scrollContainer flex gap-4 py-4 overflow-x-hidden whitespace-nowrap scroll-snap-x w-full">
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            All Services
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Video Editing
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Video Ads
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Visual Effect
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Education
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Templates
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Short Movie
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Social Media
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            2D Animation
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            3D Animation
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Logo Animation
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Film Series
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24 truncate">
-            Character Animation
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Web Animation
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            Rigging
-          </button>
-          <button class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24">
-            NFT Animation
-          </button>
-        </div>
+          <form method="GET" action="{{ route('listservice.index') }}">
+    <div id="scrollContainer3" class="scrollContainer flex gap-4 py-4 overflow-x-hidden whitespace-nowrap scroll-snap-x w-full">
+        @php
+            $categories = ['All Services', 'Video Editing', 'Video Ads', 'Visual Effect', 'Education', 'Templates', 'Short Movie', 'Social Media', '2D Animation', '3D Animation', 'Logo Animation', 'Film Series', 'Character Animation', 'Web Animation', 'Rigging', 'NFT Animation'];
+        @endphp
+        
+        @foreach($categories as $cat)
+        <button type="submit" name="category" value="{{ $cat == 'All Services' ? '' : $cat }}" class="btn btn-circle btn-outline border-blue-700 hover:border-blue-700 hover:bg-blue-700 text-black text-xl font-normal shadow-lg mt-8 px-24 {{ $category == $cat ? 'bg-blue-700 text-white' : '' }}">
+            {{ $cat }}
+        </button>
+        @endforeach
+    </div>
+</form>
 
         <div class="flex justify-center mt-12">
           <div class="grid grid-cols-4 gap-8">

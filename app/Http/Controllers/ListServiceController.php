@@ -10,8 +10,14 @@ use App\Models\Ratings;
 
 class ListServiceController extends Controller
 {
-    public function index(){
-    $services = Service::all();
+    public function index(Request $request){
+        $category = $request->input('category');
+
+        if($category) {
+            $services = Service::where('Category', $category)->get();
+        } else {
+            $services = Service::all();
+        }
     $types = Type::all();
     $details = Detail::all();
 
@@ -20,6 +26,6 @@ class ListServiceController extends Controller
         $service->rating_count = $service->ratingCount();
     }
     
-    return view("list_service", compact('services','types','details'));    
+    return view("list_service", compact('services','types','details','category'));    
     }
 }

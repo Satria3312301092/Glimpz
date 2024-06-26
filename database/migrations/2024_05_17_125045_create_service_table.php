@@ -126,7 +126,7 @@ return new class extends Migration
             $table->increments('Id_Payment'); // Primary key, auto-increment
             $table->unsignedInteger('Id_User'); // Foreign key
             $table->unsignedInteger('Id_Order'); // Foreign key
-            $table->string('Methode', 100);
+            $table->string('Methode', 100)->nullable();
             $table->string('Proof', 100)->nullable();
             $table->timestamp('Date');
             $table->unsignedInteger('Total'); // Total amount

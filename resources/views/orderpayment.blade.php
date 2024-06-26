@@ -243,7 +243,7 @@
                 <p>Rp{{ number_format($detailOrder->Price + $tax, 0, ',', '.') }}</p>
               </li>
             </ul>
-              <button class="btn btn-block bg-blue-700 hover:bg-blue-700 text-white" onclick="my_modal_3.showModal()">Verify payment</button>
+              <button class="btn btn-block bg-blue-700 hover:bg-blue-700 text-white" >Verify payment</button>
           </div>
           <!-- total price -->
           
