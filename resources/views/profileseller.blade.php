@@ -57,7 +57,7 @@
           <li><a>Item 3</a></li>
         </ul>
       </div>
-      <a class="btn btn-ghost text-xl">daisyUI</a>
+      <a class="btn btn-ghost text-xl">Glimpz</a>
     </div>
     <div class="navbar-center hidden lg:flex z-[1]">
       <ul class="menu menu-horizontal px-1">
@@ -71,14 +71,14 @@
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
         <div class="w-10 rounded-full shadow-lg">
-          <img alt="" src="images/Profileuser.svg" />
+          <img alt="" src="icon/Profileuser.svg" />
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li><a href="{{ route('profileseller.index') }}"><img src="images/Profile.svg" alt="">Profile</a></li>
+          <li><a href="{{ route('profileseller.index') }}"><img src="icon/Profile.svg" alt="">Profile</a></li>
         <form action="{{ route ('logout') }}" method="POST">
           @csrf
-          <li><button type="submit"><img src="images/logout.svg" alt="">Logout</button></li>
+          <li><button type="submit"><img src="icon/logout.svg" alt="">Logout</button></li>
         </form>
       </ul>
     </div>
@@ -283,10 +283,13 @@
                 </ul>
               </div>  
                         <div class="flex justify-center mt-4">
+                        <form action="{{ route('profileseller.switchToBuyer') }}" method="POST">
+                        @csrf
                          <button class="btn text-base rounded-lg border-0
                                       text-sm font-semibold
                                       bg-blue-50 text-blue-700
                                       hover:bg-blue-600 hover:text-white hover:shadow-lg">Switch Buyer</button>
+                        </form>
                        </div>
             </div>
           </div>
@@ -347,7 +350,7 @@
                 <div class="col-span-1">
                   <div class="avatar">
                     <div class="w-10 rounded-full border-2">
-                      <img src="../Asset/Profile-user.svg" class="p-3"/>
+                      <img src="icon/Profileuser.svg" />
                     </div>
                   </div>
                 </div>

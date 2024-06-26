@@ -28,8 +28,9 @@ class ProfileBuyerController extends Controller
         foreach ($orders as $order) {
             $order->Date = Carbon::parse($order->Date)->format('Y-m-d'); // or 'd M Y'
         }
+        $isSeller = Seller::where('Id_User', $userId)->exists();
     
-        return view('profilebuyer', compact('user','orders','servicesOrder', 'typesOrder', 'detailsOrder'));
+        return view('profilebuyer', compact('user','orders','servicesOrder', 'typesOrder', 'detailsOrder','isSeller'));
     }
 
     public function edit(){
@@ -154,6 +155,23 @@ class ProfileBuyerController extends Controller
         $rating->save();
 
         return redirect()->back()->with('success', 'Rating submitted successfully!');
+    }
+
+    public function switchToSeller(Request $request)
+    {
+    $userId = Auth::id();
+    $user = User::find($userId);
+    $seller = Seller::where('Id_User', $userId)->first();
+
+    if ($seller) {
+        $user->Role = 'Seller';
+        $user->save();
+        session()->flash('success', 'Successfully switched to Seller');
+    } else {
+        session()->flash('error', 'Seller data not found. Please join as Seller first.');
+    }
+
+    return redirect()->route('profileseller.index');
     }
 
 

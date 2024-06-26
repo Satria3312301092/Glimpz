@@ -46,13 +46,7 @@
         </div>
         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 w-52">
           <li><a>Home</a></li>
-          <li>
-            <a>Service</a>
-            <ul class="p-2">
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </li>
+          <li><a>Service</a></li>
           <li><a>About</a></li>
           <li><a>Contact</a></li>
         </ul>
@@ -62,15 +56,7 @@
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
         <li><a href="beranda">Home</a></li>
-        <li>
-          <details>
-            <summary>Service</summary>
-            <ul class="p-2">
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </details>
-        </li>
+        <li><a>Service</a></li>
         <li><a>About</a></li>
         <li><a>Contact</a></li>
       </ul>
@@ -290,12 +276,25 @@
 
 
                   <!-- Open the modal using ID.showModal() method -->
+                   @if(!$isSeller)
                    <div class="flex justify-center mt-4">
                      <button class="btn text-base rounded-lg border-0
                                   text-sm font-semibold
                                   bg-blue-50 text-blue-700
                                   hover:bg-blue-600 hover:text-white hover:shadow-lg" onclick="my_modal_1.showModal()">Join as Seller</button>
                    </div>
+                   @else
+                   <div class="flex justify-center mt-4">
+                   <form action="{{ route('profilebuyer.switchToSeller') }}" method="POST">
+                   @csrf
+                     <button class="btn text-base rounded-lg border-0
+                                  text-sm font-semibold
+                                  bg-blue-50 text-blue-700
+                                  hover:bg-blue-600 hover:text-white hover:shadow-lg" >Switch Seller</button>
+                   </form>
+                   </div>
+                   @endif
+
                   <dialog id="my_modal_1" class="modal">
                     <div class="modal-box">
                       <form method="dialog">
