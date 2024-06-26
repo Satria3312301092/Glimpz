@@ -70,7 +70,7 @@ class MinServiceController extends Controller
             'Revision2'=> 'string|max:100',
             'Price2'=> 'string|max:100',
             'Description2'=> 'string|max:255',
-    
+
             'Day3'=> 'string|max:100',
             'Revision3'=> 'string|max:100',
             'Price3'=> 'string|max:100',
