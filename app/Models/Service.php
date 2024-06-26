@@ -37,4 +37,18 @@ class Service extends Model
         return $this->belongsTo(User::class, 'Id_Seller', 'Id_User');
     }
 
+    public function ratings()
+    {
+        return $this->hasMany(Ratings::class, 'Id_Service');
+    }
+
+    public function averageRating()
+    {
+        return $this->ratings()->avg('Rating');
+    }
+    
+    public function ratingCount()
+    {
+        return $this->ratings()->count();
+    }
 }

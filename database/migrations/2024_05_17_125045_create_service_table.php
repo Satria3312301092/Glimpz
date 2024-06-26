@@ -109,7 +109,7 @@ return new class extends Migration
             $table->unsignedInteger('Id_Service'); // Foreign key
             $table->unsignedInteger('Id_Type'); // Foreign key
             $table->unsignedInteger('Id_Detail'); // Foreign key
-            $table->enum('Status', ['Waiting', 'Proses', 'Finish', 'Cancel','Payment']);
+            $table->enum('Status', ['Waiting', 'Proses', 'Finish', 'Cancel','Payment','WaitingApprove']);
             $table->timestamp('Date');
 
             // Define the foreign key constraints
@@ -127,9 +127,11 @@ return new class extends Migration
             $table->unsignedInteger('Id_User'); // Foreign key
             $table->unsignedInteger('Id_Order'); // Foreign key
             $table->string('Methode', 100);
-            $table->string('Proof', 100);
-            $table->date('Date');
+            $table->string('Proof', 100)->nullable();
+            $table->timestamp('Date');
             $table->unsignedInteger('Total'); // Total amount
+            $table->string('Invoice_Url', 255);
+            $table->string('External_Id', 255);
 
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
@@ -144,22 +146,10 @@ return new class extends Migration
             $table->unsignedInteger('Id_User'); // Foreign key
             $table->unsignedInteger('Id_Payment'); // Foreign key
             $table->unsignedInteger('Id_Order'); // Foreign key
-            $table->unsignedInteger('Id_Service'); // Foreign key
-            $table->string('Name', 100);
-            $table->string('Email', 100);
-            $table->string('Number_Phone', 100);
-            $table->string('Description', 100);
-            $table->string('Title', 100);
-            $table->string('Category', 100);
-            $table->unsignedInteger('Price'); 
-            $table->string('Day', 100);
-            $table->string('Revision', 100);
+            $table->unsignedInteger('Id_Service'); // Foreign key     
             $table->unsignedInteger('Total'); 
             $table->string('Proof', 100);
-            $table->string('Methode', 100);
-            $table->string('Thumbnail', 100);
             $table->enum('Status', ['finish']);
-
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
             $table->foreign('Id_Payment')->references('Id_Payment')->on('payment')->onDelete('cascade');
@@ -169,6 +159,16 @@ return new class extends Migration
             // Optional: Add timestamps if needed
             // $table->timestamps();
         });
+
+        Schema::create('ratings', function (Blueprint $table) {
+            $table->increments('Id_Rating');
+            $table->unsignedInteger('Id_User');
+            $table->unsignedInteger('Id_Service');
+            $table->string('Rating', 100);
+
+            $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
+            $table->foreign('Id_Service')->references('Id_Service')->on('service')->onDelete('cascade');
+        });
     }
 
     /**
@@ -176,6 +176,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('ratings');
         Schema::dropIfExists('invoice');
         Schema::dropIfExists('payment');
         Schema::dropIfExists('order');

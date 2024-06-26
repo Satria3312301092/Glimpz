@@ -56,7 +56,7 @@
                 <!-- header -->
                 <div>
                   <h1 class="font-bold text-2xl">Payment Confirmation</h1>
-                  <a class="text-xs text-blue-500">7 Payment Found</a>
+                  <a class="text-xs text-blue-500">{{ $countPayment }} Payment Found</a>
                 </div>
                 <!-- search & drodpdown -->
                 <div class="flex items-end justify-end">
@@ -89,9 +89,10 @@
                   <tbody>
 
                     <!-- row 1 -->
+                    @foreach ($payments as $payment)
                     <tr>
                         <th>
-                          #1
+                          {{ $payment->Id_Payment }}
                         </th>
                         <td>
                             I will animate your character
@@ -99,7 +100,7 @@
                         <td>
                             2024-03-22
                         </td>
-                        <td>Rp.99.000</td>
+                        <td>Rp{{ number_format($payment->Total, 0, ',', '.') }}</td>
                         <td><div class="badge badge-outline text-xs text-green-600">Approved</div></td>
                         <th>
                             <div class="dropdown">
@@ -133,10 +134,11 @@
                           <p class="py-4">Press ESC key or click on ✕ button to close</p>
                         </div>
                       </dialog>
+                      @endforeach
                     <!-- row 1 -->
 
                     <!-- row 2 -->
-                    <tr>
+                    {{-- <tr>
                         <th>
                           #2
                         </th>
@@ -235,7 +237,7 @@
                           <h3 class="font-bold text-lg">Hello!</h3>
                           <p class="py-4">Press ESC key or click on ✕ button to close</p>
                         </div>
-                      </dialog>
+                      </dialog> --}}
                     <!-- row 3 -->
                       
                     <!-- row 4 -->

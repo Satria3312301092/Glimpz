@@ -45,14 +45,14 @@
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
         <div class="w-10 rounded-full shadow-lg">
-          <img alt="" src="images/Profileuser.svg" />
+          <img alt="" src="icon/Profileuser.svg" />
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a href="{{ route('profileseller.index') }}"><img src="images/Profile.svg" alt="">Profile</a></li>
+        <li><a href="{{ route('profileseller.index') }}"><img src="icon/Profile.svg" alt="">Profile</a></li>
         <form action="{{ route ('logout') }}" method="POST">
           @csrf
-          <li><button type="submit"><img src="images/logout.svg" alt="">Logout</button></li>
+          <li><button type="submit"><img src="icon/logout.svg" alt="">Logout</button></li>
         </form>
       </ul>
     </div>
@@ -112,7 +112,7 @@
               @foreach ($services as $service)
                 <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
                   <figure class="w-32">
-                  <img src="{{ Storage::url($service->Thumbnail) }}" alt="" width="150">
+                    <img src="{{ Storage::url($service->Thumbnail) }}" alt="" width="150">
                   </figure>
                   <div class="card-body p-5">
                     <div class="grid grid-cols-9 gap-4">
@@ -120,7 +120,7 @@
                       <div class="col-span-1">
                         <div class="avatar">
                           <div class="w-10 rounded-full border-2">
-                            <img src="images/Profileuser.svg" class="p-1"/>
+                            <img src="icon/Profileuser.svg" />
                           </div>
                         </div>
                       </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class AdminPaymentController extends Controller
@@ -10,8 +11,11 @@ class AdminPaymentController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('adminpayment');
+    {   
+        $payments = Payment::all();
+
+        $countPayment = count($payments);
+        return view('adminpayment', compact('countPayment' , 'payments'));
     }
 
     /**

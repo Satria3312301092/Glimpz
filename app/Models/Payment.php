@@ -19,4 +19,10 @@ class Payment extends Model
         'Date',
         'Total',
     ];
+
+    public function orders() {
+        return $this->belongsTo(Service::class, 'Id_Order', 'Id_Order');
+    }
 }
+
+

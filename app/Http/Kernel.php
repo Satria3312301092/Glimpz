@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'userAkses' => \App\Http\Middleware\UserAkses::class, 
         'check.banned' => \App\Http\Middleware\CheckIfBanned::class,
+        'verify.xendit' => \App\Http\Middleware\VerifyXenditWebhook::class,
     ];
 }

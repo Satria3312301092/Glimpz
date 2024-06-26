@@ -1,10 +1,10 @@
 <!-- navbar start -->
 <div class="navbar bg-base-100 shadow-xl rounded-b-2xl">
             <div class="flex-1">
-            <label for="my-drawer-2" class="btn bg-base-100 border-none shadow-none drawer-button lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </label>
-            <a class="btn btn-ghost text-xl lg:hidden">Glimpz</a>
+              <label for="my-drawer-2" class="btn bg-base-100 border-none shadow-none drawer-button lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+              </label>
+              <a class="btn btn-ghost text-xl lg:hidden">Glimpz</a>
             </div>
             <div class="flex-none gap-2">
               <!-- <div class="form-control">
@@ -18,21 +18,17 @@
               </button>
               <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                  <div class="w-8 p-2 border-[1px] border-[#BEBEBE] rounded-full shadow-md shadow-neutral-300">
-                    <img src="../Asset/Profile-user.svg" alt="Avatar Tailwind CSS Component" />
+                  <div class="w-8 border-[1px] border-[#BEBEBE] rounded-full shadow-md shadow-neutral-300">
+                    <img src="{{ asset('/icon/Profileuser.svg') }}" alt="Avatar Tailwind CSS Component" />
                   </div>
                 </div>
                 <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                   <li>
-                    <a class="justify-between">
-                      Profile
-                      <span class="badge">New</span>
-                    </a>
+                    <a><img src="{{ asset('/icon/Profile.svg') }}" />Profile</a>
                   </li>
-                  <li><a>Settings</a></li>
                   <form action="{{ route ('logout') }}" method="POST">
                     @csrf
-                    <li><button type="submit">Logout</button></li>
+                    <li><button type="submit"><img src="{{ asset('/icon/logout.svg') }}" />Logout</button></li>
                   </form>
                 </ul>
               </div>

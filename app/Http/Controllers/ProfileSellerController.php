@@ -104,4 +104,17 @@ class ProfileSellerController extends Controller
         return redirect()->back()->with('success', 'Order status updated successfully');
     }
 
+    public function switchToBuyer(Request $request)
+{
+    $userId = Auth::id();
+    $user = User::find($userId);
+
+    $user->Role = 'Buyer';
+    $user->save();
+
+    session()->flash('success', 'Successfully switched to Buyer');
+
+    return redirect()->route('profilebuyer.index');
+}
+
 }

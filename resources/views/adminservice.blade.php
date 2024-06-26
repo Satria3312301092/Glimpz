@@ -107,7 +107,7 @@
                           {{ $service->Title }}
                         </td>
                         <td>{{ $service->Category }}</td>
-                        <td>{{ $detail->Price }}</td>
+                        <td>Rp{{ number_format($detail->Price, 0, ',', '.') }}</td>
                         <th>
                             <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
@@ -320,7 +320,7 @@
                               </div>
                               <div>
                                   <div class="col-span-1">
-                                      <div c"grid gap-y-1.5">
+                                      <div class="grid gap-y-1.5">
                                         <label class="form-control w-full">
                                                 <div class="label">
                                                   <span class="label-text font-bold text-slate-700 text-sm">ID Seller</span>

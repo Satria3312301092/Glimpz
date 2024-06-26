@@ -41,6 +41,11 @@ class ServiceController extends Controller
 
         $service = Service::find($Id_Service);
 
+       if ($service) {
+        $service->average_rating = $service->averageRating();
+        $service->rating_count = $service->ratingCount();
+    }
+
         
         
         return view("service", compact('service', 'users')); 

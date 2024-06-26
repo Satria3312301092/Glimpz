@@ -46,13 +46,7 @@
         </div>
         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 w-52">
           <li><a>Home</a></li>
-          <li>
-            <a>Service</a>
-            <ul class="p-2">
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </li>
+          <li><a>Service</a></li>
           <li><a>About</a></li>
           <li><a>Contact</a></li>
         </ul>
@@ -62,15 +56,7 @@
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
         <li><a href="beranda">Home</a></li>
-        <li>
-          <details>
-            <summary>Service</summary>
-            <ul class="p-2">
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </details>
-        </li>
+        <li><a>Service</a></li>
         <li><a>About</a></li>
         <li><a>Contact</a></li>
       </ul>
@@ -290,12 +276,25 @@
 
 
                   <!-- Open the modal using ID.showModal() method -->
+                   @if(!$isSeller)
                    <div class="flex justify-center mt-4">
                      <button class="btn text-base rounded-lg border-0
                                   text-sm font-semibold
                                   bg-blue-50 text-blue-700
                                   hover:bg-blue-600 hover:text-white hover:shadow-lg" onclick="my_modal_1.showModal()">Join as Seller</button>
                    </div>
+                   @else
+                   <div class="flex justify-center mt-4">
+                   <form action="{{ route('profilebuyer.switchToSeller') }}" method="POST">
+                   @csrf
+                     <button class="btn text-base rounded-lg border-0
+                                  text-sm font-semibold
+                                  bg-blue-50 text-blue-700
+                                  hover:bg-blue-600 hover:text-white hover:shadow-lg" >Switch Seller</button>
+                   </form>
+                   </div>
+                   @endif
+
                   <dialog id="my_modal_1" class="modal">
                     <div class="modal-box">
                       <form method="dialog">
@@ -422,8 +421,8 @@
                         <td><div class="badge badge-outline text-xs text-green-600">Finished</div></td>
                         @elseif ($order->Status == 'Cancel')
                         <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
-                        @elseif ($order->Status == 'Pending')
-                        <div class="badge badge-warning rounded-lg badge-outline">Pending</div>
+                        @elseif ($order->Status == 'WaitingApprove')
+                        <div class="badge badge-warning rounded-lg badge-outline">Approve Payment</div>
                         @endif
                   </ul>
                 </div>
@@ -445,8 +444,9 @@
                       </svg>
                       </div>
                       <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                            <li>
-                              <form action="{{route ('orderpayment.show', $order->Id_Order)}}" >
+                      @if ($order->Status == 'Payment')            
+                      <li>
+                                    <form action="{{route ('orderpayment.show', $order->Id_Order)}}" >
                                 <button type="submit" class="flex items-center">
                                   <svg class="w-4 mr-2" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19 0H5C3.67441 0.00158786 2.40356 0.528882 1.46622 1.46622C0.528882 2.40356 0.00158786 3.67441 0 5L0 13C0.00158786 14.3256 0.528882 15.5964 1.46622 16.5338C2.40356 17.4711 3.67441 
@@ -458,6 +458,7 @@
                                 </button>
                             </form>
                         </li>
+                        @endif
                          <li>  
                                 <button type="submit" class="flex items-center" onclick="my_modal_cancel{{ $order->Id_Order }}.showModal()">
                                     <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -466,6 +467,10 @@
                                     Cancel
                                 </button>
                         </li>
+                        
+                        <!-- Open the modal using ID.showModal() method -->
+
+                        
 
                         <li>
                           <a onclick="my_modal_detail{{ $order->Id_Order }}.showModal()">
@@ -590,17 +595,29 @@
                                               <a class="font-bold text-lg">Hyerin</a>
                                               
                                       </div>
+                                      @if ($order->Status == 'Finish')
                                       <div class="flex items-center pl-10">
-                                              <div class="rating rating-sm">
-                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
-                                                  <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
-                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
-                                                  <input type="radio" name="rating-9" class="mask mask-star-2" />
+                                      <form action="{{ route('rating.jasa') }}" method="POST">
+                                        @csrf
+                                              <div class="rating rating-sm" >
+                                                  <!-- <input type="radio"  name="rating" class="mask mask-star-2" value="" checked/> -->
+                                                  <input type="radio" name="rating" class="mask mask-star-2" value="1" checked />
+                                                  <input type="radio" name="rating" class="mask mask-star-2" value="2"  />
+                                                  <input type="radio" name="rating" class="mask mask-star-2" value="3" />
+                                                  <input type="radio" name="rating" class="mask mask-star-2" value="4"  />
+                                                  <input type="radio" name="rating" class="mask mask-star-2" value="5"  />
+                                                  <!-- <input type="radio" name="rating" class="mask mask-star-2" value="6"  hidden/> -->
                                               </div>
-                                              <span>(77 Reviews)</span>
+                                              <!-- <input type="" name="id_user" value="" /> -->
+                                            <input type="hidden" name="id_service" value="{{$serviceOrder->Id_Service}}" />
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
+                                              <!-- <span>(77 Reviews)</span> -->
                                       </div>
-                                    </div>
+                                      @endif
+                                      
+ 
+                                    </div> 
                               </div>
                               <div>
                                   <div class="col-span-1">
@@ -665,7 +682,21 @@
                                     </div>
                                   </div>
                       </div>
+                      @if ($order->Status == 'Payment')
+                      <div class="modal-action border-t-2 border-gray-200">
+                        <button class="btn bg-red-50 text-red-600 mt-3">
+                          <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                            Reject</button>
+                        <button class="btn bg-green-50 text-green-600 mt-3">
+                          <svg class="w-5" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M33.25 12.25L17.9375 29.75L8.75 21.7955" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          Accept</button>
                       </div>
+                      </div>
+                      @endif
 </dialog>
 <!-- modal detail -->
 
@@ -687,6 +718,16 @@
   @if (session('error'))
       <script> alert("{{ session('error') }}"); </script>
   @endif
+
+  <script>
+       $(document).ready(function() {
+    $('.rating').raty({
+        score: 0 // Inisialisasi dengan skor 0 untuk membuat bintang kosong
+    });
+});
+    </script>
+
+
     
   </body>
   </html>

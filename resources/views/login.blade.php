@@ -35,8 +35,12 @@
                 alert("{{ session('Banphone') }}")
             </script>
     @endif
-    <!-- login baru -->
-<div class="container mx-auto flex justify-center items-center h-screen">
+    @if(session('register'))
+            <script>
+                alert("{{ session('register') }}")
+            </script>
+    @endif
+    <div class="container mx-auto flex justify-center items-center h-screen">
     <div class="bg-white w-2/3 rounded-2xl shadow-xl shadow-neutral-500">
         <div class="grid grid-cols-2">
             <div class="bg-cover rounded-l-2xl" style="background-image: url(background/Login.png)"></div>
@@ -86,7 +90,7 @@
                     </div>
             <p class="text-xs absolute bottom-36">
                 <a class="text-slate-400">Dont have an account yet?</a>
-                <a href="{{ url('daftar1') }}" class="text-blue-800 hover:underline">Sign In</a>
+                <a href="{{ url('daftar1') }}" class="text-blue-800 hover:underline">Sign Up</a>
             </p>
         </div>
 
