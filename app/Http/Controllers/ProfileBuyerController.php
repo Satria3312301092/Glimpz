@@ -22,6 +22,8 @@ class ProfileBuyerController extends Controller
 
         $orders = Order::where('Id_User', $userId)->get();
 
+        $usersall = User::all();
+        $sellersall = Seller::all();
         $servicesOrder = Service::all();
         $typesOrder = Type::all();
         $detailsOrder = Detail::all();
@@ -30,7 +32,7 @@ class ProfileBuyerController extends Controller
         }
         $isSeller = Seller::where('Id_User', $userId)->exists();
     
-        return view('profilebuyer', compact('user','orders','servicesOrder', 'typesOrder', 'detailsOrder','isSeller'));
+        return view('profilebuyer', compact('sellersall','usersall','user','orders','servicesOrder', 'typesOrder', 'detailsOrder','isSeller'));
     }
 
     public function edit(){

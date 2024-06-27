@@ -62,6 +62,15 @@
                 </a>
                 </div>
 
+                <div class="stats shadow-lg shadow-neutral-300 w-full hover:bg-gray-300">
+                  <a href="adminpayment">
+                  <div class="stat">
+                    <div class="stat-title font-bold text-gray-600">Payment Confirmation</div>
+                    <div class="stat-value font-black">{{ $countPayment }}</div>
+                  </div>
+                </a>
+                </div>
+
               </div>
           </div>
           

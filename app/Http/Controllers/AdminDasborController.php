@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\Invoice;
 use App\Models\Order;
 use App\Models\Banned;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class AdminDasborController extends Controller
@@ -20,14 +21,16 @@ class AdminDasborController extends Controller
         $invoices = Invoice::all();
         $orders = Order::all();
         $bans = Banned::all();
+        $payments = Payment::all();
 
         $countService = $services->count();
         $countUser = $users->count();
         $countInvoice = $invoices->count();
         $countOrder = $orders->count();
         $countBan = $bans->count();
+        $countPayment = $payments->count();
 
-        return view('admindasbor', compact('countUser', 'countService', 'countInvoice', 'countOrder', 'countBan')); 
+        return view('admindasbor', compact('countUser', 'countService', 'countInvoice', 'countOrder', 'countBan', 'countPayment')); 
     }
 
     /**
