@@ -320,7 +320,7 @@
                               </div>
                               <div>
                                   <div class="col-span-1">
-                                      <div c"grid gap-y-1.5">
+                                      <div class="grid gap-y-1.5">
                                         <label class="form-control w-full">
                                                 <div class="label">
                                                   <span class="label-text font-bold text-slate-700 text-sm">ID Seller</span>

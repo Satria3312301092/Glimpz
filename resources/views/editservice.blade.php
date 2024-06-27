@@ -38,7 +38,7 @@
 </head>
 <body class="font-poppins">
   <!-- navbar -->
-  <div class="navbar shadow-lg bg-base-100 rounded-box">
+  <div class="navbar shadow-lg bg-base-100 rounded-box mb-10">
     <div class="navbar-start">
       <div class="dropdown">
         <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -57,18 +57,38 @@
           <li><a>Item 3</a></li>
         </ul>
       </div>
-      <a class="btn btn-ghost text-xl">daisyUI</a>
+      <a class="btn btn-ghost text-xl">Glimpz</a>
     </div>
     <div class="navbar-center hidden lg:flex z-[1]">
       <ul class="menu menu-horizontal px-1">
       <li><a>Dashboard</a></li>
-        <li><a href="{{ route('sellerservice.index') }}">Service</a></li>
+        <li><a >Service</a></li>
         <li><a>Orders</a></li>
         <li><a>Earnings</a></li>
       </ul>
     </div>
     <div class="navbar-end">
-      <a class="btn">Button</a>
+    <!-- <button id="" class="btn btn-circle mr-6"  id="btn_profile"><img src="images/Profileuser.svg" alt=""></button> -->
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full shadow-lg">
+          <img src="{{ asset('/icon/Profileuser.svg') }}" alt="">
+        </div>
+      </div>
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li><a href="{{ route('profileseller.index') }}">
+          <img src="{{ asset('/icon/Profile.svg') }}" alt="">
+          Profile</a></li>
+        <form action="{{ route ('logout') }}" method="POST">
+          @csrf
+          <li><button type="submit">
+            <img src="{{ asset('/icon/logout.svg') }}" alt="">
+          Logout</button>
+        </li>
+        </form>
+      </ul>
+    </div>
+  </div>
     </div>
   </div>
   <!-- navbar end -->

@@ -97,6 +97,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/beranda', [BerandaController::class, 'beranda'])->name('beranda')->middleware('userAkses:Buyer');
     Route::resource('profilebuyer', ProfileBuyerController::class)->middleware('userAkses:Buyer');
     Route::post('/profilebuyer/{order}/cancel', [ProfileBuyerController::class, 'cancelOrder'])->name('profilebuyer.cancel');
+    Route::post('/profilebuyer/{order}/revision', [ProfileBuyerController::class, 'revisionOrder'])->name('profilebuyer.revision');
+    Route::post('/profilebuyer/{order}/confirm', [ProfileBuyerController::class, 'confirmOrder'])->name('profilebuyer.confirm');
+    Route::post('/profilebuyer/switchToSeller', [ProfileBuyerController::class, 'switchToSeller'])->name('profilebuyer.switchToSeller');
     Route::resource('/listservice', ListServiceController::class)->middleware('userAkses:Buyer');
     Route::resource('/service', ServiceController::class);
     // Route::get('/service/{id}', [ServiceController::class, 'service'])->name('service');
@@ -105,6 +108,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/orderpayment/{id}', [OrderPaymentController::class, 'index'])->name('orderpayment.index');
 
     Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
+    Route::post('/rating', [ProfileBuyerController::class, 'rating'])->name('rating.jasa');
 
 
 
@@ -114,7 +118,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('tambahservice', MinServiceController::class);
     Route::resource('editservice', MinServiceController::class);
     Route::resource('/profileseller', ProfileSellerController::class, )->middleware('userAkses:Seller');
+    Route::post('/profileseller/switchToBuyer', [ProfileSellerController::class, 'switchToBuyer'])->name('profileseller.switchToBuyer');
     Route::post('/profileseller/{order}/update-status', [ProfileSellerController::class, 'updateOrderStatus'])->name('profileseller.update-status');
+    Route::post('/profileseller/{id}', [ProfileSellerController::class, 'store'])->name('profileseller.store');
 
 
 

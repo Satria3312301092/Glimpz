@@ -104,4 +104,36 @@ class ProfileSellerController extends Controller
         return redirect()->back()->with('success', 'Order status updated successfully');
     }
 
+    public function switchToBuyer(Request $request)
+{
+    $userId = Auth::id();
+    $user = User::find($userId);
+
+    $user->Role = 'Buyer';
+    $user->save();
+
+    session()->flash('success', 'Successfully switched to Buyer');
+
+    return redirect()->route('profilebuyer.index');
+}
+
+    public function store(Request $request, $id)
+    {
+        $request->validate([
+            'ProofOrder' => 'image|mimes:jpg,jpeg,png|max:10240',
+        ]);
+
+        $order = Order::find($id);
+
+        if ($request->hasFile('ProofOrder')) { // Check if picture is uploaded
+            $file = $request->file('ProofOrder');
+            $filename = uniqid() . date('Y-m-d') . $file->getClientOriginalName();
+            $path = $file->storeAs('public/prooforder', $filename);
+            $order->Proof = $path; // Update picture path only if a picture is uploaded
+            $order->save();
+        }
+        return redirect()->back()->with('success', 'Proof of order uploaded successfully.');
+    }
+
+
 }

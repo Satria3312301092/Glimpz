@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Xendit\Invoice\InvoiceItem;
 
+use Xendit\Payout\Payout;
+
 class OrderPaymentController extends Controller
 {   
     public function __construct() {

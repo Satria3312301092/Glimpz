@@ -57,7 +57,7 @@
           <li><a>Item 3</a></li>
         </ul>
       </div>
-      <a class="btn btn-ghost text-xl">daisyUI</a>
+      <a class="btn btn-ghost text-xl">Glimpz</a>
     </div>
     <div class="navbar-center hidden lg:flex z-[1]">
       <ul class="menu menu-horizontal px-1">
@@ -71,14 +71,14 @@
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
         <div class="w-10 rounded-full shadow-lg">
-          <img alt="" src="images/Profileuser.svg" />
+          <img alt="" src="icon/Profileuser.svg" />
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li><a href="{{ route('profileseller.index') }}"><img src="images/Profile.svg" alt="">Profile</a></li>
+          <li><a href="{{ route('profileseller.index') }}"><img src="icon/Profile.svg" alt="">Profile</a></li>
         <form action="{{ route ('logout') }}" method="POST">
           @csrf
-          <li><button type="submit"><img src="images/logout.svg" alt="">Logout</button></li>
+          <li><button type="submit"><img src="icon/logout.svg" alt="">Logout</button></li>
         </form>
       </ul>
     </div>
@@ -282,6 +282,15 @@
                       {{ $user->Email }}</a></li>   
                 </ul>
               </div>  
+                        <div class="flex justify-center mt-4">
+                        <form action="{{ route('profileseller.switchToBuyer') }}" method="POST">
+                        @csrf
+                         <button class="btn text-base rounded-lg border-0
+                                      text-sm font-semibold
+                                      bg-blue-50 text-blue-700
+                                      hover:bg-blue-600 hover:text-white hover:shadow-lg">Switch Buyer</button>
+                        </form>
+                       </div>
             </div>
           </div>
         <!-- profile -->
@@ -341,7 +350,7 @@
                 <div class="col-span-1">
                   <div class="avatar">
                     <div class="w-10 rounded-full border-2">
-                      <img src="../Asset/Profile-user.svg" class="p-3"/>
+                      <img src="icon/Profileuser.svg" />
                     </div>
                   </div>
                 </div>
@@ -417,6 +426,14 @@
                       </li>
                       @endif
                       <li>
+                        <a onclick="my_modal_6{{ $order->Id_Order }}.showModal()">
+                        <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
+                          8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Delivery Proof </a>
+                      </li>
+                      <li>
                         <a onclick="my_modal_1{{ $order->Id_Order }}.showModal()">
                         <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
@@ -431,6 +448,23 @@
               </div>
             </div>
           </div>
+
+          <dialog id="my_modal_6{{ $order->Id_Order }}" class="modal">
+              <div class="modal-box">
+                <form method="dialog">
+                  <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
+                <form action="{{ route('profileseller.store', ['id' => $order->Id_Order]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <h3 class="font-bold text-lg mb-1">Order Proof</h3>
+                <p class="text-xs mb-1">Upload your order proof here</p>
+                <input name="ProofOrder" id="fileInput" type="file" class="mt-1 custom-file-input w-full mb-10">
+                <div class="grid justify-center">
+                  <button type="submit" class="btn btn-block bg-blue-700 px-14 hover:bg-blue-700 text-white shadow-md">Confirm</button>
+                </div>
+              </form>
+              </div>
+            </dialog>
           
           <dialog id="my_modal_1{{ $order->Id_Order }}" class="modal">
                         <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">

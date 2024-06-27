@@ -9,6 +9,7 @@ use App\Models\Type;
 use App\Models\Detail;
 use App\Models\Seller;
 use App\Models\Service;
+use App\Models\Ratings;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -27,8 +28,9 @@ class ProfileBuyerController extends Controller
         foreach ($orders as $order) {
             $order->Date = Carbon::parse($order->Date)->format('Y-m-d'); // or 'd M Y'
         }
+        $isSeller = Seller::where('Id_User', $userId)->exists();
     
-        return view('profilebuyer', compact('user','orders','servicesOrder', 'typesOrder', 'detailsOrder'));
+        return view('profilebuyer', compact('user','orders','servicesOrder', 'typesOrder', 'detailsOrder','isSeller'));
     }
 
     public function edit(){
@@ -136,6 +138,58 @@ class ProfileBuyerController extends Controller
         $order->save();
 
         return redirect()->back()->with('success', 'Order canceled successfully');
+    }
+
+    public function revisionOrder(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->status = 'Revision';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order revision successfully');
+    }
+
+    public function confirmOrder(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->status = 'Finish';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order confirm successfully');
+    }
+
+    public function rating(Request $request)
+    {
+        $id_user = auth()->User()->Id_User;
+        $validated = $request->validate([
+            'id_service' => 'required',
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        $rating = new Ratings();
+        $rating->Id_User = $id_user;
+        $rating->Id_Service = $validated['id_service'];
+        $rating->Rating = $validated['rating'];
+        $rating->save();
+
+        return redirect()->back()->with('success', 'Rating submitted successfully!');
+    }
+
+    public function switchToSeller(Request $request)
+    {
+    $userId = Auth::id();
+    $user = User::find($userId);
+    $seller = Seller::where('Id_User', $userId)->first();
+
+    if ($seller) {
+        $user->Role = 'Seller';
+        $user->save();
+        session()->flash('success', 'Successfully switched to Seller');
+    } else {
+        session()->flash('error', 'Seller data not found. Please join as Seller first.');
+    }
+
+    return redirect()->route('profileseller.index');
     }
 
 

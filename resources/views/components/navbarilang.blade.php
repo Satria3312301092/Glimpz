@@ -28,23 +28,23 @@
       </ul>
     </div>
     <div class="navbar-end">
-    <button id="" class="mr-5 bg-transparent" id="btn_search1"><img src="images/search2.svg" alt=""></button>
-    <button id="" class="mr-5 bg-transparent hidden" id="btn_search2"><img src="images/search2.svg" alt=""></button>
+    <button id="" class="mr-5 bg-transparent" id="btn_search1"><img src="icon/search2.svg" alt=""></button>
+    <button id="" class="mr-5 bg-transparent hidden" id="btn_search2"><img src="icon/search2.svg" alt=""></button>
     <!-- <button id="" class="btn btn-circle mr-6"  id="btn_profile"><img src="images/Profileuser.svg" alt=""></button> -->
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
         <div class="w-10 rounded-full shadow-lg">
-          <img alt="" src="images/Profileuser.svg" />
+          <img alt="" src="icon/Profileuser.svg" />
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
           <li>
-            <a href="{{ route('profilebuyer.index') }}"><img src="images/Profile.svg" alt="">Profile</a>
+            <a href="{{ route('profilebuyer.index') }}"><img src="icon/Profile.svg" alt="">Profile</a>
           </li>
         <form action="{{ route ('logout') }}" method="POST">
           @csrf
           <li>
-            <button type="submit"><img src="images/logout.svg" alt="">Logout</button>
+            <button type="submit"><img src="icon/logout.svg" alt="">Logout</button>
           </li>
         </form>
       </ul>

@@ -5,7 +5,7 @@
 
 
 <!-- Landing page content -->
-<div class="bg-cover bg-no-repeat w-full h-[120vh] pt-44 px-24 -z-50" style="background-image: url(images/gambar1.png)">
+<div class="bg-cover bg-no-repeat w-full h-[120vh] pt-44 px-24 -z-50" style="background-image: url('{{ asset('background/gambar1.png') }}');">
             <p class="text-6xl font-semibold leading-normal">
               <a class="text-black">Brighten Up Your</a><br> 
               <a class="bg-black text-white rounded-lg px-3">Videos</a>
