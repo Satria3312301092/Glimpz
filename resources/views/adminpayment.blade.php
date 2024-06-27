@@ -90,18 +90,29 @@
 
                     <!-- row 1 -->
                     @foreach ($payments as $payment)
+                    @foreach ($orders as $order)
+                    @if ($payment->Id_Order == $order->Id_Order)
+                    @foreach ($services as $service)
+                    @if ($service->Id_Service == $order->Id_Service)
+                    
                     <tr>
                         <th>
                           {{ $payment->Id_Payment }}
                         </th>
                         <td>
-                            I will animate your character
+                            {{ $service->Title }}
                         </td>
                         <td>
                             2024-03-22
                         </td>
                         <td>Rp{{ number_format($payment->Total, 0, ',', '.') }}</td>
+                        @if ($order->Status == 'Payment')
+                        <td><div class="badge badge-warning rounded-lg badge-outline">Pending Payment</div></td>
+                        @elseif ($order->Status == 'WaitingApprove')
+                        <td><div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Waiting Approve</div></td>
+                        @elseif ($order->Status == 'Proses')
                         <td><div class="badge badge-outline text-xs text-green-600">Approved</div></td>
+                        @endif
                         <th>
                             <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
@@ -134,6 +145,11 @@
                           <p class="py-4">Press ESC key or click on ✕ button to close</p>
                         </div>
                       </dialog>
+
+                      @endif
+                      @endforeach
+                      @endif
+                      @endforeach
                       @endforeach
                     <!-- row 1 -->
 

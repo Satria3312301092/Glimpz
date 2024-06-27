@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
+use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -13,9 +15,16 @@ class AdminPaymentController extends Controller
     public function index()
     {   
         $payments = Payment::all();
+        $orders = Order::all();
+        $services = Service::all();
+        // $Idorder = Order::find('Id_Order');
+        // if ($Idpayment === $Idorder) 
+        // {$orders = Order::where('Id_Order', $Idorder);}
+        
+        // $services = Service::all();
 
         $countPayment = count($payments);
-        return view('adminpayment', compact('countPayment' , 'payments'));
+        return view('adminpayment', compact('countPayment' , 'payments', 'services', 'orders'));
     }
 
     /**
