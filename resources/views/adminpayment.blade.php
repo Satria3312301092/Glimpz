@@ -103,7 +103,7 @@
                             {{ $service->Title }}
                         </td>
                         <td>
-                            2024-03-22
+                            {{ \Carbon\Carbon::parse($payment->date)->format('d-m-Y') }}
                         </td>
                         <td>Rp{{ number_format($payment->Total, 0, ',', '.') }}</td>
                         @if ($order->Status == 'Waiting')
@@ -385,6 +385,11 @@
       @if (session('success'))
       <script>
         alert("{{ session('success') }}")
+      </script>
+      @endif
+      @if (session('reject'))
+      <script>
+        alert("{{ session('reject') }}")
       </script>
       @endif
 </body>

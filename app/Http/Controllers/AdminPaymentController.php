@@ -83,13 +83,13 @@ class AdminPaymentController extends Controller
         if ($request->Status == 'Approve') {
         $order->Status = 'Proses';
         $order->save();
+        return redirect()->route('adminpayment.index')->with('success', 'Approve Successfully');
         } elseif ($request->Status == 'Reject') {
             $order->Status = 'Cancel';
             $order->save();
+            return redirect()->route('adminpayment.index')->with('reject', 'Reject Successfully');
         }
-    
-       
-        return redirect()->route('adminpayment.index')->with('success', 'Approve Successfully');
+     
     }
     
 
