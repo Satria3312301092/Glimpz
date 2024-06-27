@@ -120,7 +120,7 @@ class ProfileSellerController extends Controller
     public function store(Request $request, $id)
     {
         $request->validate([
-            'ProofOrder' => 'image|mimes:jpg,jpeg,png|max:10240',
+            'ProofPayment' => 'image|mimes:jpg,jpeg,png|max:10240',
         ]);
 
         $order = Order::find($id);

@@ -183,6 +183,24 @@ class OrderPaymentController extends Controller
             }
         }
     }
+
+    public function upload(Request $request, $id)
+    {
+        $request->validate([
+            'ProofPayment' => 'image|mimes:jpg,jpeg,png|max:10240',
+        ]);
+
+        $payment = Payment::find($id);
+
+        if ($request->hasFile('ProofPayment')) { // Check if picture is uploaded
+            $file = $request->file('ProofPayment');
+            $filename = uniqid() . date('Y-m-d') . $file->getClientOriginalName();
+            $path = $file->storeAs('public/proofpayment', $filename);
+            $payment->Proof = $path; // Update picture path only if a picture is uploaded
+            $payment->save();
+        }
+        return redirect()->back()->with('success', 'Proof of order uploaded successfully.');
+    }
     
     
     
