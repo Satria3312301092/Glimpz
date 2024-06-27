@@ -423,6 +423,8 @@
                         <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
                         @elseif ($order->Status == 'WaitingApprove')
                         <div class="badge badge-warning rounded-lg badge-outline">Approve Payment</div>
+                        @elseif ($order->Status == 'Revision')
+                        <div class="badge badge-warning rounded-lg badge-outline">Revision</div>
                         @endif
                   </ul>
                 </div>
@@ -535,6 +537,7 @@
                   <!-- modal cancel -->
                   
                   <!-- modal delivery -->
+                  @if ( $order)
                   <dialog id="my_modal_delivery{{ $order->Id_Order }}" class="modal">
                     <div class="modal-box w-full max-w-2xl rounded-2xl shadow-xl">
                     <form method="dialog">
@@ -544,11 +547,13 @@
                       <div class="divider"></div>
                         <!-- content -->
                         <div class="bg-white border-2 rounded-2xl grid justify-center shadow-lg shadow-gray-300">
-                          <img src="background/108617873_p0.png" class="w-full rounded-2xl" alt="">
+                          <img src="{{ Storage::url($order->Proof) }}" class="w-full rounded-2xl" alt="">
                         </div>
                       <!-- content -->
                       <div class="modal-action border-t-2 border-gray-200">
                         <div class="flex justify-center gap-x-3 mt-10">
+                        <form method="POST" action="{{ route('profilebuyer.revision', $order->Id_Order) }}">
+                        @csrf
                               <button class="btn btn-blue-300 hover:bg-blue-700 btn-outline text-blue-700 hover:text-white border-blue-700 hover:border-none font-medium text-base">
                                 <svg class="w-4 h-3" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3.76947 14.9916L3.05034 14.2967C2.93938 14.4116 2.85753 14.5513 2.81165 14.7043L3.76947 14.9916ZM16.286 2.03794L15.5789 1.33084C15.5749 1.33488 15.5709 1.33896 15.5669 
@@ -562,15 +567,20 @@
                                 2.32222C20.4087 1.64515 19.5864 0.912582 18.672 0.582338C18.1898 0.40818 17.6517 0.333867 17.0887 0.458357C16.5257 0.582827 16.0224 0.8873 15.5789 1.33084L16.9931 2.74505Z" fill="currentColor"/>
                                 </svg>
                                 Revision</button>
+                              </form>
+                              <form method="POST" action="{{ route('profilebuyer.confirm', $order->Id_Order) }}">
+                              @csrf
                               <button class="btn btn-blue-300 hover:bg-green-500 btn-outline text-green-600 hover:text-white border-green-500 hover:border-none font-medium text-base">
                                 <svg class="w-4 h-3" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M21.75 2.25L9.25 16.5357L1.75 10.0422" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                                 Confirm</button>
+                                </form>
                             </div>
                       </div>
                     </div>
                   </dialog>
+                  @endif
                   <!-- modal delivery -->
 
           <!-- modal detail -->

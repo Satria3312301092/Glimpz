@@ -140,6 +140,24 @@ class ProfileBuyerController extends Controller
         return redirect()->back()->with('success', 'Order canceled successfully');
     }
 
+    public function revisionOrder(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->status = 'Revision';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order revision successfully');
+    }
+
+    public function confirmOrder(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->status = 'Finish';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order confirm successfully');
+    }
+
     public function rating(Request $request)
     {
         $id_user = auth()->User()->Id_User;

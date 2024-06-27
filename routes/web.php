@@ -87,7 +87,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['verify.xendit'])->group(function () {
-    Route::post('/orderpayment/xebhookOrder', [OrderPaymentController::class, 'webhookOrder'])->name('webhookOrder')->middleware('verify.xendit');
+    Route::post('/orderpayment/webhookOrder', [OrderPaymentController::class, 'webhookOrder'])->name('webhookOrder')->middleware('verify.xendit');
 });
 
 
@@ -97,6 +97,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/beranda', [BerandaController::class, 'beranda'])->name('beranda')->middleware('userAkses:Buyer');
     Route::resource('profilebuyer', ProfileBuyerController::class)->middleware('userAkses:Buyer');
     Route::post('/profilebuyer/{order}/cancel', [ProfileBuyerController::class, 'cancelOrder'])->name('profilebuyer.cancel');
+    Route::post('/profilebuyer/{order}/revision', [ProfileBuyerController::class, 'revisionOrder'])->name('profilebuyer.revision');
+    Route::post('/profilebuyer/{order}/confirm', [ProfileBuyerController::class, 'confirmOrder'])->name('profilebuyer.confirm');
     Route::post('/profilebuyer/switchToSeller', [ProfileBuyerController::class, 'switchToSeller'])->name('profilebuyer.switchToSeller');
     Route::resource('/listservice', ListServiceController::class)->middleware('userAkses:Buyer');
     Route::resource('/service', ServiceController::class);
@@ -118,6 +120,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/profileseller', ProfileSellerController::class, )->middleware('userAkses:Seller');
     Route::post('/profileseller/switchToBuyer', [ProfileSellerController::class, 'switchToBuyer'])->name('profileseller.switchToBuyer');
     Route::post('/profileseller/{order}/update-status', [ProfileSellerController::class, 'updateOrderStatus'])->name('profileseller.update-status');
+    Route::post('/profileseller/{id}', [ProfileSellerController::class, 'store'])->name('profileseller.store');
 
 
 
