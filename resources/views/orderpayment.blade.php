@@ -91,7 +91,7 @@
   <div class="grid grid-cols-2 gap-10 mb-24">
     <div class="col-span-1">
 
-        <div class="bg-white border-2 rounded-xl w-[35rem] 2xl:w-[48rem] h-[47rem] py-5 px-10">
+        <div class="bg-white border-2 rounded-xl w-[35rem] 2xl:w-[48rem] h-[47rem] py-5 px-10 mb-10">
           <!-- profile user -->
             <h1 class="font-bold text-2xl mb-3">Payment Invoice</h1>
               @if ($payments->Invoice_Url ?? false)
@@ -112,8 +112,10 @@
             </div> -->
 
       </div> 
+      <div class="flex justify-center">
+        <button class="btn btn-wide bg-blue-700 hover:bg-blue-700 text-white" onclick="my_modal_3.showModal()">Upload Proof</button>
+      </div>
     </div>
-   
     
     <!-- order summary -->
     @foreach($userss as $user)
@@ -247,36 +249,33 @@
           </div>
           <!-- total price -->
           
-          <!-- modal Verif -->
-            <dialog id="my_modal_3" class="modal">
-              <div class="modal-box">
-                <form method="dialog">
-                  <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                </form>
-                <h3 class="font-bold text-lg mb-1">Verify Payment</h3>
-                <p class="text-xs mb-1">Upload your payment proof here</p>
-                <input id="fileInput" type="file" class="mt-1 custom-file-input w-full mb-10">
-                <div class="grid justify-center">
-                  <button class="btn btn-block bg-blue-700 px-14 hover:bg-blue-700 text-white shadow-md">Confirm</button>
-                </div>
-              </div>
-            </dialog>
-            <!-- modal verify -->
-            
-          </form>
+        </form>
+        
+        <!-- modal Verif -->
+        <dialog id="my_modal_3" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <form action="{{ route('orderpayment.upload', ['id' => $payments->Id_Payment]) }}" method="POST" enctype="multipart/form-data">
+      @csrf
+      <h3 class="font-bold text-lg mb-1">Verify Payment</h3>
+      <p class="text-xs mb-1">Upload your payment proof here</p>
+      <input id="ProofPayment" name="ProofPayment" type="file" class="mt-1 custom-file-input w-full mb-10">
+      <div class="grid justify-center">
+        <button type="submit" class="btn btn-block bg-blue-700 px-14 hover:bg-blue-700 text-white shadow-md">Confirm</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+          <!-- modal verify -->
         </div>
       </div>
       
       <!-- order summary -->
      
-</div>
-
-
-
-    
-    
-               
-        
+</div>  
                
 </div>
 <!-- container -->

@@ -446,7 +446,7 @@
                       </svg>
                       </div>
                       <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                      @if ($order->Status == 'Payment')            
+                      @if ($order->Status == 'Payment' || $order->Status == 'WaitingApprove' )            
                       <li>
                                     <form action="{{route ('orderpayment.show', $order->Id_Order)}}" >
                                 <button type="submit" class="flex items-center">

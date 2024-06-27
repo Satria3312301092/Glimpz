@@ -105,6 +105,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/service/{id}', [ServiceController::class, 'service'])->name('service');
     // Route::post('/service', [ServiceController::class, 'service'])->name('service_post');
     Route::resource('/orderpayment', OrderPaymentController::class,);
+    Route::post('/orderpayment/{id}', [OrderPaymentController::class, 'upload'])->name('orderpayment.upload');
     // Route::get('/orderpayment/{id}', [OrderPaymentController::class, 'index'])->name('orderpayment.index');
 
     Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
