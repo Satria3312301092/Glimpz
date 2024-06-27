@@ -106,12 +106,20 @@
                             2024-03-22
                         </td>
                         <td>Rp{{ number_format($payment->Total, 0, ',', '.') }}</td>
-                        @if ($order->Status == 'Payment')
-                        <td><div class="badge badge-warning rounded-lg badge-outline">Pending Payment</div></td>
+                        @if ($order->Status == 'Waiting')
+                        <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
+                        @elseif ($order->Status == 'Payment')
+                        <td><div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div></td>
                         @elseif ($order->Status == 'WaitingApprove')
-                        <td><div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Waiting Approve</div></td>
+                        <td><div class="badge badge-warning text-xs rounded-lg badge-outline">Waiting Approve</div></td>
                         @elseif ($order->Status == 'Proses')
+                        <td><div class="badge badge-outline text-xs text-blue-600">Approved</div></td>
+                        @elseif ($order->Status == 'Finish')
                         <td><div class="badge badge-outline text-xs text-green-600">Approved</div></td>
+                        @elseif ($order->Status == 'Revision')
+                        <td><div class="badge badge-warning text-xs rounded-lg badge-outline">Approved</div></td>
+                        @elseif ($order->Status == 'Cancel')
+                        <td><div class="badge badge-outline text-xs text-red-600">Rejected</div></td>
                         @endif
                         <th>
                             <div class="dropdown">
@@ -119,15 +127,17 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                               </div>
                               <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                                <li><a><svg class="w-4 text-green-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                @if($order->Status == 'WaitingApprove')
+                                <li><a onclick="my_modal_3{{ $order->Id_Order }}.showModal()"><svg class="w-4 text-green-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M19 7L10.25 17L5 12.4545" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>                                  
                                   Approve</a></li>
-                                <li><a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <li><a onclick="my_modal_2{{ $order->Id_Order }}.showModal()"><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
                                   Reject</a></li>
-                                <li><a onclick="my_modal_1.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  @endif
+                                <li><a onclick="my_modal_1{{ $order->Id_Order }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
                                   8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
@@ -136,7 +146,52 @@
                             </div>
                         </th>
                       </tr>
-                      <dialog id="my_modal_1" class="modal">
+
+                      {{-- Modal Approve --}}
+                      <dialog id="my_modal_3{{ $order->Id_Order }}" class="modal">
+                        <div class="modal-box h-full w-auto" >
+                          <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                          </form>
+                          <h3 class="font-bold text-lg">Buyer Ask For Confirmation</h3>
+                          <p class="py-4">Approve If All Already Safe</p>
+                          <div class="flex">
+                          <iframe src="{{ $payment->Invoice_Url }}" frameborder="0" class="flex-1 rounded-lg border-4 h-auto"></iframe>
+                          <img src="{{ Storage::url($payment->Proof) }}" class="flex-1" ></img>
+                          </div>
+                          <form action="{{ route('adminpayment.update', $payment->Id_Payment) }}" method="POST">
+                          @csrf
+                          @method ('PUT')
+                          <input type="text" name="Status" value="Approve" hidden></input>
+                          <button type="submit" class="btn btn-outline btn-success">Approve</button>
+                        </form>
+                        </div>
+                      </dialog>
+                      {{-- END Modal Approve --}}
+
+                      {{-- Modal Reject --}}
+                      <dialog id="my_modal_2{{ $order->Id_Order }}" class="modal">
+                        <div class="modal-box">
+                          <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                          </form>
+                          <h3 class="font-bold text-lg">Buyer Ask For Confirmation</h3>
+                          <p class="py-4">Reject If There Is Something Else</p>
+                          <div class="flex">
+                          <iframe src="{{ $payment->Invoice_Url }}" frameborder="0" class="flex-1 rounded-lg border-4 h-auto"></iframe>
+                          <img src="{{ Storage::url($payment->Proof) }}" class="flex-1" ></img>
+                          <form action="{{ route('adminpayment.update', $payment->Id_Payment) }}" method="POST">
+                            @csrf
+                            @method ('PUT')
+                          <input type="text" name="Status" value="Reject" hidden></input>
+                          <button type="submit" class="btn btn-outline btn-error">Reject</button>
+                        </form>
+                        </div>
+                      </dialog>
+                      {{--END Modal Reject --}}
+                      
+                      {{-- Modal Details --}}
+                      <dialog id="my_modal_1{{ $order->Id_Order }}" class="modal">
                         <div class="modal-box">
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -145,6 +200,7 @@
                           <p class="py-4">Press ESC key or click on ✕ button to close</p>
                         </div>
                       </dialog>
+                      {{--END Modal Details --}}
 
                       @endif
                       @endforeach
@@ -326,6 +382,11 @@
         
         </div>
       </div>
+      @if (session('success'))
+      <script>
+        alert("{{ session('success') }}")
+      </script>
+      @endif
 </body>
 </html>
   

@@ -310,7 +310,7 @@
                           <div class="border-2 rounded-xl">
                             <img class="w-full h-68 object-cover rounded-xl" src="../images/default-identity.jpg" alt="">
                           </div>
-
+                          
                             <label class="form-control w-full">
                               <div class="label">
                                 <span class="label-text">Upload Your Identity Card</span>

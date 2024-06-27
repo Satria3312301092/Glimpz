@@ -62,10 +62,36 @@ class AdminPaymentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, $Id_Payment)
+    {   
+       
+        $payment = Payment::find($Id_Payment);
+    
+        
+        if (!$payment) {
+            return redirect()->route('adminpayment.index')->with('error', 'Payment not found');
+        }
+    
+       
+        $order = Order::find($payment->Id_Order);
+    
+       
+        if (!$order) {
+            return redirect()->route('adminpayment.index')->with('error', 'Order not found');
+        }
+    
+        if ($request->Status == 'Approve') {
+        $order->Status = 'Proses';
+        $order->save();
+        } elseif ($request->Status == 'Reject') {
+            $order->Status = 'Cancel';
+            $order->save();
+        }
+    
+       
+        return redirect()->route('adminpayment.index')->with('success', 'Approve Successfully');
     }
+    
 
     /**
      * Remove the specified resource from storage.
