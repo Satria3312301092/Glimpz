@@ -37,6 +37,8 @@ class ServiceController extends Controller
     public function show(string $Id_Service)
     {   
         $users = Auth::user();
+        $usersall = User::all();
+        $sellersall = Seller::all();
 
 
         $service = Service::find($Id_Service);
@@ -48,7 +50,7 @@ class ServiceController extends Controller
 
         
         
-        return view("service", compact('service', 'users')); 
+        return view("service", compact('service', 'users', 'usersall', 'sellersall')); 
     }
 
     public function store(Request $request){

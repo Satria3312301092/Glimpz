@@ -112,14 +112,12 @@
             </div> -->
 
       </div> 
-    
       
-      @if ($orderss->Status == 'WaitingApprove')  
+      @if($orderss->Status == 'WaitingApprove')
       <div class="flex justify-center">
         <button class="btn btn-wide bg-blue-700 hover:bg-blue-700 text-white" onclick="my_modal_3.showModal()">Upload Proof</button>
       </div>
-      @endif
-    
+      @endif  
     </div>
     
     <!-- order summary -->
@@ -257,7 +255,7 @@
         </form>
         
         <!-- modal Verif -->
-        @if ($orderss->Status == 'WaitingApprove')  
+        @if($orderss->Status == 'WaitingApprove')
         <dialog id="my_modal_3" class="modal">
   <div class="modal-box">
     <form method="dialog">
@@ -274,7 +272,8 @@
     </form>
   </div>
 </dialog>
-@endif
+        @endif
+
 
           <!-- modal verify -->
         </div>

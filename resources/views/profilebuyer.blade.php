@@ -310,7 +310,7 @@
                           <div class="border-2 rounded-xl">
                             <img class="w-full h-68 object-cover rounded-xl" src="../images/default-identity.jpg" alt="">
                           </div>
-
+                          
                             <label class="form-control w-full">
                               <div class="label">
                                 <span class="label-text">Upload Your Identity Card</span>
@@ -597,13 +597,20 @@
                                     <div class="flex py-6 divide-x-2 divide-gray-500 border-gray-500">
                                       <div class="flex items-center pr-10">
                                               <div class="avatar mr-3">
+                                                @foreach ($usersall as $userall)
+                                                @foreach ($sellersall as $sellerall )
+                                                @if($userall->Id_User == $sellerall->Id_User)
+                                                @if ($sellerall->Id_Seller == $serviceOrder->Id_Seller)
                                                   <div class="w-10 rounded-full border-2 border-zinc-300">
-                                                    <img src="icon/Profileuser.svg" class="" />
+                                                    <img src="{{ Storage::url($userall->Picture) }}" class="" />
                                                   </div>
                                               </div>
                                             
-                                              <a class="font-bold text-lg">Hyerin</a>
-                                              
+                                              <a class="font-bold text-lg">{{ $userall->Name }}</a>
+                                              @endif
+                                              @endif
+                                              @endforeach
+                                              @endforeach                              
                                       </div>
                                       @if ($order->Status == 'Finish')
                                       <div class="flex items-center pl-10">

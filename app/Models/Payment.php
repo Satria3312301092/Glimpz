@@ -20,8 +20,12 @@ class Payment extends Model
         'Total',
     ];
 
-    public function orders() {
-        return $this->belongsTo(Service::class, 'Id_Order', 'Id_Order');
+    public function orderss() {
+        return $this->belongsTo(Order::class, 'Id_Order', 'Id_Order');
+    }
+
+    public function userss() {
+        return $this->HasMany(User::class, 'Id_User', 'Id_User');
     }
 }
 

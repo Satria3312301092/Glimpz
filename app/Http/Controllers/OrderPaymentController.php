@@ -53,7 +53,7 @@ class OrderPaymentController extends Controller
     
 
 
-    return view('orderpayment',compact('orders','orderss','servicesOrder', 'typesOrder', 'detailsOrder', 'userss', 'sellerss', 'payments'));
+    return view('orderpayment',compact('orderss','orders','servicesOrder', 'typesOrder', 'detailsOrder', 'userss', 'sellerss', 'payments'));
     }
 
     public function webhookOrder(Request $request)
@@ -202,6 +202,7 @@ class OrderPaymentController extends Controller
         }
         return redirect()->back()->with('success', 'Proof of order uploaded successfully.');
     }
+    
     
     
     

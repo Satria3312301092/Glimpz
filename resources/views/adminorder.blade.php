@@ -126,6 +126,8 @@
                         <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
                         @elseif ($order->Status == 'Payment')
                         <td><div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div></td>
+                        @elseif ($order->Status == 'WaitingApprove')
+                        <td><div class="badge badge-warning rounded-lg badge-outline">Waiting Approve</div></td>
                         @elseif ($order->Status == 'Proses')
                         <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
                         @elseif ($order->Status == 'Finish')
