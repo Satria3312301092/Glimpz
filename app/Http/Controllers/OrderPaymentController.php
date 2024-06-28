@@ -42,6 +42,7 @@ class OrderPaymentController extends Controller
     $userss = User::all();
     $sellerss = Seller::all();
     $orders = Order::find($Id_Order);
+    $orderss = Order::where('Id_Order', $Id_Order)->first();
     // $payments = Payment::find($Id_Order);
     
     $servicesOrder = $orders->servicess;
@@ -52,7 +53,7 @@ class OrderPaymentController extends Controller
     
 
 
-    return view('orderpayment',compact('orders','servicesOrder', 'typesOrder', 'detailsOrder', 'userss', 'sellerss', 'payments'));
+    return view('orderpayment',compact('orders','orderss','servicesOrder', 'typesOrder', 'detailsOrder', 'userss', 'sellerss', 'payments'));
     }
 
     public function webhookOrder(Request $request)
