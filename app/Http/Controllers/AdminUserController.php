@@ -65,13 +65,15 @@ class AdminUserController extends Controller
         
         
         if ($user && Banned::where('Id_User', $user->Id_User)->exists()) {
-            return redirect()->back()->with('banned_failed', 'This Account Has Been Banned');
+            $request->session()->flash('banned_failed', true);
+            return redirect()->back();
         } else {
 
         $banned->save();
 
         if ($banned->save())
-        return back()->with('success', 'Banned Successfully');
+        $request->session()->flash('success', true);
+        return back();
     }
 }
 
@@ -102,11 +104,12 @@ class AdminUserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $Id_User)
+    public function destroy(Request $request, string $Id_User)
     {   Log::info($Id_User);
         $del = Banned::where('Id_User' ,$Id_User);
         $del->delete();
-
-        return redirect()->route('adminuser.index')->with('success_del', 'Unbanned Successfully');
+        
+        $request->session()->flash('success_del', true);
+        return redirect()->route('adminuser.index');
     }
 }

@@ -111,7 +111,7 @@
   <!-- navbar end -->
 
   <div class="container mx-auto flex justify-start px-12 py-10">
-    <div class="bg-white w-full h-full px-12 pt-8 border-2 shadow-2xl rounded-xl">
+    <div class="bg-white w-full h-full mx-auto px-12 pt-8 border-2 shadow-2xl rounded-xl">
     <!-- bagian atas -->
     <h1 class="font-bold text-3xl mb-6">Add Services</h1>
     <form id="serviceForm" action="{{ route('tambahservice.store') }}" method="POST" enctype="multipart/form-data"> 
@@ -122,36 +122,51 @@
         <!-- <a class="block text-gray-700 text-sm font-semibold mb-1">Id Seller</a>
         <input type="text" id="title" name="Id_Seller" class="shadow-lg border rounded py-2 px-3 w-96"> -->
 
-        <a class="block text-gray-700 text-sm font-semibold mb-1">Title</a>
-        <input type="text" id="title" name="Title" class="shadow-lg border rounded py-2 px-3 w-96">
+        <label class="form-control w-full max-w-96">
+          <div class="label">
+            <span class="label-text text-gray-700 font-bold">Title</span>
+          </div>
+          <input type="text" id="title" name="Title" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" />
+        </label>
         
-        <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-        <textarea id="description" name="Description" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-24"></textarea>
+        <label class="form-control w-full max-w-96">
+          <div class="label">
+            <span class="label-text text-gray-700 font-bold">Description</span>
+          </div>
+          <textarea id="description" name="Description" class="textarea textarea-bordered text-base shadow-lg hover:shadow-lg focus:shadow-lg h-24"></textarea>
+        </label>
 
-        <a for="title" class="block text-gray-700 text-sm font-semibold mb-1">Category</a>
-        <select name="Category" class="select select-bordered w-full max-w-xs text-black shadow-lg border-[1px]">
-        <option class="text-zinc-500 font-bold" disabled selected>All Services</option>
-        <option class="text-slate-700 hover:!bg-blue-50">Video Editing</option>
-        <option class="text-slate-700">Video Ads</option>
-        <option class="text-slate-700">Visual Effect</option>
-        <option class="text-slate-700">Education</option>
-        <option class="text-slate-700">Templates</option>
-        <option class="text-slate-700">Short Movie</option>
-        <option class="text-slate-700">Social Media</option>
-        <option class="text-slate-700">2D Animation</option>
-        <option class="text-slate-700">3D Animation</option>
-        <option class="text-slate-700">Logo Animation</option>
-        <option class="text-slate-700">Film Series</option>
-        <option class="text-slate-700">Character Animation</option>
-        <option class="text-slate-700">Web Animation</option>
-        <option class="text-slate-700">Rigging</option>
-        <option class="text-slate-700">NFT Animation</option>
-        </select>
+        <label class="form-control w-full max-w-96">
+          <div class="label">
+            <span class="label-text text-gray-700 font-bold">Category</span>
+          </div>
+          <select name="Category" class="select select-bordered w-full max-w-96 text-black shadow-lg hover:shadow-lg focus:shadow-lg">
+          <option class="text-zinc-500 font-bold" disabled selected>All Services</option>
+          <option class="text-slate-700 hover:!bg-blue-50">Video Editing</option>
+          <option class="text-slate-700">Video Ads</option>
+          <option class="text-slate-700">Visual Effect</option>
+          <option class="text-slate-700">Education</option>
+          <option class="text-slate-700">Templates</option>
+          <option class="text-slate-700">Short Movie</option>
+          <option class="text-slate-700">Social Media</option>
+          <option class="text-slate-700">2D Animation</option>
+          <option class="text-slate-700">3D Animation</option>
+          <option class="text-slate-700">Logo Animation</option>
+          <option class="text-slate-700">Film Series</option>
+          <option class="text-slate-700">Character Animation</option>
+          <option class="text-slate-700">Web Animation</option>
+          <option class="text-slate-700">Rigging</option>
+          <option class="text-slate-700">NFT Animation</option>
+          </select>
+        </label>
 
-        <a class="block text-gray-700 text-sm font-semibold mb-1">Image</a>
-        <input name="Thumbnail" id="fileInput" type="file" class="mt-1 custom-file-input w-96 mb-10">
-
-        </div>
+        <label class="form-control w-full max-w-96">
+          <div class="label">
+            <span class="label-text text-gray-700 font-bold">Image</span>
+          </div>
+          <input name="Thumbnail" id="fileInput" type="file" class="mt-1 custom-file-input w-96 mb-10">
+        </label>
+      </div>
 
         <div class="col-span-1">
           <div role="tablist" class="tabs tabs-lifted">
@@ -159,61 +174,110 @@
             <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Basic" checked />
             <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
           
-            <div class="grid gap-y-1.5">
+              <div class="grid gap-y-1.5">
 
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-              <input type="text"  name="Day1" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-              <input type="text"  name="Revision1" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-              <input type="text"  name="Price1" class="shadow-lg border rounded py-2 px-3 w-96">
-      
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-              <textarea  name="Description1" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20"></textarea>
+                <label class="form-control w-full max-w-96">
+                  <div class="label">
+                    <span class="label-text text-gray-700 font-bold">Day</span>
+                  </div>
+                  <input type="text" name="Day1" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" />
+                </label>
+
+                <label class="form-control w-full max-w-96">
+                  <div class="label">
+                    <span class="label-text text-gray-700 font-bold">Revision</span>
+                  </div>
+                  <input type="text" name="Revision1" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" />
+                </label>
+
+                <label class="form-control w-full max-w-96">
+                  <div class="label">
+                    <span class="label-text text-gray-700 font-bold">Price</span>
+                  </div>
+                  <input type="text" name="Price1" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" />
+                </label>
+
+                <label class="form-control w-full max-w-96">
+                  <div class="label">
+                    <span class="label-text text-gray-700 font-bold">Description</span>
+                  </div>
+                  <textarea name="Description1" class="textarea textarea-bordered text-base shadow-lg hover:shadow-lg focus:shadow-lg h-24"></textarea>
+                </label>
+
+              </div>
             </div>
-        </div>
-
 
         <!-- tab2 -->
         <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Standard" />
         <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
 
-        <div class="grid gap-y-1.5">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-              <input type="text"  name="Day2" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-              <input type="text"  name="Revision2" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-              <input type="text"  name="Price2" class="shadow-lg border rounded py-2 px-3 w-96">
-      
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-              <textarea  name="Description2" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20"></textarea>
-            </div>
+          <div class="grid gap-y-1.5">
+                
+            <label class="form-control w-full max-w-96">
+              <div class="label">
+                <span class="label-text text-gray-700 font-bold">Day</span>
+              </div>
+              <input type="text" name="Day2" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" />
+            </label>
+
+            <label class="form-control w-full max-w-96">
+              <div class="label">
+                <span class="label-text text-gray-700 font-bold">Revision</span>
+              </div>
+              <input type="text" name="Revision2" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" />
+            </label>
+
+            <label class="form-control w-full max-w-96">
+              <div class="label">
+                <span class="label-text text-gray-700 font-bold">Price</span>
+              </div>
+              <input type="text" name="Price2" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" />
+            </label>
+
+            <label class="form-control w-full max-w-96">
+              <div class="label">
+                <span class="label-text text-gray-700 font-bold">Description</span>
+              </div>
+              <textarea name="Description2" class="textarea textarea-bordered text-base shadow-lg hover:shadow-lg focus:shadow-lg h-24"></textarea>
+            </label>
+
+          </div>
         </div>
       
         <!-- tab 3 -->
-
         <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Premium" />
         <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-        <div class="grid gap-y-1.5">
+          <div class="grid gap-y-1.5">
 
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-              <input type="text"  name="Day3" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-              <input type="text"  name="Revision3" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-              <input type="text"  name="Price3" class="shadow-lg border rounded py-2 px-3 w-96">
-      
-              <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-              <textarea  name="Description3" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20"></textarea>
-            </div>
+            <label class="form-control w-full max-w-96">
+              <div class="label">
+                <span class="label-text text-gray-700 font-bold">Day</span>
+              </div>
+              <input type="text" name="Day3" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" />
+            </label>
+
+            <label class="form-control w-full max-w-96">
+              <div class="label">
+                <span class="label-text text-gray-700 font-bold">Revision</span>
+              </div>
+              <input type="text" name="Revision3" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" />
+            </label>
+
+            <label class="form-control w-full max-w-96">
+              <div class="label">
+                <span class="label-text text-gray-700 font-bold">Price</span>
+              </div>
+              <input type="text" name="Price3" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" />
+            </label>
+
+            <label class="form-control w-full max-w-96">
+              <div class="label">
+                <span class="label-text text-gray-700 font-bold">Description</span>
+              </div>
+              <textarea name="Description3" class="textarea textarea-bordered text-base shadow-lg hover:shadow-lg focus:shadow-lg h-24"></textarea>
+            </label>
+
+          </div>
         </div>
 
       </div>
@@ -227,65 +291,67 @@
 </div>
   </div>
   
-
-  <dialog id="successModal" class="modalSuccess fixed top-0 left-0 w-full h-full flex items-center justify-center hidden">
-    <div class="modal-box">
-      <h3 class="font-bold text-lg">Success!</h3>
-      <p class="py-4">Your service has been added succesfully.</p>
-      <div class="modal-action">
-      </div>
-    </div>
+<!-- modal success -->
+<dialog id="successModal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Success!</h3>
+    <p class="py-4">Your service has been added successfully.</p>
+  </div>
 </dialog>
+<!-- modal success -->
 
+<!-- modal validation error -->
+<dialog id="validationModal" class="modal">
+  <div class="modal-box">
+  <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="text-lg font-bold">Validation Error</h3>
+    <p class="py-4">Please fill in all the required fields.</p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- modal validation error -->
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Tangkap form menggunakan id
+  document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('serviceForm');
 
-    // Tambahkan event listener untuk event submit
     form.addEventListener('submit', function(event) {
-        // Menghentikan form submission default
-        event.preventDefault();
+      event.preventDefault();
 
-        // Lakukan validasi atau tindakan lain di sini
-        // Contoh validasi sederhana
-        let title = document.getElementById('title').value.trim();
-        if (!title) {
-            alert('Title cannot be empty');
-            return;
+      let inputs = form.querySelectorAll('input, textarea, select');
+      let isValid = true;
+
+      inputs.forEach(function(input) {
+        if (input.type !== 'submit' && input.value.trim() === '') {
+          isValid = false;
         }
+      });
 
-        // Simulasikan penambahan jasa (di sini Anda bisa menambahkan AJAX untuk menyimpan data ke server)
-        // Sebagai contoh, kita menampilkan modal
-        showModalSuccess();
+      if (!isValid) {
+        showModalValidation();
+        return;
+      }
 
-        // Jeda sebelum mengirim form
-        setTimeout(function() {
-            // Lanjutkan pengiriman form setelah jeda
-            form.submit();
-        }, 1500); // Mengatur jeda 1 detik (1000 milidetik)
+      showModalSuccess();
+
+      setTimeout(function() {
+        form.submit();
+      }, 500);
     });
 
-    // Fungsi untuk menampilkan modal
     function showModalSuccess() {
-        const modal = document.getElementById('successModal');
-        modal.classList.remove('hidden');
+      document.getElementById('successModal').showModal();
     }
 
-    // Event listener untuk tombol close modal
-    const closeModalButton = document.getElementById('closeModal');
-    if (closeModalButton) {
-        closeModalButton.addEventListener('click', function() {
-            const modal = document.getElementById('successModal');
-            modal.classList.add('hidden');
-        });
+    function showModalValidation() {
+      document.getElementById('validationModal').showModal();
     }
-});
+  });
 </script>
-
-
-
 
 @if(session('error'))
     <script>

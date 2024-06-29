@@ -157,7 +157,7 @@ class MinServiceController extends Controller
     
                 }
 
-            return redirect()->route('sellerservice.index')->with('success', 'JASA BERHASIL DITAMBAHKAN');
+            return redirect()->route('sellerservice.index');
         } else {
         return redirect()->route('tambahservice.create')->with('error', 'Thumbnail is required and must be a valid image file.');
     }
@@ -276,9 +276,8 @@ class MinServiceController extends Controller
 
 
     
-    return redirect()->route('sellerservice.index')->with('success', 'Service updated successfully');
+    return redirect()->route('sellerservice.index');
 }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -287,7 +286,7 @@ class MinServiceController extends Controller
         $del = Service::findorFail($Id_Service);
         $del->delete();
 
-        return redirect()->route('sellerservice.index')->with('success', 'deleted successfully');
+        return redirect()->route('sellerservice.index');
     }
 
     

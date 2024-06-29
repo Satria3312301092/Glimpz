@@ -180,7 +180,84 @@
       </div>
     </div>
 
+    <!-- modal username -->
+    <dialog id="modal_username" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="text-lg font-bold">Register Failed!</h3>
+            <p class="py-4">This username has already been taken.</p>
+        </div>
+    </dialog>
+    <!-- modal username -->
+
+    <!-- modal phone -->
+    <dialog id="modal_phone" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="text-lg font-bold">Register Failed!</h3>
+            <p class="py-4">This Phone Number Has Been Banned</p>
+        </div>
+    </dialog>
+    <!-- modal phone -->
+
+    <!-- modal email -->
+    <dialog id="modal_email" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="text-lg font-bold">Register Failed!</h3>
+            <p class="py-4">This Email Has Been Banned</p>
+        </div>
+    </dialog>
+    <!-- modal email -->
+
+    
+@if(session('error'))
     <script>
+        alert("{{ session('error') }}");
+    </script>
+@endif
+
+@if(session('username'))
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      showModal2();
+      });
+  </script>
+@endif
+
+@if(session('Banemail'))
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    showModal4();
+    });
+  </script>
+@endif
+
+@if(session('Banphone'))
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      showModal3();
+      });
+  </script>
+@endif
+
+    <script>
+      function showModal2() {
+        document.getElementById('modal_username').showModal();
+      }
+      function showModal3() {
+        document.getElementById('modal_phone').showModal();
+      }
+      function showModal4() {
+        document.getElementById('modal_email').showModal();
+      }
+
       //   Multiple Form Sign Up
       document.addEventListener('DOMContentLoaded', function() {
             const steps = document.querySelectorAll('.step');
@@ -241,25 +318,5 @@
 
 
     </script>
-    
-@if(session('error'))
-    <script>
-        alert("{{ session('error') }}");
-    </script>
-@endif
-
-@if(session('username'))
-    <script>
-        alert("{{ session('username') }}");
-    </script>
-@endif
-
-@if(session('Banemail'))
-    <script> alert("{{ session('Banemail') }}") </script>
-@endif
-
-@if(session('Banphone'))
-    <script> alert("{{ session('Banphone') }}") </script>
-@endif
 </body>
 </html>

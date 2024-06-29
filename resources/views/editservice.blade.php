@@ -97,44 +97,61 @@
     <div class="bg-white w-full h-full px-12 pt-8 border-2 shadow-2xl rounded-xl">
     <!-- bagian atas -->
     <h1 class="font-bold text-3xl mb-6">Edit Services</h1>
-    <form action="{{ route('sellerservice.update', $service->Id_Service) }}" method="POST" enctype="multipart/form-data"> 
+    <form id="serviceForm" action="{{ route('sellerservice.update', $service->Id_Service) }}" method="POST" enctype="multipart/form-data"> 
       @csrf
       @method('PUT')
       <div class="grid grid-cols-2">
         <div class="col-span-1">
-        <a class="block text-gray-700 text-sm font-semibold mb-1">Title</a>
-        <input type="text" value="{{ $service->Title }}" id="title" name="Title" class="shadow-lg border rounded py-2 px-3 w-96" required>
-        
-        <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-        <textarea id="description" name="Description" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-24" required>{{ $service->Description }}</textarea>
 
-        <a for="Category" class="block text-gray-700 text-sm font-semibold mb-1">Category</a>
-        <select name="Category" class="select select-bordered w-full max-w-xs text-black shadow-lg border-[1px]">
-        <option class="text-zinc-500 font-bold" selected>{{ $service->Category }}</option>
-        <option class="text-slate-700" disabled>All Service</option>
-        <option class="text-slate-700 hover:!bg-blue-50">Video Editing</option>
-        <option class="text-slate-700">Video Ads</option>
-        <option class="text-slate-700">Visual Effect</option>
-        <option class="text-slate-700">Education</option>
-        <option class="text-slate-700">Templates</option>
-        <option class="text-slate-700">Short Movie</option>
-        <option class="text-slate-700">Social Media</option>
-        <option class="text-slate-700">2D Animation</option>
-        <option class="text-slate-700">3D Animation</option>
-        <option class="text-slate-700">Logo Animation</option>
-        <option class="text-slate-700">Film Series</option>
-        <option class="text-slate-700">Character Animation</option>
-        <option class="text-slate-700">Web Animation</option>
-        <option class="text-slate-700">Rigging</option>
-        <option class="text-slate-700">NFT Animation</option>
-        </select>
+        <label class="form-control w-full max-w-96">
+          <div class="label">
+            <span class="label-text text-gray-700 font-bold">Title</span>
+          </div>
+          <input type="text" id="title" name="Title" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" value="{{ $service->Title }}" />
+        </label>
 
-        <a class="block text-gray-700 text-sm font-semibold mb-1">Image</a>
-        <input name="Thumbnail" type="file" class="mt-1 custom-file-input w-96 mb-10">
-        <?php if(!'Thumbnail' == 0) { ?>
-            <input name="ThumbnailOld" value="{{ $service->Thumbnail }}" type="text" class="mt-1 custom-file-input w-96 mb-10">
+        <label class="form-control w-full max-w-96">
+          <div class="label">
+            <span class="label-text text-gray-700 font-bold">Description</span>
+          </div>
+          <textarea id="description" name="Description" class="textarea textarea-bordered text-base shadow-lg hover:shadow-lg focus:shadow-lg h-24">{{ $service->Description }}</textarea>
+        </label>
+
+        <label class="form-control w-full max-w-96">
+          <div class="label">
+            <span class="label-text text-gray-700 font-bold">Category</span>
+          </div>
+          <select name="Category" class="select select-bordered w-full max-w-96 text-black shadow-lg hover:shadow-lg focus:shadow-lg">
+          <option class="text-zinc-500 font-bold" selected>{{ $service->Category }}</option>
+          <option class="text-slate-700 hover:!bg-blue-50">Video Editing</option>
+          <option class="text-slate-700">Video Ads</option>
+          <option class="text-slate-700">Visual Effect</option>
+          <option class="text-slate-700">Education</option>
+          <option class="text-slate-700">Templates</option>
+          <option class="text-slate-700">Short Movie</option>
+          <option class="text-slate-700">Social Media</option>
+          <option class="text-slate-700">2D Animation</option>
+          <option class="text-slate-700">3D Animation</option>
+          <option class="text-slate-700">Logo Animation</option>
+          <option class="text-slate-700">Film Series</option>
+          <option class="text-slate-700">Character Animation</option>
+          <option class="text-slate-700">Web Animation</option>
+          <option class="text-slate-700">Rigging</option>
+          <option class="text-slate-700">NFT Animation</option>
+          </select>
+        </label>
+
+        <label class="form-control w-full max-w-96">
+          <div class="label">
+            <span class="label-text text-gray-700 font-bold">Image</span>
+          </div>
+          <input name="Thumbnail" id="fileInput" type="file" class="mt-1 custom-file-input w-96 mb-10">
+        </label>
+      </div>
+
+      <?php if(!'Thumbnail' == 0) { ?>
+            <input name="ThumbnailOld" value="{{ $service->Thumbnail }}" type="text" class="hidden">
         <?php } ?>
-        </div>
 
         <div class="col-span-1">
           <div role="tablist" class="tabs tabs-lifted">
@@ -146,17 +163,35 @@
                   <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Basic" checked />
                   <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
                     <div class="grid gap-y-1.5">
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-                      <input type="text" value="{{$detail->Day}}" name="Day1" class="shadow-lg border rounded py-2 px-3 w-96">
-                      
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-                      <input type="text" value="{{$detail->Revision}}" name="Revision1" class="shadow-lg border rounded py-2 px-3 w-96">
-                      
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-                      <input type="text" value="{{$detail->Price}}" name="Price1" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-                      <textarea name="Description1" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20">{{$detail->Descriptions}}</textarea>
+
+                    <label class="form-control w-full max-w-96">
+                      <div class="label">
+                        <span class="label-text text-gray-700 font-bold">Day</span>
+                      </div>
+                      <input type="text" name="Day1" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" value="{{$detail->Day}}" />
+                    </label>
+
+                    <label class="form-control w-full max-w-96">
+                      <div class="label">
+                        <span class="label-text text-gray-700 font-bold">Revision</span>
+                      </div>
+                      <input type="text" name="Revision1" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" value="{{$detail->Revision}}" />
+                    </label>
+
+                    <label class="form-control w-full max-w-96">
+                      <div class="label">
+                        <span class="label-text text-gray-700 font-bold">Price</span>
+                      </div>
+                      <input type="text" name="Price1" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" value="{{$detail->Price}}" />
+                    </label>
+
+                    <label class="form-control w-full max-w-96">
+                      <div class="label">
+                        <span class="label-text text-gray-700 font-bold">Description</span>
+                      </div>
+                      <textarea name="Description1" class="textarea textarea-bordered text-base shadow-lg hover:shadow-lg focus:shadow-lg h-24">{{$detail->Descriptions}}</textarea>
+                    </label>
+
                     </div>
                   </div>
                 @endif
@@ -173,17 +208,35 @@
                   <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Standard" />
                   <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
                     <div class="grid gap-y-1.5">
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-                      <input type="text" value="{{ $detail->Day }}" name="Day2" class="shadow-lg border rounded py-2 px-3 w-96">
-                      
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-                      <input type="text" value="{{ $detail->Revision }}" name="Revision2" class="shadow-lg border rounded py-2 px-3 w-96">
-                      
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-                      <input type="text" value="{{ $detail->Price }}" name="Price2" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-                      <textarea name="Description2" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20">{{ $detail->Descriptions }}</textarea>
+
+                      <label class="form-control w-full max-w-96">
+                        <div class="label">
+                          <span class="label-text text-gray-700 font-bold">Day</span>
+                        </div>
+                        <input type="text" name="Day2" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" value="{{ $detail->Day }}" />
+                      </label>
+
+                      <label class="form-control w-full max-w-96">
+                        <div class="label">
+                          <span class="label-text text-gray-700 font-bold">Revision</span>
+                        </div>
+                        <input type="text" name="Revision2" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" value="{{ $detail->Revision }}" />
+                      </label>
+
+                      <label class="form-control w-full max-w-96">
+                        <div class="label">
+                          <span class="label-text text-gray-700 font-bold">Price</span>
+                        </div>
+                        <input type="text" name="Price2" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" value="{{ $detail->Price }}" />
+                      </label>
+
+                      <label class="form-control w-full max-w-96">
+                        <div class="label">
+                          <span class="label-text text-gray-700 font-bold">Description</span>
+                        </div>
+                        <textarea name="Description2" class="textarea textarea-bordered text-base shadow-lg hover:shadow-lg focus:shadow-lg h-24">{{ $detail->Descriptions }}</textarea>
+                      </label>
+
                     </div>
                   </div>
                 @endif
@@ -200,17 +253,35 @@
                   <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Premium" />
                   <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
                     <div class="grid gap-y-1.5">
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-                      <input type="text" value="{{ $detail->Day }}" name="Day3" class="shadow-lg border rounded py-2 px-3 w-96">
-                      
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-                      <input type="text" value="{{$detail->Revision}}" name="Revision3" class="shadow-lg border rounded py-2 px-3 w-96">
-                      
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-                      <input type="text" value="{{$detail->Price}}" name="Price3" class="shadow-lg border rounded py-2 px-3 w-96">
-              
-                      <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-                      <textarea name="Description3" class="shadow-lg border rounded py-2 px-3 w-96 resize-y h-20">{{ $detail->Descriptions }}</textarea>
+
+                      <label class="form-control w-full max-w-96">
+                        <div class="label">
+                          <span class="label-text text-gray-700 font-bold">Day</span>
+                        </div>
+                        <input type="text" name="Day3" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" value="{{ $detail->Day }}" />
+                      </label>
+
+                      <label class="form-control w-full max-w-96">
+                        <div class="label">
+                          <span class="label-text text-gray-700 font-bold">Revision</span>
+                        </div>
+                        <input type="text" name="Revision3" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" value="{{ $detail->Revision }}" />
+                      </label>
+
+                      <label class="form-control w-full max-w-96">
+                        <div class="label">
+                          <span class="label-text text-gray-700 font-bold">Price</span>
+                        </div>
+                        <input type="text" name="Price3" class="input input-bordered shadow-lg hover:shadow-lg focus:shadow-lg" value="{{ $detail->Price }}" />
+                      </label>
+
+                      <label class="form-control w-full max-w-96">
+                        <div class="label">
+                          <span class="label-text text-gray-700 font-bold">Description</span>
+                        </div>
+                        <textarea name="Description3" class="textarea textarea-bordered text-base shadow-lg hover:shadow-lg focus:shadow-lg h-24">{{ $detail->Descriptions }}</textarea>
+                      </label>  
+
                     </div>
                   </div>
                 @endif
@@ -227,5 +298,97 @@
     </form>
   </div>
   </div>
+
+  <!-- modal success -->
+<dialog id="successModal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Success!</h3>
+    <p class="py-4">Your service has been Updated successfully.</p>
+  </div>
+</dialog>
+<!-- modal success -->
+
+<!-- modal validation error -->
+<dialog id="validationModal" class="modal">
+  <div class="modal-box">
+  <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    <h3 class="text-lg font-bold">Validation Error</h3>
+    <p class="py-4">Please fill in all the required fields.<br>
+    <a>Data can't be empty!</a>
+    </p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- modal validation error -->
+
+<dialog id="fileSizeModal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">File Size Error</h3>
+    <p class="py-4">Image size must not exceed 240 KB.</p>
+  </div>
+</dialog>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('serviceForm');
+
+    form.addEventListener('submit', function(event) {
+      // Menghentikan form submission default
+      event.preventDefault();
+
+      // validasi semua input kecuali tipe file
+      let inputs = form.querySelectorAll('input, textarea, select'); // target semua elemen input, textarea, dan select
+      let isValid = true;
+      let fileSizeValid = true;
+
+      inputs.forEach(function(input) {
+        if (input.type !== 'submit' && input.type !== 'file' && input.value.trim() === '') {
+          isValid = false;
+        }
+        // Validasi ukuran file
+        if (input.type === 'file') {
+          if (input.files.length > 0 && input.files[0].size > 10 * 1024 * 1024) { // 10 MB in bytes
+            fileSizeValid = false;
+          }
+        }
+      });
+
+      if (!isValid) {
+        showModalValidation();
+        return;
+      }
+
+      if (!fileSizeValid) {
+        showModalFileSize();
+        return;
+      }
+
+      showModalSuccess();
+
+      setTimeout(function() {
+        form.submit();
+      }, 1000); // Mengatur jeda 1 detik (1000 milidetik)
+    });
+
+    // Fungsi untuk menampilkan modal sukses
+    function showModalSuccess() {
+      document.getElementById('successModal').showModal();
+    }
+
+    // Fungsi untuk menampilkan modal validasi
+    function showModalValidation() {
+      document.getElementById('validationModal').showModal();
+    }
+
+    // Fungsi untuk menampilkan modal ukuran file
+    function showModalFileSize() {
+      document.getElementById('fileSizeModal').showModal();
+    }
+  });
+</script>
 </body>
 </html>

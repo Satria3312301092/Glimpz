@@ -70,10 +70,10 @@ class ProfileBuyerController extends Controller
         $user->save();
     
         if ($user->save()) {
-            session()->flash('success', 'Successfully Update Account');
+            session()->flash('successUpdate');
             return back();
         } else {
-            session()->flash('error', 'Failed Update Account');
+            session()->flash('errorUpdate');
             return back();
         }
     }
@@ -173,7 +173,4 @@ class ProfileBuyerController extends Controller
 
     return redirect()->route('profileseller.index');
     }
-
-
-
 }
