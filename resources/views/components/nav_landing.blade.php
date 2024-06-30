@@ -21,18 +21,10 @@
         </div>
         <div class="navbar-center hidden lg:flex">
           <ul class="menu menu-horizontal px-1 text-base font-medium text-white">
-            <li><a>Home</a></li>
-            <li>
-              <details>
-                <summary>Services</summary>
-                <ul class="p-2 text-black">
-                  <li><a>Submenu 1</a></li>
-                  <li><a>Submenu 2</a></li>
-                </ul>
-              </details>
-            </li>
-            <li><a>About</a></li>
-            <li><a>Contact</a></li>
+            <li><a href="formlogin">Home</a></li>
+              <li><a href="formlogin"> Services </a></li>
+            <li><a href="">About </a></li>
+            <li><a href="">Contact</a></li>
           </ul>
         </div>
         <div class="navbar-end gap-4 mr-4">

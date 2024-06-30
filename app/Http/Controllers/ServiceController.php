@@ -15,20 +15,17 @@ class ServiceController extends Controller
 {
 
 
-    // public function index(Request $request){
+    //  public function index(Request $request){
 
-    //     $serviceId = $request->input('Id_Service');
-        
-    //     $services = Service::find($serviceId);
-        
-        
-    //     return view("service", compact('services')); 
-    // }
-
-    // public function show($id){
-    //     $service = Service::find($id);
-
-    //     return view("service", compact('services'));
+    //     $services = Service::take(3)->get();
+    //     $types = Type::all();
+    //     $details = Detail::all();
+    
+    //     foreach ($services as $service) {
+    //         $service->average_rating = $service->averageRating();
+    //         $service->rating_count = $service->ratingCount();
+    //     }
+    //     return view('service', compact('services','types','details'));
     // }
 
      /**
@@ -40,6 +37,9 @@ class ServiceController extends Controller
         $usersall = User::all();
         $sellersall = Seller::all();
 
+        $services = Service::take(3)->get();
+        $types = Type::all();
+        $details = Detail::all();
 
         $service = Service::find($Id_Service);
 
@@ -50,7 +50,7 @@ class ServiceController extends Controller
 
         
         
-        return view("service", compact('service', 'users', 'usersall', 'sellersall')); 
+        return view("service", compact('service', 'users', 'usersall', 'sellersall','services','types','details')); 
     }
 
     public function store(Request $request){

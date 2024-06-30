@@ -32,7 +32,7 @@
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-2 text-black font-Poppins" id="nav_menu">
-        <li><a>Home</a></li>
+        <li><a href="{{route('beranda')}}">Home</a></li>
         <li><a>Services</a></li>
         <li><a>About</a></li>
         <li><a>Contact</a></li>
@@ -45,17 +45,17 @@
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
         <div class="w-10 rounded-full shadow-lg mr-3">
-          <img alt="" src="images/Profileuser.svg" />
+          <img alt="" src="{{ asset('/icon/Profileuser.svg') }}" />
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li>
-          <a href="{{ route('profilebuyer.index') }}"><img src="images/Profile.svg" alt="">Profile</a>
+          <a href="{{ route('profilebuyer.index') }}"><img src="{{ asset('/icon/Profile.svg') }}" alt="">Profile</a>
         </li>
         <form action="{{ route ('logout') }}" method="POST">
           @csrf
           <li>
-            <button type="submit"><img src="images/logout.svg" alt="">Logout</button>
+            <button type="submit"><img src="{{ asset('/icon/logout.svg') }}" alt="">Logout</button>
           </li>
         </form>
       </ul>

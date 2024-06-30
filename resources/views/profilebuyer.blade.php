@@ -57,7 +57,7 @@
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
         <li><a href="beranda">Home</a></li>
-        <li><a>Service</a></li>
+        <li><a href="{{route('listservice.index')}}">Service</a></li>
         <li><a>About</a></li>
         <li><a>Contact</a></li>
       </ul>
@@ -66,7 +66,7 @@
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
         <div class="w-10 rounded-full shadow-lg">
-          <img alt="" src="icon/Profileuser.svg" />
+          <img alt="" src="{{asset('/icon/Profileuser.svg')}}" />
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
