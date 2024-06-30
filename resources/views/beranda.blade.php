@@ -139,35 +139,35 @@
               <div class="flex justify-center mt-5">
                 <div class="grid grid-cols-4 gap-8">
                   <!-- card 1-->
-                  @foreach ($services as $service)
-            @foreach ($types as $type)
+                  @if(isset($services) && isset($types) && isset($details))
+    @foreach ($services as $service)
+        @foreach ($types as $type)
             @if ($type->Type_Name == 'Basic' && $type->Id_Service == $service->Id_Service)
-            @foreach ($details as $detail)
-            @if ($detail->Id_Type == $type->Id_Type)
-            <a href="{{  route ('service.show', $service->Id_Service) }}" class="block">
-            <div class="card card-compact w-64 bg-base-100 shadow-xl ">
-              <figure><img src="{{ Storage::url($service->Thumbnail) }}" alt="" class="h-40"/></figure>
-              <div class="card-body">
-                <p>{{ $service-> Category }}</p>
-                <h2 class="text-base">{{ $service-> Title }}</h2>
-                <div class="card-actions justify-start">
-                  <div class="rating rating-sm">
-                    <input type="radio" name="rating-9" class="mask mask-star-2" />
-                    <span class="ml-2 text-sm">{{ number_format($service->average_rating, 1) }}/5 ({{ $service->rating_count }} ratings)</span>
-                
-                    <!-- <span>128</span> -->
-                  </div>
-                </div>
-                <p class="text-lg font-bold">Rp.{{ $detail->Price }}</p>
-              </div>
-            </div>
-            </a>
-            <!-- card 1-->
+                @foreach ($details as $detail)
+                    @if ($detail->Id_Type == $type->Id_Type)
+                        <a href="{{ route('service.show', $service->Id_Service) }}" class="block">
+                            <div class="card card-compact w-64 bg-base-100 shadow-xl">
+                                <figure><img src="{{ Storage::url($service->Thumbnail) }}" alt="" class="h-40"/></figure>
+                                <div class="card-body">
+                                    <p>{{ $service->Category }}</p>
+                                    <h2 class="text-base">{{ $service->Title }}</h2>
+                                    <div class="card-actions justify-start">
+                                        <div class="rating rating-sm">
+                                            <input type="radio" name="rating-9" class="mask mask-star-2" />
+                                            <span class="ml-2 text-sm">{{ number_format($service->average_rating, 1) }}/5 ({{ $service->rating_count }} ratings)</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-lg font-bold">Rp.{{ $detail->Price }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    @endif
+                @endforeach
             @endif
-            @endforeach
-            @endif
-            @endforeach
-            @endforeach
+        @endforeach
+    @endforeach
+@endif
+
                   <!-- card 1-->
                  
               </div>
