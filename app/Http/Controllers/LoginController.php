@@ -34,7 +34,8 @@ class LoginController extends Controller
             Auth::logout();
             session()->invalidate();
             session()->regenerateToken();
-            return redirect()->back()->with('register', 'Account not found. Please register first.');
+            $request->session()->flash('register', true);
+            return redirect()->back();
         }
         
 
@@ -48,7 +49,8 @@ class LoginController extends Controller
             Auth::logout();
             session()->invalidate();
             session()->regenerateToken();
-            return redirect()->back()->with('login_failed', 'Your account Has Been Banned Please Contact Us.');
+            $request->session()->flash('login_failed', true);
+            return redirect()->back();
         }
 
        
@@ -57,18 +59,21 @@ class LoginController extends Controller
             Auth::logout();
             session()->invalidate();
             session()->regenerateToken();
-            return redirect()->back()->with('email', 'This Email Has Been Banned.');
+            $request->session()->flash('email', true);
+            return redirect()->back();
         }
     
         if ($bannedPhone) {
             Auth::logout();
             session()->invalidate();
             session()->regenerateToken();
-            return redirect()->back()->with('Banphone', 'This Phone Number Has Been Banned');
+            $request->session()->flash('Banphone', true);
+            return redirect()->back();
         }
 
         if (Auth::attempt($infologin)) {
             if (Auth::user()->Role == 'Buyer') {
+                $request->session()->flash('success', true);
                 return view('beranda');
             } elseif (Auth::user()->Role == 'Seller') {
                 return redirect('sellerservice');
@@ -76,7 +81,8 @@ class LoginController extends Controller
                 return redirect('admindasbor');
             }
         } else {
-            return redirect()->back()->with('login_failed', 'Username or Password is wrong.');
+            $request->session()->flash('failed', true);
+            return redirect()->back();
         }
     }
 }

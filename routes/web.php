@@ -34,8 +34,7 @@ use App\Http\Controllers\ListServiceController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\MinServiceController;
 use App\Http\Controllers\BannedController;
-
-
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -107,7 +106,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/orderpayment', OrderPaymentController::class,);
     Route::post('/orderpayment/{id}', [OrderPaymentController::class, 'upload'])->name('orderpayment.upload');
     // Route::get('/orderpayment/{id}', [OrderPaymentController::class, 'index'])->name('orderpayment.index');
-
+    Route::get('/invoice/{invoice}',[InvoiceController::class, 'show'])->name('invoice');
+    Route::get('/invoice/{id}/viewpdf',[InvoiceController::class, 'generatePdf'])->name('invoice.viewpdf');
     Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
     Route::post('/rating', [ProfileBuyerController::class, 'rating'])->name('rating.jasa');
 

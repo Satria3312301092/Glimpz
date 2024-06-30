@@ -36,6 +36,7 @@
       }
   </style>
 </head>
+
 <body class="font-poppins">
   <!-- navbar -->
   <div class="navbar shadow-lg bg-base-100 rounded-box mb-14">
@@ -88,7 +89,6 @@
     <div class="container mx-auto flex justify-center items-center">
         <div class="grid grid-cols-3 gap-8 mb-20">
           <!-- profile -->
-          
           <div class="col-span-1">
             <div class="card card-compact w-96 bg-base-100 shadow-xl border-2 pb-20">
               <figure class="border-b-2 py-5">
@@ -125,7 +125,7 @@
                             <form method="dialog">
                               <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             </form>
-                              <form action="{{ route('profilebuyer.update', $user->Id_User) }}" method="POST" enctype="multipart/form-data">
+                              <form id="profileUpdate" action="{{ route('profilebuyer.update', $user->Id_User) }}" method="POST" enctype="multipart/form-data">
                               @csrf
                               @method('PUT')
                             <div class="grid grid-cols-3 gap-4">
@@ -137,6 +137,7 @@
                               <div class="col-span-2">
                                 <h3 class="font-bold text-2xl">My Profile</h3>
                               <div class="grid grid-cols-2 gap-x-4">
+
                                 <div>
                                   <label class="form-control w-full max-w-xs">
                                     <div class="label">
@@ -151,6 +152,7 @@
                                     </label>
                                   </label>
                                 </div>
+
                                 <div>
                                   <label class="form-control w-full max-w-xs">
                                     <div class="label">
@@ -162,35 +164,37 @@
                                             6.16411ZM10.7574 15.5971L11.3298 14.7771L10.7574 15.5971ZM11.4363 15.4941L10.7054 14.8116L11.4363 15.4941ZM8.5005 12.5588L9.18647 13.2865L8.5005 12.5588ZM8.39933 13.2365L7.57878 13.8081L7.57878 13.8081L8.39933 13.2365ZM9.18647 13.2865C10.4545 12.091 11.0099 
                                             10.186 10.509 8.37611L8.58141 8.90958C8.88743 10.0153 8.53516 11.1518 7.81453 11.8312L9.18647 13.2865ZM10.1826 13.8149C9.82246 13.4545 9.50171 13.0695 9.21988 12.6649L7.57878 13.8081C7.92751 14.3087 8.32391 14.7843 8.76787 15.2286L10.1826 13.8149ZM11.3298 
                                             14.7771C10.9263 14.4954 10.5423 14.1748 10.1826 13.8149L8.76787 15.2286C9.21114 15.6722 9.68554 
-                                          16.0684 10.1851 16.4171L11.3298 14.7771ZM15.6262 13.4745C13.8106 12.9713 11.8992 13.533 10.7054 14.8116L12.1672 16.1766C12.8451 15.4505 13.9841 15.0948 15.092 15.4018L15.6262 13.4745ZM18.7848 19.0178C19.5901 16.5997 18.0782 14.1542 15.6262 13.4745L15.092 
-                                          15.4018C16.5807 15.8145 17.2866 17.1867 16.8873 18.3858L18.7848 19.0178ZM10.509 8.3761C9.83018 5.92366 7.38653 4.4089 4.96834 5.21548L5.60116 7.11273C6.7975 6.71369 8.16873 7.4185 8.58142 8.90959L10.509 8.3761ZM4.96836 5.21548C3.39284 5.74096 2.43378 6.7213 
-                                          2.11585 8.02889C1.82033 9.24428 2.12835 10.5559 2.60671 11.715C3.57004 14.0491 5.47664 16.3617 6.55614 17.442L7.97088 16.0283C6.98981 15.0465 5.27992 12.9497 4.45545 10.952C4.03992 9.94514 3.91121 9.11016 4.05923 8.50141C4.18483 7.98485 4.54955 7.46347 5.60114 
-                                          7.11273L4.96836 5.21548ZM6.55614 17.442C7.61075 18.4974 9.91993 20.4122 12.2585 21.3844C13.4196 
-                                          21.867 14.7361 22.1805 15.9571 21.8856C17.2711 21.5683 18.2564 20.6044 18.7848 19.0178L16.8872 18.3858C16.5331 19.4492 16.007 19.8161 15.4876 19.9415C14.8752 20.0894 14.0361 19.9574 13.0262 19.5376C11.0228 18.7048 8.92821 16.9863 7.97088 16.0283L6.55614 
-                                          17.442ZM10.1851 16.4171C10.895 16.9126 11.7294 16.6454 12.1672 16.1766L10.7054 14.8116C10.7607 14.7523 10.8398 14.7043 10.9423 14.6869C11.052 14.6682 11.1985 14.6854 11.3298 14.7771L10.1851 16.4171ZM7.81453 11.8312C7.34911 12.27 7.08636 13.1012 7.57878 
-                                          13.8081L9.21988 12.6649C9.31091 12.7956 9.32818 12.9411 9.30989 13.0501C9.29279 13.152 9.24536 13.231 9.18647 13.2865L7.81453 11.8312Z" fill="black"/>
+                                            16.0684 10.1851 16.4171L11.3298 14.7771ZM15.6262 13.4745C13.8106 12.9713 11.8992 13.533 10.7054 14.8116L12.1672 16.1766C12.8451 15.4505 13.9841 15.0948 15.092 15.4018L15.6262 13.4745ZM18.7848 19.0178C19.5901 16.5997 18.0782 14.1542 15.6262 13.4745L15.092 
+                                            15.4018C16.5807 15.8145 17.2866 17.1867 16.8873 18.3858L18.7848 19.0178ZM10.509 8.3761C9.83018 5.92366 7.38653 4.4089 4.96834 5.21548L5.60116 7.11273C6.7975 6.71369 8.16873 7.4185 8.58142 8.90959L10.509 8.3761ZM4.96836 5.21548C3.39284 5.74096 2.43378 6.7213 
+                                            2.11585 8.02889C1.82033 9.24428 2.12835 10.5559 2.60671 11.715C3.57004 14.0491 5.47664 16.3617 6.55614 17.442L7.97088 16.0283C6.98981 15.0465 5.27992 12.9497 4.45545 10.952C4.03992 9.94514 3.91121 9.11016 4.05923 8.50141C4.18483 7.98485 4.54955 7.46347 5.60114 
+                                            7.11273L4.96836 5.21548ZM6.55614 17.442C7.61075 18.4974 9.91993 20.4122 12.2585 21.3844C13.4196 
+                                            21.867 14.7361 22.1805 15.9571 21.8856C17.2711 21.5683 18.2564 20.6044 18.7848 19.0178L16.8872 18.3858C16.5331 19.4492 16.007 19.8161 15.4876 19.9415C14.8752 20.0894 14.0361 19.9574 13.0262 19.5376C11.0228 18.7048 8.92821 16.9863 7.97088 16.0283L6.55614 
+                                            17.442ZM10.1851 16.4171C10.895 16.9126 11.7294 16.6454 12.1672 16.1766L10.7054 14.8116C10.7607 14.7523 10.8398 14.7043 10.9423 14.6869C11.052 14.6682 11.1985 14.6854 11.3298 14.7771L10.1851 16.4171ZM7.81453 11.8312C7.34911 12.27 7.08636 13.1012 7.57878 
+                                            13.8081L9.21988 12.6649C9.31091 12.7956 9.32818 12.9411 9.30989 13.0501C9.29279 13.152 9.24536 13.231 9.18647 13.2865L7.81453 11.8312Z" fill="black"/>
                                           </svg>
                                         <input type="text" name="Numberphone" class="grow" value="{{ $user->Number_Phone }}" />
                                       </label>
                                   </label>
                                 </div>
+
                                 <div>
                                   <label class="form-control w-full max-w-xs">
                                     <div class="label">
                                       <span class="label-text text-xs">Date of Birth</span>
                                     </div>
                                     <label class="input input-bordered h-10 flex items-center gap-2 shadow-lg focus:shadow-lg rounded text-xs">
-                                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2 8C2 5.23858 4.23858 3 7 3H17C19.7614 3 22 5.23858 22 8V17C22 19.7614 19.7614 22 17 22H7C4.23858 22 2 19.7614 2 17V8ZM7 5C5.34315 5 4 6.34315 4 8V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V8C20 6.34315 18.6569 5 17 5H7Z" fill="black"/>
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C8.55228 2 9 2.44772 9 3V6C9 6.55228 8.55228 7 8 7C7.44772 7 7 6.55228 7 6V3C7 2.44772 7.44772 2 8 2Z" fill="black"/>
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10C6 9.44772 6.44772 9 7 9H17C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10Z" fill="black"/>
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15 17C15 16.4477 15.4477 16 16 16L17 16C17.5523 16 18 16.4477 18 17C18 17.5523 17.5523 18 17 18H16C15.4477 18 15 17.5523 15 17Z" fill="black"/>
-                                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C16.5523 2 17 2.44772 17 3V6C17 6.55228 16.5523 7 16 7C15.4477 7 15 6.55228 15 6V3C15 2.44772 15.4477 2 16 2Z" fill="black"/>
-                                      </svg>
+                                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M2 8C2 5.23858 4.23858 3 7 3H17C19.7614 3 22 5.23858 22 8V17C22 19.7614 19.7614 22 17 22H7C4.23858 22 2 19.7614 2 17V8ZM7 5C5.34315 5 4 6.34315 4 8V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V8C20 6.34315 18.6569 5 17 5H7Z" fill="black"/>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C8.55228 2 9 2.44772 9 3V6C9 6.55228 8.55228 7 8 7C7.44772 7 7 6.55228 7 6V3C7 2.44772 7.44772 2 8 2Z" fill="black"/>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10C6 9.44772 6.44772 9 7 9H17C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10Z" fill="black"/>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M15 17C15 16.4477 15.4477 16 16 16L17 16C17.5523 16 18 16.4477 18 17C18 17.5523 17.5523 18 17 18H16C15.4477 18 15 17.5523 15 17Z" fill="black"/>
+                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C16.5523 2 17 2.44772 17 3V6C17 6.55228 16.5523 7 16 7C15.4477 7 15 6.55228 15 6V3C15 2.44772 15.4477 2 16 2Z" fill="black"/>
+                                        </svg>
                                         <input type="date" name="Date" class="grow" value="{{ $user->Date_Of_Birth }}" />
                                     </label>
                                   </label>
                                 </div>
+
                                 <div>
                                   <label class="form-control w-full max-w-xs">
                                     <div class="label">
@@ -206,6 +210,7 @@
                                     </label>
                                   </label>
                                 </div>
+
                                 <div class="col-span-2">
                                   <label class="form-control w-full">
                                     <div class="label">
@@ -214,6 +219,7 @@
                                     <input name="Picture" id="fileInput" type="file" class="mt-1 custom-file-input w-full">
                                   </label>
                                 </div>
+
                               </div>
                             </div>
                             </div>
@@ -235,14 +241,14 @@
                 <a class="inline-flex items-center"><svg class="mr-1" width="20" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M2 8C2 5.23858 4.23858 3 7 3H17C19.7614 3 22 5.23858 22 8V17C22 19.7614 19.7614 22 17 22H7C4.23858 22 2 19.7614 2 17V8ZM7 
-                      5C5.34315 5 4 6.34315 4 8V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V8C20 6.34315 18.6569 5 17 5H7Z" fill="black"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C8.55228 2 9 2.44772 9 3V6C9 6.55228 8.55228 7 8 7C7.44772 7 7 6.55228 7 6V3C7 2.44772 7.44772 2 8 2Z" fill="black"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10C6 9.44772 6.44772 9 7 9H17C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10Z" fill="black"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15 17C15 16.4477 15.4477 16 16 16L17 16C17.5523 16 18 16.4477 18 17C18 17.5523 17.5523 18 17 18H16C15.4477 18 15 17.5523 15 17Z" fill="black"/>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C16.5523 2 17 2.44772 17 3V6C17 6.55228 16.5523 7 16 7C15.4477 7 15 6.55228 15 6V3C15 2.44772 15.4477 2 16 2Z" fill="black"/>
-                      </svg>
-                 </svg>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M2 8C2 5.23858 4.23858 3 7 3H17C19.7614 3 22 5.23858 22 8V17C22 19.7614 19.7614 22 17 22H7C4.23858 22 2 19.7614 2 17V8ZM7 
+                  5C5.34315 5 4 6.34315 4 8V17C4 18.6569 5.34315 20 7 20H17C18.6569 20 20 18.6569 20 17V8C20 6.34315 18.6569 5 17 5H7Z" fill="black"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8 2C8.55228 2 9 2.44772 9 3V6C9 6.55228 8.55228 7 8 7C7.44772 7 7 6.55228 7 6V3C7 2.44772 7.44772 2 8 2Z" fill="black"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10C6 9.44772 6.44772 9 7 9H17C17.5523 9 18 9.44772 18 10C18 10.5523 17.5523 11 17 11H7C6.44772 11 6 10.5523 6 10Z" fill="black"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M15 17C15 16.4477 15.4477 16 16 16L17 16C17.5523 16 18 16.4477 18 17C18 17.5523 17.5523 18 17 18H16C15.4477 18 15 17.5523 15 17Z" fill="black"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C16.5523 2 17 2.44772 17 3V6C17 6.55228 16.5523 7 16 7C15.4477 7 15 6.55228 15 6V3C15 2.44772 15.4477 2 16 2Z" fill="black"/>
+                  </svg>
+                </svg>
                   {{ $user->Date_Of_Birth }}</a>
                 <p></p>
                 <h1 class="font-semibold mt-4">Contact Me</h1>
@@ -285,9 +291,9 @@
                    </div>
                    @else
                    <div class="flex justify-center mt-4">
-                   <form action="{{ route('profilebuyer.switchToSeller') }}" method="POST">
+                   <form id="serviceForm" action="{{ route('profilebuyer.switchToSeller') }}" method="POST">
                    @csrf
-                     <button class="btn text-base rounded-lg border-0
+                     <button type="submit" class="btn text-base rounded-lg border-0
                                   text-sm font-semibold
                                   bg-blue-50 text-blue-700
                                   hover:bg-blue-600 hover:text-white hover:shadow-lg" >Switch Seller</button>
@@ -374,10 +380,6 @@
           </div>
           
 <!-- row 1 -->
-
-   
-
-  
           <div class="bg-white border-2 px-5 rounded-xl">
             @foreach ($orders as  $order)
             @foreach ($servicesOrder as $serviceOrder)
@@ -461,7 +463,7 @@
                             </form>
                         </li>
                         @endif
-                         <li>  
+                        <li>  
                                 <button type="submit" class="flex items-center" onclick="my_modal_cancel{{ $order->Id_Order }}.showModal()">
                                     <svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -471,9 +473,6 @@
                         </li>
                         
                         <!-- Open the modal using ID.showModal() method -->
-
-                        
-
                         <li>
                           <a onclick="my_modal_detail{{ $order->Id_Order }}.showModal()">
                           <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -482,8 +481,11 @@
                           </svg>
                           Details</a>
                         </li>
+                        @if($order->Status == 'WaitingApprove' || $order->Status == 'Proses' || $order->Status == 'Finish' || $order->Status == 'Revision')
+                        @foreach ($invoices as $invoice)
+                        @if ($user->Id_User == $invoice->Id_User && $order->Id_Order == $invoice->Id_Order)
                         <li>
-                          <a onclick="my_modal_invoice{{ $order->Id_Order }}.showModal()">
+                          <a href=" invoice\{{ $invoice->Id_Invoice }} ">
                           <svg class="w-3 mr-1" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.9491 5.53651L14.4651 2.05051C13.8164 1.39865 13.045 0.881842 12.1953 0.529971C11.3457 0.178099 10.4347 -0.0018556 9.51512 0.00051133H5.00012C3.67453 0.00209919 2.40368 0.529393 1.46634 
                             1.46673C0.529004 2.40407 0.00170993 3.67492 0.00012207 5.00051V19.0005C0.00170993 20.3261 0.529004 21.597 1.46634 22.5343C2.40368 23.4716 3.67453 23.9989 5.00012 24.0005H15.0001C16.3257 23.9989 17.5966 
@@ -496,6 +498,9 @@
                           Invoice
                           </a>
                         </li>
+                        @endif
+                        @endforeach
+                        @endif
                         <li>
                           <a onclick="my_modal_delivery{{ $order->Id_Order }}.showModal()">
                           <svg class="w-3 mr-1" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -728,16 +733,87 @@
   </div>
   </div>
   </div>
+
+    <dialog id="modalSuccess" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="text-lg text-green-500 rounded-full font-bold">Action Success</h3>
+            <p class="py-4">Successfully Update Account</p>
+        </div>
+      </dialog>
+
+    <dialog id="modalEror" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="text-lg text-red-500 rounded-full font-bold">Eror</h3>
+            <p class="py-4">Failed Update Account</p>
+        </div>
+      </dialog>
+
+  <!-- modal success -->
+<dialog id="successModal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg text-green-500 font-bold">Success!</h3>
+    <p class="py-4">Successfully switched to Seller.</p>
+  </div>
+</dialog>
+<!-- modal success -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('serviceForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      let inputs = form.querySelectorAll('input, textarea, select');
+
+      showModalSuccess();
+
+      setTimeout(function() {
+        form.submit();
+      }, 500);
+    });
+
+    function showModalSuccess() {
+      document.getElementById('successModal').showModal();
+    }
+
+    function showModalValidation() {
+      document.getElementById('validationModal').showModal();
+    }
+  });
+
+    // show modal
+    function showModal1() {
+            document.getElementById('modalSuccess').showModal();
+        }
+    function showModal2() {
+        document.getElementById('modalEror').showModal();
+    }
+</script>
     
-  @if (session('success'))
-      <script> alert("{{ session('success') }}"); </script>
-  @endif
-  @if (session('error'))
-      <script> alert("{{ session('error') }}"); </script>
-  @endif
+@if (session('successUpdate'))
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      showModal1();
+      });
+  </script>
+@endif
+@if (session('errorUpdate'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    showModal2();
+    });
+</script>
+@endif
 
   <script>
-       $(document).ready(function() {
+      $(document).ready(function() {
     $('.rating').raty({
         score: 0 // Inisialisasi dengan skor 0 untuk membuat bintang kosong
     });

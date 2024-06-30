@@ -10,6 +10,7 @@ use App\Models\Detail;
 use App\Models\Seller;
 use App\Models\Service;
 use App\Models\Ratings;
+use App\Models\Invoice;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -22,6 +23,8 @@ class ProfileBuyerController extends Controller
 
         $orders = Order::where('Id_User', $userId)->get();
 
+        $invoices = Invoice::all();
+
         $usersall = User::all();
         $sellersall = Seller::all();
         $servicesOrder = Service::all();
@@ -32,7 +35,7 @@ class ProfileBuyerController extends Controller
         }
         $isSeller = Seller::where('Id_User', $userId)->exists();
     
-        return view('profilebuyer', compact('sellersall','usersall','user','orders','servicesOrder', 'typesOrder', 'detailsOrder','isSeller'));
+        return view('profilebuyer', compact('invoices','sellersall','usersall','user','orders','servicesOrder', 'typesOrder', 'detailsOrder','isSeller'));
     }
 
     public function edit(){
@@ -72,10 +75,10 @@ class ProfileBuyerController extends Controller
         $user->save();
     
         if ($user->save()) {
-            session()->flash('success', 'Successfully Update Account');
+            session()->flash('successUpdate');
             return back();
         } else {
-            session()->flash('error', 'Failed Update Account');
+            session()->flash('errorUpdate');
             return back();
         }
     }
@@ -193,7 +196,4 @@ class ProfileBuyerController extends Controller
 
     return redirect()->route('profileseller.index');
     }
-
-
-
 }

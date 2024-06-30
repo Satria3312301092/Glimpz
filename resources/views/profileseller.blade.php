@@ -283,9 +283,9 @@
                 </ul>
               </div>  
                         <div class="flex justify-center mt-4">
-                        <form action="{{ route('profileseller.switchToBuyer') }}" method="POST">
+                        <form id="serviceForm" action="{{ route('profileseller.switchToBuyer') }}" method="POST">
                         @csrf
-                         <button class="btn text-base rounded-lg border-0
+                         <button type="submit" class="btn text-base rounded-lg border-0
                                       text-sm font-semibold
                                       bg-blue-50 text-blue-700
                                       hover:bg-blue-600 hover:text-white hover:shadow-lg">Switch Buyer</button>
@@ -369,6 +369,8 @@
                     <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
                     @elseif ($order->Status == 'Payment')
                     <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
+                    @elseif ($order->Status == 'WaitingApprove')
+                    <td><div class="badge badge-warning rounded-lg badge-outline">Waiting Approve</div></td>
                     @elseif ($order->Status == 'Proses')
                     <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
                     @elseif ($order->Status == 'Finish')
@@ -426,6 +428,7 @@
                       </li>
                       @endif
                       <li>
+                        @if ($order->Status == 'Proses' || $order->Status == 'Revision')
                         <a onclick="my_modal_6{{ $order->Id_Order }}.showModal()">
                         <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
@@ -433,6 +436,7 @@
                         </svg>
                         Delivery Proof </a>
                       </li>
+                      @endif
                       <li>
                         <a onclick="my_modal_1{{ $order->Id_Order }}.showModal()">
                         <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -569,283 +573,54 @@
      
         </div>
 
-          <!-- row -->
-          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-            <figure class="w-32">
-              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
-            </figure>
-            <div class="card-body p-5">
-              <div class="grid grid-cols-9 gap-4">
-
-                <div class="col-span-1">
-                  <div class="avatar">
-                    <div class="w-10 rounded-full border-2">
-                      <img src="../Asset/Profile-user.svg" class="p-3"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Price</li>
-                    <li>Rp. 26.000</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-success rounded-lg badge-outline">Finished</div>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Delivery Time</li>
-                    <li>2024-07-27</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div> -->
-<!-- row 2 -->
-          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-            <figure class="w-32">
-              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
-            </figure>
-            <div class="card-body p-5">
-              <div class="grid grid-cols-9 gap-4">
-
-                <div class="col-span-1">
-                  <div class="avatar">
-                    <div class="w-10 rounded-full border-2">
-                        <img src="../Asset/Profile-user.svg" class="p-3"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Price</li>
-                    <li>Rp. 26.000</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-error rounded-lg badge-outline">Rejected</div>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Delivery Time</li>
-                    <li>2024-07-27</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div> -->
-
-<!-- row 3 -->
-          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-            <figure class="w-32">
-              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
-            </figure>
-            <div class="card-body p-5">
-              <div class="grid grid-cols-9 gap-4">
-
-                <div class="col-span-1">
-                  <div class="avatar">
-                    <div class="w-10 rounded-full border-2">
-                        <img src="../Asset/Profile-user.svg" class="p-3"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Price</li>
-                    <li>Rp. 26.000</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-warning rounded-lg badge-outline">Pending</div>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Delivery Time</li>
-                    <li>2024-07-27</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div> -->
-          <!-- row 4 -->
-          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-            <figure class="w-32">
-              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
-            </figure>
-            <div class="card-body p-5">
-              <div class="grid grid-cols-9 gap-4">
-
-                <div class="col-span-1">
-                  <div class="avatar">
-                    <div class="w-10 rounded-full border-2">
-                        <img src="../Asset/Profile-user.svg" class="p-3"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Price</li>
-                    <li>Rp. 26.000</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Delivery Time</li>
-                    <li>2024-07-27</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div> -->
-<!-- row 5 -->
-          <!-- <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-            <figure class="w-32">
-              <img src="../Asset/jasa-dummy.png" class="w-full h-full" alt="Product"/>
-            </figure>
-            <div class="card-body p-5">
-              <div class="grid grid-cols-9 gap-4">
-
-                <div class="col-span-1">
-                  <div class="avatar">
-                    <div class="w-10 rounded-full border-2">
-                        <img src="../Asset/Profile-user.svg" class="p-3"/>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Price</li>
-                    <li>Rp. 26.000</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Status</li>
-                    <li>
-                      <div class="badge badge-outline text-xs rounded-lg text-b">In Progress</div>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 text-center">
-                  <ul class="text-sm">
-                    <li class="font-bold">Delivery Time</li>
-                    <li>2024-07-27</li>
-                  </ul>
-                </div>
-
-                <div class="col-span-2 grid justify-center items-center">
-                  <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
-                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21.4997 23.2916C22.4892 23.2916 23.2913 22.4895 23.2913 21.5C23.2913 20.5105 22.4892 19.7083 21.4997 19.7083C20.5102 19.7083 19.708 20.5105 19.708 21.5C19.708 22.4895 20.5102 23.2916 21.4997 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M34.0417 23.2916C35.0312 23.2916 35.8333 22.4895 35.8333 21.5C35.8333 20.5105 35.0312 19.7083 34.0417 19.7083C33.0522 19.7083 32.25 20.5105 32.25 21.5C32.25 22.4895 33.0522 23.2916 34.0417 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M8.95866 23.2916C9.94817 23.2916 10.7503 22.4895 10.7503 21.5C10.7503 20.5105 9.94817 19.7083 8.95866 19.7083C7.96915 19.7083 7.16699 20.5105 7.16699 21.5C7.16699 22.4895 7.96915 23.2916 8.95866 23.2916Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div> -->
-         
-               
-
               </div>
             </div>
           </div>
 
     </div>
   </div>
+
+<!-- modal success -->
+<dialog id="successModal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg text-green-500 font-bold">Success!</h3>
+    <p class="py-4">Successfully switched to Seller.</p>
+  </div>
+</dialog>
+<!-- modal success -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('serviceForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      let inputs = form.querySelectorAll('input, textarea, select');
+
+      showModalSuccess();
+
+      setTimeout(function() {
+        form.submit();
+      }, 500);
+    });
+
+    function showModalSuccess() {
+      document.getElementById('successModal').showModal();
+    }
+
+    function showModalValidation() {
+      document.getElementById('validationModal').showModal();
+    }
+  });
+
+</script>
+
     @if (session('success'))
       <script> alert("{{ session('success') }}"); </script>
   @endif
   @if (session('error'))
       <script> alert("{{ session('error') }}"); </script>
   @endif
-    
-    
-    
-  </body>
-  </html>
-       
-          
+</body>
+</html>

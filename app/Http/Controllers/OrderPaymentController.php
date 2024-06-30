@@ -14,6 +14,7 @@ use App\Models\Detail;
 use App\Models\Seller;
 use App\Models\Service;
 use App\Models\Payment;
+use App\Models\Invoice;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -108,6 +109,14 @@ class OrderPaymentController extends Controller
             $payment->update([
                 'Method' => $request->payment_channel
             ]);
+
+            $invoice = new Invoice();
+            $invoice->Id_User = $payment->Id_User;
+            $invoice->Id_Payment = $payment->Id_Payment;
+            $invoice->Id_Order = $payment->Id_Order;
+            $invoice->Id_Service = $order->Id_Service;
+            $invoice->Status = 'notpaid';
+            $invoice->save();
         } else {
             $order->update([
                 'Status' => 'Cancel'
