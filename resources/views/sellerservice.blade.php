@@ -105,15 +105,12 @@
     <!-- bagian atas -->
     <!-- content -->
 
-
-  
-
-    <div class="bg-white border-2 px-5 rounded-xl mt-4 mx-10">
+    <div class="bg-white border-2 px-5 rounded-xl mt-4 mx-auto">
               @foreach ($services as $service)
                 <div class="card card-side bg-base-100 h-20 shadow-xl my-5">
-                  <figure class="w-32">
-                    <img src="{{ Storage::url($service->Thumbnail) }}" alt="" width="150">
-                  </figure>
+                <figure class="w-32">
+                  <img src="{{ Storage::url($service->Thumbnail) }}" class="w-full h-full" alt="Service"/>
+                </figure>
                   <div class="card-body p-5">
                     <div class="grid grid-cols-9 gap-4">
 
@@ -183,7 +180,7 @@
               <p class="py-4">Apakah anda yakin ingin menghapus?</p>
               <div class="modal-action">
               <button type="button" class="btn" onclick="document.getElementById('my_modal_delete1{{$service->Id_Service}}').close()">Cancel</button>
-                <form action="{{route('sellerservice.destroy', $service->Id_Service )}}" method="POST">    
+                <form id="serviceForm" action="{{route('sellerservice.destroy', $service->Id_Service )}}" method="POST">    
                   @csrf
                   @method('DELETE')
                   <button type="submit" class="btn bg-red-600 text-white">Delete</button>
@@ -193,145 +190,153 @@
           </dialog>
         <!-- modal delete -->
 
+        <!-- delete success -->
+        <dialog id="modalDelete" class="modal">
+              <div class="modal-box">
+                <h3 class="text-lg font-bold">Deleted</h3>
+                <p class="py-4">Service has been deleted</p>
+                </div>
+              </div>
+            </dialog>
+        <!-- delete success -->
+
         <!-- modal detail -->
-       
         <dialog id="my_modal_detail1{{$service->Id_Service}}" class="modal">
-    <!-- content -->
-    
-  <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
-    <form method="dialog">
-      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-    </form>
-    <h3 class="font-bold text-xl mb-3">Detail Service</h3>
-    <div class="grid grid-cols-3 gap-x-5">
-        <div class="col-span-1 gap-x-20">
-        <img class="w-full rounded-xl" src="{{ Storage::url($service->Thumbnail) }}" alt="" width="150">
-        </div>
-        <div>
-            <div class="col-span-1">
-                <div class="grid gap-y-1.5">
-                    <a class="block text-gray-700 text-sm font-semibold">ID SERVICE</a>
-                    <input type="text" value="{{$service->Id_Service}}" id="id_service" name="id_service" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-                    
-                    <a class="block text-gray-700 text-sm font-semibold">Title</a>
-                    <input type="text"  value="{{$service->Title}}" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-                    
-                    <a class="block text-gray-700 text-sm font-semibold">Description</a>
-                    <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-24" disabled>{{$service->Description}}</textarea>
-                    
-                    <a for="title" class="block text-gray-700 text-sm font-semibold">Category</a>
-                    <select class="select select-bordered w-full max-w-xs text-black shadow-lg border-[1px]">
-                        <option class="text-zinc-500 font-bold" disabled selected>{{$service->Category}}</option>
-                        <option class="text-slate-700 hover:!bg-blue-50" disabled>Video Editing</option>
-                        <option class="text-slate-700"disabled>Video Ads</option>
-                        <option class="text-slate-700"disabled>Visual Effect</option>
-                        <option class="text-slate-700"disabled>Education</option>
-                        <option class="text-slate-700"disabled>Templates</option>
-                        <option class="text-slate-700"disabled>Short Movie</option>
-                        <option class="text-slate-700"disabled>Social Media</option>
-                        <option class="text-slate-700"disabled>2D Animation</option>
-                        <option class="text-slate-700"disabled>3D Animation</option>
-                        <option class="text-slate-700"disabled>Logo Animation</option>
-                        <option class="text-slate-700"disabled>Film Series</option>
-                        <option class="text-slate-700"disabled>Character Animation</option>
-                        <option class="text-slate-700"disabled>Web Animation</option>
-                        <option class="text-slate-700"disabled>Rigging</option>
-                        <option class="text-slate-700"disabled>NFT Animation</option>
-                    </select>
-</div>
-</div>
-</div>
-
-<!-- tabs -->
-<div class="col-span-1">
-  <div role="tablist" class="tabs tabs-lifted">
-   
-  @foreach ($types as $type)
-    @if ($type->Type_Name == 'Basic' && $type->Id_Service == $service->Id_Service)
-        @foreach ($details as $detail)
-          @if ($detail->Id_Type == $type->Id_Type)
-        <!-- tab 1 -->
-        <input type="radio" id="tab1_<?php echo $service->Id_Service; ?>" name="my_tabs_2" role="tab" class="tab" aria-label="Basic" checked />
-        <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-            <div class="grid gap-y-1.5">
-                
-                <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-                <input type="text" value="{{$detail->Day}}" id="day" name="day" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-                
-                <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-                <input type="text" value="{{$detail->Revision}}" id="revision" name="revision" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-                
-                <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-                <input type="text" value="{{$detail->Price}}" id="price" name="price" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-        
-                <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-                <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-20" disabled>{{$detail->Descriptions}}</textarea>
-            </div>
-        </div>
-        @endif
-        @endforeach
-    @endif
-  @endforeach
-
-           
-  @foreach ($types as $type)
-    @if ($type->Type_Name == 'Standard' && $type->Id_Service == $service->Id_Service)
-        @foreach ($details as $detail)
-          @if ($detail->Id_Type == $type->Id_Type)
-            <!-- tab2 -->
-            <input type="radio" id="tab2_" name="my_tabs_2" role="tab" class="tab" aria-label="Standard" />
-            <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-            <div class="grid gap-y-1.5">
-                  <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-                  <input type="text" value="{{$detail->Day}}" name="Day" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-                  
-                  <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-                  <input type="text" value="{{$detail->Revision}}" id="revisi" name="revisi" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-                  
-                  <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-                  <input type="text" value="{{$detail->Price}}" id="Price" name="Price" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-    
-                  <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-                  <textarea id="Description" name="Description" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-20" disabled>{{$detail->Descriptions}}</textarea>
+          <!-- content -->
+          <div class="modal-box w-full max-w-6xl rounded-2xl shadow-xl">
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="font-bold text-xl mb-3">Detail Service</h3>
+            <div class="grid grid-cols-3 gap-x-5">
+                <div class="col-span-1 gap-x-20">
+                <img class="w-full rounded-xl" src="{{ Storage::url($service->Thumbnail) }}" alt="" width="150">
                 </div>
-            </div>
-            @endif
-        @endforeach
-    @endif
-  @endforeach
-           
-  @foreach ($types as $type)
-    @if ($type->Type_Name == 'Premium' && $type->Id_Service == $service->Id_Service)
-        @foreach ($details as $detail)
-          @if ($detail->Id_Type == $type->Id_Type)
-            <!-- tab 3 -->
-            <input type="radio" id="tab3_" name="my_tabs_2" role="tab" class="tab" aria-label="Premium" />
-            <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-            <div class="grid gap-y-1.5">
-                  <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
-                  <input type="text" value="{{$detail->Day}}" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
-                  
-                  <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
-                  <input type="text" value="{{$detail->Revision}}" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-full d" disabled>
-                  
-                  <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
-                  <input type="text" value="{{$detail->Price}}" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                <div>
+                    <div class="col-span-1">
+                        <div class="grid gap-y-1.5">
+                            <a class="block text-gray-700 text-sm font-semibold">ID SERVICE</a>
+                            <input type="text" value="{{$service->Id_Service}}" id="id_service" name="id_service" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                            
+                            <a class="block text-gray-700 text-sm font-semibold">Title</a>
+                            <input type="text"  value="{{$service->Title}}" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                            
+                            <a class="block text-gray-700 text-sm font-semibold">Description</a>
+                            <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-24" disabled>{{$service->Description}}</textarea>
+                            
+                            <a for="title" class="block text-gray-700 text-sm font-semibold">Category</a>
+                            <select class="select select-bordered w-full max-w-xs text-black shadow-lg border-[1px]">
+                                <option class="text-zinc-500 font-bold" disabled selected>{{$service->Category}}</option>
+                                <option class="text-slate-700 hover:!bg-blue-50" disabled>Video Editing</option>
+                                <option class="text-slate-700"disabled>Video Ads</option>
+                                <option class="text-slate-700"disabled>Visual Effect</option>
+                                <option class="text-slate-700"disabled>Education</option>
+                                <option class="text-slate-700"disabled>Templates</option>
+                                <option class="text-slate-700"disabled>Short Movie</option>
+                                <option class="text-slate-700"disabled>Social Media</option>
+                                <option class="text-slate-700"disabled>2D Animation</option>
+                                <option class="text-slate-700"disabled>3D Animation</option>
+                                <option class="text-slate-700"disabled>Logo Animation</option>
+                                <option class="text-slate-700"disabled>Film Series</option>
+                                <option class="text-slate-700"disabled>Character Animation</option>
+                                <option class="text-slate-700"disabled>Web Animation</option>
+                                <option class="text-slate-700"disabled>Rigging</option>
+                                <option class="text-slate-700"disabled>NFT Animation</option>
+                            </select>
+        </div>
+        </div>
+        </div>
+
+        <!-- tabs -->
+        <div class="col-span-1">
+          <div role="tablist" class="tabs tabs-lifted">
           
-                  <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
-                  <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-20" disabled>{{$detail->Descriptions}}</textarea>
+          @foreach ($types as $type)
+            @if ($type->Type_Name == 'Basic' && $type->Id_Service == $service->Id_Service)
+                @foreach ($details as $detail)
+                  @if ($detail->Id_Type == $type->Id_Type)
+                <!-- tab 1 -->
+                <input type="radio" id="tab1_<?php echo $service->Id_Service; ?>" name="my_tabs_2" role="tab" class="tab" aria-label="Basic" checked />
+                <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    <div class="grid gap-y-1.5">
+                        
+                        <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
+                        <input type="text" value="{{$detail->Day}}" id="day" name="day" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                        
+                        <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
+                        <input type="text" value="{{$detail->Revision}}" id="revision" name="revision" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                        
+                        <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
+                        <input type="text" value="{{$detail->Price}}" id="price" name="price" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                
+                        <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
+                        <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-20" disabled>{{$detail->Descriptions}}</textarea>
+                    </div>
                 </div>
-            </div>
+                @endif
+                @endforeach
             @endif
-        @endforeach
-    @endif
-  @endforeach
+          @endforeach
+
+                  
+          @foreach ($types as $type)
+            @if ($type->Type_Name == 'Standard' && $type->Id_Service == $service->Id_Service)
+                @foreach ($details as $detail)
+                  @if ($detail->Id_Type == $type->Id_Type)
+                    <!-- tab2 -->
+                    <input type="radio" id="tab2_" name="my_tabs_2" role="tab" class="tab" aria-label="Standard" />
+                    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    <div class="grid gap-y-1.5">
+                          <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
+                          <input type="text" value="{{$detail->Day}}" name="Day" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                          
+                          <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
+                          <input type="text" value="{{$detail->Revision}}" id="revisi" name="revisi" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                          
+                          <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
+                          <input type="text" value="{{$detail->Price}}" id="Price" name="Price" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
             
-          </div>
-          
-         
-        </div>
-    </div>
-    </div>
+                          <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
+                          <textarea id="Description" name="Description" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-20" disabled>{{$detail->Descriptions}}</textarea>
+                        </div>
+                    </div>
+                    @endif
+                @endforeach
+            @endif
+          @endforeach
+                  
+          @foreach ($types as $type)
+            @if ($type->Type_Name == 'Premium' && $type->Id_Service == $service->Id_Service)
+                @foreach ($details as $detail)
+                  @if ($detail->Id_Type == $type->Id_Type)
+                    <!-- tab 3 -->
+                    <input type="radio" id="tab3_" name="my_tabs_2" role="tab" class="tab" aria-label="Premium" />
+                    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    <div class="grid gap-y-1.5">
+                          <a class="block text-gray-700 text-sm font-semibold mb-1">Day</a>
+                          <input type="text" value="{{$detail->Day}}" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                          
+                          <a class="block text-gray-700 text-sm font-semibold mb-1">Revisi</a>
+                          <input type="text" value="{{$detail->Revision}}" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-full d" disabled>
+                          
+                          <a class="block text-gray-700 text-sm font-semibold mb-1">Price</a>
+                          <input type="text" value="{{$detail->Price}}" id="title" name="title" class="shadow-lg border rounded py-2 px-3 w-full" disabled>
+                  
+                          <a class="block text-gray-700 text-sm font-semibold mb-1">Description</a>
+                          <textarea id="description" name="description" class="shadow-lg border rounded py-2 px-3 w-full resize-y h-20" disabled>{{$detail->Descriptions}}</textarea>
+                        </div>
+                    </div>
+                    @endif
+                @endforeach
+            @endif
+          @endforeach
+                    
+                  </div>
+                  
+                
+                </div>
+            </div>
+            </div>
 </dialog>
         <!-- modal detail -->
         
@@ -346,17 +351,32 @@
         
         <!-- content -->
         <script>
-          function selectFirstTab(serviceId) {
-            var tab1 = document.getElementById('tab1_' + serviceId);
-            tab1.checked = true;
-          }
-        </script>
+              document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('serviceForm');
 
-<script>
-  function openModal(serviceId) {
-    document.getElementById(`my_modal_delete1${serviceId}`).showModal();
-  }
-</script>
+                form.addEventListener('submit', function(event) {
+                  event.preventDefault();
+
+                  showModalDelete();
+
+                  setTimeout(function() {
+                    form.submit();
+                  }, 500);
+                });
+
+                function showModalDelete() {
+                  document.getElementById('modalDelete').showModal();
+                }
+              });
+
+              function selectFirstTab(serviceId) {
+                var tab1 = document.getElementById('tab1_' + serviceId);
+                tab1.checked = true;
+              }
+              function openModal(serviceId) {
+                document.getElementById(`my_modal_delete1${serviceId}`).showModal();
+              }
+        </script>
 
 @if(session('success'))
     <script>

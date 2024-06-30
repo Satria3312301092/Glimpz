@@ -36,20 +36,20 @@ class DaftarGlimpzController extends Controller
     
         
         if ($user) {
-            return redirect()->back()->with('username', 'This Username Has Been Taken.');
+            $request->session()->flash('username', true);
+            return redirect()->back();
         }
     
-        
         if ($bannedPhone) {
-            return redirect()->back()->with('Banphone', 'This Phone Number Has Been Banned');
+            $request->session()->flash('Banphone', true);
+            return redirect()->back();
         }
     
-       
         if ($bannedEmail) {
-            return redirect()->back()->with('Banemail', 'This Email Has Been Banned');
+            $request->session()->flash('Banemail', true);
+            return redirect()->back();
         }
     
-       
         $user = new User();
         $user->Name = $request->input('Fullname');
         $user->Email = $request->input('Email');
@@ -61,7 +61,7 @@ class DaftarGlimpzController extends Controller
         $user->Picture = 'public/picture/default.png';
     
         if ($user->save()) {
-            session()->flash('success', 'Successfully Created Account');
+            session()->flash('success');
             return view('login');
         } else {
             return redirect()->back()->with('error', 'Failed To Create Account');
