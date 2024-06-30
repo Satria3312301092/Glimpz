@@ -80,10 +80,10 @@ class ProfileSellerController extends Controller
         $user->save();
     
         if ($user->save()) {
-            session()->flash('success', 'Successfully Update Account');
+            session()->flash('successUpdate');
             return back();
         } else {
-            session()->flash('error', 'Failed Update Account');
+            session()->flash('errorUpdate');
             return back();
         }
     }
@@ -112,7 +112,7 @@ class ProfileSellerController extends Controller
     $user->Role = 'Buyer';
     $user->save();
 
-    session()->flash('success', 'Successfully switched to Buyer');
+    session()->flash('switch_buyer');
 
     return redirect()->route('profilebuyer.index');
 }

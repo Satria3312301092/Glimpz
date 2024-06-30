@@ -124,162 +124,56 @@
         </div>
     </div>
     <div class="font-bold ml-16 text-5xl mt-40">Service</div>
-    <a class="flex justify-end text-blue-600 mr-16 text-xl" href="#">View All</a>
+    <a class="flex justify-end text-blue-600 mr-16 text-xl" href="{{route('listservice.index')}}">View All</a>
   <!-- Service card -->
               <div class="flex justify-center mt-5">
                 <div class="grid grid-cols-4 gap-8">
                   <!-- card 1-->
-                  <div class="card card-compact w-64 bg-base-100 shadow-xl">
-                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                      <p>Category</p>
-                      <h2 class="text-base">I Will Animate Your Character </h2>
-                      <div class="card-actions justify-start">
-                        <div class="rating rating-sm">
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <span>128</span>
-                        </div>
-                      </div>
-                      <p class="text-lg font-bold">Rp.99.999</p>
+                @foreach ($services as $service)
+            @foreach ($types as $type)
+            @if ($type->Type_Name == 'Basic' && $type->Id_Service == $service->Id_Service)
+            @foreach ($details as $detail)
+            @if ($detail->Id_Type == $type->Id_Type)
+            <a href="{{  route ('service.show', $service->Id_Service) }}" class="block">
+            <div class="card card-compact w-64 bg-base-100 shadow-xl ">
+              <figure><img src="{{ Storage::url($service->Thumbnail) }}" alt="" class="h-40"/></figure>
+              <div class="card-body">
+                <p>{{ $service-> Category }}</p>
+                <h2 class="text-base">{{ $service-> Title }}</h2>
+                <div class="card-actions justify-start">
+                  <div class="rating rating-sm">
+                    <input type="radio" name="rating-9" class="mask mask-star-2" />
+                    <span class="ml-2 text-sm">{{ number_format($service->average_rating, 1) }}/5 ({{ $service->rating_count }} ratings)</span>
+                
+                    <!-- <span>128</span> -->
+                  </div>
+                </div>
+                <p class="text-lg font-bold">Rp.{{ $detail->Price }}</p>
+              </div>
+            </div>
+            </a>
+            <!-- card 1-->
+            @endif
+            @endforeach
+            @endif
+            @endforeach
+            @endforeach
                     </div>
                   </div>
                   <!-- card 1-->
-                  <div class="card card-compact w-64 bg-base-100 shadow-xl">
-                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                      <p>Category</p>
-                      <h2 class="text-base">I Will Animate Your Character </h2>
-                      <div class="card-actions justify-start">
-                        <div class="rating rating-sm">
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <span>128</span>
-                        </div>
-                      </div>
-                      <p class="text-lg font-bold">Rp.99.999</p>
-                    </div>
-                  </div>
+                 
                   <!-- card 1-->
-                  <div class="card card-compact w-64 bg-base-100 shadow-xl">
-                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                      <p>Category</p>
-                      <h2 class="text-base">I Will Animate Your Character </h2>
-                      <div class="card-actions justify-start">
-                        <div class="rating rating-sm">
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <span>128</span>
-                        </div>
-                      </div>
-                      <p class="text-lg font-bold">Rp.99.999</p>
-                    </div>
-                  </div>
+                 
                   <!-- card 1-->
-                  <div class="card card-compact w-64 bg-base-100 shadow-xl">
-                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                      <p>Category</p>
-                      <h2 class="text-base">I Will Animate Your Character </h2>
-                      <div class="card-actions justify-start">
-                        <div class="rating rating-sm">
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <span>128</span>
-                        </div>
-                      </div>
-                      <p class="text-lg font-bold">Rp.99.999</p>
-                    </div>
-                  </div>
+                 
                   <!-- card 1-->
-                  <div class="card card-compact w-64 bg-base-100 shadow-xl">
-                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                      <p>Category</p>
-                      <h2 class="text-base">I Will Animate Your Character </h2>
-                      <div class="card-actions justify-start">
-                        <div class="rating rating-sm">
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <span>128</span>
-                        </div>
-                      </div>
-                      <p class="text-lg font-bold">Rp.99.999</p>
-                    </div>
-                  </div>
+                 
                   <!-- card 1-->
-                  <div class="card card-compact w-64 bg-base-100 shadow-xl">
-                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                      <p>Category</p>
-                      <h2 class="text-base">I Will Animate Your Character </h2>
-                      <div class="card-actions justify-start">
-                        <div class="rating rating-sm">
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <span>128</span>
-                        </div>
-                      </div>
-                      <p class="text-lg font-bold">Rp.99.999</p>
-                    </div>
-                  </div>
+                
                   <!-- card 1-->
-                  <div class="card card-compact w-64 bg-base-100 shadow-xl">
-                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                      <p>Category</p>
-                      <h2 class="text-base">I Will Animate Your Character </h2>
-                      <div class="card-actions justify-start">
-                        <div class="rating rating-sm">
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <span>128</span>
-                        </div>
-                      </div>
-                      <p class="text-lg font-bold">Rp.99.999</p>
-                    </div>
-                  </div>
+                 
                   <!-- card 1-->
-                  <div class="card card-compact w-64 bg-base-100 shadow-xl">
-                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                      <p>Category</p>
-                      <h2 class="text-base">I Will Animate Your Character </h2>
-                      <div class="card-actions justify-start">
-                        <div class="rating rating-sm">
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" checked />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <input type="radio" name="rating-9" class="mask mask-star-2" />
-                          <span>128</span>
-                        </div>
-                      </div>
-                      <p class="text-lg font-bold">Rp.99.999</p>
-                    </div>
-                  </div>
+                 
               </div>
               </div>
               </div>

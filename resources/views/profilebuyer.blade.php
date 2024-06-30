@@ -93,7 +93,7 @@
             <div class="card card-compact w-96 bg-base-100 shadow-xl border-2 pb-20">
               <figure class="border-b-2 py-5">
                 <div class="avatar">
-                <div class="w-32 h-32 rounded-full border-2 overflow-hidden flex items-center justify-center">
+                <div class="w-32 h-32 rounded-full border-[1px] border-[#BEBEBE] overflow-hidden flex items-center justify-center shadow-md shadow-neutral-300">
                 <img src="{{ Storage::url($user->Picture) }}" class="object-cover w-full h-full" alt="profile image" />
               </div>
                 </div>
@@ -282,24 +282,24 @@
 
 
                   <!-- Open the modal using ID.showModal() method -->
-                   @if(!$isSeller)
-                   <div class="flex justify-center mt-4">
-                     <button class="btn text-base rounded-lg border-0
-                                  text-sm font-semibold
-                                  bg-blue-50 text-blue-700
-                                  hover:bg-blue-600 hover:text-white hover:shadow-lg" onclick="my_modal_1.showModal()">Join as Seller</button>
-                   </div>
-                   @else
-                   <div class="flex justify-center mt-4">
-                   <form id="serviceForm" action="{{ route('profilebuyer.switchToSeller') }}" method="POST">
-                   @csrf
-                     <button type="submit" class="btn text-base rounded-lg border-0
-                                  text-sm font-semibold
-                                  bg-blue-50 text-blue-700
-                                  hover:bg-blue-600 hover:text-white hover:shadow-lg" >Switch Seller</button>
-                   </form>
-                   </div>
-                   @endif
+                  @if(!$isSeller)
+                  <div class="flex justify-center mt-4">
+                    <button class="btn text-base rounded-lg border-0
+                                text-sm font-semibold
+                                bg-blue-50 text-blue-700
+                                hover:bg-blue-600 hover:text-white hover:shadow-lg" onclick="my_modal_1.showModal()">Join as Seller</button>
+                  </div>
+                  @else
+                  <div class="flex justify-center mt-4">
+                  <form action="{{ route('profilebuyer.switchToSeller') }}" method="POST">
+                  @csrf
+                    <button class="btn text-base rounded-lg border-0
+                                text-sm font-semibold
+                                bg-blue-50 text-blue-700
+                                hover:bg-blue-600 hover:text-white hover:shadow-lg" >Switch Seller</button>
+                  </form>
+                  </div>
+                  @endif
 
                   <dialog id="my_modal_1" class="modal">
                     <div class="modal-box">
@@ -710,67 +710,57 @@
   </div>
   </div>
   </div>
-
+    <!-- modal success -->
     <dialog id="modalSuccess" class="modal">
-        <div class="modal-box">
+      <div class="modal-box">
             <form method="dialog">
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <h3 class="text-lg text-green-500 rounded-full font-bold">Action Success</h3>
             <p class="py-4">Successfully Update Account</p>
-        </div>
-      </dialog>
+      </div>
+    </dialog>
+    <!-- modal success -->
 
+    <!-- modal eror -->
     <dialog id="modalEror" class="modal">
+      <div class="modal-box">
+          <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          </form>
+          <h3 class="text-lg text-red-500 rounded-full font-bold">Eror</h3>
+          <p class="py-4">Failed Update Account</p>
+      </div>
+    </dialog>
+    <!-- modal eror -->
+
+        <!-- modal switch -->
+      <dialog id="modalSwitch_Buyer" class="modal">
         <div class="modal-box">
-            <form method="dialog">
+          <form method="dialog">
             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
-            <h3 class="text-lg text-red-500 rounded-full font-bold">Eror</h3>
-            <p class="py-4">Failed Update Account</p>
+          </form>
+          <h3 class="text-lg text-green-500 font-bold">Success!</h3>
+          <p class="py-4">Successfully switched to Buyer.</p>
         </div>
       </dialog>
-
-  <!-- modal success -->
-<dialog id="successModal" class="modal">
-  <div class="modal-box">
-    <h3 class="text-lg text-green-500 font-bold">Success!</h3>
-    <p class="py-4">Successfully switched to Seller.</p>
-  </div>
-</dialog>
-<!-- modal success -->
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+      <!-- modal switch -->
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('serviceForm');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      let inputs = form.querySelectorAll('input, textarea, select');
-
-      showModalSuccess();
-
-      setTimeout(function() {
-        form.submit();
-      }, 500);
-    });
-
-    function showModalSuccess() {
-      document.getElementById('successModal').showModal();
-    }
-
-    function showModalValidation() {
-      document.getElementById('validationModal').showModal();
-    }
-  });
-
-    // show modal
+    // show update modal
     function showModal1() {
             document.getElementById('modalSuccess').showModal();
         }
+    // show eror modal
     function showModal2() {
         document.getElementById('modalEror').showModal();
+    }
+    // show success switch
+    function showModal3() {
+        document.getElementById('modalSwitch_Buyer').showModal();
     }
 </script>
     
@@ -788,6 +778,13 @@
     });
 </script>
 @endif
+@if (session('switch_buyer'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        showModal3();
+        });
+    </script>
+  @endif
 
   <script>
       $(document).ready(function() {
@@ -797,7 +794,5 @@
 });
     </script>
 
-
-    
   </body>
   </html>

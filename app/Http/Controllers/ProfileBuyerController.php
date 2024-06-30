@@ -123,10 +123,10 @@ class ProfileBuyerController extends Controller
 
         // Redirect atau berikan respon sukses
         if ($user->save()) {
-            session()->flash('success', 'Successfully Switch Role');
+            session()->flash('saveRole');
             return redirect()->route('profileseller.index');
         } else {
-            session()->flash('error', 'Failed Switch role');
+            session()->flash('errorSave');
             return back();
         }
     }
@@ -166,7 +166,7 @@ class ProfileBuyerController extends Controller
     if ($seller) {
         $user->Role = 'Seller';
         $user->save();
-        session()->flash('success', 'Successfully switched to Seller');
+        session()->flash('switch_seller');
     } else {
         session()->flash('error', 'Seller data not found. Please join as Seller first.');
     }
