@@ -72,7 +72,7 @@
 <div class="container mx-auto px-10">
     <div class="flex justify-between mb-5">
         <h1 class="font-bold text-3xl">Invoice</h1>
-        <button class="btn">
+        <a href="{{ route('invoice.viewpdf', ['id' => $invoices->Id_Invoice]) }}" class="btn">
             <svg class="w-4 h-5 text-red-500" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_672_180)">
                 <path d="M20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM11.5 9.5C11.5 10.33 10.83 11 10 11H9V12.25C9 12.66 8.66 13 8.25 
@@ -82,80 +82,98 @@
                 22H17C17.55 22 18 21.55 18 21C18 20.45 17.55 20 17 20H5C4.45 20 4 19.55 4 19V7C4 6.45 3.55 6 3 6ZM14 11.5H15V8.5H14V11.5Z" fill="currentColor"/>
                 </g><defs><clipPath id="clip0_672_180"><rect width="24" height="24" fill="white"/></clipPath></defs>
             </svg>Print
-        </button>
+          </a>
     </div>
     <div class="bg-white border rounded-2xl shadow-md shadow-gray-300 p-10 mb-10">
         <div class="flex items-center mb-5">
-            <img src="../Asset/logo.png" style="width: 64px; height: 64px;" alt="">
+            <img src="{{asset('images/logo.png')}}" style="width: 64px; height: 64px;" alt="">
                 <div>
                     <h1 class="font-bold text-3xl">Glimpz</h1>
-                    <p class="text-sm">Invoice</p>
+                    <p class="text-sm">Invoice ID {{ $invoices->Id_Invoice }}</p>
                 </div>
         </div>
         <div class="bg-gray-200 rounded-2xl p-5 mb-8">
             <div class="grid grid-cols-4 gap-12 divide-x-2 divide-slate-300">
                 <div class="px-8">
                     <h3 class="text-slate-500 text-base">Invoice Number</h3>
-                    <a class="font-bold text-xl">#278</a>
+                    <a class="font-bold text-xl">#{{ $payments->External_Id }}</a>
                 </div>
                 <div class="px-8">
                     <h3 class="text-slate-500 text-base">Email</h3>
-                    <a class="font-bold text-xl">hye@gmail.com</a>
+                    <a class="font-bold text-xl">{{ $users->Email }}</a>
                 </div>
                 <div class="px-8">
                     <h3 class="text-slate-500 text-base">Method</h3>
-                    <a class="font-bold text-xl">Dana</a>
+                    <a class="font-bold text-xl">{{ $payments->Method }}</a>
                 </div>
                 <div class="px-8">
                     <h3 class="text-slate-500 text-base">Date</h3>
-                    <a class="font-bold text-xl">12 July 2024</a>
+                    <a class="font-bold text-xl">{{ Carbon\Carbon::parse($invoices->Date)->format('d F Y')  }}</a>
                 </div>
             </div>
         </div>
             <h1 class="font-bold text-xl mb-5">Invoice Details</h1>
             <div class="divider"></div>
-                <div class="grid grid-cols-2 grid-flow-row gap-y-12 mb-8">
+                <div class="grid grid-cols-3 grid-flow-row gap-y-12 mb-8 px-10">
                     <div>
                         <h3 class="font-bold">Title</h3>
-                        <a class="text-slate-500">I will made 2D Animation</a>
+                        <a class="text-slate-500">{{ $services->Title }}</a>
                     </div>
                     <div>
                         <h3 class="font-bold">Type</h3>
-                        <a class="text-slate-500">Basic Animation</a>
+                        <a class="text-slate-500">{{ $types->Type_Name }} {{ $services->Category }}</a>
                     </div>
                     <div>
-                        <h3 class="font-bold">Detail</h3>
-                        <a class="text-slate-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat et animi deleniti molestias est blanditiis voluptates iusto aspernatur nulla mollitia ratione itaque, quibusdam illo voluptate.</a>
+                      <h3 class="font-bold">Service ID</h3>
+                      <a class="text-slate-500">{{ $services->Id_Service }}</a>
+                  </div>
+                    <div>
+                        <h3 class="font-bold">Descriptions</h3>
+                        <a class="text-slate-500">{{ $details->Descriptions }}</a>
                     </div>
                     <div>
                         <h3 class="font-bold">Date</h3>
-                        <a class="text-slate-500">12 July 2024</a>
+                        <a class="text-slate-500">{{ Carbon\Carbon::parse($invoices->Date)->format('d F Y')  }}</a>
                     </div>
+                    <div>
+                      <h3 class="font-bold">Customer ID</h3>
+                      <a class="text-slate-500">{{ $users->Id_User }}</a>
+                  </div>
                 </div>
                 <div class="flex justify-between">
                     <a>Status</a>
-                    <span class="badge text-green-600 border border-green-600">Finished</span>
+                    <span class="badge text-green-600 border border-green-600">PAID</span>
                 </div>
                 <div class="divider"></div>
                     <div class="flex justify-between">
                         <a>Tax</a>
-                        <a>Rp.3.000</a>
+                        
+                          <?php
+                              if ($details->Price <= 10000000) {
+                                $tax = $details->Price * 10 / 100;
+                              } elseif ($details->Price > 10000000 && $detailOrder->Price <= 50000000) {
+                                  $tax = $details->Price * 8 / 100;
+                              } else {
+                                  $tax = $details->Price * 5 / 100;
+                              }
+                          ?>
+                          <a> Rp{{ number_format($tax, 0, ',', '.') }} </a>
                     </div>
                 <div class="divider"></div>
                     <div class="flex justify-between">
                         <a>Price</a>
-                        <a>Rp.50.000</a>
+                        <a>Rp{{ number_format($details->Price, 0, ',', '.') }}</a>
                     </div>
                 <div class="divider"></div>
                     <div class="flex justify-between">
                         <a>Total Price</a>
-                        <a>Rp.53.000</a>
+                        <a>Rp{{ number_format($payments->Total, 0, ',', '.') }}</a>
                     </div>
         </div>
 
         <footer class="footer p-10 mt-40 bg-base-200 text-base-content">
                 <aside>
-                  <img src="images/logo.png"></img>
+                  <img src="{{ asset('images/logo.png') }}"></img>
                   <p>GLIMPZ.<br>Providing reliable tech since 1992</p>
                 </aside> 
                 <nav>

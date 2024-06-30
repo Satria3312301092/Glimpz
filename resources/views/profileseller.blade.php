@@ -369,6 +369,8 @@
                     <td><div class="badge badge-outline text-xs text-yellow-600">Waiting</div></td>
                     @elseif ($order->Status == 'Payment')
                     <div class="badge badge-outline text-xs rounded-lg whitespace-nowrap text-orange-500">Payment Pending</div>
+                    @elseif ($order->Status == 'WaitingApprove')
+                    <td><div class="badge badge-warning rounded-lg badge-outline">Waiting Approve</div></td>
                     @elseif ($order->Status == 'Proses')
                     <td><div class="badge badge-outline text-xs text-blue-600">In Progress</div></td>
                     @elseif ($order->Status == 'Finish')
@@ -426,6 +428,7 @@
                       </li>
                       @endif
                       <li>
+                        @if ($order->Status == 'Proses' || $order->Status == 'Revision')
                         <a onclick="my_modal_6{{ $order->Id_Order }}.showModal()">
                         <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
@@ -433,6 +436,7 @@
                         </svg>
                         Delivery Proof </a>
                       </li>
+                      @endif
                       <li>
                         <a onclick="my_modal_1{{ $order->Id_Order }}.showModal()">
                         <svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

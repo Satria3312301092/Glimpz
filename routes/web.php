@@ -107,6 +107,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/orderpayment/{id}', [OrderPaymentController::class, 'upload'])->name('orderpayment.upload');
     // Route::get('/orderpayment/{id}', [OrderPaymentController::class, 'index'])->name('orderpayment.index');
     Route::get('/invoice/{invoice}',[InvoiceController::class, 'show'])->name('invoice');
+    Route::get('/invoice/{id}/viewpdf',[InvoiceController::class, 'generatePdf'])->name('invoice.viewpdf');
     Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
     Route::post('/rating', [ProfileBuyerController::class, 'rating'])->name('rating.jasa');
 

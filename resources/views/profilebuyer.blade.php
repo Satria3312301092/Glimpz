@@ -481,8 +481,11 @@
                           </svg>
                           Details</a>
                         </li>
+                        @if($order->Status == 'WaitingApprove' || $order->Status == 'Proses' || $order->Status == 'Finish' || $order->Status == 'Revision')
+                        @foreach ($invoices as $invoice)
+                        @if ($user->Id_User == $invoice->Id_User && $order->Id_Order == $invoice->Id_Order)
                         <li>
-                          <a onclick="my_modal_invoice{{ $order->Id_Order }}.showModal()">
+                          <a href=" invoice\{{ $invoice->Id_Invoice }} ">
                           <svg class="w-3 mr-1" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.9491 5.53651L14.4651 2.05051C13.8164 1.39865 13.045 0.881842 12.1953 0.529971C11.3457 0.178099 10.4347 -0.0018556 9.51512 0.00051133H5.00012C3.67453 0.00209919 2.40368 0.529393 1.46634 
                             1.46673C0.529004 2.40407 0.00170993 3.67492 0.00012207 5.00051V19.0005C0.00170993 20.3261 0.529004 21.597 1.46634 22.5343C2.40368 23.4716 3.67453 23.9989 5.00012 24.0005H15.0001C16.3257 23.9989 17.5966 
@@ -495,6 +498,9 @@
                           Invoice
                           </a>
                         </li>
+                        @endif
+                        @endforeach
+                        @endif
                         <li>
                           <a onclick="my_modal_delivery{{ $order->Id_Order }}.showModal()">
                           <svg class="w-3 mr-1" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">

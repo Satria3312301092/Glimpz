@@ -148,9 +148,9 @@ return new class extends Migration
             $table->unsignedInteger('Id_Payment'); // Foreign key
             $table->unsignedInteger('Id_Order'); // Foreign key
             $table->unsignedInteger('Id_Service'); // Foreign key     
-            $table->unsignedInteger('Total'); 
+            $table->timestamp('Date'); 
             $table->string('Proof', 100);
-            $table->enum('Status', ['finish']);
+            $table->enum('Status', ['notpaid','paid']);
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
             $table->foreign('Id_Payment')->references('Id_Payment')->on('payment')->onDelete('cascade');
