@@ -10,8 +10,8 @@ use App\Http\Controllers\ListBarangController091;
 use App\Http\Controllers\ListBarangController092;
 use App\Http\Controllers\ListBarangController105;
 use App\Http\Controllers\ListBarangController108;
-use App\Http\Controllers\BerandaCotroller;
-use App\Http\Controllers\AdminDasborCotroller;
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\AdminDasborController;
 use App\Http\Controllers\Landing_PageController;
 use App\Http\Controllers\List_ServicerController;
 use App\Http\Controllers\AdminServiceController;
@@ -31,6 +31,10 @@ use App\Http\Controllers\SellerOrderController;
 use App\Http\Controllers\TambahServiceController;
 use App\Http\Controllers\EditServiceController;
 use App\Http\Controllers\ListServiceController;
+use App\Http\Controllers\logoutController;
+use App\Http\Controllers\MinServiceController;
+use App\Http\Controllers\BannedController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,33 +74,126 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
 
-Route::get('/login', [LoginController::class, 'login']);
-Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/formlogin', [LoginController::class, 'form'])->name('formlogin');
+    Route::post('/formlogin', [LoginController::class, 'form'])->name('formlogin')->middleware('check.banned');
+    Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('check.banned');
+    Route::get('/', [Landing_PageController::class, 'landing_page']);
+    Route::get('/daftar1', [DaftarGlimpzController::class, 'create'])->name('daftar1');
+    Route::post('/daftar1', [DaftarGlimpzController::class, 'store'])->name('daftar1');
+
+});
+
+Route::middleware(['verify.xendit'])->group(function () {
+    Route::post('/orderpayment/webhookOrder', [OrderPaymentController::class, 'webhookOrder'])->name('webhookOrder')->middleware('verify.xendit');
+});
+
+
+Route::middleware(['auth'])->group(function () {
+
+    //BUYER
+    Route::get('/beranda', [BerandaController::class, 'beranda'])->name('beranda')->middleware('userAkses:Buyer');
+    Route::resource('profilebuyer', ProfileBuyerController::class)->middleware('userAkses:Buyer');
+    Route::post('/profilebuyer/{order}/cancel', [ProfileBuyerController::class, 'cancelOrder'])->name('profilebuyer.cancel');
+    Route::post('/profilebuyer/{order}/revision', [ProfileBuyerController::class, 'revisionOrder'])->name('profilebuyer.revision');
+    Route::post('/profilebuyer/{order}/confirm', [ProfileBuyerController::class, 'confirmOrder'])->name('profilebuyer.confirm');
+    Route::post('/profilebuyer/switchToSeller', [ProfileBuyerController::class, 'switchToSeller'])->name('profilebuyer.switchToSeller');
+    Route::resource('/listservice', ListServiceController::class)->middleware('userAkses:Buyer');
+    Route::resource('/service', ServiceController::class);
+    // Route::get('/service/{id}', [ServiceController::class, 'service'])->name('service');
+    // Route::post('/service', [ServiceController::class, 'service'])->name('service_post');
+    Route::resource('/orderpayment', OrderPaymentController::class,);
+    Route::post('/orderpayment/{id}', [OrderPaymentController::class, 'upload'])->name('orderpayment.upload');
+    // Route::get('/orderpayment/{id}', [OrderPaymentController::class, 'index'])->name('orderpayment.index');
+    Route::get('/invoice/{invoice}',[InvoiceController::class, 'show'])->name('invoice');
+    Route::get('/invoice/{id}/viewpdf',[InvoiceController::class, 'generatePdf'])->name('invoice.viewpdf');
+    Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
+    Route::post('/rating', [ProfileBuyerController::class, 'rating'])->name('rating.jasa');
+
+
+
+    //SELLER
+    Route::get('/profileseller', [ProfileSellerController::class, 'profileseller'])->name('profileseller')->middleware('userAkses:Seller');
+    Route::resource('sellerservice', MinServiceController::class)->middleware('userAkses:Seller');
+    Route::resource('tambahservice', MinServiceController::class);
+    Route::resource('editservice', MinServiceController::class);
+    Route::resource('/profileseller', ProfileSellerController::class, )->middleware('userAkses:Seller');
+    Route::post('/profileseller/switchToBuyer', [ProfileSellerController::class, 'switchToBuyer'])->name('profileseller.switchToBuyer');
+    Route::post('/profileseller/{order}/update-status', [ProfileSellerController::class, 'updateOrderStatus'])->name('profileseller.update-status');
+    Route::post('/profileseller/{id}', [ProfileSellerController::class, 'store'])->name('profileseller.store');
+
+
+
+    //ADMIN
+    Route::resource('/admindasbor', AdminDasborController::class)->middleware('userAkses:Admin');
+    Route::resource('/adminservice', AdminServiceController::class)->middleware('userAkses:Admin');
+    Route::resource('/admininvoice', AdminInvoiceController::class)->middleware('userAkses:Admin');
+    Route::resource('/adminuser', AdminUserController::class)->middleware('userAkses:Admin');
+    Route::resource('/adminorder', AdminOrderController::class)->middleware('userAkses:Admin');
+    Route::resource('/adminpayment', AdminPaymentController::class)->middleware('userAkses:Admin');
+
+
+    Route::post('/logout', [logoutController::class, 'logout'])->name('logout');
+    // Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+   
+    // Route::put('/profilebuyer/{{Id_User}}', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+   
+    // Route::post('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer'])->name('profilebuyer')->middleware('userAkses:Buyer');
+   
+    Route::get('/home', function () {
+    return redirect('/beranda');
+    });
+});
+
+
+
+// Route::middleware(['guest'])->group(function (){
+//     Route::get('/form', [LoginController::class, 'form']);
+//     Route::post('/login', [LoginController::class, 'login']);
+// });
+
+
+// Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 // Route::get('/listitem', [ListItemJasaController::class, 'listitem']);
 // Route::get('/pembayaran', [PembayaranController::class, 'pembayaran']);
-Route::get('/beranda', [BerandaCotroller::class, 'beranda']);
-Route::get('/admindasbor', [AdminDasborCotroller::class, 'admindasbor']);
-Route::get('/landingpage', [Landing_PageController::class, 'landing_page']);
-Route::get('/listservice', [List_ServicerController::class, 'list_service']);
-Route::get('/adminservice', [AdminServiceController::class, 'adminservice']);
-Route::get('/service', [ServiceController::class, 'service']);
-Route::get('/login', [LoginGlimpzController::class, 'loginglimpz']);
-Route::get('/daftar1', [DaftarGlimpzController::class, 'daftar1']);
-Route::get('/daftar2', [DaftarGlimpz1Controller::class, 'daftar2']);
-Route::get('/admininvoice', [AdminInvoiceController::class, 'admininvoice']);
-Route::get('/adminuser', [AdminUserController::class, 'adminuser']);
-Route::get('/adminorder', [AdminOrderController::class, 'adminorder']);
-Route::get('/adminpayment', [AdminPaymentController::class, 'adminpayment']);
-Route::get('/orderpayment', [OrderPaymentController::class, 'orderpayment']);
-Route::get('/profilebuyer', [ProfileBuyerController::class, 'profilebuyer']);
-Route::get('/profileseller', [ProfileSellerController::class, 'profileseller']);
-Route::get('/sellerservice', [SellerServiceController::class, 'sellerservice']);
-Route::get('/sellerorder', [SellerOrderController::class, 'sellerorder']);
-Route::get('/tambahservice', [TambahServiceController::class, 'tambahservice']);
-Route::get('/editservice', [EditServiceController::class, 'editservice']);
 
 
-Route::get('/listservice', [ListServiceController::class, 'show']);
+
+
+// Route::get('/login', [LoginGlimpzController::class, 'loginglimpz']);
+// Route::get('/daftar2', [DaftarGlimpzController::class, 'daftar2']);
+
+
+
+
+// Route::get('/sellerservice', [SellerServiceController::class, 'sellerservice']);
+
+// Route::get('/editservice', [EditServiceController::class, 'editservice']);
+
+
+// Route::get('/listservice', [ListServiceController::class, 'show']);
+
+
+//service proses
+
+ // Route::get('sellerservice', [MinServiceController::class, 'index']);
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -106,6 +203,3 @@ Route::get('/listservice', [ListServiceController::class, 'show']);
 // Route::get('/listbarang105', [ListBarangController105::class, 'listbarang105']);
 // Route::get('/listbarang108', [ListBarangController108::class, 'listbarang108']);
 // Route::get('/listproduct', [ListProduct092Controller::class, 'list']);
-
-
-

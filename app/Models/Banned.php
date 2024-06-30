@@ -8,18 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Banned extends Model
 {
     use HasFactory;
-    
-    protected $table = 'banned';
+    public $timestamps = false;
+    protected $table ='banned';
     protected $primaryKey = 'Id_Ban';
-
     protected $fillable = [
         'Id_User',
         'Number_Phone',
         'Name',
+        'Email'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'Id_User');
+    public function Banneds(){
+        return $this->belongsTo(Banned::class, 'Id_Ban');
     }
 }

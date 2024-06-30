@@ -9,9 +9,9 @@ class Seller extends Model
 {
     use HasFactory;
 
-    protected $table = 'seller';
+    public $timestamps = false;
+    protected $table ='seller';
     protected $primaryKey = 'Id_Seller';
-
     protected $fillable = [
         'Id_User',
         'Identity_Card',
@@ -20,13 +20,8 @@ class Seller extends Model
         'Password',
     ];
 
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo(User::class, 'Id_User');
     }
-
-    public function services()
-    {
-        return $this->hasMany(Service::class, 'Id_Seller');
-    }
+    
 }

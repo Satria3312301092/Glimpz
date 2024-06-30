@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
-    
-    protected $table = 'service';
+    public $timestamps = false;
+    protected $table ='service';
     protected $primaryKey = 'Id_Service';
-
     protected $fillable = [
         'Id_Seller',
         'Title',
@@ -20,29 +19,37 @@ class Service extends Model
         'Thumbnail',
     ];
 
-    public function seller()
-    {
-        return $this->belongsTo(Seller::class, 'Id_Seller');
-    }
-
-    public function types()
-    {
+    public function types(){
         return $this->hasMany(Type::class, 'Id_Service');
     }
 
-    public function details()
-    {
-        return $this->hasMany(Detail::class, 'Id_Service');
+    public function user(){
+    return $this->belongsTo(User::class);
     }
 
     public function orders()
     {
         return $this->hasMany(Order::class, 'Id_Service');
     }
-
-    public function invoices()
+    
+    public function seller()
     {
-        return $this->hasMany(Invoice::class, 'Id_Service');
+        return $this->belongsTo(User::class, 'Id_Seller', 'Id_User');
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Ratings::class, 'Id_Service');
+    }
+
+    public function averageRating()
+    {
+        return $this->ratings()->avg('Rating');
+    }
+    
+    public function ratingCount()
+    {
+        return $this->ratings()->count();
     }
 }
  

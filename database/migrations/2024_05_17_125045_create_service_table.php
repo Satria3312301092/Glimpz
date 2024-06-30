@@ -13,14 +13,14 @@ return new class extends Migration
 
         Schema::create('user', function (Blueprint $table) {
             $table->increments('Id_User'); // Primary key, auto-increment
-            $table->string('Picture', 100);
+            $table->string('Picture', 100)->nullable();
             $table->string('Number_Phone', 100);
             $table->string('Email', 100);
             $table->string('Name', 100);
             $table->date('Date_Of_Birth');
             $table->string('Username', 100);
             $table->string('Password', 100);
-            $table->enum('Role', ['buyer', 'admin', 'seller']);
+            $table->enum('Role', ['Buyer', 'Admin', 'Seller']) -> default('Buyer');
             // Optional: Add timestamps if needed
             // $table->timestamps();
         });
@@ -31,8 +31,6 @@ return new class extends Migration
             $table->unsignedInteger('Id_User'); // Foreign key or a regular integer column
             $table->string('Identity_Card', 100);
             $table->string('Account_Number', 100);
-            $table->string('Username', 100);
-            $table->string('Password', 100);
             // Optional: Add timestamps if needed
             // $table->timestamps();
 
@@ -55,6 +53,7 @@ return new class extends Migration
             $table->unsignedInteger('Id_User'); // Foreign key or a regular integer column
             $table->string('Number_Phone', 100);
             $table->string('Name', 100);
+            $table->string('Email', 100);
             // Optional: Add timestamps if needed
             // $table->timestamps();
 
@@ -95,8 +94,8 @@ return new class extends Migration
             $table->unsignedInteger('Id_Type'); // Foreign key
             $table->string('Day', 100);
             $table->string('Revision', 100);
-            $table->unsignedInteger('Price');
-            $table->string('Description', 100);
+            $table->string('Price', 100);
+            $table->string('Descriptions', 100);
 
             // Define the foreign key constraints
             $table->foreign('Id_Service')->references('Id_Service')->on('service')->onDelete('cascade');
@@ -108,11 +107,17 @@ return new class extends Migration
             $table->increments('Id_Order'); // Primary key, auto-increment
             $table->unsignedInteger('Id_User'); // Foreign key
             $table->unsignedInteger('Id_Service'); // Foreign key
-            $table->date('Date');
+            $table->unsignedInteger('Id_Type'); // Foreign key
+            $table->unsignedInteger('Id_Detail'); // Foreign key
+            $table->enum('Status', ['Waiting', 'Proses', 'Finish', 'Cancel','Payment','WaitingApprove','Revision']);
+            $table->string('Proof', 100)->nullable();
+            $table->timestamp('Date');
 
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
             $table->foreign('Id_Service')->references('Id_Service')->on('service')->onDelete('cascade');
+            $table->foreign('Id_Type')->references('Id_Type')->on('type')->onDelete('cascade');
+            $table->foreign('Id_Detail')->references('Id_Detail')->on('detail')->onDelete('cascade');
 
             // Optional: Add timestamps if needed
             // $table->timestamps();
@@ -122,10 +127,12 @@ return new class extends Migration
             $table->increments('Id_Payment'); // Primary key, auto-increment
             $table->unsignedInteger('Id_User'); // Foreign key
             $table->unsignedInteger('Id_Order'); // Foreign key
-            $table->string('Methode', 100);
-            $table->string('Proof', 100);
-            $table->date('Date');
+            $table->string('Method', 100)->nullable();
+            $table->string('Proof', 100)->nullable();
+            $table->timestamp('Date');
             $table->unsignedInteger('Total'); // Total amount
+            $table->string('Invoice_Url', 255);
+            $table->string('External_Id', 255);
 
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
@@ -140,22 +147,10 @@ return new class extends Migration
             $table->unsignedInteger('Id_User'); // Foreign key
             $table->unsignedInteger('Id_Payment'); // Foreign key
             $table->unsignedInteger('Id_Order'); // Foreign key
-            $table->unsignedInteger('Id_Service'); // Foreign key
-            $table->string('Name', 100);
-            $table->string('Email', 100);
-            $table->string('Number_Phone', 100);
-            $table->string('Description', 100);
-            $table->string('Title', 100);
-            $table->string('Category', 100);
-            $table->unsignedInteger('Price'); 
-            $table->string('Day', 100);
-            $table->string('Revision', 100);
-            $table->unsignedInteger('Total'); 
+            $table->unsignedInteger('Id_Service'); // Foreign key     
+            $table->timestamp('Date'); 
             $table->string('Proof', 100);
-            $table->string('Methode', 100);
-            $table->string('Thumbnail', 100);
-            $table->enum('Status', ['waiting', 'proses', 'finish', 'cancel']);
-
+            $table->enum('Status', ['notpaid','paid']);
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
             $table->foreign('Id_Payment')->references('Id_Payment')->on('payment')->onDelete('cascade');
@@ -165,6 +160,16 @@ return new class extends Migration
             // Optional: Add timestamps if needed
             // $table->timestamps();
         });
+
+        Schema::create('ratings', function (Blueprint $table) {
+            $table->increments('Id_Rating');
+            $table->unsignedInteger('Id_User');
+            $table->unsignedInteger('Id_Service');
+            $table->string('Rating', 100);
+
+            $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
+            $table->foreign('Id_Service')->references('Id_Service')->on('service')->onDelete('cascade');
+        });
     }
 
     /**
@@ -172,6 +177,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('ratings');
         Schema::dropIfExists('invoice');
         Schema::dropIfExists('payment');
         Schema::dropIfExists('order');

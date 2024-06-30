@@ -3,7 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Model
 {
@@ -12,6 +16,10 @@ class User extends Model
     protected $table = 'user';
     protected $primaryKey = 'Id_User';
 
+
+    public $timestamps = false;
+    protected $table ='user';
+    protected $primaryKey = 'Id_User';
     protected $fillable = [
         'Picture',
         'Number_Phone',
@@ -23,33 +31,27 @@ class User extends Model
         'Role',
     ];
 
-    public function sellers()
-    {
+
+
+    public function username() {
+        return 'Username';
+    }
+
+    public function getAuthPassword() {
+        return $this->Password;
+    }
+
+    public function users(){
+        return $this->belongsTo(Type::class, 'Id_Service');
+    }
+
+    public function seller() {
         return $this->hasOne(Seller::class, 'Id_User');
-    }
-
-    public function administrators()
-    {
-        return $this->hasOne(Administrator::class, 'Id_User');
-    }
-
-    public function banned()
-    {
-        return $this->hasOne(Banned::class, 'Id_User');
     }
 
     public function orders()
     {
         return $this->hasMany(Order::class, 'Id_User');
     }
-
-    public function payments()
-    {
-        return $this->hasMany(Payment::class, 'Id_User');
-    }
-
-    public function invoices()
-    {
-        return $this->hasMany(Invoice::class, 'Id_User');
-    }
+    
 }

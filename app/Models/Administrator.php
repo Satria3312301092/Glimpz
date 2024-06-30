@@ -8,19 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Administrator extends Model
 {
     use HasFactory;
-
-    protected $table = 'administrator';
+    public $timestamps = false;
+    protected $table ='administrator';
     protected $primaryKey = 'Id_Admin';
-
     protected $fillable = [
         'Id_User',
         'Username',
         'Password',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'Id_User');
+    public function Administrator(){
+        return $this->belongsTo(Administrator::class, 'Id_Admin');
     }
-
+    
 }

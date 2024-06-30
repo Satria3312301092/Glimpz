@@ -21,22 +21,14 @@
         </div>
         <div class="navbar-center hidden lg:flex">
           <ul class="menu menu-horizontal px-1 text-base font-medium text-white">
-            <li><a>Home</a></li>
-            <li>
-              <details>
-                <summary>Services</summary>
-                <ul class="p-2 text-black">
-                  <li><a>Submenu 1</a></li>
-                  <li><a>Submenu 2</a></li>
-                </ul>
-              </details>
-            </li>
-            <li><a>About</a></li>
-            <li><a>Contact</a></li>
+            <li><a href="formlogin">Home</a></li>
+              <li><a href="formlogin"> Services </a></li>
+            <li><a href="">About </a></li>
+            <li><a href="">Contact</a></li>
           </ul>
         </div>
         <div class="navbar-end gap-4 mr-4">
-          <a class="btn btn-blue-300 hover:bg-blue-300 btn-outline text-white hover:text-gray-900 border-blue-300 hover:border-none rounded-full font-medium text-base w-24">Login</a>
-          <a class="btn bg-blue-700 hover:bg-blue-700 text-white text-base font-medium border-none rounded-md w-24">Sign Up</a>
+          <a href="formlogin" class="btn btn-blue-300 hover:bg-blue-300 btn-outline text-white hover:text-gray-900 border-blue-300 hover:border-none rounded-full font-medium text-base w-24">Login</a>
+          <a href="daftar1" class="btn bg-blue-700 hover:bg-blue-700 text-white text-base font-medium border-none rounded-md w-24">Sign Up</a>
         </div>
       </div>

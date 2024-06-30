@@ -8,31 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $table = 'payment';
     protected $primaryKey = 'Id_Payment';
-
     protected $fillable = [
         'Id_User',
         'Id_Order',
-        'Methode',
+        'Method',
         'Proof',
         'Date',
         'Total',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'Id_User');
+    public function orderss() {
+        return $this->belongsTo(Order::class, 'Id_Order', 'Id_Order');
     }
 
-    public function order()
-    {
-        return $this->belongsTo(Order::class, 'Id_Order');
-    }
-
-    public function invoices()
-    {
-        return $this->hasMany(Invoice::class, 'Id_Payment');
+    public function userss() {
+        return $this->HasMany(User::class, 'Id_User', 'Id_User');
     }
 }
+
+
