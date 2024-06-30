@@ -25,6 +25,7 @@
       <div class="flex justify-center items-center px-16">
         <div id="scrollContainer1" class="scrollContainer flex gap-7 overflow-x-hidden whitespace-nowrap scroll-snap-x w-full">
             <!-- Card 1 -->
+            <a href="{{ route('listservice.index', ['category' => 'Video Editing']) }}">
             <div class="card w-96 bg-base-100 shadow-xl mt-10 border border-black">
             <div class="card-body">
             <h2 class="card-title">Video Editing</h2>
@@ -34,7 +35,9 @@
             </div>
             <figure class="p-4"><img src="category/card1.png" alt="card1.png" /></figure>
             </div>
+            </a>
             <!-- Card 2 -->
+            <a href="{{ route('listservice.index', ['category' => 'Video Ads']) }}">
             <div class="card w-96 bg-base-100 shadow-xl mt-10 border border-black">
             <div class="card-body">
             <h2 class="card-title">Video ADS</h2>
@@ -44,7 +47,9 @@
             </div>
             <figure class="p-4"><img src="category/card2.png" alt="card2.png " /></figure>
             </div>
+            </a>
             <!-- Card 3 -->
+            <a href="{{ route('listservice.index', ['category' => 'Visual Effect']) }}">
             <div class="card w-96 bg-base-100 shadow-xl mt-10 border border-black">
             <div class="card-body">
             <h2 class="card-title">Visual Effect</h2>
@@ -54,16 +59,19 @@
             </div>
             <figure class="p-4"><img src="category/card3.png" alt="card3.png" /></figure>
             </div>
+            </a>
             <!-- Card 1 -->
+            <a href="{{ route('listservice.index', ['category' => 'Education']) }}">
             <div class="card w-96 bg-base-100 shadow-xl mt-10 border border-black">
             <div class="card-body">
-            <h2 class="card-title">Video 2</h2>
+            <h2 class="card-title">Education</h2>
             <hr class="border-black mb-4">
             <p>Lorem ipsum dolor sit amet consectetur</p>
             <p>detektif</p>
             </div>
             <figure class="p-4"><img src="category/card4.png" alt="card4.png" /></figure>
           </div>
+            </a>
         </div>
     </div>
   <div class="font-bold mt-40 ml-16 text-4xl">Animation</div>
@@ -82,45 +90,53 @@
       <div class="flex justify-center items-center px-16">
         <div id="scrollContainer2" class="scrollContainer flex gap-7 overflow-x-hidden whitespace-nowrap scroll-snap-x w-full">
             <!-- Card 1 -->
+            <a href="{{ route('listservice.index', ['category' => '2D Animation']) }}">
             <div class="card w-96 bg-base-100 shadow-xl mt-10 border border-black">
             <div class="card-body">
-            <h2 class="card-title">Video Editing</h2>
+            <h2 class="card-title">2D Animation</h2>
             <hr class="border-black mb-4">
             <p>Lorem ipsum dolor sit amet consectetur</p>
             <p>detektif</p>
             </div>
             <figure class="p-4"><img src="category/card1.png" alt="card1.png" /></figure>
             </div>
+            </a>
             <!-- Card 2 -->
+            <a href="{{ route('listservice.index', ['category' => '3D Animation']) }}">
             <div class="card w-96 bg-base-100 shadow-xl mt-10 border border-black">
             <div class="card-body">
-            <h2 class="card-title">Video ADS</h2>
+            <h2 class="card-title">3D Animation</h2>
             <hr class="border-black mb-4">
             <p>Lorem ipsum dolor sit amet consectetur</p>
             <p>detektif</p>
             </div>
             <figure class="p-4"><img src="category/card2.png" alt="card2.png " /></figure>
             </div>
+            </a>
             <!-- Card 3 -->
+            <a href="{{ route('listservice.index', ['category' => 'Logo Animation']) }}">
             <div class="card w-96 bg-base-100 shadow-xl mt-10 border border-black">
             <div class="card-body">
-            <h2 class="card-title">Visual Effect</h2>
+            <h2 class="card-title">Logo Animation</h2>
             <hr class="border-black mb-4">
             <p>Lorem ipsum dolor sit amet consectetur</p>
             <p>detektif</p>
             </div>
             <figure class="p-4"><img src="category/card3.png" alt="card3.png" /></figure>
             </div>
+            </a>
             <!-- Card 1 -->
+            <a href="{{ route('listservice.index', ['category' => 'Character Animation']) }}">
             <div class="card w-96 bg-base-100 shadow-xl mt-10 border border-black">
             <div class="card-body">
-            <h2 class="card-title">Video 2</h2>
+            <h2 class="card-title">Character Animation</h2>
             <hr class="border-black mb-4">
             <p>Lorem ipsum dolor sit amet consectetur</p>
             <p>detektif</p>
             </div>
             <figure class="p-4"><img src="category/card4.png" alt="card4.png" /></figure>
           </div>
+            </a>
         </div>
     </div>
     <div class="font-bold ml-16 text-5xl mt-40">Service</div>
