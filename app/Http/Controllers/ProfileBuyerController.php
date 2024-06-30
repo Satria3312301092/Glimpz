@@ -10,6 +10,7 @@ use App\Models\Detail;
 use App\Models\Seller;
 use App\Models\Service;
 use App\Models\Ratings;
+use App\Models\Invoice;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -22,6 +23,10 @@ class ProfileBuyerController extends Controller
 
         $orders = Order::where('Id_User', $userId)->get();
 
+        $invoices = Invoice::all();
+
+        $usersall = User::all();
+        $sellersall = Seller::all();
         $servicesOrder = Service::all();
         $typesOrder = Type::all();
         $detailsOrder = Detail::all();
@@ -30,7 +35,7 @@ class ProfileBuyerController extends Controller
         }
         $isSeller = Seller::where('Id_User', $userId)->exists();
     
-        return view('profilebuyer', compact('user','orders','servicesOrder', 'typesOrder', 'detailsOrder','isSeller'));
+        return view('profilebuyer', compact('invoices','sellersall','usersall','user','orders','servicesOrder', 'typesOrder', 'detailsOrder','isSeller'));
     }
 
     public function edit(){
@@ -138,6 +143,24 @@ class ProfileBuyerController extends Controller
         $order->save();
 
         return redirect()->back()->with('success', 'Order canceled successfully');
+    }
+
+    public function revisionOrder(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->status = 'Revision';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order revision successfully');
+    }
+
+    public function confirmOrder(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->status = 'Finish';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order confirm successfully');
     }
 
     public function rating(Request $request)

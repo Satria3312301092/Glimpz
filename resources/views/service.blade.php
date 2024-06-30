@@ -79,13 +79,20 @@
             <img src="{{ Storage::url($service->Thumbnail) }}" class="rounded-2xl w-full" alt="">
             <div class="flex py-6 divide-x-2 divide-gray-500 border-b-2 border-gray-500">
                 <div class="flex items-center pr-10">
+                  @foreach ($usersall as $userall)
+                        @foreach ($sellersall as $sellerall )
+                        @if($userall->Id_User == $sellerall->Id_User)
+                        @if ($sellerall->Id_Seller == $service->Id_Seller)
                         <div class="avatar mr-3">
-                            <div class="w-10 rounded-full border-2 border-zinc-300">
-                              <img src="../images/Profileuser.svg" class="" />
+                            <div class="w-16 rounded-full border-2 border-zinc-300">
+                              <img src="{{ Storage::url($userall->Picture) }}" class="" />
                             </div>
-                        </div>
-                       
-                        <a class="font-bold text-lg">Hyerin</a>
+                        </div> 
+                        <a class="font-bold text-lg">{{ $userall->Name }}</a>
+                        @endif
+                        @endif
+                        @endforeach
+                        @endforeach
                         
                 </div>
                 <div class="flex items-center pl-10">

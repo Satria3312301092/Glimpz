@@ -15,6 +15,6 @@ class VerifyCsrfToken extends Middleware
         'stripe/*',
         'http://example.com/foo/bar',
         'http://example.com/foo/*',
-        '/orderpayment/xebhookOrder',
+        '/orderpayment/webhookOrder',
     ];
 }

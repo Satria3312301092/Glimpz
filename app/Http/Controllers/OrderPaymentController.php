@@ -14,6 +14,7 @@ use App\Models\Detail;
 use App\Models\Seller;
 use App\Models\Service;
 use App\Models\Payment;
+use App\Models\Invoice;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,7 @@ class OrderPaymentController extends Controller
     $userss = User::all();
     $sellerss = Seller::all();
     $orders = Order::find($Id_Order);
+    $orderss = Order::where('Id_Order', $Id_Order)->first();
     // $payments = Payment::find($Id_Order);
     
     $servicesOrder = $orders->servicess;
@@ -52,7 +54,7 @@ class OrderPaymentController extends Controller
     
 
 
-    return view('orderpayment',compact('orders','servicesOrder', 'typesOrder', 'detailsOrder', 'userss', 'sellerss', 'payments'));
+    return view('orderpayment',compact('orderss','orders','servicesOrder', 'typesOrder', 'detailsOrder', 'userss', 'sellerss', 'payments'));
     }
 
     public function webhookOrder(Request $request)
@@ -107,6 +109,14 @@ class OrderPaymentController extends Controller
             $payment->update([
                 'Method' => $request->payment_channel
             ]);
+
+            $invoice = new Invoice();
+            $invoice->Id_User = $payment->Id_User;
+            $invoice->Id_Payment = $payment->Id_Payment;
+            $invoice->Id_Order = $payment->Id_Order;
+            $invoice->Id_Service = $order->Id_Service;
+            $invoice->Status = 'notpaid';
+            $invoice->save();
         } else {
             $order->update([
                 'Status' => 'Cancel'
@@ -183,6 +193,25 @@ class OrderPaymentController extends Controller
             }
         }
     }
+
+    public function upload(Request $request, $id)
+    {
+        $request->validate([
+            'ProofPayment' => 'image|mimes:jpg,jpeg,png|max:10240',
+        ]);
+
+        $payment = Payment::find($id);
+
+        if ($request->hasFile('ProofPayment')) { // Check if picture is uploaded
+            $file = $request->file('ProofPayment');
+            $filename = uniqid() . date('Y-m-d') . $file->getClientOriginalName();
+            $path = $file->storeAs('public/proofpayment', $filename);
+            $payment->Proof = $path; // Update picture path only if a picture is uploaded
+            $payment->save();
+        }
+        return redirect()->back()->with('success', 'Proof of order uploaded successfully.');
+    }
+    
     
     
     

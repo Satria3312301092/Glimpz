@@ -117,4 +117,23 @@ class ProfileSellerController extends Controller
     return redirect()->route('profilebuyer.index');
 }
 
+    public function store(Request $request, $id)
+    {
+        $request->validate([
+            'ProofPayment' => 'image|mimes:jpg,jpeg,png|max:10240',
+        ]);
+
+        $order = Order::find($id);
+
+        if ($request->hasFile('ProofOrder')) { // Check if picture is uploaded
+            $file = $request->file('ProofOrder');
+            $filename = uniqid() . date('Y-m-d') . $file->getClientOriginalName();
+            $path = $file->storeAs('public/prooforder', $filename);
+            $order->Proof = $path; // Update picture path only if a picture is uploaded
+            $order->save();
+        }
+        return redirect()->back()->with('success', 'Proof of order uploaded successfully.');
+    }
+
+
 }

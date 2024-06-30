@@ -109,7 +109,8 @@ return new class extends Migration
             $table->unsignedInteger('Id_Service'); // Foreign key
             $table->unsignedInteger('Id_Type'); // Foreign key
             $table->unsignedInteger('Id_Detail'); // Foreign key
-            $table->enum('Status', ['Waiting', 'Proses', 'Finish', 'Cancel','Payment','WaitingApprove']);
+            $table->enum('Status', ['Waiting', 'Proses', 'Finish', 'Cancel','Payment','WaitingApprove','Revision']);
+            $table->string('Proof', 100)->nullable();
             $table->timestamp('Date');
 
             // Define the foreign key constraints
@@ -126,7 +127,7 @@ return new class extends Migration
             $table->increments('Id_Payment'); // Primary key, auto-increment
             $table->unsignedInteger('Id_User'); // Foreign key
             $table->unsignedInteger('Id_Order'); // Foreign key
-            $table->string('Methode', 100);
+            $table->string('Method', 100)->nullable();
             $table->string('Proof', 100)->nullable();
             $table->timestamp('Date');
             $table->unsignedInteger('Total'); // Total amount
@@ -147,9 +148,9 @@ return new class extends Migration
             $table->unsignedInteger('Id_Payment'); // Foreign key
             $table->unsignedInteger('Id_Order'); // Foreign key
             $table->unsignedInteger('Id_Service'); // Foreign key     
-            $table->unsignedInteger('Total'); 
+            $table->timestamp('Date'); 
             $table->string('Proof', 100);
-            $table->enum('Status', ['finish']);
+            $table->enum('Status', ['notpaid','paid']);
             // Define the foreign key constraints
             $table->foreign('Id_User')->references('Id_User')->on('user')->onDelete('cascade');
             $table->foreign('Id_Payment')->references('Id_Payment')->on('payment')->onDelete('cascade');

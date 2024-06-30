@@ -17,6 +17,7 @@ class Order extends Model
         'Id_Type',
         'Id_Detail',
         'Status',
+        'Proof',
         'Date',
     ];
 
