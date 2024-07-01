@@ -29,9 +29,7 @@
                 </div>
                 <div class="flex items-end justify-end">
                   <div class="form-control">
-                    <form action="{{ route('adminuser.search') }}" method="GET">
-                    <input name="search" type="search" placeholder="Search" class="input input-bordered input-sm text-xs rounded-full mr-3" />
-                    </form>
+                    <input type="search" placeholder="Search" class="input input-bordered input-sm text-xs rounded-full mr-3" />
                   </div>
                   <a class="btn btn-sm bg-blue-700 hover:bg-blue-700 text-white text-xs font-medium border-none rounded-md">
                     <svg class="h-4 w-4 text-white" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
