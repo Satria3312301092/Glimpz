@@ -33,7 +33,7 @@
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-2 text-black font-Poppins" id="nav_menu">
         <li><a href="{{route('beranda')}}">Home</a></li>
-        <li><a>Services</a></li>
+        <li><a href="{{route('listservice.index')}}">Services</a></li>
         <li><a>About</a></li>
         <li><a>Contact</a></li>
       </ul>

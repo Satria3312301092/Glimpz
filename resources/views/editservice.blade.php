@@ -61,9 +61,9 @@
     </div>
     <div class="navbar-center hidden lg:flex z-[1]">
       <ul class="menu menu-horizontal px-1">
-      <li><a>Dashboard</a></li>
-        <li><a >Service</a></li>
-        <li><a>Orders</a></li>
+      <li><a href="{{route('sellerservice.index')}}">Dashboard</a></li>
+        <li><a href="{{route('sellerservice.index')}}" >Service</a></li>
+        <li><a href="{{route('profileseller.index')}}">Orders</a></li>
         <li><a>Earnings</a></li>
       </ul>
     </div>
