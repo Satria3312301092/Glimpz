@@ -13,7 +13,9 @@ class AdminInvoiceController extends Controller
     {   
         $invoice = Invoice::all();
 
-        return view('admininvoice');
+        $countInvoice = count($invoice);
+
+        return view('admininvoice', compact('countInvoice', 'invoice'));
     }
 
     /**

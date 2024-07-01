@@ -26,9 +26,11 @@
                 <!-- search & drodpdown -->
                 <div class="flex items-end justify-end">
                   <div class="form-control">
-                    <input type="text" placeholder="Search" class="input input-bordered input-sm text-xs rounded-full mr-3" />
+                    <form action="{{ route('adminorder.index') }}">
+                    <input name="search" type="text" placeholder="Search" class="input input-bordered input-sm text-xs rounded-full mr-3" />
+                  </form>
                   </div>
-                  <select class="select select-bordered select-sm text-xs max-w-xs text-blue-700 border-blue-700 focus:outline-2 focus:outline-blue-700">
+                  {{-- <select class="select select-bordered select-sm text-xs max-w-xs text-blue-700 border-blue-700 focus:outline-2 focus:outline-blue-700">
                   <option class="text-zinc-500 font-bold" disabled selected>Category</option>
                   <option class="text-slate-700 ">All Service</option>
                   <option class="text-slate-700 hover:!bg-blue-50">Video Editing</option>
@@ -46,7 +48,7 @@
                   <option class="text-slate-700">Web Animation</option>
                   <option class="text-slate-700">Rigging</option>
                   <option class="text-slate-700">NFT Animation</option>
-                </select>
+                </select> --}}
                 </div>
                 <!-- search & drodpdown -->
               </div>
@@ -107,10 +109,10 @@
                               </div>
                               <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
                                 <li>
-                                  <a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  {{-- <a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                       <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
-                                    Delete</a></li>
+                                    Delete</a>--}}</li> 
                                 <li>
                                   <a onclick="my_modal_1{{ $order->Id_Order }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
@@ -410,7 +412,7 @@
               <path fill-rule="evenodd" clip-rule="evenodd" d="M11 5.5C9.48122 5.5 8.25 6.73122 8.25 8.25V24.75C8.25 26.2688 9.48122 27.5 11 27.5H22C23.5188 27.5 24.75 26.2688 24.75 24.75V12.1391C24.75 11.7744 24.6051 11.4247 24.3473 11.1668L19.0832 5.90273C18.8253 5.64487 18.4756 5.5 18.1109 5.5H11ZM5.5 8.25C5.5 5.21244 7.96243 2.75 11 2.75H18.1109C19.2049 2.75 20.2541 3.1846 21.0277 3.95818L26.2918 9.22227C27.0654 9.99586 27.5 11.0451 27.5 12.1391V24.75C27.5 27.7876 25.0376 30.25 22 30.25H11C7.96243 30.25 5.5 27.7876 5.5 24.75V8.25Z" fill="currentColor"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M19.25 4.125V6.875C19.25 9.15317 21.0968 11 23.375 11H26.125V13.75H23.375C19.578 13.75 16.5 10.672 16.5 6.875V4.125H19.25Z" fill="currentColor"/>
               </svg>
-              Invoice</a></li>
+              Earnings</a></li>
             <li><a href="adminpayment"><svg class="h-6 w-6 text-white" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4.125 16.5C4.125 9.66548 9.66548 4.125 16.5 4.125C23.3345 4.125 28.875 9.66548 28.875 16.5C28.875 23.3345 23.3345 28.875 16.5 28.875C9.66548 28.875 4.125 23.3345 4.125 16.5Z" stroke="currentColor" stroke-width="3"/>
               <path d="M22 12.375L15.125 20.625L11 16.875" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>

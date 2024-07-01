@@ -12,20 +12,27 @@ class AdminPaymentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {   
-        $payments = Payment::all();
-        $orders = Order::all();
-        $services = Service::all();
-        // $Idorder = Order::find('Id_Order');
-        // if ($Idpayment === $Idorder) 
-        // {$orders = Order::where('Id_Order', $Idorder);}
-        
-        // $services = Service::all();
+    public function index(Request $request)
+    {
+    $search = $request->input('search');
 
-        $countPayment = count($payments);
-        return view('adminpayment', compact('countPayment' , 'payments', 'services', 'orders'));
+    if ($search) {
+        $payments = Payment::where('Method', 'LIKE', "%{$search}%")
+                           ->orWhere('Date', 'LIKE', "%{$search}%")
+                           ->orWhere('Id_Payment', 'LIKE', "%{$search}%")
+                           ->get();
+    } else {
+        $payments = Payment::all();
     }
+
+    $orders = Order::all();
+    $services = Service::all();
+
+    $countPayment = count($payments);
+
+    return view('adminpayment', compact('countPayment', 'payments', 'services', 'orders'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

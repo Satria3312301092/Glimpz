@@ -15,15 +15,26 @@ class AdminServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {   
+    public function index(Request $request)
+{   
+    $search = $request->input('search');
+
+    if ($search) {
+        $services = Service::where('Title', 'LIKE', "%{$search}%")
+                           ->orWhere('Id_Service', 'LIKE', "%{$search}%")
+                           ->orWhere('Category', 'LIKE', "%{$search}%")
+                           ->get();
+    } else {
         $services = Service::all();
+    }
+
         $types = Type::all();
         $details = Detail::all();
-        
         $countService = $services->count();
-        return view('adminservice', compact('services', 'types','details', 'countService'));
+
+        return view('adminservice', compact('services', 'types', 'details', 'countService'));
     }
+
 
     /**
      * Show the form for creating a new resource.

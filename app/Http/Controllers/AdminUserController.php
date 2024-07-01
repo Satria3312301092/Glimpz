@@ -15,29 +15,38 @@ class AdminUserController extends Controller
      */
     public function index(Request $request)
 {   
-    
     $search = $request->input('search');
 
-    
     if ($search) {
-            $users = User::where('Name', 'LIKE', "%{$search}%")
-                        ->orWhere('Id_User', 'LIKE', "%{$search}%")
-                        ->get();
-            $usersBuyer = User::where('Role', 'Buyer')
-                            ->where(function($query) use ($search) {
-                                $query->where('Name', 'LIKE', "%{$search}%")
-                                        ->orWhere('Id_User', 'LIKE', "%{$search}%");
-                            })->get();
-            $usersSeller = User::where('Role', 'Seller')
-                            ->where(function($query) use ($search) {
-                                $query->where('Name', 'LIKE', "%{$search}%")
-                                        ->orWhere('Id_User', 'LIKE', "%{$search}%");
-                            })->get();
-            $usersAdmin = User::where('Role', 'Admin')
-                            ->where(function($query) use ($search) {
-                                $query->where('Name', 'LIKE', "%{$search}%")
-                                        ->orWhere('Id_User', 'LIKE', "%{$search}%");
-                            })->get();
+        $users = User::where('Name', 'LIKE', "%{$search}%")
+                    ->orWhere('Id_User', 'LIKE', "%{$search}%")
+                    ->orWhere('Email', 'LIKE', "%{$search}%")
+                    ->orWhere('Number_Phone', 'LIKE', "%{$search}%")
+                    ->get();
+                    
+        $usersBuyer = User::where('Role', 'Buyer')
+                        ->where(function($query) use ($search) {
+                            $query->where('Name', 'LIKE', "%{$search}%")
+                                  ->orWhere('Id_User', 'LIKE', "%{$search}%")
+                                  ->orWhere('Number_Phone', 'LIKE', "%{$search}%")
+                                  ->orWhere('Email', 'LIKE', "%{$search}%");
+                        })->get();
+                        
+        $usersSeller = User::where('Role', 'Seller')
+                        ->where(function($query) use ($search) {
+                            $query->where('Name', 'LIKE', "%{$search}%")
+                                  ->orWhere('Id_User', 'LIKE', "%{$search}%")
+                                  ->orWhere('Number_Phone', 'LIKE', "%{$search}%")
+                                  ->orWhere('Email', 'LIKE', "%{$search}%");
+                        })->get();
+                        
+        $usersAdmin = User::where('Role', 'Admin')
+                        ->where(function($query) use ($search) {
+                            $query->where('Name', 'LIKE', "%{$search}%")
+                                  ->orWhere('Id_User', 'LIKE', "%{$search}%")
+                                  ->orWhere('Number_Phone', 'LIKE', "%{$search}%")
+                                  ->orWhere('Email', 'LIKE', "%{$search}%");
+                        })->get();
         } else {
             $users = User::all();
             $usersBuyer = User::where('Role', 'Buyer')->get();
@@ -52,7 +61,6 @@ class AdminUserController extends Controller
 
         return view('adminuser', compact('users', 'count', 'usersBuyer', 'usersSeller', 'usersAdmin', 'sellersId', 'usersBan', 'admins'));
     }
-
 
 
     /**

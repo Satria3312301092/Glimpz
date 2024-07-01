@@ -14,22 +14,28 @@ class AdminOrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {   
+    public function index(Request $request)
+    {
+    $search = $request->input('search');
+
+    if ($search) {
+        $orders = Order::where('Status', 'LIKE', "%{$search}%")
+                       ->orWhere('Id_Order', 'LIKE', "%{$search}%")
+                       ->get();
+    } else {
         $orders = Order::all();
-        
-        $servicesOrder = Service::all();
-        $typesOrder = Type::all();
-        $detailsOrder = Detail::all(); 
-        
-        $users = User::all();
-        $sellers = Seller::all();
-
-        $count = count($orders);
-
+    }
+    
+    $servicesOrder = Service::all();
+    $typesOrder = Type::all();
+    $detailsOrder = Detail::all();
+    $users = User::all();
+    $sellers = Seller::all();
+    $count = count($orders);
 
         return view('adminorder', compact('orders', 'servicesOrder', 'typesOrder', 'detailsOrder', 'count', 'users', 'sellers'));
     }
+
 
     /**
      * Show the form for creating a new resource.
