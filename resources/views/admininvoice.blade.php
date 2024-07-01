@@ -30,6 +30,7 @@
                       <th>ID Invoice</th>
                       <th>Title Service</th>
                       <th>Date</th>
+                      <th>Status</th>
                       <th>Price</th>
                       <th>Action</th>
                     </tr>
@@ -37,18 +38,32 @@
                   <tbody>
 
                     <!-- row 1 -->
-                    @foreach ($invoice as $inv)
+                    @foreach ($invoices as $invoice)
+                    @foreach ($services as $service)
+                    @if ($service->Id_Service == $invoice->Id_Service)
+                    @foreach ($orders as $order)
+                    @if ($order->Id_Order == $invoice->Id_Order)
+                    @foreach ($details as $detail)
+                    @if ($order->Id_Detail == $detail->Id_Detail)
                     <tr>
                         <th>
-                          #{{ $inv->Id_Invoice }}
+                          #{{ $invoice->Id_Invoice }}
                         </th>
                         <td>
-                            I will animate your character
+                            {{ $service->Title }}
                         </td>
                         <td>
-                            2024-03-22
+                          {{ Carbon\Carbon::parse($invoice->Date)->format('d F Y') }}
                         </td>
-                        <td>Rp.99.000</td>
+                        <td>
+                          @if($invoice->Status == 'notpaid')
+                          Not Paid
+                          @endif
+                          @if($invoice->Status == 'paid')
+                          Paid
+                          @endif
+                        </td>
+                        <td>Rp{{ number_format($detail->Price, 0, ',', '.') }}</td>
                         <th>
                             <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
@@ -59,7 +74,7 @@
                                   <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
                                   Delete</a></li>
-                                <li><a onclick="my_modal_1.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <li><a onclick="my_modal_1{{ $invoice->Id_Invoice }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
                                   8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
@@ -68,20 +83,42 @@
                             </div>
                         </th>
                       </tr>
-                      @endforeach
-                      <dialog id="my_modal_1" class="modal">
+                      
+                      
+                      
+                      <dialog id="my_modal_1{{ $invoice->Id_Invoice }}" class="modal">
                         <div class="modal-box">
-                          <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                          </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
+                            <form method="dialog">
+                                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                            <h3 class="font-bold text-lg">Hello!</h3>
+                            <p class="py-4 grid grid-rows-6">
+                                <div>SELLER : {{ $service->Id_Seller }}</div>
+                                @foreach ($sellers as $seller)
+                                @if ($service->Id_Seller == $seller->Id_Seller)
+                                <div>ACCOUNT NUMBER : {{ $seller->Account_Number }}</div>
+                                @endif
+                                @endforeach
+                                <form action="{{ route('admininvoice.update', $invoice->Id_Invoice) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <input id="proof" name="proof" type="file" class="mt-1 custom-file-input w-full mb-10">
+                                    <button type="submit" class="btn btn-block bg-blue-700 px-14 hover:bg-blue-700 text-white shadow-md">Confirm</button>
+                                </form>
+                            </p>
                         </div>
-                      </dialog>
+                    </dialog>                    
+                      @endif
+                      @endforeach
+                      @endif
+                      @endforeach
+                      @endif
+                      @endforeach
+                      @endforeach
                     <!-- row 1 -->
 
                     <!-- row 2 -->
-                    <tr>
+                    {{-- <tr>
                         <th>
                           #2
                         </th>
@@ -170,7 +207,7 @@
                           <h3 class="font-bold text-lg">Hello!</h3>
                           <p class="py-4">Press ESC key or click on ✕ button to close</p>
                         </div>
-                      </dialog>
+                      </dialog> --}}
                     <!-- row 3 -->
                       
                     <!-- row 4 -->
@@ -246,6 +283,11 @@
         
         </div>
       </div>
+      @if (session('success'))
+    <script>
+        alert('{{ session('success') }}');
+    </script>
+  @endif
 </body>
 </html>
   
