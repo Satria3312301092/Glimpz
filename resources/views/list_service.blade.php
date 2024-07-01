@@ -70,7 +70,12 @@
             <div class="col-span-1">
                 <p class="text-left text-2xl">Explore the boundaries of art and technology with Glimpz artists</p>
             </div>
-            <div class="col-span-1 flex justify-end">
+            <div class="col-span-1 flex items-center justify-end">
+                <div class="form-control px-5">
+                  <form action="{{ route('listservice.index') }}" method="GET">
+                  <input name="search" type="search" placeholder="Search" class="input input-bordered input-sm shadow-md shadow-neutral-300 w-full max-w-xs rounded-full mr-3" /></input>
+                </form>
+                </div>
                 <button id="prevButton3" class="prevButton3 btn btn-circle">❮</button>
                 <button id="nextButton3" class="nextButton3 btn btn-circle ml-2">❯</button>
             </div>

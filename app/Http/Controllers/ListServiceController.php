@@ -10,14 +10,24 @@ use App\Models\Ratings;
 
 class ListServiceController extends Controller
 {
-    public function index(Request $request){
-        $category = $request->input('category');
+    public function index(Request $request)
+{
+    $search = $request->input('search');
+    $category = $request->input('category');
 
-        if($category) {
-            $services = Service::where('Category', $category)->get();
-        } else {
-            $services = Service::all();
-        }
+    $query = Service::query();
+
+    if ($category) {
+        $query->where('Category', $category);
+    }
+
+    if ($search) {
+        $query->where('Title', 'like', '%' . $search . '%')
+                ->orwhere('Category', 'like', '%'. $search .'%');
+    }
+
+    $services = $query->get();
+
     $types = Type::all();
     $details = Detail::all();
 
@@ -25,7 +35,8 @@ class ListServiceController extends Controller
         $service->average_rating = $service->averageRating();
         $service->rating_count = $service->ratingCount();
     }
-    
-    return view("list_service", compact('services','types','details','category'));    
-    }
+
+    return view('list_service', compact('services', 'types', 'details', 'category', 'search'));
+}
+
 }
