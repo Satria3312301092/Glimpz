@@ -37,32 +37,32 @@
     </div>
     <div class="navbar-center hidden lg:flex z-[1]">
       <ul class="menu menu-horizontal px-1">
-        <li><a>Home</a></li>
+        <li><a href="{{route('beranda')}}">Home</a></li>
         <li><a href="{{route('listservice.index')}}">Service</a></li>
         <li><a>About</a></li>
         <li><a>Contact</a></li>
       </ul>
     </div>
     <div class="navbar-end">
-    <button class="btn btn-ghost btn-circle">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-    </button>
+    
     <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                  <div class="w-8 p-2 border-[1px] border-[#BEBEBE] rounded-full shadow-md shadow-neutral-300">
-                    <img src="../images/Profileuser.svg" alt="Avatar Tailwind CSS Component" />
+                  <div class="w-10 rounded-full shadow-lg">
+                    <img src="{{asset('/icon/profileuser.svg')}}" alt="Avatar Tailwind CSS Component" />
                   </div>
                 </div>
-                <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                  <li>
-                    <a class="justify-between">
-                      Profile
-                      <span class="badge">New</span>
-                    </a>
-                  </li>
-                  <li><a>Settings</a></li>
-                  <li><a>Logout</a></li>
-                </ul>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li><a href="{{ route('profileseller.index') }}">
+          <img src="{{ asset('/icon/Profile.svg') }}" alt="">
+          Profile</a></li>
+        <form action="{{ route ('logout') }}" method="POST">
+          @csrf
+          <li><button type="submit">
+            <img src="{{ asset('/icon/logout.svg') }}" alt="">
+          Logout</button>
+        </li>
+        </form>
+      </ul>
               </div>
             </div>
         </div>

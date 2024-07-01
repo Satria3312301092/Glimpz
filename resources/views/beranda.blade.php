@@ -134,12 +134,12 @@
         </div>
     </div>
     <div class="font-bold ml-16 text-5xl mt-40">Service</div>
-    <a class="flex justify-end text-blue-600 mr-16 text-xl" href="#">View All</a>
+    <a class="flex justify-end text-blue-600 mr-16 text-xl" href="{{route('listservice.index')}}">View All</a>
   <!-- Service card -->
               <div class="flex justify-center mt-5">
                 <div class="grid grid-cols-4 gap-8">
                   <!-- card 1-->
-                  @if(isset($services) && isset($types) && isset($details))
+                  
     @foreach ($services as $service)
         @foreach ($types as $type)
             @if ($type->Type_Name == 'Basic' && $type->Id_Service == $service->Id_Service)
@@ -166,7 +166,7 @@
             @endif
         @endforeach
     @endforeach
-@endif
+
 
                   <!-- card 1-->
                  

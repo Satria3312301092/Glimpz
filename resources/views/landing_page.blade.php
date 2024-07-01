@@ -15,48 +15,45 @@
             </p>
               <a class="text-gray-900 block">Welcome to Glimpz - the place to find</a>
               <a class="text-gray-900 block"> and sell amazing video and animation work!</a>
-              <a href="#" class="btn bg-blue-700 hover:bg-blue-700 text-white text-lg font-normal border-none w-44 h-14 mt-12">Get Started</a>
+              <a href="{{route('formlogin') }}" class="btn bg-blue-700 hover:bg-blue-700 text-white text-lg font-normal border-none w-44 h-14 mt-12">Get Started</a>
             </div>
 
             <!-- Categories card-->
             <div class="container mx-auto pt-10 pb-20">
               <h1 class="text-center text-3xl text-neutral-900 font-bold">Our Categories</h1>
               <div class="flex justify-center">
-                <p class="text-center text-slate-400 font-thin w-1/3 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p>
+                <p class="text-center text-slate-400 font-thin w-1/3 mt-4">Explore a diverse range of categories tailored to meet your unique needs.</p>
               </div>
               <div class="flex justify-center mt-12">
                 <div class="grid grid-cols-3 gap-8">
                   <!-- card 1-->
                   <div class="card w-[22rem] bg-base-100 border border-neutral-400">
                     <figure class="px-8 pt-7">
-                      <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" class="rounded-xl" />
+                      <img src="category/card1.png" alt="Shoes" class="rounded-xl" />
                     </figure>
                     <div class="card-body items-center text-center -mt-2 mb-8">
                       <h2 class="card-title text-lg font-semibold">Video Editing</h2>
-                      <p class="text-sm text-slate-400">Lorem ipsum dolor sit amet, consectetur 
-                          adipiscing elit, sed do eiusmod</p>
+                      <p class="text-sm text-slate-400">Find talented video editors who turn raw footage into polished videos that captivate your audience and clearly convey your message.</p>
                     </div>
                   </div>
                   <!-- card 2-->
                   <div class="card w-[22rem] bg-base-100 border border-neutral-400">
                     <figure class="px-8 pt-7">
-                      <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" class="rounded-xl" />
+                      <img src="background/image_41.png" alt="Shoes" class="rounded-xl" />
                     </figure>
                     <div class="card-body items-center text-center -mt-2 mb-8">
                       <h2 class="card-title text-lg font-semibold">2D Animation</h2>
-                      <p class="text-sm text-slate-400">Lorem ipsum dolor sit amet, consectetur 
-                          adipiscing elit, sed do eiusmod</p>
+                      <p class="text-sm text-slate-400">Explore the charm of 2D animation with talented artists who bring your ideas to life with vibrant visuals and engaging storytelling.</p>
                     </div>
                   </div>
                   <!-- card 3-->
                   <div class="card w-[22rem] bg-base-100 border border-neutral-400">
                     <figure class="px-8 pt-7">
-                      <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" class="rounded-xl" />
+                      <img src="background/image_42_1.png" alt="Shoes" class="rounded-xl" />
                     </figure>
                     <div class="card-body items-center text-center -mt-2 mb-8">
                       <h2 class="card-title text-lg font-semibold">3D Animation</h2>
-                      <p class="text-sm text-slate-400">Lorem ipsum dolor sit amet, consectetur 
-                          adipiscing elit, sed do eiusmod</p>
+                      <p class="text-sm text-slate-400">Step into the realm of 3D animation where skilled animators create immersive worlds and lifelike characters that captivate audiences with their depth and realism.</p>
                     </div>
                   </div>
                 </div>
@@ -115,7 +112,7 @@
             <div class="container mx-auto px-20 pt-10 pb-20">
               <h1 class="text-center text-3xl text-neutral-900 font-bold">Our Services</h1>
               <div class="flex justify-center">
-                <p class="text-center text-slate-400 font-thin w-1/3 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p>
+                <p class="text-center text-slate-400 font-thin w-1/3 mt-4">We offer a comprehensive suite of services designed to meet all your video editing needs.</p>
               </div>
               <div class="flex justify-center mt-12">
                 <div class="grid grid-cols-4 gap-8">
@@ -160,8 +157,8 @@
               </div>
               </div>
               <div class="flex justify-end">
-                <a class="btn bg-blue-700 hover:bg-blue-700 text-white text-base font-medium border-none rounded-md mt-8 w-32" href="#">
-                  Explore <img class="w-5" src="../Asset/arrow-right.svg" alt="">
+                <a class="btn bg-blue-700 hover:bg-blue-700 text-white text-base font-medium border-none rounded-md mt-8 w-32" href="{{('formlogin')}}">
+                  Explore <img class="w-5" src="{{asset('/icon/arrow-right.svg')}}" alt="">
                 </a>
               </div>
               </div>

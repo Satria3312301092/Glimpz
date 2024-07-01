@@ -62,7 +62,7 @@
     </div>
     <div class="navbar-center hidden lg:flex z-[1]">
       <ul class="menu menu-horizontal px-1">
-      <li><a href="beranda">Home</a></li>
+      <li><a href="{{route('beranda')}}">Home</a></li>
         <li><a href="{{route('listservice.index')}}">Service</a></li>
         <li><a>About</a></li>
         <li><a>Contact</a></li>
