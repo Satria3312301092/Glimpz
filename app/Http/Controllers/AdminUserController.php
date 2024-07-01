@@ -13,24 +13,47 @@ class AdminUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {   
-        $users = User::all();
+    public function index(Request $request)
+{   
+    
+    $search = $request->input('search');
+
+    
+    if ($search) {
+            $users = User::where('Name', 'LIKE', "%{$search}%")
+                        ->orWhere('Id_User', 'LIKE', "%{$search}%")
+                        ->get();
+            $usersBuyer = User::where('Role', 'Buyer')
+                            ->where(function($query) use ($search) {
+                                $query->where('Name', 'LIKE', "%{$search}%")
+                                        ->orWhere('Id_User', 'LIKE', "%{$search}%");
+                            })->get();
+            $usersSeller = User::where('Role', 'Seller')
+                            ->where(function($query) use ($search) {
+                                $query->where('Name', 'LIKE', "%{$search}%")
+                                        ->orWhere('Id_User', 'LIKE', "%{$search}%");
+                            })->get();
+            $usersAdmin = User::where('Role', 'Admin')
+                            ->where(function($query) use ($search) {
+                                $query->where('Name', 'LIKE', "%{$search}%")
+                                        ->orWhere('Id_User', 'LIKE', "%{$search}%");
+                            })->get();
+        } else {
+            $users = User::all();
+            $usersBuyer = User::where('Role', 'Buyer')->get();
+            $usersSeller = User::where('Role', 'Seller')->get();
+            $usersAdmin = User::where('Role', 'Admin')->get();
+        }
+
         $admins = Administrator::all();
-
-        $usersBuyer = User::where('Role', 'Buyer')->get();
-        $usersSeller = User::where('Role', 'Seller')->get();
-        $usersAdmin = User::where('Role', 'Admin')->get();
-
         $sellersId = Seller::all();
         $usersBan = Banned::all();
-
-        // $usersBuyer = User::where($users1);
-
         $count = $users->count();
 
         return view('adminuser', compact('users', 'count', 'usersBuyer', 'usersSeller', 'usersAdmin', 'sellersId', 'usersBan', 'admins'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
