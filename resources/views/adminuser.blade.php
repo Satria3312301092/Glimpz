@@ -597,26 +597,28 @@
                           
                           <h3 class="font-bold text-lg mb-3">Banned This User?!</h3>
                           <p>This User {{ $userSeller->Name }} With ID {{ $sellerId->Id_Seller }} Will Be Banned</p>
+                          @if(isset($userBuyer))
                           <form action="{{ route('adminuser.store') }}" method="POST">
-                            @csrf
-                          <div class="grid grid-rows-1 grid-cols-2 mb-4 mt-4">
-                            <div class="">
-                              <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Id_User" type="text" value="{{ $userBuyer->Id_User }}"></input>
-                            </div>
-                            <div class="">
-                              <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Name" type="text" value="{{ $userBuyer->Name }}"></input>
-                            </div>
-                          <div class="">
-                            <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Numberphone" type="text" value="{{ $userBuyer->Number_Phone }}"></input>
-                          </div>
-                          <div class="">
-                            <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Email" type="text" value="{{ $userBuyer->Email }}"></input>
-                          </div>
-                        </div>
-                          <button type="submit"  class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">BAN</button>
-                        </div>
-                      </form>
-                        
+                              @csrf
+                              <div class="grid grid-rows-1 grid-cols-2 mb-4 mt-4">
+                                  <div>
+                                      <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Id_User" value="{{ $userBuyer->Id_User }}">
+                                  </div>
+                                  <div>
+                                      <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Name" value="{{ $userBuyer->Name }}">
+                                  </div>
+                                  <div>
+                                      <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Numberphone" value="{{ $userBuyer->Number_Phone }}">
+                                  </div>
+                                  <div>
+                                      <input type="hidden" class="shadow-2xl rounded-lg input p-2" name="Email" value="{{ $userBuyer->Email }}">
+                                  </div>
+                              </div>
+                              <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">BAN</button>
+                          </form>
+                      @else
+                          <p>User not found.</p>
+                      @endif        
                       </dialog>
                       <!-- modal ban -->
 
