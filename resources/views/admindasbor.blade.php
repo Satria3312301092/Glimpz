@@ -38,7 +38,7 @@
                 <div class="stats shadow-lg shadow-neutral-300 w-full hover:bg-gray-300">
                   <a href="admininvoice">
                   <div class="stat">
-                    <div class="stat-title font-bold text-gray-600">Invoice</div>
+                    <div class="stat-title font-bold text-gray-600">Seller Earnings</div>
                     <div class="stat-value font-black">{{ $countInvoice }}</div>
                   </div>
                 </a>
@@ -123,7 +123,7 @@
               22 30.25H11C7.96243 30.25 5.5 27.7876 5.5 24.75V8.25Z" fill="currentColor"/>-
               <path fill-rule="evenodd" clip-rule="evenodd" d="M19.25 4.125V6.875C19.25 9.15317 21.0968 11 23.375 11H26.125V13.75H23.375C19.578 13.75 16.5 10.672 16.5 6.875V4.125H19.25Z" fill="currentColor"/>
               </svg>
-              Invoice</a></li>
+              Earnings</a></li>
             <li><a href="adminpayment"><svg class="h-6 w-6 text-white" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4.125 16.5C4.125 9.66548 9.66548 4.125 16.5 4.125C23.3345 4.125 28.875 9.66548 28.875 16.5C28.875 23.3345 23.3345 28.875 16.5 28.875C9.66548 28.875 4.125 23.3345 4.125 16.5Z" stroke="currentColor" stroke-width="3"/>
               <path d="M22 12.375L15.125 20.625L11 16.875" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>

@@ -34,6 +34,7 @@
                     <div class="card-body items-center text-center -mt-2 mb-8">
                       <h2 class="card-title text-lg font-semibold">Video Editing</h2>
                       <p class="text-sm text-slate-400">Find talented video editors who turn raw footage into polished videos that captivate your audience and clearly convey your message.</p>
+                      <p class="text-sm text-slate-400">Find talented video editors who turn raw footage into polished videos that captivate your audience and clearly convey your message.</p>
                     </div>
                   </div>
                   <!-- card 2-->
@@ -44,6 +45,7 @@
                     <div class="card-body items-center text-center -mt-2 mb-8">
                       <h2 class="card-title text-lg font-semibold">2D Animation</h2>
                       <p class="text-sm text-slate-400">Explore the charm of 2D animation with talented artists who bring your ideas to life with vibrant visuals and engaging storytelling.</p>
+                      <p class="text-sm text-slate-400">Explore the charm of 2D animation with talented artists who bring your ideas to life with vibrant visuals and engaging storytelling.</p>
                     </div>
                   </div>
                   <!-- card 3-->
@@ -53,6 +55,7 @@
                     </figure>
                     <div class="card-body items-center text-center -mt-2 mb-8">
                       <h2 class="card-title text-lg font-semibold">3D Animation</h2>
+                      <p class="text-sm text-slate-400">Step into the realm of 3D animation where skilled animators create immersive worlds and lifelike characters that captivate audiences with their depth and realism.</p>
                       <p class="text-sm text-slate-400">Step into the realm of 3D animation where skilled animators create immersive worlds and lifelike characters that captivate audiences with their depth and realism.</p>
                     </div>
                   </div>

@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\Invoice;
+use App\Models\Service;
+use App\Models\Order;
+use App\Models\Type;
+use App\Models\Detail;
+use App\Models\Seller;
 use Illuminate\Http\Request;
 
 class AdminInvoiceController extends Controller
@@ -11,9 +16,17 @@ class AdminInvoiceController extends Controller
      */
     public function index()
     {   
-        $invoice = Invoice::all();
+        $invoices = Invoice::all();
+        $services = Service::all();
+        $details = Detail::all();
+        $types = Type::all();
+        $orders = Order::all();
+        $sellers = Seller::all();
+        
 
-        return view('admininvoice');
+        $countInvoice = count($invoices);
+
+        return view('admininvoice', compact( 'sellers','countInvoice', 'invoices', 'services', 'details', 'types', 'orders'));
     }
 
     /**
@@ -51,9 +64,28 @@ class AdminInvoiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, $Id_Invoice)
+{
+    
+    $request->validate([
+        'proof' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    
+    $invoice = Invoice::findOrFail($Id_Invoice);
+
+  
+    if ($request->hasFile('proof')) {
+        $file = $request->file('proof');
+        $filename = rand().time() . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('public/proofpaid', $filename);
+
+        $invoice->proof = $filename;
+        $invoice->status = 'paid';
+        $invoice->save();
+    }
+
+    return redirect()->back()->with('success', 'Invoice updated successfully.');
     }
 
     /**

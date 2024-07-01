@@ -19,7 +19,7 @@
             <div class="w-full h-full">
               <div class="pl-12 pt-12">
                 <h1 class="font-bold text-2xl">Invoice</h1>
-                <a class="text-xs text-blue-500">7 Invoice Found</a>
+                <a class="text-xs text-blue-500">{{ $countInvoice }} Invoice Found</a>
               </div>
               <!-- table service -->
               <div class="overflow-auto max-h-screen pl-12 pt-12">
@@ -27,9 +27,10 @@
                   <!-- head -->
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th>ID Invoice</th>
                       <th>Title Service</th>
                       <th>Date</th>
+                      <th>Status</th>
                       <th>Price</th>
                       <th>Action</th>
                     </tr>
@@ -37,17 +38,32 @@
                   <tbody>
 
                     <!-- row 1 -->
+                    @foreach ($invoices as $invoice)
+                    @foreach ($services as $service)
+                    @if ($service->Id_Service == $invoice->Id_Service)
+                    @foreach ($orders as $order)
+                    @if ($order->Id_Order == $invoice->Id_Order)
+                    @foreach ($details as $detail)
+                    @if ($order->Id_Detail == $detail->Id_Detail)
                     <tr>
                         <th>
-                          #1
+                          #{{ $invoice->Id_Invoice }}
                         </th>
                         <td>
-                            I will animate your character
+                            {{ $service->Title }}
                         </td>
                         <td>
-                            2024-03-22
+                          {{ Carbon\Carbon::parse($invoice->Date)->format('d F Y') }}
                         </td>
-                        <td>Rp.99.000</td>
+                        <td>
+                          @if($invoice->Status == 'notpaid')
+                          Not Paid
+                          @endif
+                          @if($invoice->Status == 'paid')
+                          Paid
+                          @endif
+                        </td>
+                        <td>Rp{{ number_format($detail->Price, 0, ',', '.') }}</td>
                         <th>
                             <div class="dropdown">
                               <div tabindex="0" role="button" class="btn btn-square btn-ghost bg-base-100">
@@ -58,7 +74,7 @@
                                   <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
                                   Delete</a></li>
-                                <li><a onclick="my_modal_1.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <li><a onclick="my_modal_1{{ $invoice->Id_Invoice }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
                                   8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                   </svg>
@@ -67,19 +83,42 @@
                             </div>
                         </th>
                       </tr>
-                      <dialog id="my_modal_1" class="modal">
+                      
+                      
+                      
+                      <dialog id="my_modal_1{{ $invoice->Id_Invoice }}" class="modal">
                         <div class="modal-box">
-                          <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                          </form>
-                          <h3 class="font-bold text-lg">Hello!</h3>
-                          <p class="py-4">Press ESC key or click on ✕ button to close</p>
+                            <form method="dialog">
+                                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                            <h3 class="font-bold text-lg">Hello!</h3>
+                            <p class="py-4 grid grid-rows-6">
+                                <div>SELLER : {{ $service->Id_Seller }}</div>
+                                @foreach ($sellers as $seller)
+                                @if ($service->Id_Seller == $seller->Id_Seller)
+                                <div>ACCOUNT NUMBER : {{ $seller->Account_Number }}</div>
+                                @endif
+                                @endforeach
+                                <form action="{{ route('admininvoice.update', $invoice->Id_Invoice) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <input id="proof" name="proof" type="file" class="mt-1 custom-file-input w-full mb-10">
+                                    <button type="submit" class="btn btn-block bg-blue-700 px-14 hover:bg-blue-700 text-white shadow-md">Confirm</button>
+                                </form>
+                            </p>
                         </div>
-                      </dialog>
+                    </dialog>                    
+                      @endif
+                      @endforeach
+                      @endif
+                      @endforeach
+                      @endif
+                      @endforeach
+                      @endforeach
                     <!-- row 1 -->
 
                     <!-- row 2 -->
-                    <tr>
+                    {{-- <tr>
                         <th>
                           #2
                         </th>
@@ -168,7 +207,7 @@
                           <h3 class="font-bold text-lg">Hello!</h3>
                           <p class="py-4">Press ESC key or click on ✕ button to close</p>
                         </div>
-                      </dialog>
+                      </dialog> --}}
                     <!-- row 3 -->
                       
                     <!-- row 4 -->
@@ -234,7 +273,7 @@
               <path fill-rule="evenodd" clip-rule="evenodd" d="M11 5.5C9.48122 5.5 8.25 6.73122 8.25 8.25V24.75C8.25 26.2688 9.48122 27.5 11 27.5H22C23.5188 27.5 24.75 26.2688 24.75 24.75V12.1391C24.75 11.7744 24.6051 11.4247 24.3473 11.1668L19.0832 5.90273C18.8253 5.64487 18.4756 5.5 18.1109 5.5H11ZM5.5 8.25C5.5 5.21244 7.96243 2.75 11 2.75H18.1109C19.2049 2.75 20.2541 3.1846 21.0277 3.95818L26.2918 9.22227C27.0654 9.99586 27.5 11.0451 27.5 12.1391V24.75C27.5 27.7876 25.0376 30.25 22 30.25H11C7.96243 30.25 5.5 27.7876 5.5 24.75V8.25Z" fill="currentColor"/>
               <path fill-rule="evenodd" clip-rule="evenodd" d="M19.25 4.125V6.875C19.25 9.15317 21.0968 11 23.375 11H26.125V13.75H23.375C19.578 13.75 16.5 10.672 16.5 6.875V4.125H19.25Z" fill="currentColor"/>
               </svg>
-              Invoice</a></li>
+              Earnings</a></li>
             <li><a href="adminpayment"><svg class="h-6 w-6 text-white" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4.125 16.5C4.125 9.66548 9.66548 4.125 16.5 4.125C23.3345 4.125 28.875 9.66548 28.875 16.5C28.875 23.3345 23.3345 28.875 16.5 28.875C9.66548 28.875 4.125 23.3345 4.125 16.5Z" stroke="currentColor" stroke-width="3"/>
               <path d="M22 12.375L15.125 20.625L11 16.875" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -244,6 +283,11 @@
         
         </div>
       </div>
+      @if (session('success'))
+    <script>
+        alert('{{ session('success') }}');
+    </script>
+  @endif
 </body>
 </html>
   

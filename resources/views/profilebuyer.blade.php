@@ -501,6 +501,7 @@
                         @endif
                         @endforeach
                         @endif
+                        @if ($order->Status == 'Proses' || $order->Status == 'Finish')
                         <li>
                           <a onclick="my_modal_delivery{{ $order->Id_Order }}.showModal()">
                           <svg class="w-3 mr-1" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -515,6 +516,7 @@
                           Delivery
                           </a>
                         </li>
+                        @endif
                       </ul>
                     </div>
                 </div>

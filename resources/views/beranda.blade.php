@@ -139,7 +139,7 @@
               <div class="flex justify-center mt-5">
                 <div class="grid grid-cols-4 gap-8">
                   <!-- card 1-->
-                  
+                  @if(isset($services) && isset($types) && isset($details))
     @foreach ($services as $service)
         @foreach ($types as $type)
             @if ($type->Type_Name == 'Basic' && $type->Id_Service == $service->Id_Service)
@@ -166,8 +166,7 @@
             @endif
         @endforeach
     @endforeach
-
-
+@endif
                   <!-- card 1-->
                  
               </div>

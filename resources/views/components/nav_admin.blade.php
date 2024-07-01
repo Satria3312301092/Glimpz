@@ -10,12 +10,12 @@
               <!-- <div class="form-control">
                 <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
               </div> -->
-              <button class="btn btn-ghost btn-circle">
+              {{-- <button class="btn btn-ghost btn-circle">
                 <svg class="w-8 p-1" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M25.5063 47.9541C37.9361 47.9541 48.0125 37.8908 48.0125 25.4771C48.0125 13.0633 37.9361 3 25.5063 3C13.0764 3 3 13.0633 3 25.4771C3 37.8908 13.0764 47.9541 25.5063 47.9541Z" stroke="currentColor" stroke-width="5.62656" stroke-linecap="round" stroke-linejoin="round"/>
                   <path d="M53.6391 53.5735L41.4014 41.3516" stroke="currentColor" stroke-width="5.62656" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>                  
-              </button>
+              </button> --}}
               <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                   <div class="w-8 border-[1px] border-[#BEBEBE] rounded-full shadow-md shadow-neutral-300">

@@ -37,7 +37,7 @@
     </div>
     <div class="navbar-center hidden lg:flex z-[1]">
       <ul class="menu menu-horizontal px-1">
-        <li><a href="{{route('beranda')}}">Home</a></li>
+        <li><a href="{{ route('beranda') }}">Home</a></li>
         <li><a href="{{route('listservice.index')}}">Service</a></li>
         <li><a>About</a></li>
         <li><a>Contact</a></li>
@@ -168,7 +168,7 @@
                         <div class="flex justify-between font-bold items-end">
                             <h3 class="text-base text-slate-700">Basic Animation</h3>
                         </div>
-                        <p class="text-zinc-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.{{$detail->Descriptions}}</p>
+                        <p class="text-zinc-500">{{$detail->Descriptions}}</p>
                         <ul class="font-bold text-base bg-slate-50 rounded-xl p-5">
                             <li class="flex items-center mb-3 text-slate-700">
                                 <svg class="w-6 h-6 mr-4" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -254,7 +254,7 @@
                         <div class="flex justify-between font-bold items-end">
                             <h3 class="text-base text-slate-700">Standard Animation</h3>
                         </div>
-                        <p class="text-zinc-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.{{$detail->Descriptions}}</p>
+                        <p class="text-zinc-500">{{$detail->Descriptions}}</p>
                         <ul class="font-bold text-base bg-slate-50 rounded-xl p-5">
                             <li class="flex items-center mb-3 text-slate-700">
                                 <svg class="w-6 h-6 mr-4" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -341,7 +341,7 @@
                         <div class="flex justify-between font-bold items-end">
                             <h3 class="text-base text-slate-700">Premium Animation</h3>
                         </div>
-                        <p class="text-zinc-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.{{$detail->Descriptions}}</p>
+                        <p class="text-zinc-500">{{$detail->Descriptions}}</p>
                         <ul class="font-bold text-base bg-slate-50 rounded-xl p-5">
                             <li class="flex items-center mb-3 text-slate-700">
                                 <svg class="w-6 h-6 mr-4" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
