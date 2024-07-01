@@ -29,7 +29,9 @@
                 </div>
                 <div class="flex items-end justify-end">
                   <div class="form-control">
-                    <input type="search" placeholder="Search" class="input input-bordered input-sm text-xs rounded-full mr-3" />
+                    <form action="{{ route('adminuser.search') }}" method="GET">
+                    <input name="search" type="search" placeholder="Search" class="input input-bordered input-sm text-xs rounded-full mr-3" />
+                    </form>
                   </div>
                   <a class="btn btn-sm bg-blue-700 hover:bg-blue-700 text-white text-xs font-medium border-none rounded-md">
                     <svg class="h-4 w-4 text-white" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -707,7 +709,7 @@
                                           <path fill-rule="evenodd" clip-rule="evenodd" d="M15 17C15 16.4477 15.4477 16 16 16L17 16C17.5523 16 18 16.4477 18 17C18 17.5523 17.5523 18 17 18H16C15.4477 18 15 17.5523 15 17Z" fill="black"/>
                                           <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C16.5523 2 17 2.44772 17 3V6C17 6.55228 16.5523 7 16 7C15.4477 7 15 6.55228 15 6V3C15 2.44772 15.4477 2 16 2Z" fill="black"/>
                                         </svg>
-                                        <input type="date" name="Date" class="grow" value="{{ $userSeller->Date_Of_Birth }}" />
+                                        <input disabled type="date" name="Date" class="grow" value="{{ $userSeller->Date_Of_Birth }}" />
                                     </label>
                                   </label>
                                 </div>
