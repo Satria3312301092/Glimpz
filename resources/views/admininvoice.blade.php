@@ -7,6 +7,34 @@
     <link rel="stylesheet" href="output.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom styles */
+      .custom-file-input::-webkit-file-upload-button {
+          color: #fff;
+          background-color: #3b82f6;
+          border-color: transparent;
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+      }
+
+      .custom-file-input::-webkit-file-upload-button:hover {
+          background-color: #2563eb;
+      }
+
+      .custom-file-input {
+          width: calc(100% - 8rem); /* Menyesuaikan lebar input */
+          border-radius: 0.375rem;
+          border: 2px solid #3b82f6;
+          color: #3b82f6;
+          transition: border-color 0.3s ease;
+          outline: none;
+      }
+
+      .custom-file-input:focus {
+          border-color: #2563eb;
+      }
+  </style>
+</head>
     <body class="font-poppins">
     <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
@@ -70,15 +98,14 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                               </div>
                               <ul tabindex="0" class="dropdown-content z-[1] menu shadow-md shadow-neutral-300 bg-base-100 font-normal rounded-box w-52">
-                                <li><a><svg class="w-4 text-red-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M17.9999 17.9999L12 12M12 12L6 6M12 12L18 6M12 12L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <li><a onclick="my_modal_1{{ $invoice->Id_Invoice }}.showModal()">
+                                  <svg class="w-4 mr-2 text-orange-500" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 0H5C3.67441 0.00158786 2.40356 0.528882 1.46622 1.46622C0.528882 2.40356 0.00158786 3.67441 0 5L0 13C0.00158786 14.3256 0.528882 15.5964 1.46622 16.5338C2.40356 17.4711 3.67441 
+                                    17.9984 5 18H19C20.3256 17.9984 21.5964 17.4711 22.5338 16.5338C23.4711 15.5964 23.9984 14.3256 24 13V5C23.9984 3.67441 23.4711 2.40356 22.5338 1.46622C21.5964 0.528882 20.3256 0.00158786 19 
+                                    0ZM5 2H19C19.7956 2 20.5587 2.31607 21.1213 2.87868C21.6839 3.44129 22 4.20435 22 5H2C2 4.20435 2.31607 3.44129 2.87868 2.87868C3.44129 2.31607 4.20435 2 5 2ZM19 16H5C4.20435 16 3.44129 15.6839 
+                                    2.87868 15.1213C2.31607 14.5587 2 13.7956 2 13V7H22V13C22 13.7956 21.6839 14.5587 21.1213 15.1213C20.5587 15.6839 19.7956 16 19 16Z" fill="currentColor"/>
                                   </svg>
-                                  Delete</a></li>
-                                <li><a onclick="my_modal_1{{ $invoice->Id_Invoice }}.showModal()"><svg class="w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M12 11V16M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21ZM12.0498 
-                                  8V8.1L11.9502 8.1002V8H12.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>
-                                  Details</a></li>
+                                  Pay</a></li>
                               </ul>
                             </div>
                         </th>

@@ -623,7 +623,7 @@
                                       <div class="flex items-center pl-10">
                                       <form action="{{ route('rating.jasa') }}" method="POST">
                                         @csrf
-                                              <div class="rating rating-sm" >
+                                              <div class="rating rating-sm mr-3">
                                                   <!-- <input type="radio"  name="rating" class="mask mask-star-2" value="" checked/> -->
                                                   <input type="radio" name="rating" class="mask mask-star-2" value="1" checked />
                                                   <input type="radio" name="rating" class="mask mask-star-2" value="2"  />
@@ -634,7 +634,7 @@
                                               </div>
                                               <!-- <input type="" name="id_user" value="" /> -->
                                             <input type="hidden" name="id_service" value="{{$serviceOrder->Id_Service}}" />
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" class="btn btn-outline btn-md rounded-full">Submit</button>
                                             </form>
                                               <!-- <span>(77 Reviews)</span> -->
                                       </div>

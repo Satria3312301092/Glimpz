@@ -116,7 +116,7 @@
                     <!-- <span>128</span> -->
                   </div>
                 </div>
-                <p class="text-lg font-bold">Rp.{{ $detail->Price }}</p>
+                <p class="text-lg font-bold">Rp{{ number_format($detail->Price, 0, ',', '.') }}</p>
               </div>
             </div>
             </a>

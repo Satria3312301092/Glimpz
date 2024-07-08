@@ -116,21 +116,28 @@
 
                       {{-- Modal Approve --}}
                       <dialog id="my_modal_3{{ $order->Id_Order }}" class="modal">
-                        <div class="modal-box h-full w-auto" >
+                        <div class="modal-box w-11/12 max-w-6xl h-full" >
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
                           <h3 class="font-bold text-lg">Buyer Ask For Confirmation</h3>
                           <p class="py-4">Approve If All Already Safe</p>
-                          <div class="flex">
-                          <iframe src="{{ $payment->Invoice_Url }}" frameborder="0" class="flex-1 rounded-lg border-4 h-auto"></iframe>
-                          <img src="{{ Storage::url($payment->Proof) }}" class="flex-1" ></img>
+                          <div class="grid grid-cols-2 gap-x-2 items-center">
+                            <div class="col-span-1">
+                              <iframe src="{{ $payment->Invoice_Url }}" frameborder="0" class="rounded-xl border-2 w-full h-[40rem] aspect-auto"></iframe>
+                            </div>
+                            <div class="col-span-1">
+                              <img src="{{ Storage::url($payment->Proof) }}" class="w-full shadow-xl shadow-neutral-300 rounded-xl"></img>
+                            </div>
                           </div>
+
                           <form action="{{ route('adminpayment.update', $payment->Id_Payment) }}" method="POST">
                           @csrf
                           @method ('PUT')
                           <input type="text" name="Status" value="Approve" hidden></input>
+                          <div class="modal-action">
                           <button type="submit" class="btn btn-outline btn-success">Approve</button>
+                          </div>
                         </form>
                         </div>
                       </dialog>
@@ -138,20 +145,22 @@
 
                       {{-- Modal Reject --}}
                       <dialog id="my_modal_2{{ $order->Id_Order }}" class="modal">
-                        <div class="modal-box">
+                        <div class="modal-box w-11/12 max-w-5xl h-full">
                           <form method="dialog">
                             <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                           </form>
                           <h3 class="font-bold text-lg">Buyer Ask For Confirmation</h3>
                           <p class="py-4">Reject If There Is Something Else</p>
                           <div class="flex">
-                          <iframe src="{{ $payment->Invoice_Url }}" frameborder="0" class="flex-1 rounded-lg border-4 h-auto"></iframe>
-                          <img src="{{ Storage::url($payment->Proof) }}" class="flex-1" ></img>
+                          <iframe src="{{ $payment->Invoice_Url }}" frameborder="0" class="rounded-xl border-2 w-full h-[40rem] aspect-auto"></iframe>
+                          <img src="{{ Storage::url($payment->Proof) }}" class="w-full shadow-xl shadow-neutral-300 rounded-xl" ></img>
                           <form action="{{ route('adminpayment.update', $payment->Id_Payment) }}" method="POST">
                             @csrf
                             @method ('PUT')
                           <input type="text" name="Status" value="Reject" hidden></input>
+                          <div class="modal-action">
                           <button type="submit" class="btn btn-outline btn-error">Reject</button>
+                          </div>
                         </form>
                         </div>
                       </dialog>

@@ -52,7 +52,7 @@
                   </div>
                 </div>
                 <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a href="{{ route('profileseller.index') }}">
+        <li><a href="{{ route('profilebuyer.index') }}">
           <img src="{{ asset('/icon/Profile.svg') }}" alt="">
           Profile</a></li>
         <form action="{{ route ('logout') }}" method="POST">
@@ -131,7 +131,7 @@
                     <div class="grid gap-y-3">
                         <div class="flex justify-between font-bold items-end text-xl">
                             <h3>Basic Animation</h3>
-                            <a">Rp.{{$detail->Price}}</a>
+                            <a>Rp{{ number_format($detail->Price, 0, ',', '.') }}</a>
                         </div>
                         <p>{{$detail->Descriptions}}</p>
                         <ul class="font-bold text-base">
@@ -189,7 +189,7 @@
                                 {{$detail->Day}} Days Delivery Time
                             </li>
                         </ul>
-                        <a class="font-bold text-xl text-slate-700">Rp.{{$detail->Price}}</a>
+                        <a class="font-bold text-xl text-slate-700">Rp{{ number_format($detail->Price, 0, ',', '.') }}</a>
                           <div class="modal-action">
                             <form method="dialog">
                               <button class="btn">Close</button>
@@ -217,7 +217,7 @@
                     <div class="grid gap-y-3">
                         <div class="flex justify-between font-bold items-end">
                             <h3 class="text-base">Standard Animation</h3>
-                            <a class="text-xl">Rp.{{$detail->Price}}</a>
+                            <a class="text-xl">Rp{{ number_format($detail->Price, 0, ',', '.') }}</a>
                         </div>
                         <p>{{$detail->Descriptions}}</p>
                         <ul class="font-bold text-base">
@@ -304,7 +304,7 @@
                     <div class="grid gap-y-3">
                         <div class="flex justify-between font-bold items-end">
                             <h3 class="text-base">Premium Animation</h3>
-                            <a class="text-xl">Rp.{{$detail->Price}}</a>
+                            <a class="text-xl">Rp{{ number_format($detail->Price, 0, ',', '.') }}</a>
                         </div>
                         <p>{{$detail->Descriptions}}</p>
                         <ul class="font-bold text-base">
